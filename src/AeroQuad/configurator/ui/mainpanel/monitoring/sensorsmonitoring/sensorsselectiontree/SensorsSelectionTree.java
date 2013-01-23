@@ -1,5 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsselectiontree;
 
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTree;
@@ -8,6 +9,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -32,6 +34,8 @@ public class SensorsSelectionTree extends JTree implements ISensorsSelectionTree
 
     private void init()
     {
+        setBorder(BorderFactory.createLineBorder(Color.black));
+
         final DefaultMutableTreeNode gyro = new DefaultMutableTreeNode("Gyro");
         gyro.add(new DefaultMutableTreeNode("X"));
         gyro.add(new DefaultMutableTreeNode("Y"));

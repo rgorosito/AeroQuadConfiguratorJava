@@ -10,9 +10,11 @@ import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 
 public class XYZPlotDrawerPanel extends JPanel
@@ -32,6 +34,7 @@ public class XYZPlotDrawerPanel extends JPanel
     private void init(final String sensorName)
     {
         setLayout(new BorderLayout());
+        setBorder(BorderFactory.createLineBorder(Color.black));
 
         final TimeSeriesCollection xTimeSeriesCollection = new TimeSeriesCollection(_xSeries);
         final TimeSeriesCollection yTimeSeriesCollection = new TimeSeriesCollection(_ySeries);

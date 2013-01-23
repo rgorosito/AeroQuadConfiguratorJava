@@ -2,6 +2,7 @@ package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.receiverdisp
 
 import AeroQuad.configurator.MathUtil;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -21,6 +22,9 @@ public class StickPanel extends JLabel
     public StickPanel()
     {
         setIcon(new ImageIcon(imageFileName));
+        setBorder(BorderFactory.createLineBorder(Color.black));
+        setOpaque(true);
+        setBackground(Color.black);
     }
 
     void setX(final int x)

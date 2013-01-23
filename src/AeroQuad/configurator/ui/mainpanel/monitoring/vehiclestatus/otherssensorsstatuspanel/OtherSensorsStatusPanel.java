@@ -3,6 +3,7 @@ package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensor
 
 import AeroQuad.configurator.model.FlightMode;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -36,18 +37,27 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
 
         _motorStatusLabel.setOpaque(true);
         _motorStatusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        _motorStatusLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         _flightModeLabel.setOpaque(true);
         _flightModeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        _flightModeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         _batteryVoltageLabel.setOpaque(true);
         _batteryVoltageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        _batteryVoltageLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         _altitudeHoldStateLabel.setOpaque(true);
         _altitudeHoldStateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        _altitudeHoldStateLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         _currentVehicleAltitudeLabel.setOpaque(true);
         _currentVehicleAltitudeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        _currentVehicleAltitudeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        add(new JLabel("Motors"));
+        final JLabel motorLabel = new JLabel("Motor");
+        motorLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        add(motorLabel);
         add(_motorStatusLabel);
-        add(new JLabel("Flight Mode"));
+        final JLabel flightModeLabel = new JLabel("Flight Mode");
+        flightModeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        add(flightModeLabel);
         add(_flightModeLabel);
     }
 
@@ -59,9 +69,13 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
             _currentNbRow+=2;
 
             setLayout(new GridLayout(_currentNbRow, 2));
-            add(new JLabel("Altitude Hold"));
+            final JLabel altitudeHoldLabel = new JLabel("Altitude Hold");
+            altitudeHoldLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+            add(altitudeHoldLabel);
             add(_altitudeHoldStateLabel);
-            add(new JLabel("Current Altitude"));
+            final JLabel currentAltitudeLabel = new JLabel("Current Altitude");
+            currentAltitudeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+            add(currentAltitudeLabel);
             add(_currentVehicleAltitudeLabel);
         }
     }
