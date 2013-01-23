@@ -41,15 +41,6 @@ public class SensorsMonitoringPanel extends ConfiguratorPanel implements ISensor
         add(_sensorsTree, BorderLayout.WEST);
         add(_plotPanel);
 
-        _sensorsTree.addSelectionChangeListener(new TreeSelectionChangeListener()
-        {
-            @Override
-            public void selectionChanged(final String key, final boolean selected)
-            {
-                _controller.selectionChanged(key, selected);
-            }
-        });
-
         _plotPanel.add(_gyroPlotDrawerPanel);
         _plotPanel.add(_accelPlotDrawerPanel);
 

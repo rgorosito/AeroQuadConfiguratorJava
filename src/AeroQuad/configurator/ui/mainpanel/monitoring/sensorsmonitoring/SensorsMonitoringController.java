@@ -143,12 +143,4 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
     {
         _panel = panel;
     }
-
-    @Override
-    public void selectionChanged(final String key, final boolean selected)
-    {
-
-    }
-
-
 }
