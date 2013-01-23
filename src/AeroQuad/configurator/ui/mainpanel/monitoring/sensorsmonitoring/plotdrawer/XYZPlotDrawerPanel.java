@@ -15,7 +15,7 @@ import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-public class PlotDrawerPanel extends JPanel
+public class XYZPlotDrawerPanel extends JPanel
 {
     private TimeSeries _xSeries = new TimeSeries("X");
     private TimeSeries _ySeries = new TimeSeries("Y");
@@ -24,7 +24,7 @@ public class PlotDrawerPanel extends JPanel
     private boolean _yVisible = true;
     private boolean _zVisible = true;
 
-    public PlotDrawerPanel(final String sensorName)
+    public XYZPlotDrawerPanel(final String sensorName)
     {
         init(sensorName);
     }

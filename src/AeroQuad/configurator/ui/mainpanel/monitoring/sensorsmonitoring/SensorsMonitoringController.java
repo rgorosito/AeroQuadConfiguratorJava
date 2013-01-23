@@ -26,6 +26,15 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
                 _panel.setHaveMagnetometer((Boolean)evt.getNewValue());
             }
         });
+        aeroQuadModel.addListener(IAeroQuadModel.BAROMETER_PROPERTY_KEY,new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                // need a message change, will wait for 3.2 to be released
+//                _panel.setHaveBarometer((Boolean) evt.getNewValue());
+            }
+        });
 
         aeroQuadModel.addListener(IAeroQuadModel.SENSOR_GYRO_X_VALUE_CHANGE,new PropertyChangeListener()
         {
@@ -105,6 +114,14 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 _panel.setMagZ((String)evt.getNewValue());
+            }
+        });
+        aeroQuadModel.addListener(IAeroQuadModel.VEHICLE_ALTITUDE_STATE_CHANGE,new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                _panel.setBaroAltitude((Float)evt.getNewValue());
             }
         });
 

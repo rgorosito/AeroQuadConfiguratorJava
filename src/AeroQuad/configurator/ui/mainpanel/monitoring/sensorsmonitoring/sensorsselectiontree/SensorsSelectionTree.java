@@ -85,6 +85,16 @@ public class SensorsSelectionTree extends JTree implements ISensorsSelectionTree
         }
     }
 
+    public void setHaveBarometer(final boolean value)
+    {
+        if (value)
+        {
+            final DefaultMutableTreeNode altitude = new DefaultMutableTreeNode("altitude");
+            _treeModel.insertNodeInto(altitude,_root,_root.getChildCount());
+            expandAllNode();
+        }
+    }
+
     private void expandAllNode()
     {
         for (int i = 0; i < getRowCount(); i++)
@@ -92,6 +102,8 @@ public class SensorsSelectionTree extends JTree implements ISensorsSelectionTree
             expandRow(i);
         }
     }
+
+
 
     private class CellRenderer implements TreeCellRenderer
     {

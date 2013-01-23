@@ -3,6 +3,7 @@ package AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring;
 public interface ISensorsMonitoringPanel
 {
     void setHaveMagnetometer(boolean value);
+    void setHaveBarometer(boolean value);
 
     void setGyroX(String value);
     void setGyroY(String value);
@@ -13,4 +14,7 @@ public interface ISensorsMonitoringPanel
     void setMagX(String value);
     void setMagY(String value);
     void setMagZ(String value);
+
+
+    void setBaroAltitude(float value);
 }

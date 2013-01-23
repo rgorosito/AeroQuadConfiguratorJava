@@ -2,7 +2,7 @@ package AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring;
 
 import AeroQuad.configurator.ui.ConfiguratorPanel;
 import AeroQuad.configurator.ui.IConfiguratorController;
-import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.plotdrawer.PlotDrawerPanel;
+import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.plotdrawer.XYZPlotDrawerPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsselectiontree.ISensorsSelectionTree;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsselectiontree.SensorsSelectionTree;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsselectiontree.TreeSelectionChangeListener;
@@ -20,9 +20,10 @@ public class SensorsMonitoringPanel extends ConfiguratorPanel implements ISensor
     private final GridLayout _plotPanelsLayout = new GridLayout(2, 1);
     private final JPanel _plotPanel = new JPanel(_plotPanelsLayout);
 
-    final PlotDrawerPanel _accelPlotDrawerPanel = new PlotDrawerPanel("Accel");
-    final PlotDrawerPanel _gyroPlotDrawerPanel = new PlotDrawerPanel("Gyro");
-    final PlotDrawerPanel _magPlotDrawerPanel = new PlotDrawerPanel("Magnetometer");
+    final XYZPlotDrawerPanel _accelPlotDrawerPanel = new XYZPlotDrawerPanel("Accel");
+    final XYZPlotDrawerPanel _gyroPlotDrawerPanel = new XYZPlotDrawerPanel("Gyro");
+    final XYZPlotDrawerPanel _magPlotDrawerPanel = new XYZPlotDrawerPanel("Magnetometer");
+    final XYZPlotDrawerPanel _altitudeDrawerPanel = new XYZPlotDrawerPanel("Altitude");
 
     public SensorsMonitoringPanel(final ISensorsMonitoringController controller)
     {
@@ -75,10 +76,26 @@ public class SensorsMonitoringPanel extends ConfiguratorPanel implements ISensor
         _sensorsTree.setHaveMagnetometer(value);
         if (value)
         {
-            _plotPanelsLayout.setRows(3);
+            if (_plotPanelsLayout.getColumns() < 2)
+            {
+                _plotPanelsLayout.setColumns(2);
+            }
             _plotPanel.add(_magPlotDrawerPanel);
         }
+    }
 
+    @Override
+    public void setHaveBarometer(final boolean value)
+    {
+        _sensorsTree.setHaveBarometer(value);
+        if (value)
+        {
+            if (_plotPanelsLayout.getColumns() < 2)
+            {
+                _plotPanelsLayout.setColumns(2);
+            }
+            _plotPanel.add(_altitudeDrawerPanel);
+        }
     }
 
     @Override
@@ -135,6 +152,11 @@ public class SensorsMonitoringPanel extends ConfiguratorPanel implements ISensor
         _magPlotDrawerPanel.addZValue(Float.parseFloat(value));
     }
 
+    @Override
+    public void setBaroAltitude(final float value)
+    {
+        _altitudeDrawerPanel.addXValue(value);
+    }
 
 
     private void analyseTreeChangedEvent(final String key, final boolean selected)
