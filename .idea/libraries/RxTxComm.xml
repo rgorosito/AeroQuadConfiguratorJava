@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="RxTxComm">
+  <library name="RXTXcomm">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/SerialComm/RXTXcomm.jar!/" />
     </CLASSES>

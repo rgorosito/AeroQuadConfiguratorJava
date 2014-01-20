@@ -5,11 +5,9 @@ import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.communication.messaging.request.VehicleInfoRequest;
 import AeroQuad.configurator.model.IAeroQuadModel;
 import gnu.io.CommPortIdentifier;
-import gnu.io.PortInUseException;
 import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
-import gnu.io.UnsupportedCommOperationException;
 
 import javax.swing.SwingUtilities;
 import java.beans.PropertyChangeListener;
@@ -22,7 +20,6 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.TooManyListenersException;
 
 
 public class SerialCommunicator implements ISerialCommunicator
@@ -92,56 +89,14 @@ public class SerialCommunicator implements ISerialCommunicator
 
         if (portFound)
         {
-
             try
             {
                 _connectedPort = (SerialPort) _portId.open("Aeroquad Serial Communicator", 2000);
-            }
-            catch (PortInUseException ex)
-            {
-                System.err.println("Port already in use!");
-            }
-
-            try
-            {
                 _imputStreamReader = _connectedPort.getInputStream();
                 _outputStream = _connectedPort.getOutputStream();
-            }
-            catch (IOException e)
-            {
-                System.err.println("Cannot open Input Stream " + e);
-                _imputStreamReader = null;
-            }
-
-            try
-            {
                 _bufferedReader = new BufferedReader(new InputStreamReader(_imputStreamReader), 5);
-            }
-            catch (IllegalArgumentException eft)
-            {
-                System.err.println("Increase the buffer!!!");
-            }
-
-            try
-            {
                 _connectedPort.setSerialPortParams(baudRate, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
-            }
-            catch (UnsupportedCommOperationException ex)
-            {
-                System.err.println("Wrong settings for the serial port: " + ex.getMessage());
-            }
-
-            try
-            {
                 _connectedPort.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
-            }
-            catch (UnsupportedCommOperationException ex)
-            {
-                System.err.println("Check the flow control setting: " + ex.getMessage());
-            }
-
-            try
-            {
                 _connectedPort.addEventListener(new SerialPortEventListener()
                 {
 
@@ -152,29 +107,21 @@ public class SerialCommunicator implements ISerialCommunicator
                     }
                 });
             }
-            catch (TooManyListenersException ev)
+            catch (final Exception e)
             {
-                System.err.println("Too many Listeners! " + ev);
+                System.err.println("Can't connect to comm port because of " + e);
+                _imputStreamReader = null;
             }
-
             // Advise if data available to be read on the port
             _connectedPort.notifyOnDataAvailable(true);
 
-            try
-            {
-                Thread.sleep(1000);
-                System.out.println("Port: " + _connectedPortName + " opened");
-                _isConnected = true;
-                _propertyChangeSupport.firePropertyChange(CONNECTION_STATE_CHANGE, null, _isConnected);
-                sendCommand("x");
-                final VehicleInfoRequest request = new VehicleInfoRequest(_aeroQuadModel);
-                _vehicleStateAnalyser = request.getMessageAnalyser();
-                sendRequest(request);
-            }
-            catch (InterruptedException e)
-            {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            }
+            System.out.println("Port: " + _connectedPortName + " opened");
+            _isConnected = true;
+            _propertyChangeSupport.firePropertyChange(CONNECTION_STATE_CHANGE, null, _isConnected);
+            sendCommand("x");
+            final VehicleInfoRequest request = new VehicleInfoRequest(_aeroQuadModel);
+            _vehicleStateAnalyser = request.getMessageAnalyser();
+            sendRequest(request);
         }
     }
 
@@ -183,28 +130,22 @@ public class SerialCommunicator implements ISerialCommunicator
     {
         if (_isConnected)
         {
-            if (_imputStreamReader != null)
+            try
             {
-                try
+                if (_imputStreamReader != null)
                 {
                     _imputStreamReader.close();
+                    _imputStreamReader = null;
                 }
-                catch (IOException e)
-                {
-                    System.err.println("Cannot close the InputStream!!!");
-                }
-            }
-
-            if (_bufferedReader != null)
-            {
-                try
+                if (_bufferedReader != null)
                 {
                     _bufferedReader.close();
+                    _bufferedReader = null;
                 }
-                catch (IOException e)
-                {
-                    System.err.println("Cannot close the BufferedReader InputStream!!!");
-                }
+            }
+            catch (Exception e)
+            {
+                System.err.println("Close connection problem");
             }
 
             _connectedPort.close();
@@ -228,19 +169,25 @@ public class SerialCommunicator implements ISerialCommunicator
     {
         try
         {
+            _propertyChangeSupport.firePropertyChange(RAW_DATA_MESSAGE_SENT, null, command);
             _outputStream.write(command.getBytes());
             _outputStream.close();
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            System.err.println("Send command error");
+            disconnect();
         }
     }
 
+    @Override
+    public boolean isConnected()
+    {
+        return _isConnected;
+    }
 
 
-
-    public void processSerialEvent(SerialPortEvent event)
+    private void processSerialEvent(final SerialPortEvent event)
     {
 
         switch (event.getEventType())
@@ -292,8 +239,9 @@ public class SerialCommunicator implements ISerialCommunicator
     private void handleReceivedString(final String rawData)
     {
 //        System.out.println(rawData);
-        _propertyChangeSupport.firePropertyChange(RAW_DATA_MESSAGE, null, rawData);
-        if (!_vehicleStateAnalyser.analyzeRawData(rawData)) {
+        _propertyChangeSupport.firePropertyChange(RAW_DATA_MESSAGE_RECEIVED, null, rawData);
+        if (!_vehicleStateAnalyser.analyzeRawData(rawData))
+        {
             _messageAnalyser.analyzeRawData(rawData);
         }
     }

@@ -23,7 +23,7 @@ public class SerialMonitoringPanelController implements ISerialMonitoringPanelCo
                 _panel.connectionStateChanged(isConnected);
             }
         });
-        _communicator.addListener(ISerialCommunicator.RAW_DATA_MESSAGE, new PropertyChangeListener()
+        _communicator.addListener(ISerialCommunicator.RAW_DATA_MESSAGE_RECEIVED, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)

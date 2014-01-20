@@ -3,6 +3,9 @@ package AeroQuad.configurator;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.SerialCommunicator;
+import AeroQuad.configurator.communication.communicationstatistics.CommunicationStatisticsProcessor;
+import AeroQuad.configurator.communication.communicationstatistics.ICommunicationStatisticsProcessor;
+import AeroQuad.configurator.communication.connectionthread.ConnectionThreadMonitor;
 import AeroQuad.configurator.model.AeroQuadModel;
 import AeroQuad.configurator.model.IAeroQuadModel;
 import AeroQuad.configurator.ui.AQConfiguratorMainFrame;
@@ -21,6 +24,8 @@ public class Starter
         final IAeroQuadModel aeroQuadModel = new AeroQuadModel();
 
         final ISerialCommunicator communicator = new SerialCommunicator(aeroQuadModel);
+        final ICommunicationStatisticsProcessor statisticProcessor = new CommunicationStatisticsProcessor(communicator);
+        new ConnectionThreadMonitor(communicator, statisticProcessor);
         final AQConfiguratorMainFrame mainFrame = new AQConfiguratorMainFrame(communicator,aeroQuadModel);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

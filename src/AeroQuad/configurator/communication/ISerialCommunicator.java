@@ -20,7 +20,8 @@ public interface ISerialCommunicator
 
     final String VEHICLE_STATE_REQUEST_MESSAGE = "#";
 
-    final String RAW_DATA_MESSAGE = "RAW_DATA_MESSAGE";
+    final String RAW_DATA_MESSAGE_RECEIVED = "RAW_DATA_MESSAGE_RECEIVED";
+    final String RAW_DATA_MESSAGE_SENT = "RAW_DATA_MESSAGE_SENT";
 
     final String CONNECTION_STATE_CHANGE = "CONNECTION_STATE_CHANGE";
 
@@ -28,7 +29,6 @@ public interface ISerialCommunicator
     void addListener(String propertyName, PropertyChangeListener propertyChangeListener);
 
     List<String> getComPortAvailable();
-
 
     void connect(int baudRate, String defaultPort);
 
@@ -39,4 +39,6 @@ public interface ISerialCommunicator
     void sendRequest(IRequest vehicleStatusRequest);
 
     void sendCommand(String command);
+
+    boolean isConnected();
 }

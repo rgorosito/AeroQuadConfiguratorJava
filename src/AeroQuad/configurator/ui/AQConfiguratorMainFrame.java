@@ -27,8 +27,7 @@ import AeroQuad.configurator.ui.mainpanel.setup.SetupPanelController;
 import AeroQuad.configurator.ui.mainpanel.tuning.TuningPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.TuningPanelController;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.BorderLayout;
 
 public class AQConfiguratorMainFrame extends JFrame
@@ -42,6 +41,18 @@ public class AQConfiguratorMainFrame extends JFrame
 
     private void initUi(final ISerialCommunicator communicator, final IAeroQuadModel aeroQuadModel)
     {
+        try {
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+        SwingUtilities.updateComponentTreeUI(this) ;
         final JPanel mainContainer = new JPanel(new BorderLayout());
 
         final MainPanelController mainPanelController = new MainPanelController(communicator);
