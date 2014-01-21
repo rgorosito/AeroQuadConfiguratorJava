@@ -1,7 +1,7 @@
 package AeroQuad.configurator.ui;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
-import AeroQuad.configurator.model.IAeroQuadModel;
+import AeroQuad.configurator.messageDispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.connectionpanel.ConnectionPanel;
 import AeroQuad.configurator.ui.connectionpanel.ConnectionPanelController;
 import AeroQuad.configurator.ui.mainmenue.MainMenuController;
@@ -33,39 +33,27 @@ import java.awt.BorderLayout;
 public class AQConfiguratorMainFrame extends JFrame
 {
     public AQConfiguratorMainFrame(final ISerialCommunicator communicator,
-                                   final IAeroQuadModel aeroQuadModel)
+                                   final IMessageDispatcher messageDispatcher)
     {
         super("AeroQuad Configurator v4.0");
-        initUi(communicator, aeroQuadModel);
+        initUi(communicator, messageDispatcher);
     }
 
-    private void initUi(final ISerialCommunicator communicator, final IAeroQuadModel aeroQuadModel)
+    private void initUi(final ISerialCommunicator communicator, final IMessageDispatcher messageDispatcher)
     {
-        try {
-            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-        SwingUtilities.updateComponentTreeUI(this) ;
         final JPanel mainContainer = new JPanel(new BorderLayout());
 
         final MainPanelController mainPanelController = new MainPanelController(communicator);
         {
             final SerialMonitoringPanel serialMonitoringPanel = new SerialMonitoringPanel(new SerialMonitoringPanelController(communicator));
 
-            final ReceiverDisplayPanel receiverPanel = new ReceiverDisplayPanel(new ReceiverPanelController(aeroQuadModel));
-            final VehicleStatusController vehicleStatusController = new VehicleStatusController(aeroQuadModel, communicator);
-            final MotorDisplayPanel motorCommandDisplayPanel = new MotorDisplayPanel(new MotorDisplayController(aeroQuadModel));
-            final OtherSensorsStatusPanel otherSensorsStatusPanel = new OtherSensorsStatusPanel(new OtherSensorsStatusPanelController(aeroQuadModel));
+            final ReceiverDisplayPanel receiverPanel = new ReceiverDisplayPanel(new ReceiverPanelController(messageDispatcher));
+            final VehicleStatusController vehicleStatusController = new VehicleStatusController(messageDispatcher, communicator);
+            final MotorDisplayPanel motorCommandDisplayPanel = new MotorDisplayPanel(new MotorDisplayController(messageDispatcher));
+            final OtherSensorsStatusPanel otherSensorsStatusPanel = new OtherSensorsStatusPanel(new OtherSensorsStatusPanelController(messageDispatcher));
             final VehicleStatusPanel vehicleStatusPanel = new VehicleStatusPanel(vehicleStatusController, receiverPanel, motorCommandDisplayPanel,otherSensorsStatusPanel);
-            final MotorDisplayPanel motorCommandPanel = new MotorDisplayPanel(new MotorDisplayController(aeroQuadModel));
-            final SensorsMonitoringPanel sensorsMonitoringPanel = new SensorsMonitoringPanel(new SensorsMonitoringController(aeroQuadModel,communicator));
+            final MotorDisplayPanel motorCommandPanel = new MotorDisplayPanel(new MotorDisplayController(messageDispatcher));
+            final SensorsMonitoringPanel sensorsMonitoringPanel = new SensorsMonitoringPanel(new SensorsMonitoringController(messageDispatcher,communicator));
 
 
             final MonitoringPanel monitoringPanel = new MonitoringPanel(

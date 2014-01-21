@@ -2,7 +2,7 @@ package AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.messaging.request.SensorsValueRequest;
-import AeroQuad.configurator.model.IAeroQuadModel;
+import AeroQuad.configurator.messageDispatcher.IMessageDispatcher;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -12,21 +12,21 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
 
     private ISensorsMonitoringPanel _panel;
     private final ISerialCommunicator _communicator;
-    private final IAeroQuadModel _aeroQuadModel;
+    private final IMessageDispatcher _messageDispatcher;
 
-    public SensorsMonitoringController(final IAeroQuadModel aeroQuadModel,final ISerialCommunicator communicator)
+    public SensorsMonitoringController(final IMessageDispatcher messageDispatcher,final ISerialCommunicator communicator)
     {
-        _aeroQuadModel = aeroQuadModel;
+        _messageDispatcher = messageDispatcher;
         _communicator = communicator;
-        aeroQuadModel.addListener(IAeroQuadModel.MAGNETOMETER_PROPERTY_KEY,new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.MAGNETOMETER_PROPERTY_KEY, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _panel.setHaveMagnetometer((Boolean)evt.getNewValue());
+                _panel.setHaveMagnetometer((Boolean) evt.getNewValue());
             }
         });
-        aeroQuadModel.addListener(IAeroQuadModel.BAROMETER_PROPERTY_KEY,new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.BAROMETER_PROPERTY_KEY, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
@@ -36,97 +36,94 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
             }
         });
 
-        aeroQuadModel.addListener(IAeroQuadModel.SENSOR_GYRO_X_VALUE_CHANGE,new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.SENSOR_GYRO_X_VALUE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _panel.setGyroX((String)evt.getNewValue());
+                _panel.setGyroX((String) evt.getNewValue());
             }
         });
 
-        aeroQuadModel.addListener(IAeroQuadModel.SENSOR_GYRO_Y_VALUE_CHANGE,new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.SENSOR_GYRO_Y_VALUE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _panel.setGyroY((String)evt.getNewValue());
+                _panel.setGyroY((String) evt.getNewValue());
             }
         });
 
-        aeroQuadModel.addListener(IAeroQuadModel.SENSOR_GYRO_Z_VALUE_CHANGE,new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.SENSOR_GYRO_Z_VALUE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _panel.setGyroZ((String)evt.getNewValue());
+                _panel.setGyroZ((String) evt.getNewValue());
             }
         });
 
-        aeroQuadModel.addListener(IAeroQuadModel.SENSOR_ACCEL_X_VALUE_CHANGE,new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.SENSOR_ACCEL_X_VALUE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _panel.setAccelX((String)evt.getNewValue());
+                _panel.setAccelX((String) evt.getNewValue());
             }
         });
 
-        aeroQuadModel.addListener(IAeroQuadModel.SENSOR_ACCEL_Y_VALUE_CHANGE,new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.SENSOR_ACCEL_Y_VALUE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _panel.setAccelY((String)evt.getNewValue());
+                _panel.setAccelY((String) evt.getNewValue());
             }
         });
 
-        aeroQuadModel.addListener(IAeroQuadModel.SENSOR_ACCEL_Z_VALUE_CHANGE,new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.SENSOR_ACCEL_Z_VALUE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _panel.setAccelZ((String)evt.getNewValue());
+                _panel.setAccelZ((String) evt.getNewValue());
             }
         });
 
-        aeroQuadModel.addListener(IAeroQuadModel.SENSOR_MAG_X_VALUE_CHANGE,new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.SENSOR_MAG_X_VALUE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _panel.setMagX((String)evt.getNewValue());
+                _panel.setMagX((String) evt.getNewValue());
             }
         });
 
-        aeroQuadModel.addListener(IAeroQuadModel.SENSOR_MAG_Y_VALUE_CHANGE,new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.SENSOR_MAG_Y_VALUE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _panel.setMagY((String)evt.getNewValue());
+                _panel.setMagY((String) evt.getNewValue());
             }
         });
 
-        aeroQuadModel.addListener(IAeroQuadModel.SENSOR_MAG_Z_VALUE_CHANGE,new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.SENSOR_MAG_Z_VALUE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _panel.setMagZ((String)evt.getNewValue());
+                _panel.setMagZ((String) evt.getNewValue());
             }
         });
-        aeroQuadModel.addListener(IAeroQuadModel.VEHICLE_ALTITUDE_STATE_CHANGE,new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.VEHICLE_ALTITUDE_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _panel.setBaroAltitude((Float)evt.getNewValue());
+                _panel.setBaroAltitude((Float) evt.getNewValue());
             }
         });
-
-
-
     }
 
     @Override
@@ -134,7 +131,7 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
     {
         if (activated)
         {
-            _communicator.sendRequest(new SensorsValueRequest(_aeroQuadModel,activated));
+            _communicator.sendRequest(new SensorsValueRequest(_messageDispatcher,activated));
         }
     }
 

@@ -1,6 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus;
 
-import AeroQuad.configurator.model.VehicleAttitude;
+import AeroQuad.configurator.messageDispatcher.VehicleAttitude;
 
 public interface IVehicleStatusPanel
 {

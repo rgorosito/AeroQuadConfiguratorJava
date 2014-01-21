@@ -3,7 +3,7 @@ package AeroQuad.configurator.communication;
 import AeroQuad.configurator.communication.messaging.messageanalyzer.IMessageAnalyser;
 import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.communication.messaging.request.VehicleInfoRequest;
-import AeroQuad.configurator.model.IAeroQuadModel;
+import AeroQuad.configurator.messageDispatcher.IMessageDispatcher;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;
@@ -34,15 +34,15 @@ public class SerialCommunicator implements ISerialCommunicator
     private boolean _isConnected = false;
     private BufferedReader _bufferedReader = null;
 
-    private final IAeroQuadModel _aeroQuadModel;
+    private final IMessageDispatcher _messageDispatcher;
     private IMessageAnalyser _messageAnalyser;
     private IMessageAnalyser _vehicleStateAnalyser;
 
     private final PropertyChangeSupport _propertyChangeSupport = new PropertyChangeSupport(this);
 
-    public SerialCommunicator(final IAeroQuadModel aeroQuadModel)
+    public SerialCommunicator(final IMessageDispatcher messageDispatcher)
     {
-        _aeroQuadModel = aeroQuadModel;
+        _messageDispatcher = messageDispatcher;
     }
 
     @Override
@@ -119,7 +119,7 @@ public class SerialCommunicator implements ISerialCommunicator
             _isConnected = true;
             _propertyChangeSupport.firePropertyChange(CONNECTION_STATE_CHANGE, null, _isConnected);
             sendCommand("x");
-            final VehicleInfoRequest request = new VehicleInfoRequest(_aeroQuadModel);
+            final VehicleInfoRequest request = new VehicleInfoRequest(_messageDispatcher);
             _vehicleStateAnalyser = request.getMessageAnalyser();
             sendRequest(request);
         }

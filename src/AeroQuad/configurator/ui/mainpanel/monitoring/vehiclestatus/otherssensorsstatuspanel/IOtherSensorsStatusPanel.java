@@ -1,6 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensorsstatuspanel;
 
-import AeroQuad.configurator.model.FlightMode;
+import AeroQuad.configurator.messageDispatcher.FlightMode;
 
 public interface IOtherSensorsStatusPanel
 {

@@ -2,23 +2,23 @@ package AeroQuad.configurator.communication.messaging.request;
 
 import AeroQuad.configurator.communication.messaging.messageanalyzer.IMessageAnalyser;
 import AeroQuad.configurator.communication.messaging.messageanalyzer.VehicleStatusMessageAnalyser;
-import AeroQuad.configurator.model.IAeroQuadModel;
+import AeroQuad.configurator.messageDispatcher.IMessageDispatcher;
 
 public class VehicleStatusRequest implements IRequest
 {
-    private final IAeroQuadModel _aeroQuadModel;
+    private final IMessageDispatcher _messageDispatcher;
     private boolean _activated;
 
-    public VehicleStatusRequest(final IAeroQuadModel aeroQuadModel, final boolean activated)
+    public VehicleStatusRequest(final IMessageDispatcher messageDispatcher, final boolean activated)
     {
-        _aeroQuadModel = aeroQuadModel;
+        _messageDispatcher = messageDispatcher;
         _activated = activated;
     }
 
     @Override
     public IMessageAnalyser getMessageAnalyser()
     {
-        return new VehicleStatusMessageAnalyser(_aeroQuadModel);
+        return new VehicleStatusMessageAnalyser(_messageDispatcher);
     }
 
     @Override

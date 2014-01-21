@@ -1,6 +1,6 @@
 package AeroQuad.configurator.communication.messaging.messageanalyzer;
 
-import AeroQuad.configurator.model.IAeroQuadModel;
+import AeroQuad.configurator.messageDispatcher.IMessageDispatcher;
 
 public class VehicleInfoMessageAnalyser implements IMessageAnalyser
 {
@@ -21,11 +21,11 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
     private final String NOT_ENABLED = "Not Enabled";
     private final String NOT_DETECTED = "Not Detected";
 
-    private final IAeroQuadModel _aeroQuadModel;
+    private final IMessageDispatcher _messageDispatcher;
 
-    public VehicleInfoMessageAnalyser(final IAeroQuadModel aeroQuadModel)
+    public VehicleInfoMessageAnalyser(final IMessageDispatcher messageDispatcher)
     {
-        _aeroQuadModel = aeroQuadModel;
+        _messageDispatcher = messageDispatcher;
     }
 
     @Override
@@ -51,76 +51,76 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
         if (datas[0].contains(GPS_KEY))
         {
             final boolean isGpsEnabled = !datas[1].contains(NOT_ENABLED);
-            _aeroQuadModel.setHaveGPS(isGpsEnabled);
+            _messageDispatcher.setHaveGPS(isGpsEnabled);
             return true;
         }
         else if (datas[0].contains(RANGE_DETECTION_KEY))
         {
             final boolean isRangerEnabled = !datas[1].contains(NOT_ENABLED);
-            _aeroQuadModel.setHaveRangeFinder(isRangerEnabled);
+            _messageDispatcher.setHaveRangeFinder(isRangerEnabled);
             return true;
         }
         else if (datas[0].contains(CAMERA_STABILITY_KEY))
         {
             final boolean isCameraStabilityEnabled = !datas[1].contains(NOT_ENABLED);
-            _aeroQuadModel.setHaveCameraStability(isCameraStabilityEnabled);
+            _messageDispatcher.setHaveCameraStability(isCameraStabilityEnabled);
             return true;
         }
         else if (datas[0].contains(BATTERY_MONITOR_KEY))
         {
             final boolean isBatteryMonitorEnabled = !datas[1].contains(NOT_ENABLED);
-            _aeroQuadModel.setHaveBatteryMonitor(isBatteryMonitorEnabled);
+            _messageDispatcher.setHaveBatteryMonitor(isBatteryMonitorEnabled);
             return true;
         }
         else if (datas[0].contains(MAGNETOMETER_KEY))
         {
             final boolean isMagnetometerDetected = !datas[1].contains(NOT_DETECTED);
-            _aeroQuadModel.setMagnetometerDectected(isMagnetometerDetected);
+            _messageDispatcher.setMagnetometerDectected(isMagnetometerDetected);
             return true;
         }
         else if (datas[0].contains(BAROMETER_KEY))
         {
             final boolean isBarometerDetected = !datas[1].contains(NOT_DETECTED);
-            _aeroQuadModel.setBarometerDectected(isBarometerDetected);
+            _messageDispatcher.setBarometerDectected(isBarometerDetected);
             return true;
         }
         else if (datas[0].contains(ACCELEROMETER_KEY))
         {
             final boolean isAccelerometerDetected = !datas[1].contains(NOT_DETECTED);
-            _aeroQuadModel.setAccelerometerDectected(isAccelerometerDetected);
+            _messageDispatcher.setAccelerometerDectected(isAccelerometerDetected);
             return true;
         }
         else if (datas[0].contains(GYROSCOPE_KEY))
         {
             final boolean isGyroscopeDetected = !datas[1].contains(NOT_DETECTED);
-            _aeroQuadModel.setGyroscopeDectected(isGyroscopeDetected);
+            _messageDispatcher.setGyroscopeDectected(isGyroscopeDetected);
             return true;
         }
         else if (datas[0].contains(MOTORS_KEY))
         {
             final int nbMotors = Integer.parseInt(datas[1]);
-            _aeroQuadModel.setNbMotors(nbMotors);
+            _messageDispatcher.setNbMotors(nbMotors);
             return true;
         }
         else if (datas[0].contains(NB_RECEIVER_CHANNEL_KEY))
         {
             final int nbReceiverChannel = Integer.parseInt(datas[1]);
-            _aeroQuadModel.setNbReceiverChannel(nbReceiverChannel);
+            _messageDispatcher.setNbReceiverChannel(nbReceiverChannel);
             return true;
         }
         else if (datas[0].contains(FLIGHT_CONFIG_KEY))
         {
-            _aeroQuadModel.setFlightConfig(datas[1]);
+            _messageDispatcher.setFlightConfig(datas[1]);
             return true;
         }
         else if (datas[0].contains(BOARD_TYPE_KEY))
         {
-            _aeroQuadModel.setBoardType(datas[1]);
+            _messageDispatcher.setBoardType(datas[1]);
             return true;
         }
         else if (datas[0].contains(FLIGHT_SOFTWARE_VERSION_KEY))
         {
-            _aeroQuadModel.setFlightSoftwareVersion(datas[1]);
+            _messageDispatcher.setFlightSoftwareVersion(datas[1]);
             return true;
         }
         return false;
