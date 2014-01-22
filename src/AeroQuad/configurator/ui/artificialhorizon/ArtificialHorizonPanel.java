@@ -8,7 +8,7 @@
  *********************************************/
 package AeroQuad.configurator.ui.artificialhorizon;
 
-import AeroQuad.configurator.messageDispatcher.VehicleAttitude;
+import AeroQuad.configurator.messagedispatcher.VehicleAttitude;
 
 import javax.swing.JPanel;
 import java.awt.BasicStroke;
@@ -47,7 +47,7 @@ public class ArtificialHorizonPanel extends JPanel
 
     public ArtificialHorizonPanel()
     {
-        setBackground(Color.black);
+        setBackground(Color.lightGray);
 
         try
         {
@@ -66,13 +66,6 @@ public class ArtificialHorizonPanel extends JPanel
 
         setMinimumSize(new Dimension(350,350));
     }
-
-//    @Override
-//    public void setBounds(final int x, final int y, final int width, final int height)
-//    {
-//        PREFERRED_PANEL_SIZE = Math.max(width,getHeight());
-//        super.setBounds(x, y, width, height);    //To change body of overridden methods use File | Settings | File Templates.
-//    }
 
     @Override
     public Dimension getPreferredSize()
@@ -282,7 +275,7 @@ public class ArtificialHorizonPanel extends JPanel
     private void drawStringData(final Graphics2D g2d)
     {
         g2d.setTransform(_originalTransform);
-        g2d.setColor(Color.WHITE);
+        g2d.setColor(Color.YELLOW);
         final String rollString = "R:" + Integer.toString(_rollAngle);
         g2d.drawString(rollString,3, (float) PREFERRED_PANEL_SIZE-65);
         final String pitchString = "P:" + Integer.toString(_pitchAngle);

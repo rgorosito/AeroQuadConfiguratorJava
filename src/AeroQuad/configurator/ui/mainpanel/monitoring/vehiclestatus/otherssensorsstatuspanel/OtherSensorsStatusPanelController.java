@@ -1,8 +1,8 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensorsstatuspanel;
 
 
-import AeroQuad.configurator.messageDispatcher.FlightMode;
-import AeroQuad.configurator.messageDispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagedispatcher.FlightMode;
+import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

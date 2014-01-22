@@ -2,7 +2,7 @@ package AeroQuad.configurator.communication.messaging.request;
 
 import AeroQuad.configurator.communication.messaging.messageanalyzer.IMessageAnalyser;
 import AeroQuad.configurator.communication.messaging.messageanalyzer.VehicleStatusMessageAnalyser;
-import AeroQuad.configurator.messageDispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 
 public class VehicleStatusRequest implements IRequest
 {

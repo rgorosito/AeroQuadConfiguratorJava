@@ -2,7 +2,7 @@ package AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.messaging.request.SensorsValueRequest;
-import AeroQuad.configurator.messageDispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -32,7 +32,7 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 // need a message change, will wait for 3.2 to be released
-//                _panel.setHaveBarometer((Boolean) evt.getNewValue());
+                _panel.setHaveBarometer((Boolean) evt.getNewValue());
             }
         });
 
@@ -131,7 +131,7 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
     {
         if (activated)
         {
-            _communicator.sendRequest(new SensorsValueRequest(_messageDispatcher,activated));
+            _communicator.sendRequest(new SensorsValueRequest(_messageDispatcher, activated));
         }
     }
 

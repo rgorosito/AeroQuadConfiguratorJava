@@ -1,7 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.receiverdisplay;
 
-import AeroQuad.configurator.messageDispatcher.IMessageDispatcher;
-import AeroQuad.configurator.messageDispatcher.ReceiverChannel;
+import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -12,7 +11,7 @@ public class ReceiverPanelController implements IReceiverDisplayPanelController
 
     public ReceiverPanelController(final IMessageDispatcher messageDispatcher)
     {
-        messageDispatcher.addListener(ReceiverChannel.ROLL.toString(), new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.RECEIVER_ROLL_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
@@ -20,7 +19,7 @@ public class ReceiverPanelController implements IReceiverDisplayPanelController
                 _panel.setRollValue((String) evt.getNewValue());
             }
         });
-        messageDispatcher.addListener(ReceiverChannel.PITCH.toString(), new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.RECEIVER_PITCH_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
@@ -28,7 +27,7 @@ public class ReceiverPanelController implements IReceiverDisplayPanelController
                 _panel.setPitchValue((String) evt.getNewValue());
             }
         });
-        messageDispatcher.addListener(ReceiverChannel.YAW.toString(), new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.RECEIVER_YAW_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
@@ -36,7 +35,7 @@ public class ReceiverPanelController implements IReceiverDisplayPanelController
                 _panel.setYawValue((String) evt.getNewValue());
             }
         });
-        messageDispatcher.addListener(ReceiverChannel.THROTTLE.toString(), new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.RECEIVER_THROTTLE_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
@@ -44,7 +43,7 @@ public class ReceiverPanelController implements IReceiverDisplayPanelController
                 _panel.setThrottleValue((String) evt.getNewValue());
             }
         });
-        messageDispatcher.addListener(ReceiverChannel.MODE.toString(), new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.RECEIVER_MODE_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
@@ -52,7 +51,7 @@ public class ReceiverPanelController implements IReceiverDisplayPanelController
                 _panel.setModeValue((String) evt.getNewValue());
             }
         });
-        messageDispatcher.addListener(ReceiverChannel.AUX1.toString(), new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.RECEIVER_AUX1_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
@@ -60,7 +59,7 @@ public class ReceiverPanelController implements IReceiverDisplayPanelController
                 _panel.setAux1Value((String) evt.getNewValue());
             }
         });
-        messageDispatcher.addListener(ReceiverChannel.AUX2.toString(), new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.RECEIVER_AUX2_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
@@ -68,44 +67,12 @@ public class ReceiverPanelController implements IReceiverDisplayPanelController
                 _panel.setAux2Value((String) evt.getNewValue());
             }
         });
-        messageDispatcher.addListener(ReceiverChannel.AUX3.toString(), new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.RECEIVER_AUX3_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 _panel.setAux3Value((String) evt.getNewValue());
-            }
-        });
-        messageDispatcher.addListener(ReceiverChannel.AUX4.toString(), new PropertyChangeListener()
-        {
-            @Override
-            public void propertyChange(final PropertyChangeEvent evt)
-            {
-                _panel.setAux4Value((String) evt.getNewValue());
-            }
-        });
-        messageDispatcher.addListener(ReceiverChannel.AUX5.toString(), new PropertyChangeListener()
-        {
-            @Override
-            public void propertyChange(final PropertyChangeEvent evt)
-            {
-                _panel.setAux5Value((String) evt.getNewValue());
-            }
-        });
-        messageDispatcher.addListener(ReceiverChannel.AUX6.toString(), new PropertyChangeListener()
-        {
-            @Override
-            public void propertyChange(final PropertyChangeEvent evt)
-            {
-                _panel.setAux6Value((String) evt.getNewValue());
-            }
-        });
-        messageDispatcher.addListener(ReceiverChannel.AUX7.toString(), new PropertyChangeListener()
-        {
-            @Override
-            public void propertyChange(final PropertyChangeEvent evt)
-            {
-                _panel.setAux7Value((String) evt.getNewValue());
             }
         });
         messageDispatcher.addListener(IMessageDispatcher.NB_RECEIVER_CHANNEL_PROPERTY_KEY, new PropertyChangeListener()

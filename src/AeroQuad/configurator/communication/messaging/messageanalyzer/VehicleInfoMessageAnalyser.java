@@ -1,6 +1,6 @@
 package AeroQuad.configurator.communication.messaging.messageanalyzer;
 
-import AeroQuad.configurator.messageDispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 
 public class VehicleInfoMessageAnalyser implements IMessageAnalyser
 {
@@ -51,76 +51,76 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
         if (datas[0].contains(GPS_KEY))
         {
             final boolean isGpsEnabled = !datas[1].contains(NOT_ENABLED);
-            _messageDispatcher.setHaveGPS(isGpsEnabled);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.GPS_PROPERTY_KEY, isGpsEnabled);
             return true;
         }
         else if (datas[0].contains(RANGE_DETECTION_KEY))
         {
             final boolean isRangerEnabled = !datas[1].contains(NOT_ENABLED);
-            _messageDispatcher.setHaveRangeFinder(isRangerEnabled);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.RANGE_DETECTION_PROPERTY_KEY, isRangerEnabled);
             return true;
         }
         else if (datas[0].contains(CAMERA_STABILITY_KEY))
         {
             final boolean isCameraStabilityEnabled = !datas[1].contains(NOT_ENABLED);
-            _messageDispatcher.setHaveCameraStability(isCameraStabilityEnabled);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.CAMERA_STABILITY_PROPERTY_KEY, isCameraStabilityEnabled);
             return true;
         }
         else if (datas[0].contains(BATTERY_MONITOR_KEY))
         {
             final boolean isBatteryMonitorEnabled = !datas[1].contains(NOT_ENABLED);
-            _messageDispatcher.setHaveBatteryMonitor(isBatteryMonitorEnabled);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.BATTERY_MONITOR_PROPERTY_KEY, isBatteryMonitorEnabled);
             return true;
         }
         else if (datas[0].contains(MAGNETOMETER_KEY))
         {
             final boolean isMagnetometerDetected = !datas[1].contains(NOT_DETECTED);
-            _messageDispatcher.setMagnetometerDectected(isMagnetometerDetected);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.MAGNETOMETER_PROPERTY_KEY, isMagnetometerDetected);
             return true;
         }
         else if (datas[0].contains(BAROMETER_KEY))
         {
             final boolean isBarometerDetected = !datas[1].contains(NOT_DETECTED);
-            _messageDispatcher.setBarometerDectected(isBarometerDetected);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.BAROMETER_PROPERTY_KEY, isBarometerDetected);
             return true;
         }
         else if (datas[0].contains(ACCELEROMETER_KEY))
         {
             final boolean isAccelerometerDetected = !datas[1].contains(NOT_DETECTED);
-            _messageDispatcher.setAccelerometerDectected(isAccelerometerDetected);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.ACCELEROMETER_PROPERTY_KEY, isAccelerometerDetected);
             return true;
         }
         else if (datas[0].contains(GYROSCOPE_KEY))
         {
             final boolean isGyroscopeDetected = !datas[1].contains(NOT_DETECTED);
-            _messageDispatcher.setGyroscopeDectected(isGyroscopeDetected);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.GYROSCOPE_PROPERTY_KEY, isGyroscopeDetected);
             return true;
         }
         else if (datas[0].contains(MOTORS_KEY))
         {
             final int nbMotors = Integer.parseInt(datas[1]);
-            _messageDispatcher.setNbMotors(nbMotors);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.NB_MOTORS_PROPERTY_KEY, nbMotors);
             return true;
         }
         else if (datas[0].contains(NB_RECEIVER_CHANNEL_KEY))
         {
             final int nbReceiverChannel = Integer.parseInt(datas[1]);
-            _messageDispatcher.setNbReceiverChannel(nbReceiverChannel);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.NB_RECEIVER_CHANNEL_PROPERTY_KEY, nbReceiverChannel);
             return true;
         }
         else if (datas[0].contains(FLIGHT_CONFIG_KEY))
         {
-            _messageDispatcher.setFlightConfig(datas[1]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.FLIGHT_CONFIG_PROPERTY_KEY, datas[1]);
             return true;
         }
         else if (datas[0].contains(BOARD_TYPE_KEY))
         {
-            _messageDispatcher.setBoardType(datas[1]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.BOARD_TYPE_PROPERTY_KEY, datas[1]);
             return true;
         }
         else if (datas[0].contains(FLIGHT_SOFTWARE_VERSION_KEY))
         {
-            _messageDispatcher.setFlightSoftwareVersion(datas[1]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.FLIGHT_SOFTWARE_VERSION_PROPERTY_KEY, datas[1]);
             return true;
         }
         return false;

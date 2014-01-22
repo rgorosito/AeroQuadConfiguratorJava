@@ -2,17 +2,20 @@ package AeroQuad.configurator.communication.communicationstatistics;
 
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class CommunicationStatisticsProcessor implements ICommunicationStatisticsProcessor
 {
+    private final IMessageDispatcher _messageDispatcher;
     private int _nbCharSent;
     private int _nbCharReceived;
 
-    public CommunicationStatisticsProcessor(final ISerialCommunicator communicator)
+    public CommunicationStatisticsProcessor(final ISerialCommunicator communicator, IMessageDispatcher messageDispatcher)
     {
+        _messageDispatcher = messageDispatcher;
         communicator.addListener(ISerialCommunicator.RAW_DATA_MESSAGE_SENT, new PropertyChangeListener()
         {
             @Override
@@ -42,8 +45,8 @@ public class CommunicationStatisticsProcessor implements ICommunicationStatistic
     @Override
     public void processCommunicationStatistics()
     {
-        final float percentUsed = 100 * (((_nbCharReceived + _nbCharSent) * 8F) / 115200F);
-        System.out.println(percentUsed);
+        final double percentUsed = 100 * (((_nbCharReceived + _nbCharSent) * 8F) / 115200F);
+        _messageDispatcher.dispatchMessage(IMessageDispatcher.COMMUNICATION_USAGE_VALUE_CAHNGED, percentUsed);
         _nbCharReceived = 0;
         _nbCharSent = 0;
     }

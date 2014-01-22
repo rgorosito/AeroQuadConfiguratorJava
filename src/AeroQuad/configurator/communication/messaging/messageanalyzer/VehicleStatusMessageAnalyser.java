@@ -1,6 +1,6 @@
 package AeroQuad.configurator.communication.messaging.messageanalyzer;
 
-import AeroQuad.configurator.messageDispatcher.*;
+import AeroQuad.configurator.messagedispatcher.*;
 
 public class VehicleStatusMessageAnalyser implements IMessageAnalyser
 {
@@ -18,41 +18,41 @@ public class VehicleStatusMessageAnalyser implements IMessageAnalyser
         {
             final String splittedData[] = rawData.split(",");
 
-            _messageDispatcher.setMotorArmed(!splittedData[0].equals("0"));
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.MOTOR_ARMED_STATE_CHANGED, !splittedData[0].equals("0"));
 
             final float xAxisAngle = Float.parseFloat(splittedData[1]);
             final float yAxisAngle = Float.parseFloat(splittedData[2]);
             final float zAxisAngle = Float.parseFloat(splittedData[3]);
-            _messageDispatcher.setVehicleAttitude(new VehicleAttitude(xAxisAngle, yAxisAngle, zAxisAngle));
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.VEHICLE_ATTITUDE_STATE_CHANGE, new VehicleAttitude(xAxisAngle, yAxisAngle, zAxisAngle));
 
             final float altitude = Float.parseFloat(splittedData[4]);
-            _messageDispatcher.setCurrentAltitude(altitude);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.VEHICLE_ALTITUDE_STATE_CHANGE, altitude);
             final boolean altitudeHoldState = splittedData[5].equals("0") ? false : true;
-            _messageDispatcher.setAltitudeHoldState(altitudeHoldState);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.VEHICLE_ALTITUDE_HOLD_STATE_CHANGE, altitudeHoldState);
 
-            _messageDispatcher.setChannelValue(ReceiverChannel.ROLL, splittedData[6]);
-            _messageDispatcher.setChannelValue(ReceiverChannel.PITCH, splittedData[7]);
-            _messageDispatcher.setChannelValue(ReceiverChannel.YAW, splittedData[8]);
-            _messageDispatcher.setChannelValue(ReceiverChannel.THROTTLE, splittedData[9]);
-            _messageDispatcher.setChannelValue(ReceiverChannel.MODE, splittedData[10]);
-            _messageDispatcher.setChannelValue(ReceiverChannel.AUX1, splittedData[11]);
-            _messageDispatcher.setChannelValue(ReceiverChannel.AUX2, splittedData[12]);
-            _messageDispatcher.setChannelValue(ReceiverChannel.AUX3, splittedData[13]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.RECEIVER_ROLL_STATE_CHANGE, splittedData[6]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.RECEIVER_PITCH_STATE_CHANGE, splittedData[7]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.RECEIVER_YAW_STATE_CHANGE, splittedData[8]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.RECEIVER_THROTTLE_STATE_CHANGE, splittedData[9]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.RECEIVER_MODE_STATE_CHANGE, splittedData[10]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.RECEIVER_AUX1_STATE_CHANGE, splittedData[11]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.RECEIVER_AUX2_STATE_CHANGE, splittedData[12]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.RECEIVER_AUX3_STATE_CHANGE, splittedData[13]);
 
-            _messageDispatcher.setMotorCommandValue(MotorsIndex.MOTOR1, splittedData[14]);
-            _messageDispatcher.setMotorCommandValue(MotorsIndex.MOTOR2, splittedData[15]);
-            _messageDispatcher.setMotorCommandValue(MotorsIndex.MOTOR3, splittedData[16]);
-            _messageDispatcher.setMotorCommandValue(MotorsIndex.MOTOR4, splittedData[17]);
-            _messageDispatcher.setMotorCommandValue(MotorsIndex.MOTOR5, splittedData[18]);
-            _messageDispatcher.setMotorCommandValue(MotorsIndex.MOTOR6, splittedData[19]);
-            _messageDispatcher.setMotorCommandValue(MotorsIndex.MOTOR7, splittedData[20]);
-            _messageDispatcher.setMotorCommandValue(MotorsIndex.MOTOR8, splittedData[21]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.MOTOR1_THROTTLE_STATE_CHANGE, splittedData[14]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.MOTOR2_THROTTLE_STATE_CHANGE, splittedData[15]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.MOTOR3_THROTTLE_STATE_CHANGE, splittedData[16]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.MOTOR4_THROTTLE_STATE_CHANGE, splittedData[17]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.MOTOR5_THROTTLE_STATE_CHANGE, splittedData[18]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.MOTOR6_THROTTLE_STATE_CHANGE, splittedData[19]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.MOTOR7_THROTTLE_STATE_CHANGE, splittedData[20]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.MOTOR8_THROTTLE_STATE_CHANGE, splittedData[21]);
 
             final float currentVoltage = Float.parseFloat(splittedData[22]);
-            _messageDispatcher.setCurrentVoltage(currentVoltage);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.VEHICLE_VOLTAGE_STATE_CHANGE,currentVoltage);
 
             final FlightMode flightMode = splittedData[23].equals("1") ? FlightMode.Stable : FlightMode.Acrobatic;
-            _messageDispatcher.setFlightMode(flightMode);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.VEHICLE_FLIGHT_MODE_STATE_CHANGE, flightMode);
         }
         catch (Exception e)
         {

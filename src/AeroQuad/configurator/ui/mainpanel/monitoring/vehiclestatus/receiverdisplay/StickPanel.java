@@ -23,8 +23,6 @@ public class StickPanel extends JLabel
     {
         setIcon(new ImageIcon(imageFileName));
         setBorder(BorderFactory.createLineBorder(Color.black));
-        setOpaque(true);
-        setBackground(Color.black);
     }
 
     void setX(final int x)

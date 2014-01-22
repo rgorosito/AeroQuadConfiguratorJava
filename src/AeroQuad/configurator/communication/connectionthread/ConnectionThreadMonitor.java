@@ -6,7 +6,7 @@ import AeroQuad.configurator.communication.communicationstatistics.ICommunicatio
 import javax.swing.*;
 import java.util.List;
 
-public class ConnectionThreadMonitor
+public class ConnectionThreadMonitor implements IConnectionThreadMonitor
 {
     private final int NB_EMPTY_HIT_THRESHOLD = 2; // @todo: use some config in property file
 
@@ -16,8 +16,8 @@ public class ConnectionThreadMonitor
     public ConnectionThreadMonitor(final ISerialCommunicator communicator, ICommunicationStatisticsProcessor statisticProcessor)
     {
         _statisticProcessor = statisticProcessor;
-        final Thread thread = new Thread(new CommunicationThread(communicator));
-        thread.start();
+        final Thread connectionThread = new Thread(new CommunicationThread(communicator));
+        connectionThread.start();
     }
 
     private void monitorConnection(final ISerialCommunicator communicator)

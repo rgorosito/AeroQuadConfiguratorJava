@@ -1,17 +1,18 @@
 package AeroQuad.configurator.ui.connectionpanel;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-public class ConnectionPanelController implements IConnectionPanelController
+public class ConnectionPanelController implements IConnectionStatusPanelController
 {
     private final ISerialCommunicator _communicator;
-    private IConnectionPanel _panel;
+    private IConnectionStatusPanel _panel;
 
-    public ConnectionPanelController(final ISerialCommunicator communicator)
+    public ConnectionPanelController(final ISerialCommunicator communicator, final IMessageDispatcher messageDispatcher)
     {
         _communicator = communicator;
 
@@ -25,15 +26,16 @@ public class ConnectionPanelController implements IConnectionPanelController
             }
         });
 
-//        _communicator.addListener(SerialMessage.FLIGHT_DATA_MESSAGE_NAME,new PropertyChangeListener()
-//        {
-//            @Override
-//            public void propertyChange(final PropertyChangeEvent event)
-//            {
-//                final FlightDataMessage messaging = (FlightDataMessage)event.getNewValue();
-//                _panel.setLoopTime(messaging.getLoopTime());
-//            }
-//        });
+        messageDispatcher.addListener(IMessageDispatcher.COMMUNICATION_USAGE_VALUE_CAHNGED, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt)
+            {
+                final double usage = (double)evt.getNewValue();
+                _panel.setUsage(usage);
+            }
+        });
+
     }
 
     private void updateConnectionState(final boolean connected)
@@ -42,28 +44,10 @@ public class ConnectionPanelController implements IConnectionPanelController
     }
 
 
-    public void setPanel(IConnectionPanel panel)
+    public void setPanel(IConnectionStatusPanel panel)
     {
         _panel = panel;
 //        _panel.setConnectionButtonEnabled(true);
 //        _panel.setDeconnectionButtonEnabled(false);
-    }
-
-    @Override
-    public List<String> getComPortAvailable()
-    {
-        return _communicator.getComPortAvailable();
-    }
-
-    @Override
-    public void connect(final String commPort)
-    {
-        _communicator.connect(commPort);
-    }
-
-    @Override
-    public void disconnect()
-    {
-        _communicator.disconnect();
     }
 }

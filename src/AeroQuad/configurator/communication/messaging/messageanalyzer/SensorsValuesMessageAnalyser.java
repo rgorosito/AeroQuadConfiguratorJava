@@ -1,7 +1,7 @@
 package AeroQuad.configurator.communication.messaging.messageanalyzer;
 
 
-import AeroQuad.configurator.messageDispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 
 public class SensorsValuesMessageAnalyser implements IMessageAnalyser
 {
@@ -20,17 +20,17 @@ public class SensorsValuesMessageAnalyser implements IMessageAnalyser
         {
             final String splittedData[] = rawData.split(",");
 
-            _messageDispatcher.setGyroXValue(splittedData[0]);
-            _messageDispatcher.setGyroYValue(splittedData[1]);
-            _messageDispatcher.setGyroZValue(splittedData[2]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_GYRO_X_VALUE_CHANGE, splittedData[0]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_GYRO_Y_VALUE_CHANGE, splittedData[1]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_GYRO_Z_VALUE_CHANGE, splittedData[2]);
 
-            _messageDispatcher.setAccelXValue(splittedData[3]);
-            _messageDispatcher.setAccelYValue(splittedData[4]);
-            _messageDispatcher.setAccelZValue(splittedData[5]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_ACCEL_X_VALUE_CHANGE, splittedData[3]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_ACCEL_Y_VALUE_CHANGE, splittedData[4]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_ACCEL_Z_VALUE_CHANGE, splittedData[5]);
 
-            _messageDispatcher.setMagXValue(splittedData[6]);
-            _messageDispatcher.setMagYValue(splittedData[7]);
-            _messageDispatcher.setMagZValue(splittedData[8]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_MAG_X_VALUE_CHANGE, splittedData[6]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_MAG_X_VALUE_CHANGE, splittedData[7]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_MAG_X_VALUE_CHANGE, splittedData[8]);
         }
         catch (final Exception e)
         {

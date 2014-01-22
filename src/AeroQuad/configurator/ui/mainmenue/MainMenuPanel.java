@@ -1,9 +1,7 @@
 package AeroQuad.configurator.ui.mainmenue;
 
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -11,12 +9,13 @@ import java.awt.event.ActionListener;
 
 public class MainMenuPanel extends JPanel implements IMainMenuPanel
 {
-    private final JButton _setupButton = new JButton(SETUP);
-    private final JButton _monitoringButton = new JButton(MONITORING);
-    private final JButton _tuningButton = new JButton(TUNING);
+    private final JToggleButton _setupButton = new JToggleButton(SETUP);
+    private final JToggleButton _monitoringButton = new JToggleButton(MONITORING);
+    private final JToggleButton _tuningButton = new JToggleButton(TUNING);
 
     private final IMainMenuController _controller;
-    private Color _defaultBackgroundColor;
+
+    private final ButtonGroup _buttonGroup = new ButtonGroup();
 
     public MainMenuPanel(final IMainMenuController controller)
     {
@@ -41,16 +40,13 @@ public class MainMenuPanel extends JPanel implements IMainMenuPanel
         _monitoringButton.setOpaque(true);
         _setupButton.setOpaque(true);
         _tuningButton.setOpaque(true);
-        _defaultBackgroundColor = _tuningButton.getBackground();
+
 
         _monitoringButton.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                _monitoringButton.setBackground(Color.GREEN);
-                _setupButton.setBackground(_defaultBackgroundColor);
-                _tuningButton.setBackground(_defaultBackgroundColor);
                 _controller.processMonitoringButtonPressed();
             }
         });
@@ -60,9 +56,6 @@ public class MainMenuPanel extends JPanel implements IMainMenuPanel
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                _monitoringButton.setBackground(_defaultBackgroundColor);
-                _setupButton.setBackground(Color.GREEN);
-                _tuningButton.setBackground(_defaultBackgroundColor);
                 _controller.processSetupButtonPressed();
             }
         });
@@ -72,12 +65,13 @@ public class MainMenuPanel extends JPanel implements IMainMenuPanel
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                _monitoringButton.setBackground(_defaultBackgroundColor);
-                _setupButton.setBackground(_defaultBackgroundColor);
-                _tuningButton.setBackground(Color.GREEN);
                 _controller.processTuningButtonPressed();
             }
         });
+
+        _buttonGroup.add(_setupButton);
+        _buttonGroup.add(_monitoringButton);
+        _buttonGroup.add(_tuningButton);
     }
 
     @Override
@@ -87,9 +81,6 @@ public class MainMenuPanel extends JPanel implements IMainMenuPanel
         _monitoringButton.setEnabled(connected);
         _tuningButton.setEnabled(connected);
 
-        _monitoringButton.setBackground(_defaultBackgroundColor);
-        _setupButton.setBackground(_defaultBackgroundColor);
-        _tuningButton.setBackground(_defaultBackgroundColor);
         if (connected)
         {
             _monitoringButton.doClick();

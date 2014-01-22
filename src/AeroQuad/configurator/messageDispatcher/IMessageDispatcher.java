@@ -1,4 +1,4 @@
-package AeroQuad.configurator.messageDispatcher;
+package AeroQuad.configurator.messagedispatcher;
 
 import java.beans.PropertyChangeListener;
 
@@ -38,40 +38,65 @@ public interface IMessageDispatcher
     final String SENSOR_MAG_Y_VALUE_CHANGE = "SENSOR_MAG_Y_VALUE_CHANGE";
     final String SENSOR_MAG_Z_VALUE_CHANGE = "SENSOR_MAG_Z_VALUE_CHANGE";
 
+    final String COMMUNICATION_USAGE_VALUE_CAHNGED = "COMMUNICATION_USAGE_VALUE_CAHNGED";
+
+    final String RECEIVER_ROLL_STATE_CHANGE = "RECEIVER_ROLL_STATE_CHANGE";
+    final String RECEIVER_PITCH_STATE_CHANGE = "RECEIVER_ROLL_STATE_CHANGE";
+    final String RECEIVER_YAW_STATE_CHANGE = "RECEIVER_YAW_STATE_CHANGE";
+    final String RECEIVER_THROTTLE_STATE_CHANGE = "RECEIVER_THROTTLE_STATE_CHANGE";
+    final String RECEIVER_MODE_STATE_CHANGE = "RECEIVER_MODE_STATE_CHANGE";
+    final String RECEIVER_AUX1_STATE_CHANGE = "RECEIVER_AUX1_STATE_CHANGE";
+    final String RECEIVER_AUX2_STATE_CHANGE = "RECEIVER_AUX1_STATE_CHANGE";
+    final String RECEIVER_AUX3_STATE_CHANGE = "RECEIVER_AUX3_STATE_CHANGE";
+
+    final String MOTOR1_THROTTLE_STATE_CHANGE = "MOTOR1_THROTTLE_STATE_CHANGE";
+    final String MOTOR2_THROTTLE_STATE_CHANGE = "MOTOR2_THROTTLE_STATE_CHANGE";
+    final String MOTOR3_THROTTLE_STATE_CHANGE = "MOTOR3_THROTTLE_STATE_CHANGE";
+    final String MOTOR4_THROTTLE_STATE_CHANGE = "MOTOR4_THROTTLE_STATE_CHANGE";
+    final String MOTOR5_THROTTLE_STATE_CHANGE = "MOTOR5_THROTTLE_STATE_CHANGE";
+    final String MOTOR6_THROTTLE_STATE_CHANGE = "MOTOR6_THROTTLE_STATE_CHANGE";
+    final String MOTOR7_THROTTLE_STATE_CHANGE = "MOTOR7_THROTTLE_STATE_CHANGE";
+    final String MOTOR8_THROTTLE_STATE_CHANGE = "MOTOR8_THROTTLE_STATE_CHANGE";
+
 
     void addListener(String propertyName, PropertyChangeListener propertyChangeListener);
 
-    void setHaveGPS(boolean gpsEnabled);
-    void setHaveRangeFinder(boolean rangerEnabled);
-    void setHaveCameraStability(boolean cameraStabilityEnabled);
-    void setHaveBatteryMonitor(boolean batteryMonitorEnabled);
-    void setMagnetometerDectected(boolean magnetometerDetected);
-    void setBarometerDectected(boolean barometerDetected);
-    void setAccelerometerDectected(boolean accelerometerDetected);
-    void setGyroscopeDectected(boolean gyroscopeDetected);
-    void setNbMotors(int nbMotors);
-    void setNbReceiverChannel(int nbReceiverChannel);
-    void setFlightConfig(String data);
-    void setBoardType(String data);
-    void setFlightSoftwareVersion(String data);
-
-    void setMotorArmed(boolean armed);
-    void setVehicleAttitude(VehicleAttitude vehicleAttitude);
-    void setCurrentAltitude(float altitude);
-    void setAltitudeHoldState(boolean altitudeHoldState);
-    void setCurrentVoltage(float currentVoltage);
-    void setFlightMode(FlightMode flightMode);
-    void setChannelValue(ReceiverChannel channel, String value);
-    void setMotorCommandValue(MotorsIndex motor, String value);
+    void dispatchMessage(String messageId, Object value);
 
 
-    void setGyroXValue(String value);
-    void setGyroYValue(String value);
-    void setGyroZValue(String value);
-    void setAccelXValue(String value);
-    void setAccelYValue(String value);
-    void setAccelZValue(String value);
-    void setMagXValue(String value);
-    void setMagYValue(String value);
-    void setMagZValue(String value);
+    //void setHaveGPS(boolean gpsEnabled);
+    //void setHaveRangeFinder(boolean rangerEnabled);
+    //void setHaveCameraStability(boolean cameraStabilityEnabled);
+    //void setHaveBatteryMonitor(boolean batteryMonitorEnabled);
+    //void setMagnetometerDectected(boolean magnetometerDetected);
+    //void setBarometerDectected(boolean barometerDetected);
+    //void setAccelerometerDectected(boolean accelerometerDetected);
+    //void setGyroscopeDectected(boolean gyroscopeDetected);
+    //void setNbMotors(int nbMotors);
+    //void setNbReceiverChannel(int nbReceiverChannel);
+    //void setFlightConfig(String data);
+    //void setBoardType(String data);
+    //void setFlightSoftwareVersion(String data);
+    //
+    //void setMotorArmed(boolean armed);
+    //void setVehicleAttitude(VehicleAttitude vehicleAttitude);
+    //void setCurrentAltitude(float altitude);
+    //void setAltitudeHoldState(boolean altitudeHoldState);
+    //void setCurrentVoltage(float currentVoltage);
+    //void setFlightMode(FlightMode flightMode);
+    //void setChannelValue(ReceiverChannel channel, String value);
+    //void setMotorCommandValue(MotorsIndex motor, String value);
+
+
+    //void setGyroXValue(String value);
+    //void setGyroYValue(String value);
+    //void setGyroZValue(String value);
+    //void setAccelXValue(String value);
+    //void setAccelYValue(String value);
+    //void setAccelZValue(String value);
+    //void setMagXValue(String value);
+    //void setMagYValue(String value);
+    //void setMagZValue(String value);
+    //
+    //void setCommunicationUsage(double value);
 }

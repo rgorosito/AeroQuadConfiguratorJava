@@ -2,8 +2,8 @@ package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.messaging.request.VehicleStatusRequest;
-import AeroQuad.configurator.messageDispatcher.IMessageDispatcher;
-import AeroQuad.configurator.messageDispatcher.VehicleAttitude;
+import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagedispatcher.VehicleAttitude;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
