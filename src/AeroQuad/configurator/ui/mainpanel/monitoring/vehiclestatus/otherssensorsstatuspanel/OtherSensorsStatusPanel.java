@@ -52,10 +52,12 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
         _currentVehicleAltitudeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         final JLabel motorLabel = new JLabel("Motor");
+        motorLabel.setOpaque(true);
         motorLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         add(motorLabel);
         add(_motorStatusLabel);
         final JLabel flightModeLabel = new JLabel("Flight Mode");
+        flightModeLabel.setOpaque(true);
         flightModeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         add(flightModeLabel);
         add(_flightModeLabel);
@@ -70,10 +72,12 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
 
             setLayout(new GridLayout(_currentNbRow, 2));
             final JLabel altitudeHoldLabel = new JLabel("Altitude Hold");
+            altitudeHoldLabel.setOpaque(true);
             altitudeHoldLabel.setBorder(BorderFactory.createLineBorder(Color.black));
             add(altitudeHoldLabel);
             add(_altitudeHoldStateLabel);
             final JLabel currentAltitudeLabel = new JLabel("Current Altitude");
+            currentAltitudeLabel.setOpaque(true);
             currentAltitudeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
             add(currentAltitudeLabel);
             add(_currentVehicleAltitudeLabel);
