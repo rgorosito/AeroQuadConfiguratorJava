@@ -1,6 +1,5 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.motordisplay;
 
-import AeroQuad.configurator.ui.ConfiguratorPanel;
 import AeroQuad.configurator.ui.IConfiguratorController;
 import AeroQuad.configurator.ui.uiutils.MotorSlider;
 
@@ -12,7 +11,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
-public class MotorDisplayPanel extends ConfiguratorPanel implements IMotorDisplayPanel
+public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
 {
     private final IMotorDisplayController _controller;
 
@@ -140,12 +139,6 @@ public class MotorDisplayPanel extends ConfiguratorPanel implements IMotorDispla
             add(_motor7Panel);
             add(_motor8Panel);
         }
-    }
-
-    @Override
-    public IConfiguratorController getController()
-    {
-        return _controller;
     }
 
     @Override

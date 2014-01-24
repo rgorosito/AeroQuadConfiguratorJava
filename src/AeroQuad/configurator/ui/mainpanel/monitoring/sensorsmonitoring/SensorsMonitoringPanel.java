@@ -1,7 +1,5 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring;
 
-import AeroQuad.configurator.ui.ConfiguratorPanel;
-import AeroQuad.configurator.ui.IConfiguratorController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.plotdrawer.XYZPlotDrawerPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsselectiontree.ISensorsSelectionTree;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsselectiontree.SensorsSelectionTree;
@@ -11,7 +9,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
-public class SensorsMonitoringPanel extends ConfiguratorPanel implements ISensorsMonitoringPanel
+public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoringPanel
 {
     private final ISensorsMonitoringController _controller;
 
@@ -52,13 +50,6 @@ public class SensorsMonitoringPanel extends ConfiguratorPanel implements ISensor
                 analyseTreeChangedEvent(key, selected);
             }
         });
-    }
-
-
-    @Override
-    public IConfiguratorController getController()
-    {
-        return _controller;
     }
 
     @Override

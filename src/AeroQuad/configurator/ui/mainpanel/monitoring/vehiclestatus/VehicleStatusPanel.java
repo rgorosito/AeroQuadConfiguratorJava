@@ -1,7 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus;
 
 import AeroQuad.configurator.messagedispatcher.VehicleAttitude;
-import AeroQuad.configurator.ui.ConfiguratorPanel;
 import AeroQuad.configurator.ui.IConfiguratorController;
 import AeroQuad.configurator.ui.artificialhorizon.ArtificialHorizonPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.motordisplay.MotorDisplayPanel;
@@ -12,7 +11,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
-public class VehicleStatusPanel extends ConfiguratorPanel implements IVehicleStatusPanel
+public class VehicleStatusPanel extends JPanel implements IVehicleStatusPanel
 {
     private final IVehicleStatusController _controller;
 
@@ -45,12 +44,6 @@ public class VehicleStatusPanel extends ConfiguratorPanel implements IVehicleSta
         rightPanel.add(receiverPanel);
         rightPanel.add(motorCommandPanel);
         add(rightPanel, BorderLayout.CENTER);
-    }
-
-    @Override
-    public IConfiguratorController getController()
-    {
-        return _controller;
     }
 
     @Override

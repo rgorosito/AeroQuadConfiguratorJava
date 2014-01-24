@@ -1,7 +1,5 @@
 package AeroQuad.configurator.ui.mainpanel.tuning;
 
-import AeroQuad.configurator.ui.ConfiguratorPanel;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -29,13 +27,7 @@ public class TuningPanel extends JPanel implements ITuningPanel
     private final ITuningPanelController _controller;
 
 
-    public TuningPanel(final ITuningPanelController tuningPanelController,
-                       final ConfiguratorPanel accroPanel,
-                       final ConfiguratorPanel attitudePanel,
-                       final ConfiguratorPanel yawPanel,
-                       final ConfiguratorPanel altitudePanel,
-                       final ConfiguratorPanel batteryMonitorPanel,
-                       final ConfiguratorPanel gpsPanel)
+    public TuningPanel(final ITuningPanelController tuningPanelController)
     {
         _controller = tuningPanelController;
 
@@ -43,19 +35,14 @@ public class TuningPanel extends JPanel implements ITuningPanel
 
         tuningPanelController.setPanel(this);
 
-        init(accroPanel, attitudePanel, yawPanel, altitudePanel, batteryMonitorPanel, gpsPanel);
+        init();
 
         bindUserLevelButtonAction();
 
-        bindTuningMenuButtonAction(accroPanel, attitudePanel, yawPanel, altitudePanel, batteryMonitorPanel, gpsPanel);
+        bindTuningMenuButtonAction();
     }
 
-    private void init(final ConfiguratorPanel accroPanel,
-                      final ConfiguratorPanel attitudePanel,
-                      final ConfiguratorPanel yawPanel,
-                      final ConfiguratorPanel altitudePanel,
-                      final ConfiguratorPanel batteryMonitorPanel,
-                      final ConfiguratorPanel gpsPanel)
+    private void init()
     {
         final JPanel topPanel = new JPanel(new GridLayout(1,3));
         topPanel.add(_beginnerButton);
@@ -86,11 +73,18 @@ public class TuningPanel extends JPanel implements ITuningPanel
         _pidMenuButtonGroup.add(_batteryPidButton);
         _pidMenuButtonGroup.add(_gpsPidButton);
 
+
+        final JPanel accroPanel = _controller.getAccroPanel();
         _cardLayoutPanel.add(accroPanel, ACCRO);
+        final JPanel attitudePanel = _controller.getAttitudePanel();
         _cardLayoutPanel.add(attitudePanel, ATTITUDE);
+        final JPanel yawPanel = _controller.getYawPanel();
         _cardLayoutPanel.add(yawPanel, YAW);
+        final JPanel altitudePanel = _controller.getAltitudePanel();
         _cardLayoutPanel.add(altitudePanel, ALTITUDE);
+        final JPanel batteryMonitorPanel = _controller.getBatteryMonitorPanel();
         _cardLayoutPanel.add(batteryMonitorPanel, BATTERY);
+        final JPanel gpsPanel = _controller.getGpsPanel();
         _cardLayoutPanel.add(gpsPanel, GPS);
         add(_cardLayoutPanel,BorderLayout.CENTER);
 
@@ -134,25 +128,20 @@ public class TuningPanel extends JPanel implements ITuningPanel
     }
 
 
-    private void bindTuningMenuButtonAction(final ConfiguratorPanel accroPanel,
-                                            final ConfiguratorPanel attitudePanel,
-                                            final ConfiguratorPanel yawPanel,
-                                            final ConfiguratorPanel altitudePanel,
-                                            final ConfiguratorPanel batteryMonitorPanel,
-                                            final ConfiguratorPanel gpsPanel)
+    private void bindTuningMenuButtonAction()
     {
         _accroPidButton.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                accroPanel.getController().setActivated(true);
-                attitudePanel.getController().setActivated(false);
-                yawPanel.getController().setActivated(false);
-                altitudePanel.getController().setActivated(false);
-                accroPanel.getController().setActivated(false);
-                batteryMonitorPanel.getController().setActivated(false);
-                gpsPanel.getController().setActivated(false);
+                //accroPanel.getController().setActivated(true);
+                //attitudePanel.getController().setActivated(false);
+                //yawPanel.getController().setActivated(false);
+                //altitudePanel.getController().setActivated(false);
+                //accroPanel.getController().setActivated(false);
+                //batteryMonitorPanel.getController().setActivated(false);
+                //gpsPanel.getController().setActivated(false);
                 _cardLayout.show(_cardLayoutPanel, ACCRO);
             }
         });
@@ -163,13 +152,13 @@ public class TuningPanel extends JPanel implements ITuningPanel
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                accroPanel.getController().setActivated(false);
-                attitudePanel.getController().setActivated(true);
-                yawPanel.getController().setActivated(false);
-                altitudePanel.getController().setActivated(false);
-                accroPanel.getController().setActivated(false);
-                batteryMonitorPanel.getController().setActivated(false);
-                gpsPanel.getController().setActivated(false);
+                //accroPanel.getController().setActivated(false);
+                //attitudePanel.getController().setActivated(true);
+                //yawPanel.getController().setActivated(false);
+                //altitudePanel.getController().setActivated(false);
+                //accroPanel.getController().setActivated(false);
+                //batteryMonitorPanel.getController().setActivated(false);
+                //gpsPanel.getController().setActivated(false);
                 _cardLayout.show(_cardLayoutPanel, ACCRO);
             }
         });
@@ -179,13 +168,13 @@ public class TuningPanel extends JPanel implements ITuningPanel
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                accroPanel.getController().setActivated(false);
-                attitudePanel.getController().setActivated(false);
-                yawPanel.getController().setActivated(true);
-                altitudePanel.getController().setActivated(false);
-                accroPanel.getController().setActivated(false);
-                batteryMonitorPanel.getController().setActivated(false);
-                gpsPanel.getController().setActivated(false);
+                //accroPanel.getController().setActivated(false);
+                //attitudePanel.getController().setActivated(false);
+                //yawPanel.getController().setActivated(true);
+                //altitudePanel.getController().setActivated(false);
+                //accroPanel.getController().setActivated(false);
+                //batteryMonitorPanel.getController().setActivated(false);
+                //gpsPanel.getController().setActivated(false);
                 _cardLayout.show(_cardLayoutPanel, ACCRO);
             }
         });
@@ -195,13 +184,13 @@ public class TuningPanel extends JPanel implements ITuningPanel
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                accroPanel.getController().setActivated(false);
-                attitudePanel.getController().setActivated(false);
-                yawPanel.getController().setActivated(false);
-                altitudePanel.getController().setActivated(true);
-                accroPanel.getController().setActivated(false);
-                batteryMonitorPanel.getController().setActivated(false);
-                gpsPanel.getController().setActivated(false);
+                //accroPanel.getController().setActivated(false);
+                //attitudePanel.getController().setActivated(false);
+                //yawPanel.getController().setActivated(false);
+                //altitudePanel.getController().setActivated(true);
+                //accroPanel.getController().setActivated(false);
+                //batteryMonitorPanel.getController().setActivated(false);
+                //gpsPanel.getController().setActivated(false);
                 _cardLayout.show(_cardLayoutPanel, ACCRO);
             }
         });
@@ -211,14 +200,14 @@ public class TuningPanel extends JPanel implements ITuningPanel
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                accroPanel.getController().setActivated(false);
-                attitudePanel.getController().setActivated(false);
-                yawPanel.getController().setActivated(false);
-                altitudePanel.getController().setActivated(false);
-                accroPanel.getController().setActivated(false);
-                batteryMonitorPanel.getController().setActivated(true);
-                gpsPanel.getController().setActivated(false);
-                _cardLayout.show(_cardLayoutPanel, ACCRO);
+                //accroPanel.getController().setActivated(false);
+                //attitudePanel.getController().setActivated(false);
+                //yawPanel.getController().setActivated(false);
+                //altitudePanel.getController().setActivated(false);
+                //accroPanel.getController().setActivated(false);
+                //batteryMonitorPanel.getController().setActivated(true);
+                //gpsPanel.getController().setActivated(false);
+                //_cardLayout.show(_cardLayoutPanel, ACCRO);
             }
         });
 
@@ -227,21 +216,15 @@ public class TuningPanel extends JPanel implements ITuningPanel
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                accroPanel.getController().setActivated(false);
-                attitudePanel.getController().setActivated(false);
-                yawPanel.getController().setActivated(false);
-                altitudePanel.getController().setActivated(false);
-                accroPanel.getController().setActivated(false);
-                batteryMonitorPanel.getController().setActivated(false);
-                gpsPanel.getController().setActivated(true);
-                _cardLayout.show(_cardLayoutPanel, ACCRO);
+                //accroPanel.getController().setActivated(false);
+                //attitudePanel.getController().setActivated(false);
+                //yawPanel.getController().setActivated(false);
+                //altitudePanel.getController().setActivated(false);
+                //accroPanel.getController().setActivated(false);
+                //batteryMonitorPanel.getController().setActivated(false);
+                //gpsPanel.getController().setActivated(true);
+                //_cardLayout.show(_cardLayoutPanel, ACCRO);
             }
         });
-
-
-
-
-
-
     }
 }

@@ -1,21 +1,14 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.accro;
 
-import AeroQuad.configurator.ui.ConfiguratorPanel;
-import AeroQuad.configurator.ui.IConfiguratorController;
+import javax.swing.JPanel;
 
 
-public class AccroPidPanel extends ConfiguratorPanel implements IAccroPidPanel
+public class AccroPidPanel extends JPanel implements IAccroPidPanel
 {
     private final IAccroPidPanelController _controller;
 
     public AccroPidPanel(final IAccroPidPanelController accroPanelController)
     {
         _controller = accroPanelController;
-    }
-
-    @Override
-    public IConfiguratorController getController()
-    {
-        return _controller;
     }
 }

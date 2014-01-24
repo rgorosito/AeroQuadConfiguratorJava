@@ -1,20 +1,13 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.gps;
 
-import AeroQuad.configurator.ui.ConfiguratorPanel;
-import AeroQuad.configurator.ui.IConfiguratorController;
+import javax.swing.JPanel;
 
-public class GpsPidPanel extends ConfiguratorPanel implements IGpsPidPanel
+public class GpsPidPanel extends JPanel implements IGpsPidPanel
 {
     private final IGpsPidPanelController _controller;
 
     public GpsPidPanel(final IGpsPidPanelController gpsPidPanelController)
     {
         _controller = gpsPidPanelController;
-    }
-
-    @Override
-    public IConfiguratorController getController()
-    {
-        return _controller;
     }
 }

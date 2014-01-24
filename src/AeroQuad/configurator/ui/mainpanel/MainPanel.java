@@ -8,27 +8,24 @@ import java.awt.*;
 public class MainPanel extends JPanel implements IMainPanel
 {
     private final CardLayout _cardLayout = new CardLayout();
+    private final IMainPanelController _controller;
 
-    public MainPanel(final IMainPanelController controller,
-                     final JPanel monitoringPanel,
-                     final JPanel setupPanel,
-                     final JPanel tuningPanel)
+    public MainPanel(final IMainPanelController controller)
     {
+        _controller = controller;
         setLayout(_cardLayout);
 
         controller.setPanel(this);
-        init(monitoringPanel,setupPanel,tuningPanel);
+        init();
     }
 
-    private void init(final JPanel monitoringPanel,
-                      final JPanel setupPanel,
-                      final JPanel tuningPanel)
+    private void init()
     {
         final JPanel slashPanel = new SplashPanel();
         add(slashPanel,SPLASH_SCREEN_KEY);
-        add(setupPanel,SETUP_SCREEN_KEY);
-        add(monitoringPanel,MONITORING_SCREEN_KEY);
-        add(tuningPanel,TUNING_SCREEN_KEY);
+        add(_controller.getSetupPanel(),SETUP_SCREEN_KEY);
+        add(_controller.getMonitoringPanel(),MONITORING_SCREEN_KEY);
+        add(_controller.getTuningPanel(),TUNING_SCREEN_KEY);
     }
 
     @Override

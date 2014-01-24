@@ -1,11 +1,8 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring;
 
-import AeroQuad.configurator.ui.ConfiguratorPanel;
-
 import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,23 +17,26 @@ public class MonitoringPanel extends JPanel implements IMonitoringPanel
     private final JToggleButton _vehicleMonitoringButton = new JToggleButton(VEHICLE);
 
     private final ButtonGroup _buttonGroup = new ButtonGroup();
+    private final IMonitoringPanelController _controller;
 
-    public MonitoringPanel(final IMonitoringPanelController monitoringPanelController,
-                           final ConfiguratorPanel vehicleStatusPanel,
-                           final ConfiguratorPanel sensorsMonitoringPanel,
-                           final ConfiguratorPanel motorCommandPanel)
+    public MonitoringPanel(final IMonitoringPanelController monitoringPanelController)
     {
+        _controller = monitoringPanelController;
+
         setLayout(new BorderLayout());
 
         monitoringPanelController.setPanel(this);
 
-        init(vehicleStatusPanel,sensorsMonitoringPanel,motorCommandPanel);
+        init();
     }
 
-    private void init(final ConfiguratorPanel vehicleStatusPanel,
-                      final ConfiguratorPanel sensorsMonitoringPanel,
-                      final ConfiguratorPanel motorCommandPanel)
+    private void init()
     {
+
+        final JPanel vehicleStatusPanel = _controller.getVehicleStatusPanel();
+        final JPanel sensorsMonitoringPanel = _controller.getSensorsMonitoringPanel();
+        final JPanel motorCommandPanel = _controller.getMotorCommandPanel();
+
         final JPanel monitoringButtonPanel = new JPanel(new GridLayout(4,1));
         monitoringButtonPanel.add(_sensorsMonitoringButton);
         monitoringButtonPanel.add(_motorsMonitoringButton);
@@ -53,9 +53,9 @@ public class MonitoringPanel extends JPanel implements IMonitoringPanel
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                vehicleStatusPanel.getController().setActivated(false);
-                sensorsMonitoringPanel.getController().setActivated(true);
-                motorCommandPanel.getController().setActivated(false);
+                //vehicleStatusPanel.getController().setActivated(false);
+                //sensorsMonitoringPanel.getController().setActivated(true);
+                //motorCommandPanel.getController().setActivated(false);
                 _cardLayout.show(_cardLayoutPanel, SENSORS);
             }
         });
@@ -64,9 +64,9 @@ public class MonitoringPanel extends JPanel implements IMonitoringPanel
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                vehicleStatusPanel.getController().setActivated(false);
-                sensorsMonitoringPanel.getController().setActivated(false);
-                motorCommandPanel.getController().setActivated(true);
+                //vehicleStatusPanel.getController().setActivated(false);
+                //sensorsMonitoringPanel.getController().setActivated(false);
+                //motorCommandPanel.getController().setActivated(true);
                 _cardLayout.show(_cardLayoutPanel, MOTORS);
             }
         });
@@ -75,9 +75,9 @@ public class MonitoringPanel extends JPanel implements IMonitoringPanel
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                vehicleStatusPanel.getController().setActivated(true);
-                sensorsMonitoringPanel.getController().setActivated(false);
-                motorCommandPanel.getController().setActivated(false);
+                //vehicleStatusPanel.getController().setActivated(true);
+                //sensorsMonitoringPanel.getController().setActivated(false);
+                //motorCommandPanel.getController().setActivated(false);
                 _cardLayout.show(_cardLayoutPanel, VEHICLE);
             }
         });

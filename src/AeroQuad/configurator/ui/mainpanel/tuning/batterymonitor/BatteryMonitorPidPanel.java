@@ -1,20 +1,13 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.batterymonitor;
 
-import AeroQuad.configurator.ui.ConfiguratorPanel;
-import AeroQuad.configurator.ui.IConfiguratorController;
+import javax.swing.JPanel;
 
-public class BatteryMonitorPidPanel extends ConfiguratorPanel implements IBatteryMonitorPidPanel
+public class BatteryMonitorPidPanel extends JPanel implements IBatteryMonitorPidPanel
 {
     private final IBatteryMonitorPidPanelController _controller;
 
     public BatteryMonitorPidPanel(final IBatteryMonitorPidPanelController batteryMonitorPidPanelController)
     {
         _controller = batteryMonitorPidPanelController;
-    }
-
-    @Override
-    public IConfiguratorController getController()
-    {
-        return _controller;
     }
 }
