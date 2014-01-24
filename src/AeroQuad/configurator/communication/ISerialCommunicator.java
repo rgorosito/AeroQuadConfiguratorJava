@@ -18,7 +18,8 @@ public interface ISerialCommunicator
     final int BOAD_RATE_115200 = 115200;
     final int DEFAULT_BOAD_RATE = BOAD_RATE_115200;
 
-    final String VEHICLE_STATE_REQUEST_MESSAGE = "#";
+    //final String VEHICLE_STATE_REQUEST_MESSAGE = "#";
+    final String REQUEST_STOP_SENDING = "X";
 
     final String RAW_DATA_MESSAGE_RECEIVED = "RAW_DATA_MESSAGE_RECEIVED";
     final String RAW_DATA_MESSAGE_SENT = "RAW_DATA_MESSAGE_SENT";
@@ -41,4 +42,7 @@ public interface ISerialCommunicator
     void sendCommand(String command);
 
     boolean isConnected();
+
+
+
 }

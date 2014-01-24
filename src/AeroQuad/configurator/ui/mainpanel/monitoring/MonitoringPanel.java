@@ -1,6 +1,9 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring;
 
-import javax.swing.*;
+import javax.swing.ButtonGroup;
+import javax.swing.JPanel;
+import javax.swing.JToggleButton;
+import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.GridLayout;
@@ -41,6 +44,7 @@ public class MonitoringPanel extends JPanel implements IMonitoringPanel
         monitoringButtonPanel.add(_sensorsMonitoringButton);
         monitoringButtonPanel.add(_motorsMonitoringButton);
         monitoringButtonPanel.add(_vehicleMonitoringButton);
+        //monitoringButtonPanel.setBorder(new LineBorder(Color.BLACK,3));
         add(monitoringButtonPanel,BorderLayout.WEST);
 
         _cardLayoutPanel.add(vehicleStatusPanel, VEHICLE);
@@ -53,10 +57,7 @@ public class MonitoringPanel extends JPanel implements IMonitoringPanel
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                //vehicleStatusPanel.getController().setActivated(false);
-                //sensorsMonitoringPanel.getController().setActivated(true);
-                //motorCommandPanel.getController().setActivated(false);
-                _cardLayout.show(_cardLayoutPanel, SENSORS);
+                _controller.sensorsMonitoringButtonPressed();
             }
         });
         _motorsMonitoringButton.addActionListener(new ActionListener()
@@ -64,10 +65,7 @@ public class MonitoringPanel extends JPanel implements IMonitoringPanel
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                //vehicleStatusPanel.getController().setActivated(false);
-                //sensorsMonitoringPanel.getController().setActivated(false);
-                //motorCommandPanel.getController().setActivated(true);
-                _cardLayout.show(_cardLayoutPanel, MOTORS);
+                _controller.motorsMonitoringButtonPressed();
             }
         });
         _vehicleMonitoringButton.addActionListener(new ActionListener()
@@ -75,10 +73,7 @@ public class MonitoringPanel extends JPanel implements IMonitoringPanel
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                //vehicleStatusPanel.getController().setActivated(true);
-                //sensorsMonitoringPanel.getController().setActivated(false);
-                //motorCommandPanel.getController().setActivated(false);
-                _cardLayout.show(_cardLayoutPanel, VEHICLE);
+                _controller.vehicleMonitoringButtonPressed();
             }
         });
 
@@ -101,5 +96,11 @@ public class MonitoringPanel extends JPanel implements IMonitoringPanel
                 }
             });
         }
+    }
+
+    @Override
+    public void showPanel(final String panelId)
+    {
+        _cardLayout.show(_cardLayoutPanel, panelId);
     }
 }

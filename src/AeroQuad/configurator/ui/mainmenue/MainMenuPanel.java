@@ -1,8 +1,10 @@
 package AeroQuad.configurator.ui.mainmenue;
 
 
-import javax.swing.*;
-import java.awt.Color;
+import javax.swing.ButtonGroup;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -72,6 +74,8 @@ public class MainMenuPanel extends JPanel implements IMainMenuPanel
         _buttonGroup.add(_setupButton);
         _buttonGroup.add(_monitoringButton);
         _buttonGroup.add(_tuningButton);
+
+        //setBorder(new LineBorder(Color.BLACK,3));
     }
 
     @Override

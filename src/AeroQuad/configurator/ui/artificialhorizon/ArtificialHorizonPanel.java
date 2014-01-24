@@ -11,6 +11,7 @@ package AeroQuad.configurator.ui.artificialhorizon;
 import AeroQuad.configurator.messagedispatcher.VehicleAttitude;
 
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -65,6 +66,8 @@ public class ArtificialHorizonPanel extends JPanel
         setPreferredSize(new Dimension(350,350));
 
         setMinimumSize(new Dimension(350,350));
+
+        setBorder(new LineBorder(Color.BLACK,3));
     }
 
     @Override

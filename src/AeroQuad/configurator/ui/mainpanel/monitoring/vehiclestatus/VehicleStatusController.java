@@ -33,7 +33,11 @@ public class VehicleStatusController implements IVehicleStatusController
     @Override
     public void setActivated(final boolean activated)
     {
-        _communicator.sendRequest(new VehicleStatusRequest(_messageDispatcher,activated));
+        if (activated)
+        {
+            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+            _communicator.sendRequest(new VehicleStatusRequest(_messageDispatcher,activated));
+        }
     }
 
     @Override

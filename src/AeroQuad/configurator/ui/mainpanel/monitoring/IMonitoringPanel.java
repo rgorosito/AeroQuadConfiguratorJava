@@ -7,4 +7,6 @@ public interface IMonitoringPanel
     final String VEHICLE = "VEHICLE";
 
     void setConnectedState(boolean connected);
+
+    void showPanel(String panelId);
 }

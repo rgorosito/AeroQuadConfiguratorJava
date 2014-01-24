@@ -1,5 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.motordisplay;
 
+import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 
 import java.beans.PropertyChangeEvent;
@@ -7,10 +8,12 @@ import java.beans.PropertyChangeListener;
 
 public class MotorDisplayController implements IMotorDisplayController
 {
+    private final ISerialCommunicator _communicator;
     private IMotorDisplayPanel _panel;
 
-    public MotorDisplayController(final IMessageDispatcher messageDispatcher)
+    public MotorDisplayController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
+        _communicator = communicator;
 
         messageDispatcher.addListener(IMessageDispatcher.NB_MOTORS_PROPERTY_KEY, new PropertyChangeListener()
         {
@@ -90,7 +93,7 @@ public class MotorDisplayController implements IMotorDisplayController
     @Override
     public void setActivated(final boolean activated)
     {
-
+        _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
     }
 
     @Override

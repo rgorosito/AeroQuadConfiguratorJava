@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -154,6 +155,8 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux7Slider.setPaintLabels(true);
 
         add(_middlePanel,BorderLayout.CENTER);
+
+        setBorder(new LineBorder(Color.BLACK,3));
     }
 
     @Override

@@ -6,7 +6,9 @@ import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsse
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsselectiontree.TreeSelectionChangeListener;
 
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 
 public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoringPanel
@@ -50,6 +52,8 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
                 analyseTreeChangedEvent(key, selected);
             }
         });
+
+        setBorder(new LineBorder(Color.BLACK,3));
     }
 
     @Override

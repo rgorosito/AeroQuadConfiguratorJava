@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -61,6 +62,8 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
         flightModeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         add(flightModeLabel);
         add(_flightModeLabel);
+
+        setBorder(new LineBorder(Color.BLACK,3));
     }
 
     @Override

@@ -131,6 +131,7 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
     {
         if (activated)
         {
+            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
             _communicator.sendRequest(new SensorsValueRequest(_messageDispatcher, activated));
         }
     }

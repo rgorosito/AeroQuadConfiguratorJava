@@ -11,4 +11,10 @@ public interface IMonitoringPanelController
     JPanel getSensorsMonitoringPanel();
 
     JPanel getMotorCommandPanel();
+
+    void sensorsMonitoringButtonPressed();
+
+    void motorsMonitoringButtonPressed();
+
+    void vehicleMonitoringButtonPressed();
 }

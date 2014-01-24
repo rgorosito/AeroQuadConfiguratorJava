@@ -2,8 +2,10 @@ package AeroQuad.configurator.ui.mainpanel;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.ui.mainpanel.monitoring.IMonitoringPanelController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.MonitoringPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.MonitoringPanelController;
+import AeroQuad.configurator.ui.mainpanel.setup.ISetupPanelController;
 import AeroQuad.configurator.ui.mainpanel.setup.SetupPanel;
 import AeroQuad.configurator.ui.mainpanel.setup.SetupPanelController;
 import AeroQuad.configurator.ui.mainpanel.tuning.ITuningPanelController;
@@ -16,23 +18,26 @@ import java.beans.PropertyChangeListener;
 
 public class MainPanelController implements IMainPanelController
 {
+
+
+    private final JPanel _monitoringPanel;
+    private final JPanel _setupPanel;
+    private final JPanel _tuningPanel;
+
     private final ITuningPanelController _tuningController = new TuningPanelController();
+    private final ISetupPanelController _setupPanelController;
+    private final IMonitoringPanelController _monitoringPanelController;
 
-    private JPanel _monitoringPanel;
-    private JPanel _setupPanel;
-    private JPanel _tuningPanel;
-
-    private final IMessageDispatcher _messageDispatcher;
-    private final ISerialCommunicator _communicator;
     private IMainPanel _panel;
 
 
     public MainPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
-        _messageDispatcher = messageDispatcher;
-        _communicator = communicator;
-
-        buildChildPanelsAndControllers();
+        _monitoringPanelController = new MonitoringPanelController(messageDispatcher, communicator);
+        _monitoringPanel = new MonitoringPanel(_monitoringPanelController);
+        _setupPanelController = new SetupPanelController();
+        _setupPanel = new SetupPanel(_setupPanelController);
+        _tuningPanel = new TuningPanel(_tuningController);
 
         communicator.addListener(ISerialCommunicator.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
         {
@@ -45,14 +50,7 @@ public class MainPanelController implements IMainPanelController
         });
     }
 
-    private void buildChildPanelsAndControllers()
-    {
-        _monitoringPanel = new MonitoringPanel(new MonitoringPanelController(_messageDispatcher, _communicator));
-        _setupPanel = new SetupPanel(new SetupPanelController(_communicator));
-        _tuningPanel = new TuningPanel(_tuningController);
-    }
-
-    private void updateConnectionState(final boolean isConnected)
+        private void updateConnectionState(final boolean isConnected)
     {
        _panel.updateConnectionState(isConnected);
     }

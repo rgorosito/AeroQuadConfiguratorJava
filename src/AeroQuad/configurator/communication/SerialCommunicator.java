@@ -118,7 +118,7 @@ public class SerialCommunicator implements ISerialCommunicator
             System.out.println("Port: " + _connectedPortName + " opened");
             _isConnected = true;
             _propertyChangeSupport.firePropertyChange(CONNECTION_STATE_CHANGE, null, _isConnected);
-            sendCommand("x");
+            sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
             final VehicleInfoRequest request = new VehicleInfoRequest(_messageDispatcher);
             _vehicleStateAnalyser = request.getMessageAnalyser();
             sendRequest(request);

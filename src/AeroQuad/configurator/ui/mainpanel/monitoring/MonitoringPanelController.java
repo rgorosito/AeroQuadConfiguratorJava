@@ -2,10 +2,13 @@ package AeroQuad.configurator.ui.mainpanel.monitoring;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.ISensorsMonitoringController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.SensorsMonitoringController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.SensorsMonitoringPanel;
+import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.IVehicleStatusController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.VehicleStatusController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.VehicleStatusPanel;
+import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.motordisplay.IMotorDisplayController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.motordisplay.MotorDisplayController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.motordisplay.MotorDisplayPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensorsstatuspanel.OtherSensorsStatusPanel;
@@ -19,10 +22,11 @@ import java.beans.PropertyChangeListener;
 
 public class MonitoringPanelController implements IMonitoringPanelController
 {
-    private final IMessageDispatcher _messageDispatcher;
-    private final ISerialCommunicator _communicator;
     private IMonitoringPanel _panel;
 
+    private final ISensorsMonitoringController _sensorsMonitoringPanelController;
+    private final IMotorDisplayController _motorsMonitoringPanelController;
+    private final IVehicleStatusController _vehicleStatusController;
     private JPanel _vehicleStatusPanel;
     private JPanel _motorCommandPanel;
     private JPanel _sensorsMonitoringPanel;
@@ -30,10 +34,16 @@ public class MonitoringPanelController implements IMonitoringPanelController
 
     public MonitoringPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
-        _messageDispatcher = messageDispatcher;
-        _communicator = communicator;
+        final ReceiverDisplayPanel receiverPanel = new ReceiverDisplayPanel(new ReceiverPanelController(messageDispatcher));
+        _vehicleStatusController = new VehicleStatusController(messageDispatcher, communicator);
+        final MotorDisplayPanel motorCommandDisplayPanel = new MotorDisplayPanel(new MotorDisplayController(messageDispatcher, communicator));
+        final OtherSensorsStatusPanel otherSensorsStatusPanel = new OtherSensorsStatusPanel(new OtherSensorsStatusPanelController(messageDispatcher));
+        _vehicleStatusPanel = new VehicleStatusPanel(_vehicleStatusController, receiverPanel, motorCommandDisplayPanel,otherSensorsStatusPanel);
+        _motorsMonitoringPanelController = new MotorDisplayController(messageDispatcher, communicator);
+        _motorCommandPanel = new MotorDisplayPanel(_motorsMonitoringPanelController);
+        _sensorsMonitoringPanelController = new SensorsMonitoringController(messageDispatcher, communicator);
+        _sensorsMonitoringPanel = new SensorsMonitoringPanel(_sensorsMonitoringPanelController);
 
-        buildChildPanels();
 
         communicator.addListener(ISerialCommunicator.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
         {
@@ -46,17 +56,6 @@ public class MonitoringPanelController implements IMonitoringPanelController
         });
 
 
-    }
-
-    private void buildChildPanels()
-    {
-        final ReceiverDisplayPanel receiverPanel = new ReceiverDisplayPanel(new ReceiverPanelController(_messageDispatcher));
-        final VehicleStatusController vehicleStatusController = new VehicleStatusController(_messageDispatcher, _communicator);
-        final MotorDisplayPanel motorCommandDisplayPanel = new MotorDisplayPanel(new MotorDisplayController(_messageDispatcher));
-        final OtherSensorsStatusPanel otherSensorsStatusPanel = new OtherSensorsStatusPanel(new OtherSensorsStatusPanelController(_messageDispatcher));
-        _vehicleStatusPanel = new VehicleStatusPanel(vehicleStatusController, receiverPanel, motorCommandDisplayPanel,otherSensorsStatusPanel);
-        _motorCommandPanel = new MotorDisplayPanel(new MotorDisplayController(_messageDispatcher));
-        _sensorsMonitoringPanel = new SensorsMonitoringPanel(new SensorsMonitoringController(_messageDispatcher, _communicator));
     }
 
     @Override
@@ -81,5 +80,32 @@ public class MonitoringPanelController implements IMonitoringPanelController
     public JPanel getMotorCommandPanel()
     {
         return _motorCommandPanel;
+    }
+
+    @Override
+    public void sensorsMonitoringButtonPressed()
+    {
+        _motorsMonitoringPanelController.setActivated(false);
+        _sensorsMonitoringPanelController.setActivated(true);
+        _vehicleStatusController.setActivated(false);
+        _panel.showPanel(IMonitoringPanel.SENSORS);
+    }
+
+    @Override
+    public void motorsMonitoringButtonPressed()
+    {
+        _motorsMonitoringPanelController.setActivated(true);
+        _sensorsMonitoringPanelController.setActivated(false);
+        _vehicleStatusController.setActivated(false);
+        _panel.showPanel(IMonitoringPanel.MOTORS);
+    }
+
+    @Override
+    public void vehicleMonitoringButtonPressed()
+    {
+        _motorsMonitoringPanelController.setActivated(false);
+        _sensorsMonitoringPanelController.setActivated(false);
+        _vehicleStatusController.setActivated(true);
+        _panel.showPanel(IMonitoringPanel.VEHICLE);
     }
 }
