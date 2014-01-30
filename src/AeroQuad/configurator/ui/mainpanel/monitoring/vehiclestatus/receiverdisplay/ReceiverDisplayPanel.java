@@ -1,10 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.receiverdisplay;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -63,8 +59,6 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _modeSlider.setPaintTicks(true);
         _modeSlider.setPaintLabels(true);
         _modeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        _modeLabel.setOpaque(true);
-        _modeLabel.setBackground(Color.lightGray);
         final JPanel modePanel = new JPanel(new GridLayout(2,1));
         modePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         modePanel.add(_modeLabel);
@@ -80,8 +74,6 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux1Slider.setPaintLabels(true);
 
         _aux1Label.setHorizontalAlignment(SwingConstants.CENTER);
-        _aux1Label.setOpaque(true);
-        _aux1Label.setBackground(Color.lightGray);
         final JPanel aux1Panel = new JPanel(new GridLayout(2,1));
         aux1Panel.setBorder(BorderFactory.createLineBorder(Color.black));
         aux1Panel.add(_aux1Label);
@@ -91,8 +83,6 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux2Slider.setMinimum(1000);
         _aux2Slider.setMaximum(2000);
         _aux2Label.setHorizontalAlignment(SwingConstants.CENTER);
-        _aux2Label.setOpaque(true);
-        _aux2Label.setBackground(Color.lightGray);
         _aux2Slider.setOrientation(JSlider.HORIZONTAL);
         _aux2Slider.setMajorTickSpacing(200);
         _aux2Slider.setMinorTickSpacing(50);
@@ -102,8 +92,6 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux3Slider.setMinimum(1000);
         _aux3Slider.setMaximum(2000);
         _aux3Label.setHorizontalAlignment(SwingConstants.CENTER);
-        _aux3Label.setOpaque(true);
-        _aux3Label.setBackground(Color.lightGray);
         _aux3Slider.setOrientation(JSlider.HORIZONTAL);
         _aux3Slider.setMajorTickSpacing(200);
         _aux3Slider.setMinorTickSpacing(50);
@@ -113,8 +101,6 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux4Slider.setMinimum(1000);
         _aux4Slider.setMaximum(2000);
         _aux4Label.setHorizontalAlignment(SwingConstants.CENTER);
-        _aux4Label.setOpaque(true);
-        _aux4Label.setBackground(Color.lightGray);
         _aux4Slider.setOrientation(JSlider.HORIZONTAL);
         _aux4Slider.setMajorTickSpacing(200);
         _aux4Slider.setMinorTickSpacing(50);
@@ -124,8 +110,6 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux5Slider.setMinimum(1000);
         _aux5Slider.setMaximum(2000);
         _aux5Label.setHorizontalAlignment(SwingConstants.CENTER);
-        _aux5Label.setOpaque(true);
-        _aux5Label.setBackground(Color.lightGray);
         _aux5Slider.setOrientation(JSlider.HORIZONTAL);
         _aux5Slider.setMajorTickSpacing(200);
         _aux5Slider.setMinorTickSpacing(50);
@@ -135,8 +119,6 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux6Slider.setMinimum(1000);
         _aux6Slider.setMaximum(2000);
         _aux6Label.setHorizontalAlignment(SwingConstants.CENTER);
-        _aux6Label.setOpaque(true);
-        _aux6Label.setBackground(Color.lightGray);
         _aux6Slider.setOrientation(JSlider.HORIZONTAL);
         _aux6Slider.setMajorTickSpacing(200);
         _aux6Slider.setMinorTickSpacing(50);
@@ -146,8 +128,6 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux7Slider.setMinimum(1000);
         _aux7Slider.setMaximum(2000);
         _aux7Label.setHorizontalAlignment(SwingConstants.CENTER);
-        _aux7Label.setOpaque(true);
-        _aux7Label.setBackground(Color.lightGray);
         _aux7Slider.setOrientation(JSlider.HORIZONTAL);
         _aux7Slider.setMajorTickSpacing(200);
         _aux7Slider.setMinorTickSpacing(50);

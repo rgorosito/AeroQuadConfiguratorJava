@@ -1,5 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.tuning;
 
+import AeroQuad.configurator.ui.uiutils.UiUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,17 +9,6 @@ import java.awt.event.ActionListener;
 
 public class TuningPanel extends JPanel implements ITuningPanel
 {
-    private final CardLayout _cardLayout = new CardLayout();
-    private final JPanel _cardLayoutPanel = new JPanel(_cardLayout);
-
-    private final ButtonGroup _pidMenuButtonGroup = new ButtonGroup();
-    private final JToggleButton _accroPidButton = new JToggleButton(ACCRO);
-    private final JToggleButton _attitudePidButton = new JToggleButton(ATTITUDE);
-    private final JToggleButton _yawPidButton = new JToggleButton(YAW);
-    private final JToggleButton _altitudePidButton = new JToggleButton(ALTITUDE);
-    private final JToggleButton _batteryPidButton = new JToggleButton(BATTERY);
-    private final JToggleButton _gpsPidButton = new JToggleButton(GPS);
-
     private final ButtonGroup _userLevelButtonGroup = new ButtonGroup();
     private final JToggleButton _beginnerButton = new JToggleButton(BEGINNER);
     private final JToggleButton _intermediateButton = new JToggleButton(INTERMEDIATE);
@@ -25,6 +16,8 @@ public class TuningPanel extends JPanel implements ITuningPanel
 
     private final JButton _resetDefault = new JButton(RESET_DEFAULT);
     private final ITuningPanelController _controller;
+
+    private final GridLayout _gridLayout = new GridLayout(3,1);
 
 
     public TuningPanel(final ITuningPanelController tuningPanelController)
@@ -38,13 +31,12 @@ public class TuningPanel extends JPanel implements ITuningPanel
         init();
 
         bindUserLevelButtonAction();
-
-        bindTuningMenuButtonAction();
     }
 
     private void init()
     {
-        final JPanel topPanel = new JPanel(new GridLayout(1,3));
+        final JPanel topPanel = new JPanel(new GridLayout(1,7));
+        topPanel.setPreferredSize(new Dimension(0, UiUtils.HEATHER_PREFERED_HEIGHT));
         topPanel.add(_beginnerButton);
         _beginnerButton.setSelected(true);
         topPanel.add(_intermediateButton);
@@ -54,41 +46,11 @@ public class TuningPanel extends JPanel implements ITuningPanel
         _userLevelButtonGroup.add(_intermediateButton);
         _userLevelButtonGroup.add(_advancedButton);
 
-        final JPanel leftPanel = new JPanel(new GridLayout(6,1));
-        leftPanel.add(_accroPidButton);
-        _accroPidButton.setSelected(true);
-        leftPanel.add(_attitudePidButton);
-        leftPanel.add(_yawPidButton);
-        leftPanel.add(_altitudePidButton);
-        _altitudePidButton.setVisible(false);
-        leftPanel.add(_batteryPidButton);
-        _batteryPidButton.setVisible(false);
-        leftPanel.add(_gpsPidButton);
-        _gpsPidButton.setVisible(false);
-        add(leftPanel, BorderLayout.WEST);
-        _pidMenuButtonGroup.add(_accroPidButton);
-        _pidMenuButtonGroup.add(_attitudePidButton);
-        _pidMenuButtonGroup.add(_yawPidButton);
-        _pidMenuButtonGroup.add(_altitudePidButton);
-        _pidMenuButtonGroup.add(_batteryPidButton);
-        _pidMenuButtonGroup.add(_gpsPidButton);
-
-
-        final JPanel accroPanel = _controller.getAccroPanel();
-        _cardLayoutPanel.add(accroPanel, ACCRO);
-        final JPanel attitudePanel = _controller.getAttitudePanel();
-        _cardLayoutPanel.add(attitudePanel, ATTITUDE);
-        final JPanel yawPanel = _controller.getYawPanel();
-        _cardLayoutPanel.add(yawPanel, YAW);
-        final JPanel altitudePanel = _controller.getAltitudePanel();
-        _cardLayoutPanel.add(altitudePanel, ALTITUDE);
-        final JPanel batteryMonitorPanel = _controller.getBatteryMonitorPanel();
-        _cardLayoutPanel.add(batteryMonitorPanel, BATTERY);
-        final JPanel gpsPanel = _controller.getGpsPanel();
-        _cardLayoutPanel.add(gpsPanel, GPS);
-        add(_cardLayoutPanel,BorderLayout.CENTER);
-
-        _cardLayout.show(_cardLayoutPanel, ACCRO);
+        final JPanel centerPanel = new JPanel(_gridLayout);
+        centerPanel.add(_controller.getAccroPanel());
+        centerPanel.add(_controller.getAttitudePanel());
+        centerPanel.add(_controller.getYawPanel());
+        add(centerPanel, BorderLayout.CENTER);
 
         final JPanel bottomPanel = new JPanel(new GridLayout(1,5));
         bottomPanel.add(new JLabel());
@@ -128,103 +90,5 @@ public class TuningPanel extends JPanel implements ITuningPanel
     }
 
 
-    private void bindTuningMenuButtonAction()
-    {
-        _accroPidButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(final ActionEvent e)
-            {
-                //accroPanel.getController().setActivated(true);
-                //attitudePanel.getController().setActivated(false);
-                //yawPanel.getController().setActivated(false);
-                //altitudePanel.getController().setActivated(false);
-                //accroPanel.getController().setActivated(false);
-                //batteryMonitorPanel.getController().setActivated(false);
-                //gpsPanel.getController().setActivated(false);
-                _cardLayout.show(_cardLayoutPanel, ACCRO);
-            }
-        });
 
-
-        _attitudePidButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(final ActionEvent e)
-            {
-                //accroPanel.getController().setActivated(false);
-                //attitudePanel.getController().setActivated(true);
-                //yawPanel.getController().setActivated(false);
-                //altitudePanel.getController().setActivated(false);
-                //accroPanel.getController().setActivated(false);
-                //batteryMonitorPanel.getController().setActivated(false);
-                //gpsPanel.getController().setActivated(false);
-                _cardLayout.show(_cardLayoutPanel, ACCRO);
-            }
-        });
-
-        _yawPidButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(final ActionEvent e)
-            {
-                //accroPanel.getController().setActivated(false);
-                //attitudePanel.getController().setActivated(false);
-                //yawPanel.getController().setActivated(true);
-                //altitudePanel.getController().setActivated(false);
-                //accroPanel.getController().setActivated(false);
-                //batteryMonitorPanel.getController().setActivated(false);
-                //gpsPanel.getController().setActivated(false);
-                _cardLayout.show(_cardLayoutPanel, ACCRO);
-            }
-        });
-
-        _altitudePidButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(final ActionEvent e)
-            {
-                //accroPanel.getController().setActivated(false);
-                //attitudePanel.getController().setActivated(false);
-                //yawPanel.getController().setActivated(false);
-                //altitudePanel.getController().setActivated(true);
-                //accroPanel.getController().setActivated(false);
-                //batteryMonitorPanel.getController().setActivated(false);
-                //gpsPanel.getController().setActivated(false);
-                _cardLayout.show(_cardLayoutPanel, ACCRO);
-            }
-        });
-
-        _batteryPidButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(final ActionEvent e)
-            {
-                //accroPanel.getController().setActivated(false);
-                //attitudePanel.getController().setActivated(false);
-                //yawPanel.getController().setActivated(false);
-                //altitudePanel.getController().setActivated(false);
-                //accroPanel.getController().setActivated(false);
-                //batteryMonitorPanel.getController().setActivated(true);
-                //gpsPanel.getController().setActivated(false);
-                //_cardLayout.show(_cardLayoutPanel, ACCRO);
-            }
-        });
-
-        _gpsPidButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(final ActionEvent e)
-            {
-                //accroPanel.getController().setActivated(false);
-                //attitudePanel.getController().setActivated(false);
-                //yawPanel.getController().setActivated(false);
-                //altitudePanel.getController().setActivated(false);
-                //accroPanel.getController().setActivated(false);
-                //batteryMonitorPanel.getController().setActivated(false);
-                //gpsPanel.getController().setActivated(true);
-                //_cardLayout.show(_cardLayoutPanel, ACCRO);
-            }
-        });
-    }
 }

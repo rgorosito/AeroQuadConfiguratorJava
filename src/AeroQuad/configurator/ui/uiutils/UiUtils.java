@@ -15,4 +15,6 @@ public class UiUtils
     public static final Color OFF_WHITE_COLOR = new ColorUIResource(235, 235, 235);
     public static final Color DARK_GREY_COLOR = new ColorUIResource(150, 150, 150);
     public static final Color BLACK_COLOR = Color.black;
+
+    public static final int HEATHER_PREFERED_HEIGHT = 40;
 }
