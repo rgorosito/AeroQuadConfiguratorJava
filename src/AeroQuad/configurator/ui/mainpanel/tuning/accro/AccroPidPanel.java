@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.accro;
 
 import AeroQuad.configurator.ui.mainpanel.tuning.pidpanel.PidPanel;
+import AeroQuad.configurator.ui.mainpanel.tuning.singleparamconfigpanel.SingleParamConfigPanel;
 import AeroQuad.configurator.ui.uiutils.UiUtils;
 
 import javax.swing.JButton;
@@ -20,7 +21,8 @@ public class AccroPidPanel extends JPanel implements IAccroPidPanel
 
     private final PidPanel _rollPidPanel = new PidPanel("Roll");
     private final PidPanel _pitchPidPanel = new PidPanel("Pitch");
-    private final JButton _resetDefaultButton = new JButton("Reset Default");
+    private final JButton _resetDefaultButton = new JButton("<HTML><CENTER>Reset<BR>Default</CENTER></HTML>");
+    private final SingleParamConfigPanel _stickScalingPanel = new SingleParamConfigPanel("<HTML><CENTER>Stick<BR>Scaling</CENTER></HTML>");
 
     public AccroPidPanel(final IAccroPidPanelController accroPanelController)
     {
@@ -32,7 +34,7 @@ public class AccroPidPanel extends JPanel implements IAccroPidPanel
     private void initPanel()
     {
         setLayout(new BorderLayout());
-        setBorder(new LineBorder(Color.black,3));
+        setBorder(new LineBorder(Color.black,4));
 
         final JPanel mainPanel = new JPanel(new BorderLayout());
         final JLabel headerLabel = new JLabel("Accro");
@@ -41,10 +43,12 @@ public class AccroPidPanel extends JPanel implements IAccroPidPanel
         mainPanel.add(headerLabel, BorderLayout.NORTH);
         headerLabel.setBorder(new LineBorder(Color.black, 1));
 
-        final JPanel centerPanel = new JPanel(new GridLayout(1,3));
+        final JPanel centerPanel = new JPanel(new GridLayout(1,4));
         centerPanel.add(_rollPidPanel);
         centerPanel.add(_pitchPidPanel);
+        centerPanel.add(_stickScalingPanel);
         centerPanel.add(_resetDefaultButton);
+
         mainPanel.add(centerPanel, BorderLayout.CENTER);
         add(mainPanel, BorderLayout.WEST);
     }

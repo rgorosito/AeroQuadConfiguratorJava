@@ -20,7 +20,7 @@ public class YawPidPanel extends JPanel implements IYawPidPanel
 
     private final PidPanel _yawPidPanel = new PidPanel("Yaw");
     private final PidPanel _headingHoldPidPanel = new PidPanel("Heading Hold");
-    private final JButton _resetDefaultButton = new JButton("Reset Default");
+    private final JButton _resetDefaultButton = new JButton("<HTML><CENTER>Reset<BR>Default</CENTER></HTML>");
 
 
     public YawPidPanel(final IYawPidPanelController yawPidPanelController)

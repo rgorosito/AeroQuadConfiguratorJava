@@ -14,10 +14,9 @@ public class TuningPanel extends JPanel implements ITuningPanel
     private final JToggleButton _intermediateButton = new JToggleButton(INTERMEDIATE);
     private final JToggleButton _advancedButton = new JToggleButton(ADVANCED);
 
-    private final JButton _resetDefault = new JButton(RESET_DEFAULT);
     private final ITuningPanelController _controller;
 
-    private final GridLayout _gridLayout = new GridLayout(3,1);
+    private final GridLayout _gridLayout = new GridLayout(6,1);
 
 
     public TuningPanel(final ITuningPanelController tuningPanelController)
@@ -35,7 +34,7 @@ public class TuningPanel extends JPanel implements ITuningPanel
 
     private void init()
     {
-        final JPanel topPanel = new JPanel(new GridLayout(1,7));
+        final JPanel topPanel = new JPanel(new GridLayout(1,3));
         topPanel.setPreferredSize(new Dimension(0, UiUtils.HEATHER_PREFERED_HEIGHT));
         topPanel.add(_beginnerButton);
         _beginnerButton.setSelected(true);
@@ -50,15 +49,10 @@ public class TuningPanel extends JPanel implements ITuningPanel
         centerPanel.add(_controller.getAccroPanel());
         centerPanel.add(_controller.getAttitudePanel());
         centerPanel.add(_controller.getYawPanel());
+        centerPanel.add(_controller.getAltitudePanel());
+        centerPanel.add(_controller.getBatteryMonitorPanel());
+        centerPanel.add(_controller.getGpsPanel());
         add(centerPanel, BorderLayout.CENTER);
-
-        final JPanel bottomPanel = new JPanel(new GridLayout(1,5));
-        bottomPanel.add(new JLabel());
-        bottomPanel.add(new JLabel());
-        bottomPanel.add(new JLabel());
-        bottomPanel.add(new JLabel());
-        bottomPanel.add(_resetDefault);
-        add(bottomPanel, BorderLayout.SOUTH);
     }
 
     private void bindUserLevelButtonAction()

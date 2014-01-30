@@ -22,7 +22,7 @@ public class AttitudePidPanel extends JPanel implements IAttitudePidPanel
     private final PidPanel _accelRollPidPanel = new PidPanel("Accel Roll");
     private final PidPanel _gyroPichPidPanel = new PidPanel("Gyro Pitch");
     private final PidPanel _accelPitchPidPanel = new PidPanel("Accel Pitch");
-    private final JButton _resetDefaultButton = new JButton("Reset Default");
+    private final JButton _resetDefaultButton = new JButton("<HTML><CENTER>Reset<BR>Default</CENTER></HTML>");
 
 
     public AttitudePidPanel(final IAttitudePidPanelController attitudePanelController)

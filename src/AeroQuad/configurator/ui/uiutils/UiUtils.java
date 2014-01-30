@@ -17,4 +17,5 @@ public class UiUtils
     public static final Color BLACK_COLOR = Color.black;
 
     public static final int HEATHER_PREFERED_HEIGHT = 40;
+    public static final int HEATHER_SMALL_PREFERED_HEIGHT = 25;
 }
