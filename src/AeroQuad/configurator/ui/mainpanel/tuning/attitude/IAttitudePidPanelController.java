@@ -1,11 +1,8 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.attitude;
 
-import AeroQuad.configurator.ui.IConfiguratorController;
-import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
+import AeroQuad.configurator.ui.mainpanel.tuning.IPidPanelController;
 
-public interface IAttitudePidPanelController extends IConfiguratorController
+public interface IAttitudePidPanelController extends IPidPanelController
 {
-    void setUserLevel(UserLevel userLevel);
-
     void setPanel(IAttitudePidPanel panel);
 }

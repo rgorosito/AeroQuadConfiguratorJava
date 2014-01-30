@@ -18,18 +18,15 @@ import java.beans.PropertyChangeListener;
 
 public class MainPanelController implements IMainPanelController
 {
-
-
     private final JPanel _monitoringPanel;
     private final JPanel _setupPanel;
     private final JPanel _tuningPanel;
 
-    private final ITuningPanelController _tuningController = new TuningPanelController();
+    private final ITuningPanelController _tuningController;
     private final ISetupPanelController _setupPanelController;
     private final IMonitoringPanelController _monitoringPanelController;
 
     private IMainPanel _panel;
-
 
     public MainPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
@@ -37,6 +34,7 @@ public class MainPanelController implements IMainPanelController
         _monitoringPanel = new MonitoringPanel(_monitoringPanelController);
         _setupPanelController = new SetupPanelController();
         _setupPanel = new SetupPanel(_setupPanelController);
+        _tuningController = new TuningPanelController(messageDispatcher, communicator);
         _tuningPanel = new TuningPanel(_tuningController);
 
         communicator.addListener(ISerialCommunicator.CONNECTION_STATE_CHANGE, new PropertyChangeListener()

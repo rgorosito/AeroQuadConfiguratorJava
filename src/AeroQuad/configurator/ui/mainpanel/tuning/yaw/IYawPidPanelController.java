@@ -1,11 +1,8 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.yaw;
 
-import AeroQuad.configurator.ui.IConfiguratorController;
-import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
+import AeroQuad.configurator.ui.mainpanel.tuning.IPidPanelController;
 
-public interface IYawPidPanelController extends IConfiguratorController
+public interface IYawPidPanelController extends IPidPanelController
 {
-    void setUserLevel(UserLevel userLevel);
-
     void setPanel(IYawPidPanel panel);
 }

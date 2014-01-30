@@ -35,4 +35,9 @@ public class SingleParamConfigPanel extends JPanel
         _textField.addKeyListener(new IntegerFilterKeyAdapter());
         add(_textField, BorderLayout.CENTER);
     }
+
+    public void setText(final String stickScalling)
+    {
+        _textField.setText(stickScalling);
+    }
 }

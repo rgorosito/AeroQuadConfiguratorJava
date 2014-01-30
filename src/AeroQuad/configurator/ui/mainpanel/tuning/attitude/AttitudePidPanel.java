@@ -1,5 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.attitude;
 
+import AeroQuad.configurator.messagedispatcher.PIDData;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 import AeroQuad.configurator.ui.mainpanel.tuning.pidpanel.PidPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.syncedstate.SyncedStatePanel;
@@ -22,7 +23,7 @@ public class AttitudePidPanel extends JPanel implements IAttitudePidPanel
 
     private final PidPanel _gyroRollPidPanel = new PidPanel("Gyro Roll");
     private final PidPanel _accelRollPidPanel = new PidPanel("Accel Roll");
-    private final PidPanel _gyroPichPidPanel = new PidPanel("Gyro Pitch");
+    private final PidPanel _gyroPicthPidPanel = new PidPanel("Gyro Pitch");
     private final PidPanel _accelPitchPidPanel = new PidPanel("Accel Pitch");
     private final JButton _resetDefaultButton = new JButton("<HTML><CENTER>Reset<BR>Default</CENTER></HTML>");
     private final SyncedStatePanel _syncStatePanel = new SyncedStatePanel();
@@ -63,38 +64,69 @@ public class AttitudePidPanel extends JPanel implements IAttitudePidPanel
         updateCenterPanelFromUserLevel();
     }
 
+    @Override
+    public void setGyroRollPid(final PIDData pid)
+    {
+        _gyroRollPidPanel.setPid(pid);
+    }
+
+    @Override
+    public void setAccelRollPid(final PIDData pid)
+    {
+        _accelRollPidPanel.setPid(pid);
+    }
+
+    @Override
+    public void setGyroPitchPid(final PIDData pid)
+    {
+        _gyroPicthPidPanel.setPid(pid);
+    }
+
+    @Override
+    public void setAccelPitchPid(final PIDData pid)
+    {
+        _accelPitchPidPanel.setPid(pid);
+    }
+
+    @Override
+    public void setSynced(final boolean synced)
+    {
+        _syncStatePanel.setSynced(synced);
+    }
+
     private void updateCenterPanelFromUserLevel()
     {
         _centerPanel.removeAll();
-        _centerPanel.add(_gyroRollPidPanel);
         _centerPanel.add(_accelRollPidPanel);
+        _centerPanel.add(_gyroRollPidPanel);
+
         if (_userLevel == UserLevel.Beginner)
         {
             _gyroRollPidPanel.setHeader("Gyro");
-            _gyroRollPidPanel.setDVisible(false);
+            _gyroRollPidPanel.setIVisible(false);
             _accelRollPidPanel.setHeader("Accel");
             _accelRollPidPanel.setIVisible(false);
             _accelRollPidPanel.setDVisible(false);
         }
         else if (_userLevel == UserLevel.Intermediate)
         {
-            _centerPanel.add(_gyroPichPidPanel);
-            _centerPanel.add(_accelPitchPidPanel);
-
-            _gyroRollPidPanel.setHeader("Gyro Roll");
-            _gyroRollPidPanel.setDVisible(false);
             _accelRollPidPanel.setHeader("Accel Roll");
             _accelRollPidPanel.setIVisible(false);
             _accelRollPidPanel.setDVisible(false);
+            _gyroRollPidPanel.setHeader("Gyro Roll");
+            _gyroRollPidPanel.setIVisible(false);
 
-            _gyroPichPidPanel.setDVisible(false);
+            _centerPanel.add(_accelPitchPidPanel);
+            _centerPanel.add(_gyroPicthPidPanel);
+
             _accelPitchPidPanel.setIVisible(false);
             _accelPitchPidPanel.setDVisible(false);
+            _gyroPicthPidPanel.setIVisible(false);
         }
         else if (_userLevel == UserLevel.Advanced)
         {
-            _centerPanel.add(_gyroPichPidPanel);
             _centerPanel.add(_accelPitchPidPanel);
+            _centerPanel.add(_gyroPicthPidPanel);
 
             _gyroRollPidPanel.setHeader("Gyro Roll");
             _gyroRollPidPanel.setDVisible(true);
@@ -102,7 +134,7 @@ public class AttitudePidPanel extends JPanel implements IAttitudePidPanel
             _accelRollPidPanel.setIVisible(true);
             _accelRollPidPanel.setDVisible(true);
 
-            _gyroPichPidPanel.setDVisible(true);
+            _gyroPicthPidPanel.setDVisible(true);
             _accelPitchPidPanel.setIVisible(true);
             _accelPitchPidPanel.setDVisible(true);
         }

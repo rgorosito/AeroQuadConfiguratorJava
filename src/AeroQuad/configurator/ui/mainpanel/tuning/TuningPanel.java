@@ -17,6 +17,9 @@ public class TuningPanel extends JPanel implements ITuningPanel
     private final ITuningPanelController _controller;
 
     private final GridLayout _gridLayout = new GridLayout(6,1);
+    private JPanel _gpsPanel;
+    private JPanel _altitudePanel;
+    private JPanel _batteryMonitorPanel;
 
 
     public TuningPanel(final ITuningPanelController tuningPanelController)
@@ -50,9 +53,12 @@ public class TuningPanel extends JPanel implements ITuningPanel
         centerPanel.add(_controller.getAccroPanel());
         centerPanel.add(_controller.getAttitudePanel());
         centerPanel.add(_controller.getYawPanel());
-        centerPanel.add(_controller.getAltitudePanel());
-        centerPanel.add(_controller.getBatteryMonitorPanel());
-        centerPanel.add(_controller.getGpsPanel());
+        _altitudePanel = _controller.getAltitudePanel();
+        centerPanel.add(_altitudePanel);
+        _batteryMonitorPanel = _controller.getBatteryMonitorPanel();
+        centerPanel.add(_batteryMonitorPanel);
+        _gpsPanel = _controller.getGpsPanel();
+        centerPanel.add(_gpsPanel);
         mainPanel.add(centerPanel, BorderLayout.CENTER);
 
         final JScrollPane scrollPane = new JScrollPane(mainPanel);
@@ -88,6 +94,21 @@ public class TuningPanel extends JPanel implements ITuningPanel
         });
     }
 
+    @Override
+    public void setGpsPanelVisible(final boolean visible)
+    {
+        _gpsPanel.setVisible(visible);
+    }
 
+    @Override
+    public void setBatteryMonitorVisible(final boolean visible)
+    {
+        _batteryMonitorPanel.setVisible(visible);
+    }
 
+    @Override
+    public void setAltitudeHoldVisible(final boolean visible)
+    {
+        _altitudePanel.setVisible(visible);
+    }
 }

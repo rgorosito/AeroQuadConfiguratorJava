@@ -1,5 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.accro;
 
+import AeroQuad.configurator.messagedispatcher.PIDData;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 import AeroQuad.configurator.ui.mainpanel.tuning.pidpanel.PidPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.singleparamconfigpanel.SingleParamConfigPanel;
@@ -60,6 +61,30 @@ public class AccroPidPanel extends JPanel implements IAccroPidPanel
     {
         _userLevel = userLevel;
         updateCenterPanelFromUserLevel();
+    }
+
+    @Override
+    public void setRollPid(final PIDData pid)
+    {
+        _rollPidPanel.setPid(pid);
+    }
+
+    @Override
+    public void setPitchPid(final PIDData pid)
+    {
+        _pitchPidPanel.setPid(pid);
+    }
+
+    @Override
+    public void setStickScaling(final String stickScalling)
+    {
+        _stickScalingPanel.setText(stickScalling);
+    }
+
+    @Override
+    public void setSinced(final boolean synced)
+    {
+        _syncStatePanel.setSynced(synced);
     }
 
     private void updateCenterPanelFromUserLevel()

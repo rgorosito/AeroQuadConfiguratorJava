@@ -58,6 +58,19 @@ public interface IMessageDispatcher
     final String MOTOR7_THROTTLE_STATE_CHANGE = "MOTOR7_THROTTLE_STATE_CHANGE";
     final String MOTOR8_THROTTLE_STATE_CHANGE = "MOTOR8_THROTTLE_STATE_CHANGE";
 
+    final String ACCRO_ROLL_PID_KEY = "ACCRO_ROLL_PID_KEY";
+    final String ACCRO_PITCH_PID_KEY = "ACCRO_PITCH_PID_KEY";
+    final String STICK_SCALING_KEY = "STICK_SCALING_KEY";
+
+    final String ATTITUDE_GYRO_ROLL_PID_KEY = "ATTITUDE_GYRO_ROLL_PID_KEY";
+    final String ATTITUDE_ACCEL_ROLL_PID_KEY = "ATTITUDE_ACCEL_ROLL_PID_KEY";
+    final String ATTITUDE_GYRO_PITCH_PID_KEY = "ATTITUDE_GYRO_PITCH_PID_KEY";
+    final String ATTITUDE_ACCEL_PITCH_PID_KEY = "ATTITUDE_ACCEL_PITCH_PID_KEY";
+
+    final String YAW_PID_KEY = "YAW_PID_KEY";
+    final String HEADING_HOLD_PID_KEY = "HEADING_HOLD_PID_KEY";
+
+
 
     void addListener(String propertyName, PropertyChangeListener propertyChangeListener);
 

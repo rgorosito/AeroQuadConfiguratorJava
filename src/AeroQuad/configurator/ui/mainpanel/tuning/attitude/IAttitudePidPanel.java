@@ -1,8 +1,19 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.attitude;
 
+import AeroQuad.configurator.messagedispatcher.PIDData;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 
 public interface IAttitudePidPanel
 {
     void setUserLevel(UserLevel userLevel);
+
+    void setGyroRollPid(PIDData pid);
+
+    void setAccelRollPid(PIDData pid);
+
+    void setGyroPitchPid(PIDData pid);
+
+    void setAccelPitchPid(PIDData pid);
+
+    void setSynced(boolean synced);
 }

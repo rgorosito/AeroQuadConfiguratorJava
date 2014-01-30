@@ -9,4 +9,9 @@ public interface ITuningPanel
     final String BATTERY = "BATTERY";
     final String GPS = "GPS";
 
+    void setGpsPanelVisible(boolean visible);
+
+    void setBatteryMonitorVisible(boolean visible);
+
+    void setAltitudeHoldVisible(boolean visible);
 }

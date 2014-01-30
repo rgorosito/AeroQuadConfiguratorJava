@@ -1,11 +1,8 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.altitudehold;
 
-import AeroQuad.configurator.ui.IConfiguratorController;
-import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
+import AeroQuad.configurator.ui.mainpanel.tuning.IPidPanelController;
 
-public interface IAltitudeHoldPidPanelController extends IConfiguratorController
+public interface IAltitudeHoldPidPanelController extends IPidPanelController
 {
-    void setUserLevel(UserLevel userLevel);
-
     void setPanel(IAltitudeHoldPidPanel panel);
 }

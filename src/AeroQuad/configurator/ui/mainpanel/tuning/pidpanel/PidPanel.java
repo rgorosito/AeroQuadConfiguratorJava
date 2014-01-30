@@ -1,5 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.pidpanel;
 
+import AeroQuad.configurator.messagedispatcher.PIDData;
 import AeroQuad.configurator.ui.uiutils.IntegerFilterKeyAdapter;
 import AeroQuad.configurator.ui.uiutils.UiUtils;
 
@@ -13,7 +14,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
-public class PidPanel extends JPanel implements IPidPanel
+public class PidPanel extends JPanel
 {
     private final GridLayout _gridLayout = new GridLayout(1, 3);
     private final JPanel _centerPanel = new JPanel(_gridLayout);
@@ -113,5 +114,12 @@ public class PidPanel extends JPanel implements IPidPanel
     public void setHeader(final String header)
     {
         _headerLabel.setText(header);
+    }
+
+    public void setPid(final PIDData pid)
+    {
+        _pTextField.setText(pid.getP());
+        _iTextField.setText(pid.getI());
+        _dTextField.setText(pid.getD());
     }
 }

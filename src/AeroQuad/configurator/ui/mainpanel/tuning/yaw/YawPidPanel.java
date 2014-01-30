@@ -1,5 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.yaw;
 
+import AeroQuad.configurator.messagedispatcher.PIDData;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 import AeroQuad.configurator.ui.mainpanel.tuning.pidpanel.PidPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.syncedstate.SyncedStatePanel;
@@ -60,6 +61,24 @@ public class YawPidPanel extends JPanel implements IYawPidPanel
     {
         _userLevel = userLevel;
         updateCenterPanelFromUserLevel();
+    }
+
+    @Override
+    public void setYawPid(final PIDData pid)
+    {
+        _yawPidPanel.setPid(pid);
+    }
+
+    @Override
+    public void setHeadingHoldPid(final PIDData pid)
+    {
+        _headingHoldPidPanel.setPid(pid);
+    }
+
+    @Override
+    public void setSinced(final boolean sinced)
+    {
+        _syncStatePanel.setSynced(sinced);
     }
 
     private void updateCenterPanelFromUserLevel()

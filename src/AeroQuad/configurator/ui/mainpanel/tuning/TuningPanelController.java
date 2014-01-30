@@ -1,5 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.tuning;
 
+import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.tuning.accro.AccroPidPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.accro.AccroPidPanelController;
 import AeroQuad.configurator.ui.mainpanel.tuning.accro.IAccroPidPanelController;
@@ -20,6 +22,12 @@ import AeroQuad.configurator.ui.mainpanel.tuning.yaw.YawPidPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.yaw.YawPidPanelController;
 
 import javax.swing.JPanel;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TuningPanelController implements ITuningPanelController
 {
@@ -39,26 +47,89 @@ public class TuningPanelController implements ITuningPanelController
     private IBatteryMonitorPidPanelController _batteryMonitorPidPanelController;
     private IGpsPidPanelController _gpsPidPanelController;
 
-    public TuningPanelController()
+    private Timer _syncTimer = null;
+
+    private final List<IPidPanelController> _pidPanelControllerList = new ArrayList<IPidPanelController>(1);
+
+    public TuningPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
-        buildChildscontrollersAndPanels();
+        buildChildscontrollersAndPanels(messageDispatcher, communicator);
 
         setUserLevel(UserLevel.Beginner);
+
+
+        messageDispatcher.addListener(IMessageDispatcher.BAROMETER_PROPERTY_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final boolean isAltitudeHoldEnabled = (boolean)evt.getNewValue();
+                _panel.setAltitudeHoldVisible(isAltitudeHoldEnabled);
+                if (isAltitudeHoldEnabled)
+                {
+                    _pidPanelControllerList.add(_altitudeHoldPidPanelController);
+                }
+                else
+                {
+                    _pidPanelControllerList.remove(_altitudeHoldPidPanelController);
+                }
+            }
+        });
+
+        messageDispatcher.addListener(IMessageDispatcher.BATTERY_MONITOR_PROPERTY_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final boolean isBatteryMonitorEnabled = (boolean)evt.getNewValue();
+                _panel.setBatteryMonitorVisible(isBatteryMonitorEnabled);
+                if (isBatteryMonitorEnabled)
+                {
+                    _pidPanelControllerList.add(_batteryMonitorPidPanelController);
+                }
+                else
+                {
+                    _pidPanelControllerList.remove(_batteryMonitorPidPanelController);
+                }
+            }
+        });
+
+        messageDispatcher.addListener(IMessageDispatcher.GPS_PROPERTY_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final boolean isGpsEnabled = (boolean)evt.getNewValue();
+                _panel.setGpsPanelVisible(isGpsEnabled);
+                if (isGpsEnabled)
+                {
+                    _pidPanelControllerList.add(_gpsPidPanelController);
+                }
+                else
+                {
+                    _pidPanelControllerList.remove(_gpsPidPanelController);
+                }
+            }
+        });
+
     }
 
-    private void buildChildscontrollersAndPanels()
+    private void buildChildscontrollersAndPanels(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
-        _accroPanelController = new AccroPidPanelController();
+        _accroPanelController = new AccroPidPanelController(messageDispatcher, communicator);
+        _pidPanelControllerList.add(_accroPanelController);
         _accroPanel = new AccroPidPanel(_accroPanelController);
-        _attitudePanelController = new AttitudePidPanelController();
+        _attitudePanelController = new AttitudePidPanelController(messageDispatcher, communicator);
+        _pidPanelControllerList.add(_attitudePanelController);
         _attitudePanel = new AttitudePidPanel(_attitudePanelController);
-        _yawPidPanelController = new YawPidPanelController();
+        _yawPidPanelController = new YawPidPanelController(messageDispatcher, communicator);
+        _pidPanelControllerList.add(_yawPidPanelController);
         _yawPanel = new YawPidPanel(_yawPidPanelController);
-        _altitudeHoldPidPanelController = new AltitudeHoldPidPanelController();
+        _altitudeHoldPidPanelController = new AltitudeHoldPidPanelController(messageDispatcher, communicator);
         _altitudePanel = new AltitudeHoldPidPanel(_altitudeHoldPidPanelController);
-        _batteryMonitorPidPanelController = new BatteryMonitorPidPanelController();
+        _batteryMonitorPidPanelController = new BatteryMonitorPidPanelController(messageDispatcher, communicator);
         _batteryMonitorPanel = new BatteryMonitorPidPanel(_batteryMonitorPidPanelController);
-        _gpsPidPanelController = new GpsPidPanelController();
+        _gpsPidPanelController = new GpsPidPanelController(messageDispatcher, communicator);
         _gpsPanel = new GpsPidPanel(_gpsPidPanelController);
     }
 
@@ -81,8 +152,18 @@ public class TuningPanelController implements ITuningPanelController
     @Override
     public void setActivated(final boolean activated)
     {
-
+        if (activated)
+        {
+            _syncTimer = new Timer(true);
+            _syncTimer.schedule(new SyncTask(),0,100);
+        }
+        else if (_syncTimer != null)
+        {
+            _syncTimer.cancel();
+            _syncTimer = null;
+        }
     }
+
 
     @Override
     public JPanel getAccroPanel()
@@ -118,5 +199,24 @@ public class TuningPanelController implements ITuningPanelController
     public JPanel getGpsPanel()
     {
         return _gpsPanel;
+    }
+
+    class SyncTask extends TimerTask
+    {
+        @Override
+        public void run()
+        {
+            synchronized (_pidPanelControllerList)
+            {
+                for (IPidPanelController controller: _pidPanelControllerList)
+                {
+                    if (!controller.isSyncked())
+                    {
+                        controller.processSyncing();
+                        return;
+                    }
+                }
+            }
+        }
     }
 }

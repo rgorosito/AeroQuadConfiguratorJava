@@ -1,11 +1,8 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.accro;
 
-import AeroQuad.configurator.ui.IConfiguratorController;
-import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
+import AeroQuad.configurator.ui.mainpanel.tuning.IPidPanelController;
 
-public interface IAccroPidPanelController extends IConfiguratorController
+public interface IAccroPidPanelController extends IPidPanelController
 {
-    void setUserLevel(UserLevel userLevel);
-
     void setPanel(IAccroPidPanel panel);
 }

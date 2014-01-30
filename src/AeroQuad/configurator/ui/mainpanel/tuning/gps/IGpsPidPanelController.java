@@ -1,11 +1,8 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.gps;
 
-import AeroQuad.configurator.ui.IConfiguratorController;
-import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
+import AeroQuad.configurator.ui.mainpanel.tuning.IPidPanelController;
 
-public interface IGpsPidPanelController extends IConfiguratorController
+public interface IGpsPidPanelController extends IPidPanelController
 {
-    void setUserLevel(UserLevel userLevel);
-
     void setPanel(IGpsPidPanel panel);
 }

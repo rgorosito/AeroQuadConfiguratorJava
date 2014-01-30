@@ -1,13 +1,14 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.gps;
 
+import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 
 public class GpsPidPanelController implements IGpsPidPanelController
 {
     private IGpsPidPanel _panel;
 
-    @Override
-    public void setActivated(final boolean activated)
+    public GpsPidPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
 
     }
@@ -16,6 +17,18 @@ public class GpsPidPanelController implements IGpsPidPanelController
     public void setUserLevel(final UserLevel userLevel)
     {
         _panel.setUserLevel(userLevel);
+    }
+
+    @Override
+    public boolean isSyncked()
+    {
+        return true;
+    }
+
+    @Override
+    public void processSyncing()
+    {
+
     }
 
     @Override
