@@ -1,6 +1,8 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.attitude;
 
+import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 import AeroQuad.configurator.ui.mainpanel.tuning.pidpanel.PidPanel;
+import AeroQuad.configurator.ui.mainpanel.tuning.syncedstate.SyncedStatePanel;
 import AeroQuad.configurator.ui.uiutils.UiUtils;
 
 import javax.swing.JButton;
@@ -23,11 +25,15 @@ public class AttitudePidPanel extends JPanel implements IAttitudePidPanel
     private final PidPanel _gyroPichPidPanel = new PidPanel("Gyro Pitch");
     private final PidPanel _accelPitchPidPanel = new PidPanel("Accel Pitch");
     private final JButton _resetDefaultButton = new JButton("<HTML><CENTER>Reset<BR>Default</CENTER></HTML>");
+    private final SyncedStatePanel _syncStatePanel = new SyncedStatePanel();
+    private UserLevel _userLevel = UserLevel.Beginner;
+    private JPanel _centerPanel;
 
 
     public AttitudePidPanel(final IAttitudePidPanelController attitudePanelController)
     {
         _controller = attitudePanelController;
+        _controller.setPanel(this);
         initPanel();
     }
 
@@ -43,14 +49,65 @@ public class AttitudePidPanel extends JPanel implements IAttitudePidPanel
         mainPanel.add(headerLabel, BorderLayout.NORTH);
         headerLabel.setBorder(new LineBorder(Color.black, 1));
 
-        final JPanel centerPanel = new JPanel(new GridLayout(1,5));
-        centerPanel.add(_gyroRollPidPanel);
-        centerPanel.add(_accelRollPidPanel);
-        centerPanel.add(_gyroPichPidPanel);
-        centerPanel.add(_accelPitchPidPanel);
-        centerPanel.add(_resetDefaultButton);
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
+        _centerPanel = new JPanel(new GridLayout(1,6));
+
+
+        mainPanel.add(_centerPanel, BorderLayout.CENTER);
         add(mainPanel, BorderLayout.WEST);
     }
 
+    @Override
+    public void setUserLevel(final UserLevel userLevel)
+    {
+        _userLevel = userLevel;
+        updateCenterPanelFromUserLevel();
+    }
+
+    private void updateCenterPanelFromUserLevel()
+    {
+        _centerPanel.removeAll();
+        _centerPanel.add(_gyroRollPidPanel);
+        _centerPanel.add(_accelRollPidPanel);
+        if (_userLevel == UserLevel.Beginner)
+        {
+            _gyroRollPidPanel.setHeader("Gyro");
+            _gyroRollPidPanel.setDVisible(false);
+            _accelRollPidPanel.setHeader("Accel");
+            _accelRollPidPanel.setIVisible(false);
+            _accelRollPidPanel.setDVisible(false);
+        }
+        else if (_userLevel == UserLevel.Intermediate)
+        {
+            _centerPanel.add(_gyroPichPidPanel);
+            _centerPanel.add(_accelPitchPidPanel);
+
+            _gyroRollPidPanel.setHeader("Gyro Roll");
+            _gyroRollPidPanel.setDVisible(false);
+            _accelRollPidPanel.setHeader("Accel Roll");
+            _accelRollPidPanel.setIVisible(false);
+            _accelRollPidPanel.setDVisible(false);
+
+            _gyroPichPidPanel.setDVisible(false);
+            _accelPitchPidPanel.setIVisible(false);
+            _accelPitchPidPanel.setDVisible(false);
+        }
+        else if (_userLevel == UserLevel.Advanced)
+        {
+            _centerPanel.add(_gyroPichPidPanel);
+            _centerPanel.add(_accelPitchPidPanel);
+
+            _gyroRollPidPanel.setHeader("Gyro Roll");
+            _gyroRollPidPanel.setDVisible(true);
+            _accelRollPidPanel.setHeader("Accel Roll");
+            _accelRollPidPanel.setIVisible(true);
+            _accelRollPidPanel.setDVisible(true);
+
+            _gyroPichPidPanel.setDVisible(true);
+            _accelPitchPidPanel.setIVisible(true);
+            _accelPitchPidPanel.setDVisible(true);
+        }
+
+        _centerPanel.add(_resetDefaultButton);
+        _centerPanel.add(_syncStatePanel);
+    }
 }

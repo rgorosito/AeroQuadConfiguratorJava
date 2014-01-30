@@ -32,25 +32,34 @@ public class TuningPanelController implements ITuningPanelController
     private JPanel _batteryMonitorPanel;
     private JPanel _gpsPanel;
 
+    private IAccroPidPanelController _accroPanelController;
+    private IAttitudePidPanelController _attitudePanelController;
+    private IYawPidPanelController _yawPidPanelController;
+    private IAltitudeHoldPidPanelController _altitudeHoldPidPanelController;
+    private IBatteryMonitorPidPanelController _batteryMonitorPidPanelController;
+    private IGpsPidPanelController _gpsPidPanelController;
+
     public TuningPanelController()
     {
         buildChildscontrollersAndPanels();
+
+        setUserLevel(UserLevel.Beginner);
     }
 
     private void buildChildscontrollersAndPanels()
     {
-        final IAccroPidPanelController accroPanelController = new AccroPidPanelController();
-        _accroPanel = new AccroPidPanel(accroPanelController);
-        final IAttitudePidPanelController attitudePanelController = new AttitudePidPanelController();
-        _attitudePanel = new AttitudePidPanel(attitudePanelController);
-        final IYawPidPanelController yawPidPanelController = new YawPidPanelController();
-        _yawPanel = new YawPidPanel(yawPidPanelController);
-        final IAltitudeHoldPidPanelController altitudeHoldPidPanelController = new AltitudeHoldPidPanelController();
-        _altitudePanel = new AltitudeHoldPidPanel(altitudeHoldPidPanelController);
-        final IBatteryMonitorPidPanelController batteryMonitorPidPanelController = new BatteryMonitorPidPanelController();
-        _batteryMonitorPanel = new BatteryMonitorPidPanel(batteryMonitorPidPanelController);
-        final IGpsPidPanelController gpsPidPanelController = new GpsPidPanelController();
-        _gpsPanel = new GpsPidPanel(gpsPidPanelController);
+        _accroPanelController = new AccroPidPanelController();
+        _accroPanel = new AccroPidPanel(_accroPanelController);
+        _attitudePanelController = new AttitudePidPanelController();
+        _attitudePanel = new AttitudePidPanel(_attitudePanelController);
+        _yawPidPanelController = new YawPidPanelController();
+        _yawPanel = new YawPidPanel(_yawPidPanelController);
+        _altitudeHoldPidPanelController = new AltitudeHoldPidPanelController();
+        _altitudePanel = new AltitudeHoldPidPanel(_altitudeHoldPidPanelController);
+        _batteryMonitorPidPanelController = new BatteryMonitorPidPanelController();
+        _batteryMonitorPanel = new BatteryMonitorPidPanel(_batteryMonitorPidPanelController);
+        _gpsPidPanelController = new GpsPidPanelController();
+        _gpsPanel = new GpsPidPanel(_gpsPidPanelController);
     }
 
     @Override
@@ -60,9 +69,13 @@ public class TuningPanelController implements ITuningPanelController
     }
 
     @Override
-    public void setUserLevel(final String beginner)
+    public void setUserLevel(final UserLevel userLevel)
     {
-
+        _accroPanelController.setUserLevel(userLevel);
+        _attitudePanelController.setUserLevel(userLevel);
+        _yawPidPanelController.setUserLevel(userLevel);
+        _altitudeHoldPidPanelController.setUserLevel(userLevel);
+        _gpsPidPanelController.setUserLevel(userLevel);
     }
 
     @Override

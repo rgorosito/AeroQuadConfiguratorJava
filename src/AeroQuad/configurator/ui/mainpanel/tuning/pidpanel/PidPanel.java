@@ -25,6 +25,10 @@ public class PidPanel extends JPanel implements IPidPanel
     private final JTextField _pTextField = new JTextField("0");
     private final JTextField _iTextField = new JTextField("0");
     private final JTextField _dTextField = new JTextField("0");
+    private boolean _isIVisible = true;
+    private boolean _isDVisible = true;
+    private String header;
+    private JLabel _headerLabel;
 
 
     public PidPanel(final String header)
@@ -39,10 +43,10 @@ public class PidPanel extends JPanel implements IPidPanel
 
         //setPreferredSize(new Dimension(100,100));
 
-        final JLabel headerLabel = new JLabel(header);
-        headerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        headerLabel.setBorder(new LineBorder(Color.black, 1));
-        add(headerLabel, BorderLayout.NORTH);
+        _headerLabel = new JLabel(header);
+        _headerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        _headerLabel.setBorder(new LineBorder(Color.black, 1));
+        add(_headerLabel, BorderLayout.NORTH);
 
         final JLabel pLabel = new JLabel("P");
         pLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -78,5 +82,36 @@ public class PidPanel extends JPanel implements IPidPanel
         _centerPanel.add(_dPanel);
 
         add(_centerPanel, BorderLayout.CENTER);
+    }
+
+    public void setIVisible(final boolean visible)
+    {
+        _isIVisible = visible;
+        updateCenterPanelFromVisibilityProperty();
+    }
+
+    public void setDVisible(final boolean visible)
+    {
+        _isDVisible = visible;
+        updateCenterPanelFromVisibilityProperty();
+    }
+
+    private void updateCenterPanelFromVisibilityProperty()
+    {
+        _centerPanel.removeAll();
+        _centerPanel.add(_pPanel);
+        if (_isIVisible)
+        {
+            _centerPanel.add(_iPanel);
+        }
+        if (_isDVisible)
+        {
+            _centerPanel.add(_dPanel);
+        }
+    }
+
+    public void setHeader(final String header)
+    {
+        _headerLabel.setText(header);
     }
 }

@@ -1,7 +1,9 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.altitudehold;
 
+import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 import AeroQuad.configurator.ui.mainpanel.tuning.pidpanel.PidPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.singleparamconfigpanel.SingleParamConfigPanel;
+import AeroQuad.configurator.ui.mainpanel.tuning.syncedstate.SyncedStatePanel;
 import AeroQuad.configurator.ui.uiutils.UiUtils;
 
 import javax.swing.JButton;
@@ -18,7 +20,7 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
 {
     private final IAltitudeHoldPidPanelController _controller;
 
-    private final PidPanel _rollPidPanel = new PidPanel("Altitude");
+    private final PidPanel _altitudePidPanel = new PidPanel("Altitude");
     private final SingleParamConfigPanel _windupGuardPanel = new SingleParamConfigPanel("<HTML><CENTER>Windup<BR>Guard</CENTER></HTML>");
     private final SingleParamConfigPanel _throttleBumpPanel = new SingleParamConfigPanel("<HTML><CENTER>Throttle<BR>Bump</CENTER></HTML>");
     private final SingleParamConfigPanel _throttlePanicPanel = new SingleParamConfigPanel("<HTML><CENTER>Throttle<BR>Panic</CENTER></HTML>");
@@ -27,10 +29,15 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
     private final SingleParamConfigPanel _smoothFactorPanel = new SingleParamConfigPanel("<HTML><CENTER>Smooth<BR>Factor</CENTER></HTML>");
     private final PidPanel _zDampening = new PidPanel("Z Dampening");
     private final JButton _resetDefaultButton = new JButton("<HTML><CENTER>Reset<BR>Default</CENTER></HTML>");
+    private final SyncedStatePanel _syncStatePanel = new SyncedStatePanel();
+    private UserLevel _userLevel;
+    private JPanel _centerPanel;
 
     public AltitudeHoldPidPanel(final IAltitudeHoldPidPanelController altitudeHoldPidPanelController)
     {
         _controller = altitudeHoldPidPanelController;
+
+        _controller.setPanel(this);
 
         initPanel();
     }
@@ -47,19 +54,61 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
         mainPanel.add(headerLabel, BorderLayout.NORTH);
         headerLabel.setBorder(new LineBorder(Color.black, 1));
 
-        final JPanel centerPanel = new JPanel(new GridLayout(1,10));
-        centerPanel.add(_rollPidPanel);
-        centerPanel.add(_windupGuardPanel);
-        centerPanel.add(_throttleBumpPanel);
-        centerPanel.add(_throttlePanicPanel);
-        centerPanel.add(_minThrottleAdjustPanel);
-        centerPanel.add(_maxThrottleAdjustPanel);
-        centerPanel.add(_smoothFactorPanel);
-        centerPanel.add(_smoothFactorPanel);
-        centerPanel.add(_zDampening);
-        centerPanel.add(_resetDefaultButton);
+        _centerPanel = new JPanel(new GridLayout(1,12));
+        _centerPanel.add(_altitudePidPanel);
+        _centerPanel.add(_windupGuardPanel);
+        _centerPanel.add(_throttleBumpPanel);
+        _centerPanel.add(_throttlePanicPanel);
+        _centerPanel.add(_minThrottleAdjustPanel);
+        _centerPanel.add(_maxThrottleAdjustPanel);
+        _centerPanel.add(_smoothFactorPanel);
+        _centerPanel.add(_smoothFactorPanel);
+        _centerPanel.add(_zDampening);
+        _centerPanel.add(_resetDefaultButton);
+        _centerPanel.add(_syncStatePanel);
 
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
+        mainPanel.add(_centerPanel, BorderLayout.CENTER);
         add(mainPanel, BorderLayout.WEST);
+    }
+
+    @Override
+    public void setUserLevel(final UserLevel userLevel)
+    {
+        _userLevel = userLevel;
+        updateCenterPanelFromUserLevel();
+    }
+
+    private void updateCenterPanelFromUserLevel()
+    {
+        _centerPanel.removeAll();
+
+        _centerPanel.add(_altitudePidPanel);
+        if (_userLevel == UserLevel.Beginner)
+        {
+            _altitudePidPanel.setDVisible(false);
+            _centerPanel.add(_minThrottleAdjustPanel);
+            _centerPanel.add(_maxThrottleAdjustPanel);
+        }
+        else if (_userLevel == UserLevel.Intermediate)
+        {
+            _altitudePidPanel.setDVisible(false);
+            _centerPanel.add(_throttleBumpPanel);
+            _centerPanel.add(_minThrottleAdjustPanel);
+            _centerPanel.add(_maxThrottleAdjustPanel);
+        }
+        else if (_userLevel == UserLevel.Advanced)
+        {
+            _altitudePidPanel.setDVisible(true);
+            _centerPanel.add(_windupGuardPanel);
+            _centerPanel.add(_throttleBumpPanel);
+            _centerPanel.add(_throttlePanicPanel);
+            _centerPanel.add(_minThrottleAdjustPanel);
+            _centerPanel.add(_maxThrottleAdjustPanel);
+            _centerPanel.add(_smoothFactorPanel);
+            _centerPanel.add(_zDampening);
+        }
+
+        _centerPanel.add(_resetDefaultButton);
+        _centerPanel.add(_syncStatePanel);
     }
 }

@@ -1,6 +1,8 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.yaw;
 
+import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 import AeroQuad.configurator.ui.mainpanel.tuning.pidpanel.PidPanel;
+import AeroQuad.configurator.ui.mainpanel.tuning.syncedstate.SyncedStatePanel;
 import AeroQuad.configurator.ui.uiutils.UiUtils;
 
 import javax.swing.JButton;
@@ -21,11 +23,16 @@ public class YawPidPanel extends JPanel implements IYawPidPanel
     private final PidPanel _yawPidPanel = new PidPanel("Yaw");
     private final PidPanel _headingHoldPidPanel = new PidPanel("Heading Hold");
     private final JButton _resetDefaultButton = new JButton("<HTML><CENTER>Reset<BR>Default</CENTER></HTML>");
+    private final SyncedStatePanel _syncStatePanel = new SyncedStatePanel();
+    private UserLevel _userLevel = UserLevel.Beginner;
+    private JPanel _centerPanel;
 
 
     public YawPidPanel(final IYawPidPanelController yawPidPanelController)
     {
         _controller = yawPidPanelController;
+
+        _controller.setPanel(this);
 
         initPanel();
     }
@@ -42,11 +49,37 @@ public class YawPidPanel extends JPanel implements IYawPidPanel
         mainPanel.add(headerLabel, BorderLayout.NORTH);
         headerLabel.setBorder(new LineBorder(Color.black, 1));
 
-        final JPanel centerPanel = new JPanel(new GridLayout(1,3));
-        centerPanel.add(_yawPidPanel);
-        centerPanel.add(_headingHoldPidPanel);
-        centerPanel.add(_resetDefaultButton);
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
+        _centerPanel = new JPanel(new GridLayout(1,4));
+
+        mainPanel.add(_centerPanel, BorderLayout.CENTER);
         add(mainPanel, BorderLayout.WEST);
+    }
+
+    @Override
+    public void setUserLevel(final UserLevel userLevel)
+    {
+        _userLevel = userLevel;
+        updateCenterPanelFromUserLevel();
+    }
+
+    private void updateCenterPanelFromUserLevel()
+    {
+        _centerPanel.removeAll();
+        _centerPanel.add(_yawPidPanel);
+        _yawPidPanel.setDVisible(false);
+        if (_userLevel == UserLevel.Intermediate)
+        {
+            _centerPanel.add(_headingHoldPidPanel);
+            _headingHoldPidPanel.setDVisible(false);
+        }
+        else if (_userLevel == UserLevel.Advanced)
+        {
+            _centerPanel.add(_headingHoldPidPanel);
+            _yawPidPanel.setDVisible(true);
+            _headingHoldPidPanel.setDVisible(true);
+        }
+
+        _centerPanel.add(_resetDefaultButton);
+        _centerPanel.add(_syncStatePanel);
     }
 }

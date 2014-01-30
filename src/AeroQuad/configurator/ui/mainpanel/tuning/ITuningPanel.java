@@ -9,10 +9,4 @@ public interface ITuningPanel
     final String BATTERY = "BATTERY";
     final String GPS = "GPS";
 
-    final String ADVANCED = "Advanced";
-    final String INTERMEDIATE = "Intermediate";
-    final String BEGINNER = "Beginner";
-
-    final String RESET_DEFAULT = "RESET DEFAULT";
-
 }
