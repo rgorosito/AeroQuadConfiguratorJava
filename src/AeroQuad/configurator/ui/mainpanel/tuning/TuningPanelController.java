@@ -31,6 +31,7 @@ import java.util.TimerTask;
 
 public class TuningPanelController implements ITuningPanelController
 {
+    private final ISerialCommunicator _communicator;
     private ITuningPanel _panel;
 
     private JPanel _accroPanel;
@@ -53,10 +54,11 @@ public class TuningPanelController implements ITuningPanelController
 
     public TuningPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
+        _communicator = communicator;
+
         buildChildscontrollersAndPanels(messageDispatcher, communicator);
 
         setUserLevel(UserLevel.Beginner);
-
 
         messageDispatcher.addListener(IMessageDispatcher.BAROMETER_PROPERTY_KEY, new PropertyChangeListener()
         {
@@ -154,6 +156,7 @@ public class TuningPanelController implements ITuningPanelController
     {
         if (activated)
         {
+            _communicator.sendCommand("X");
             _syncTimer = new Timer(true);
             _syncTimer.schedule(new SyncTask(),0,100);
         }

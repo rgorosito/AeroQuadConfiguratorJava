@@ -54,8 +54,6 @@ public class MonitoringPanelController implements IMonitoringPanelController
                 _panel.setConnectedState(connected);
             }
         });
-
-
     }
 
     @Override
@@ -107,5 +105,11 @@ public class MonitoringPanelController implements IMonitoringPanelController
         _sensorsMonitoringPanelController.setActivated(false);
         _vehicleStatusController.setActivated(true);
         _panel.showPanel(IMonitoringPanel.VEHICLE);
+    }
+
+    @Override
+    public void setActivated(final boolean activated)
+    {
+        vehicleMonitoringButtonPressed();
     }
 }

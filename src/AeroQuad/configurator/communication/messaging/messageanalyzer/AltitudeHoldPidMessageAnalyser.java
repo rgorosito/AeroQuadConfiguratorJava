@@ -1,6 +1,7 @@
 package AeroQuad.configurator.communication.messaging.messageanalyzer;
 
 
+import AeroQuad.configurator.messagedispatcher.AltitudeHoldPidData;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 import AeroQuad.configurator.messagedispatcher.PIDData;
 
@@ -20,13 +21,18 @@ public class AltitudeHoldPidMessageAnalyser implements IMessageAnalyser
         {
             final String splittedData[] = rawData.split(",");
 
-            final PIDData rollPidData = new PIDData(splittedData[0], splittedData[1], splittedData[2]);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.ACCRO_ROLL_PID_KEY, rollPidData);
+            final PIDData altitudeHoldPid = new PIDData(splittedData[0], splittedData[1], splittedData[2]);
+            final PIDData zDampeningPid = new PIDData(splittedData[9], splittedData[10], splittedData[11]);
 
-            final PIDData pichPidData = new PIDData(splittedData[3], splittedData[4], splittedData[5]);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.ACCRO_PITCH_PID_KEY, pichPidData);
+            final AltitudeHoldPidData altitudeHoldPidData = new AltitudeHoldPidData(altitudeHoldPid,
+                                                                                    splittedData[4],
+                                                                                    splittedData[5],
+                                                                                    splittedData[6],
+                                                                                    splittedData[7],
+                                                                                    splittedData[8],
+                                                                                    zDampeningPid);
 
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.STICK_SCALING_KEY, splittedData[6]);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.ALTITUDE_HOLD_PID_KEY, altitudeHoldPidData);
         }
         catch (final Exception e)
         {

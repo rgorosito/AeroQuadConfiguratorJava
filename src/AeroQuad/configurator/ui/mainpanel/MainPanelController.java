@@ -63,6 +63,7 @@ public class MainPanelController implements IMainPanelController
     public void showMonitoringPanel()
     {
         _tuningController.setActivated(false);
+        _monitoringPanelController.setActivated(true);
         _panel.showMonitoringPanel();
     }
 
@@ -70,6 +71,7 @@ public class MainPanelController implements IMainPanelController
     public void showSetupPanel()
     {
         _tuningController.setActivated(false);
+        _monitoringPanelController.setActivated(false);
         _panel.showSetupPanel();
     }
 
@@ -77,6 +79,7 @@ public class MainPanelController implements IMainPanelController
     public void showTuningPanel()
     {
         _tuningController.setActivated(true);
+        _monitoringPanelController.setActivated(false);
         _panel.showTuningPanel();
     }
 

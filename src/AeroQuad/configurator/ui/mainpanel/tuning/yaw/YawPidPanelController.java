@@ -94,6 +94,6 @@ public class YawPidPanelController implements IYawPidPanelController
         {
             return false;
         }
-        return false;
+        return true;
     }
 }

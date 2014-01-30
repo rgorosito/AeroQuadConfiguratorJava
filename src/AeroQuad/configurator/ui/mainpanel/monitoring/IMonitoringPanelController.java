@@ -17,4 +17,6 @@ public interface IMonitoringPanelController
     void motorsMonitoringButtonPressed();
 
     void vehicleMonitoringButtonPressed();
+
+    void setActivated(boolean activated);
 }

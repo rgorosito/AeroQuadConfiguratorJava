@@ -6,6 +6,9 @@ import AeroQuad.configurator.messagedispatcher.AltitudeHoldPidData;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelController
 {
     private final ISerialCommunicator _communicator;
@@ -21,6 +24,33 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
     {
         _communicator = communicator;
         _messageDispatcher = messageDispatcher;
+
+        _messageDispatcher.addListener(IMessageDispatcher.ALTITUDE_HOLD_PID_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                _altitudeHoldPidData = (AltitudeHoldPidData)evt.getNewValue();
+                if (!_initialSyncked)
+                {
+                    updatePanelFromPidData(_altitudeHoldPidData);
+                    _userAltitudeHoldPidData = _altitudeHoldPidData;
+                    _initialSyncked = true;
+                    _panel.setSinced(true);
+                }
+            }
+        });
+
+    }
+
+    private void updatePanelFromPidData(final AltitudeHoldPidData altitudeHoldPidData)
+    {
+        _panel.setAltitudePid(altitudeHoldPidData.getAltitudePid());
+        _panel.setThrottleBump(altitudeHoldPidData.getAltitudeBump());
+        _panel.setThrottlePanic(altitudeHoldPidData.getThrottlePanic());
+        _panel.setMinThrottleAdjust(altitudeHoldPidData.getMinThrottleAdjust());
+        _panel.setMaxThrottleAdjust(altitudeHoldPidData.getMaxThrottleAdjust());
+        _panel.setSmoothFactor(altitudeHoldPidData.getSmoothFactor());
     }
 
     @Override
