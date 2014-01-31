@@ -130,11 +130,13 @@ public class AttitudePidPanel extends JPanel implements IAttitudePidPanel
 
             _gyroRollPidPanel.setHeader("Gyro Roll");
             _gyroRollPidPanel.setDVisible(true);
+            _gyroRollPidPanel.setIVisible(true);
             _accelRollPidPanel.setHeader("Accel Roll");
             _accelRollPidPanel.setIVisible(true);
             _accelRollPidPanel.setDVisible(true);
 
             _gyroPicthPidPanel.setDVisible(true);
+            _gyroPicthPidPanel.setIVisible(true);
             _accelPitchPidPanel.setIVisible(true);
             _accelPitchPidPanel.setDVisible(true);
         }

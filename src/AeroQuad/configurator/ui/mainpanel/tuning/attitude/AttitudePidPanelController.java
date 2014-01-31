@@ -2,8 +2,8 @@ package AeroQuad.configurator.ui.mainpanel.tuning.attitude;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.messaging.request.AttitudePidRequest;
+import AeroQuad.configurator.messagedispatcher.AttitudePidData;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
-import AeroQuad.configurator.messagedispatcher.PIDData;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 
 import java.beans.PropertyChangeEvent;
@@ -18,79 +18,37 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
 
     private boolean _initialSyncked = false;
 
-    private PIDData _gyroRollPid = new PIDData();
-    private PIDData _accelRollPid = new PIDData();
-    private PIDData _gyroPitchPid = new PIDData();
-    private PIDData _accelPitchPid = new PIDData();
-
-    private PIDData _userGyroRollPid = new PIDData();
-    private PIDData _userAccelRollPid = new PIDData();
-    private PIDData _userGyroPitchPid = new PIDData();
-    private PIDData _userAccelPitchPid = new PIDData();
-
+    private AttitudePidData _attitudePidData = new AttitudePidData();
+    private AttitudePidData _userAttitudePidData = new AttitudePidData();
 
     public AttitudePidPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
         _communicator = communicator;
         _messageDispatcher = messageDispatcher;
 
-        _messageDispatcher.addListener(IMessageDispatcher.ATTITUDE_GYRO_ROLL_PID_KEY, new PropertyChangeListener()
+        _messageDispatcher.addListener(IMessageDispatcher.ATTITUDE_PID_DATA_KEY, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _gyroRollPid = (PIDData) evt.getNewValue();
+                _attitudePidData = (AttitudePidData) evt.getNewValue();
                 if (!_initialSyncked)
                 {
-                    _panel.setGyroRollPid(_gyroRollPid);
-                    _userGyroRollPid = _gyroRollPid;
-                }
-            }
-        });
-
-        _messageDispatcher.addListener(IMessageDispatcher.ATTITUDE_ACCEL_ROLL_PID_KEY, new PropertyChangeListener()
-        {
-            @Override
-            public void propertyChange(final PropertyChangeEvent evt)
-            {
-                _accelRollPid = (PIDData) evt.getNewValue();
-                if (!_initialSyncked)
-                {
-                    _panel.setAccelRollPid(_accelRollPid);
-                    _userAccelRollPid = _accelRollPid;
-                }
-            }
-        });
-
-        _messageDispatcher.addListener(IMessageDispatcher.ATTITUDE_GYRO_PITCH_PID_KEY, new PropertyChangeListener()
-        {
-            @Override
-            public void propertyChange(final PropertyChangeEvent evt)
-            {
-                _gyroPitchPid = (PIDData) evt.getNewValue();
-                if (!_initialSyncked)
-                {
-                    _panel.setGyroPitchPid(_gyroPitchPid);
-                    _userGyroPitchPid = _gyroPitchPid;
+                    updatePanelFromPidData(_attitudePidData);
+                    _userAttitudePidData = _attitudePidData;
                     _initialSyncked = true;
                     _panel.setSynced(true);
                 }
             }
         });
+    }
 
-        _messageDispatcher.addListener(IMessageDispatcher.ATTITUDE_ACCEL_PITCH_PID_KEY, new PropertyChangeListener()
-        {
-            @Override
-            public void propertyChange(final PropertyChangeEvent evt)
-            {
-                _accelPitchPid = (PIDData) evt.getNewValue();
-                if (!_initialSyncked)
-                {
-                    _panel.setAccelPitchPid(_accelPitchPid);
-                    _userAccelPitchPid = _accelPitchPid;
-                }
-            }
-        });
+    private void updatePanelFromPidData(final AttitudePidData attitudePidData)
+    {
+        _panel.setAccelPitchPid(attitudePidData.getAccelPitchPid());
+        _panel.setAccelRollPid(attitudePidData.getAccelRollPid());
+        _panel.setGyroRollPid(attitudePidData.getGyroRollPid());
+        _panel.setGyroPitchPid(attitudePidData.getGyroPitchPid());
     }
 
     @Override
@@ -119,19 +77,7 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
 
     private boolean isDataSyncked()
     {
-        if (!_gyroRollPid.equals(_userGyroRollPid))
-        {
-            return false;
-        }
-        if (!_accelRollPid.equals(_userAccelRollPid))
-        {
-            return false;
-        }
-        if (!_gyroPitchPid.equals(_userGyroPitchPid))
-        {
-            return false;
-        }
-        if (!_accelPitchPid.equals(_userAccelPitchPid))
+        if (!_attitudePidData.equals(_userAttitudePidData))
         {
             return false;
         }

@@ -3,7 +3,7 @@ package AeroQuad.configurator.ui.mainpanel.tuning.yaw;
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.messaging.request.YawPidRequest;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
-import AeroQuad.configurator.messagedispatcher.PIDData;
+import AeroQuad.configurator.messagedispatcher.YawPidData;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 
 import java.beans.PropertyChangeEvent;
@@ -17,10 +17,8 @@ public class YawPidPanelController implements IYawPidPanelController
 
     private boolean _initialSyncked = false;
 
-    private PIDData _yawPid = new PIDData();
-    private PIDData _headingHoldPid = new PIDData();
-    private PIDData _userYawPid = new PIDData();
-    private PIDData _userHeadingHoldPid = new PIDData();
+    private YawPidData _yawPid = new YawPidData();
+    private YawPidData _userYawPid = new YawPidData();
 
 
     public YawPidPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
@@ -33,31 +31,22 @@ public class YawPidPanelController implements IYawPidPanelController
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _yawPid = (PIDData)evt.getNewValue();
+                _yawPid = (YawPidData)evt.getNewValue();
                 if (!_initialSyncked)
                 {
-                    _panel.setYawPid(_yawPid);
+                    updatePanelFromPidData(_yawPid);
                     _userYawPid = _yawPid;
-                }
-            }
-        });
-
-        _messageDispatcher.addListener(IMessageDispatcher.HEADING_HOLD_PID_KEY, new PropertyChangeListener()
-        {
-            @Override
-            public void propertyChange(final PropertyChangeEvent evt)
-            {
-                _headingHoldPid = (PIDData)evt.getNewValue();
-                if (!_initialSyncked)
-                {
-                    _panel.setHeadingHoldPid(_headingHoldPid);
-                    _userHeadingHoldPid = _headingHoldPid;
                     _initialSyncked = true;
                     _panel.setSinced(true);
                 }
             }
         });
+    }
 
+    private void updatePanelFromPidData(final YawPidData yawPid)
+    {
+        _panel.setYawPid(yawPid.getYawPid());
+        _panel.setHeadingHoldPid(yawPid.getHeadingHoldPid());
     }
 
     @Override
@@ -87,10 +76,6 @@ public class YawPidPanelController implements IYawPidPanelController
     private boolean isDataSyncked()
     {
         if (!_yawPid.equals(_userYawPid))
-        {
-            return false;
-        }
-        if (!_headingHoldPid.equals(_userHeadingHoldPid))
         {
             return false;
         }

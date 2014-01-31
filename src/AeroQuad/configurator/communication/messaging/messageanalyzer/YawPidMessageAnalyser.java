@@ -2,6 +2,7 @@ package AeroQuad.configurator.communication.messaging.messageanalyzer;
 
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 import AeroQuad.configurator.messagedispatcher.PIDData;
+import AeroQuad.configurator.messagedispatcher.YawPidData;
 
 public class YawPidMessageAnalyser implements IMessageAnalyser
 {
@@ -19,11 +20,11 @@ public class YawPidMessageAnalyser implements IMessageAnalyser
         {
             final String splittedData[] = rawData.split(",");
 
-            final PIDData yawPidData = new PIDData(splittedData[0], splittedData[1], splittedData[2]);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.YAW_PID_KEY, yawPidData);
-
+            final PIDData yawPid = new PIDData(splittedData[0], splittedData[1], splittedData[2]);
             final PIDData headingHoldPidData = new PIDData(splittedData[3], splittedData[4], splittedData[5]);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.HEADING_HOLD_PID_KEY, headingHoldPidData);
+
+            final YawPidData yawPidData = new YawPidData(yawPid, headingHoldPidData);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.YAW_PID_KEY, yawPidData);
         }
         catch (final Exception e)
         {

@@ -38,8 +38,9 @@ public class ConnectionStatusPanel extends JPanel implements IConnectionStatusPa
     {
         _connectionStateLabel.setBackground(_isConnected ? Color.GREEN : _defaultBackgroundColor);
         final DecimalFormat decimalFormat = new DecimalFormat("0.00");
-        final String result = decimalFormat.format(_usage);
-        _connectionStateLabel.setText(_isConnected ? CONNECTED + " " + result: DISCONNECTED);
+        final String usageString = decimalFormat.format(_usage);
+        _connectionStateLabel.setForeground(Color.black);
+        _connectionStateLabel.setText(_isConnected ? CONNECTED + " Usage = " + usageString + " %": DISCONNECTED);
     }
 
     @Override

@@ -156,7 +156,7 @@ public class TuningPanelController implements ITuningPanelController
     {
         if (activated)
         {
-            _communicator.sendCommand("X");
+            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
             _syncTimer = new Timer(true);
             _syncTimer.schedule(new SyncTask(),0,100);
         }
