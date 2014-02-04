@@ -21,11 +21,9 @@ public class ConnectionStatusPanel extends JPanel implements IConnectionStatusPa
         _controller.setPanel(this);
         setLayout(new BorderLayout());
 
-
         _connectionStateLabel.setOpaque(true);
         add(_connectionStateLabel, BorderLayout.CENTER);
     }
-
 
     @Override
     public void setConnected(final boolean isConnected)

@@ -158,7 +158,7 @@ public class TuningPanelController implements ITuningPanelController
         {
             _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
             _syncTimer = new Timer(true);
-            _syncTimer.schedule(new SyncTask(),0,100);
+            _syncTimer.schedule(new SyncTask(),0,400);
         }
         else if (_syncTimer != null)
         {
@@ -209,9 +209,17 @@ public class TuningPanelController implements ITuningPanelController
         @Override
         public void run()
         {
+            try
+            {
+                Thread.sleep(400);
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
             synchronized (_pidPanelControllerList)
             {
-                for (IPidPanelController controller: _pidPanelControllerList)
+                for (final IPidPanelController controller: _pidPanelControllerList)
                 {
                     if (!controller.isSyncked())
                     {

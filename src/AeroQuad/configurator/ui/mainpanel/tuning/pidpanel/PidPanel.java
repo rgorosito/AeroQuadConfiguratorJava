@@ -4,15 +4,17 @@ import AeroQuad.configurator.messagedispatcher.PIDData;
 import AeroQuad.configurator.ui.uiutils.IntegerFilterKeyAdapter;
 import AeroQuad.configurator.ui.uiutils.UiUtils;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PidPanel extends JPanel
 {
@@ -30,6 +32,9 @@ public class PidPanel extends JPanel
     private boolean _isDVisible = true;
     private String header;
     private JLabel _headerLabel;
+
+    private final List<ActionListener> _actionListenerList = new ArrayList<ActionListener>(1);
+    private PIDData pid;
 
 
     public PidPanel(final String header)
@@ -56,6 +61,7 @@ public class PidPanel extends JPanel
         _pPanel.add(pLabel, BorderLayout.NORTH);
         _pTextField.setHorizontalAlignment(SwingConstants.CENTER);
         _pTextField.addKeyListener(new IntegerFilterKeyAdapter());
+        _pTextField.addKeyListener(new MyKeyListener());
         _pTextField.setPreferredSize(new Dimension(50,0));
         _pPanel.add(_pTextField, BorderLayout.CENTER);
         _centerPanel.add(_pPanel);
@@ -68,16 +74,18 @@ public class PidPanel extends JPanel
         _iTextField.setHorizontalAlignment(SwingConstants.CENTER);
         _iTextField.addKeyListener(new IntegerFilterKeyAdapter());
         _iTextField.setPreferredSize(new Dimension(50,0));
+        _iTextField.addKeyListener(new MyKeyListener());
         _iPanel.add(_iTextField, BorderLayout.CENTER);
         _centerPanel.add(_iPanel);
 
         final JLabel dLabel = new JLabel("D");
         dLabel.setHorizontalAlignment(SwingConstants.CENTER);
         dLabel.setPreferredSize(new Dimension(0, UiUtils.HEATHER_SMALL_PREFERED_HEIGHT));
-        dLabel.setBorder(new LineBorder(Color.black,1));
+        dLabel.setBorder(new LineBorder(Color.black, 1));
         _dPanel.add(dLabel, BorderLayout.NORTH);
         _dTextField.setHorizontalAlignment(SwingConstants.CENTER);
         _dTextField.addKeyListener(new IntegerFilterKeyAdapter());
+        _dTextField.addKeyListener(new MyKeyListener());
         _dTextField.setPreferredSize(new Dimension(50,0));
         _dPanel.add(_dTextField, BorderLayout.CENTER);
         _centerPanel.add(_dPanel);
@@ -121,5 +129,34 @@ public class PidPanel extends JPanel
         _pTextField.setText(pid.getP());
         _iTextField.setText(pid.getI());
         _dTextField.setText(pid.getD());
+    }
+
+    public void addActionListener(final ActionListener actionListener)
+    {
+        _actionListenerList.add(actionListener);
+    }
+
+    public PIDData getPid()
+    {
+        return new PIDData(_pTextField.getText(), _iTextField.getText(), _dTextField.getText());
+    }
+
+    class MyKeyListener extends KeyAdapter
+    {
+        public void keyPressed(final KeyEvent e)
+        {
+            SwingUtilities.invokeLater(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    for (final ActionListener actionListener : _actionListenerList)
+                    {
+                        actionListener.actionPerformed(null);
+                    }
+                }
+            });
+
+        }
     }
 }

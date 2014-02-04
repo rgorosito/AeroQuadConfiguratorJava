@@ -16,6 +16,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class AccroPidPanel extends JPanel implements IAccroPidPanel
@@ -54,6 +56,32 @@ public class AccroPidPanel extends JPanel implements IAccroPidPanel
 
         mainPanel.add(_centerPanel, BorderLayout.CENTER);
         add(mainPanel, BorderLayout.WEST);
+
+        _rollPidPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userRollPidChanged(_rollPidPanel.getPid());
+            }
+        });
+        _pitchPidPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userPitchPidChanged(_pitchPidPanel.getPid());
+            }
+        });
+
+        _stickScalingPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userStickScalingChanged(_stickScalingPanel.getText());
+            }
+        });
     }
 
     @Override

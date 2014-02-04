@@ -35,6 +35,26 @@ public class AccroPidData
         return _stickScaling;
     }
 
+    public void setRollPid(final PIDData rollPid)
+    {
+        _rollPidData = rollPid;
+    }
+
+    public AccroPidData getCopy()
+    {
+        return new AccroPidData(_rollPidData.getCopy(), _pichPidData.getCopy(), _stickScaling);
+    }
+
+    public void setPitchPid(final PIDData pitchPid)
+    {
+        _pichPidData = pitchPid;
+    }
+
+    public void setStickScaling(final String stickScaling)
+    {
+        _stickScaling = stickScaling;
+    }
+
     @Override
     public boolean equals(final Object obj)
     {
@@ -45,7 +65,7 @@ public class AccroPidData
         final AccroPidData other = (AccroPidData)obj;
         if (!_rollPidData.equals(other._rollPidData))
         {
-            return true;
+            return false;
         }
         if (!_pichPidData.equals(other._pichPidData))
         {

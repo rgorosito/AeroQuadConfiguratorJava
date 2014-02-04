@@ -58,4 +58,9 @@ public class PIDData
         }
         return true;
     }
+
+    public PIDData getCopy()
+    {
+        return new PIDData(_p, _i, _d);
+    }
 }
