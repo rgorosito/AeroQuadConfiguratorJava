@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.batterymonitor;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 
@@ -26,15 +27,28 @@ public class BatteryMonitorPidPanelController implements IBatteryMonitorPidPanel
         // do nothing
     }
 
+
     @Override
-    public boolean isSyncked()
+    public IRequest getRequest()
     {
-        return true;
+        return null;
     }
 
     @Override
-    public void processSyncing()
+    public boolean haveBeenSincedOnce()
     {
+        return false;
+    }
 
+    @Override
+    public boolean isUserDataInSinced()
+    {
+        return false;
+    }
+
+    @Override
+    public String getPidSetCommand()
+    {
+        return null;
     }
 }

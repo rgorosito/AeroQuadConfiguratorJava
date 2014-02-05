@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.yaw;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.communication.messaging.request.YawPidRequest;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 import AeroQuad.configurator.messagedispatcher.YawPidData;
@@ -15,7 +16,7 @@ public class YawPidPanelController implements IYawPidPanelController
     private final IMessageDispatcher _messageDispatcher;
     private IYawPidPanel _panel;
 
-    private boolean _initialSyncked = false;
+    private boolean _haveBeenSincedOnce = false;
 
     private YawPidData _yawPid = new YawPidData();
     private YawPidData _userYawPid = new YawPidData();
@@ -32,11 +33,11 @@ public class YawPidPanelController implements IYawPidPanelController
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 _yawPid = (YawPidData)evt.getNewValue();
-                if (!_initialSyncked)
+                if (!_haveBeenSincedOnce)
                 {
                     updatePanelFromPidData(_yawPid);
                     _userYawPid = _yawPid;
-                    _initialSyncked = true;
+                    _haveBeenSincedOnce = true;
                     _panel.setSinced(true);
                 }
             }
@@ -56,15 +57,21 @@ public class YawPidPanelController implements IYawPidPanelController
     }
 
     @Override
-    public boolean isSyncked()
+    public IRequest getRequest()
     {
-        return _initialSyncked && isDataSyncked();
+        return new YawPidRequest(_messageDispatcher);
     }
 
     @Override
-    public void processSyncing()
+    public boolean haveBeenSincedOnce()
     {
-        _communicator.sendRequest(new YawPidRequest(_messageDispatcher));
+        return _haveBeenSincedOnce;
+    }
+
+    @Override
+    public String getPidSetCommand()
+    {
+        return null;
     }
 
     @Override
@@ -73,7 +80,8 @@ public class YawPidPanelController implements IYawPidPanelController
         _panel = panel;
     }
 
-    private boolean isDataSyncked()
+    @Override
+    public boolean isUserDataInSinced()
     {
         if (!_yawPid.equals(_userYawPid))
         {

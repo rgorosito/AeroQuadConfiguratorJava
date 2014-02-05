@@ -2,6 +2,7 @@ package AeroQuad.configurator.ui.mainpanel.tuning.altitudehold;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.messaging.request.AltitudeHoldPidRequest;
+import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.messagedispatcher.AltitudeHoldPidData;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
@@ -60,16 +61,21 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
     }
 
     @Override
-    public boolean isSyncked()
+    public IRequest getRequest()
     {
-        return _initialSyncked && isDataSyncked();
+        return new AltitudeHoldPidRequest(_messageDispatcher);
     }
 
+    @Override
+    public boolean haveBeenSincedOnce()
+    {
+        return _initialSyncked;
+    }
 
     @Override
-    public void processSyncing()
+    public String getPidSetCommand()
     {
-        _communicator.sendRequest(new AltitudeHoldPidRequest(_messageDispatcher));
+        return "";
     }
 
     @Override
@@ -78,7 +84,8 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
         _panel = panel;
     }
 
-    private boolean isDataSyncked()
+    @Override
+    public boolean isUserDataInSinced()
     {
         if (!_altitudeHoldPidData.equals(_userAltitudeHoldPidData))
         {
@@ -86,5 +93,4 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
         }
         return true;
     }
-
 }

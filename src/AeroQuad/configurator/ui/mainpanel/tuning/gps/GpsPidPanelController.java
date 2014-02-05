@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.gps;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 
@@ -20,15 +21,27 @@ public class GpsPidPanelController implements IGpsPidPanelController
     }
 
     @Override
-    public boolean isSyncked()
+    public IRequest getRequest()
     {
-        return true;
+        return null;
     }
 
     @Override
-    public void processSyncing()
+    public boolean haveBeenSincedOnce()
     {
+        return false;
+    }
 
+    @Override
+    public boolean isUserDataInSinced()
+    {
+        return false;
+    }
+
+    @Override
+    public String getPidSetCommand()
+    {
+        return null;
     }
 
     @Override

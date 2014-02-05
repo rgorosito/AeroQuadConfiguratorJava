@@ -2,6 +2,7 @@ package AeroQuad.configurator.ui.mainpanel.tuning.attitude;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.messaging.request.AttitudePidRequest;
+import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.messagedispatcher.AttitudePidData;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
@@ -16,7 +17,7 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
             ;
     private IAttitudePidPanel _panel;
 
-    private boolean _initialSyncked = false;
+    private boolean _haveBeenSincedOnce = false;
 
     private AttitudePidData _attitudePidData = new AttitudePidData();
     private AttitudePidData _userAttitudePidData = new AttitudePidData();
@@ -32,11 +33,11 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 _attitudePidData = (AttitudePidData) evt.getNewValue();
-                if (!_initialSyncked)
+                if (!_haveBeenSincedOnce)
                 {
                     updatePanelFromPidData(_attitudePidData);
                     _userAttitudePidData = _attitudePidData;
-                    _initialSyncked = true;
+                    _haveBeenSincedOnce = true;
                     _panel.setSynced(true);
                 }
             }
@@ -58,15 +59,21 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
     }
 
     @Override
-    public boolean isSyncked()
+    public IRequest getRequest()
     {
-        return _initialSyncked && isDataSyncked();
+        return new AttitudePidRequest(_messageDispatcher);
     }
 
     @Override
-    public void processSyncing()
+    public boolean haveBeenSincedOnce()
     {
-        _communicator.sendRequest(new AttitudePidRequest(_messageDispatcher));
+        return _haveBeenSincedOnce;
+    }
+
+    @Override
+    public String getPidSetCommand()
+    {
+        return null;
     }
 
     @Override
@@ -75,7 +82,9 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
         _panel = panel;
     }
 
-    private boolean isDataSyncked()
+    @Override
+    public boolean isUserDataInSinced()
+
     {
         if (!_attitudePidData.equals(_userAttitudePidData))
         {

@@ -3,12 +3,12 @@ package AeroQuad.configurator.ui.mainpanel.tuning.accro;
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 import AeroQuad.configurator.communication.messaging.request.AccroPidRequest;
+import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.messagedispatcher.AccroPidData;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 import AeroQuad.configurator.messagedispatcher.PIDData;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 
-import javax.swing.SwingUtilities;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -18,7 +18,7 @@ public class AccroPidPanelController implements IAccroPidPanelController
     private final IMessageDispatcher _messageDispatcher;
     private IAccroPidPanel _panel;
 
-    private boolean _initialSyncked = false;
+    private boolean _haveBeenSincedOnce = false;
 
     private AccroPidData _pidData = new AccroPidData();
     private AccroPidData _userPidData = new AccroPidData();
@@ -34,11 +34,11 @@ public class AccroPidPanelController implements IAccroPidPanelController
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 _pidData = (AccroPidData)evt.getNewValue();
-                if (!_initialSyncked)
+                if (!_haveBeenSincedOnce)
                 {
                     updatePanelFromPidData(_pidData);
                     _userPidData = _pidData.getCopy();
-                    _initialSyncked = true;
+                    _haveBeenSincedOnce = true;
                     _panel.setSinced(true);
                 }
             }
@@ -59,46 +59,30 @@ public class AccroPidPanelController implements IAccroPidPanelController
     }
 
     @Override
-    public boolean isSyncked()
+    public IRequest getRequest()
     {
-        if (!_initialSyncked)
-        {
-            return false;
-        }
-        final boolean sinced = isDataSyncked();
-        if (!sinced)
-        {
-            sendUserPidDataToBoard();
-        }
-        return sinced;
-    }
-
-    private void sendUserPidDataToBoard()
-    {
-        SwingUtilities.invokeLater(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                final StringBuffer buffer = new StringBuffer();
-                buffer.append(IMessageDefinition.ACCRO_PID_SET_COMMAND);
-                buffer.append(_userPidData.getRollPid().getP() + ";");
-                buffer.append(_userPidData.getRollPid().getI() + ";");
-                buffer.append(_userPidData.getRollPid().getD() + ";");
-                buffer.append(_userPidData.getPitchPid().getP() + ";");
-                buffer.append(_userPidData.getPitchPid().getI() + ";");
-                buffer.append(_userPidData.getPitchPid().getD() + ";");
-                buffer.append(_userPidData.getStickScaling());
-                _communicator.sendCommand(buffer.toString());
-            }
-        });
+        return new AccroPidRequest(_messageDispatcher);
     }
 
     @Override
-    public void processSyncing()
+    public boolean haveBeenSincedOnce()
     {
-        System.out.println("Send request");
-        _communicator.sendRequest(new AccroPidRequest(_messageDispatcher));
+        return _haveBeenSincedOnce;
+    }
+
+    @Override
+    public String getPidSetCommand()
+    {
+        final StringBuffer buffer = new StringBuffer();
+        buffer.append(IMessageDefinition.ACCRO_PID_SET_COMMAND);
+        buffer.append(_userPidData.getRollPid().getP() + ";");
+        buffer.append(_userPidData.getRollPid().getI() + ";");
+        buffer.append(_userPidData.getRollPid().getD() + ";");
+        buffer.append(_userPidData.getPitchPid().getP() + ";");
+        buffer.append(_userPidData.getPitchPid().getI() + ";");
+        buffer.append(_userPidData.getPitchPid().getD() + ";");
+        buffer.append(_userPidData.getStickScaling());
+        return buffer.toString();
     }
 
     @Override
@@ -125,7 +109,8 @@ public class AccroPidPanelController implements IAccroPidPanelController
         _userPidData.setStickScaling(text);
     }
 
-    private boolean isDataSyncked()
+    @Override
+    public boolean isUserDataInSinced()
     {
         boolean ret = true;
         if (!_pidData.equals(_userPidData))

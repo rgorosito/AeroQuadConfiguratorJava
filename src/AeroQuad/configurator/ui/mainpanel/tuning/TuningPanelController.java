@@ -49,6 +49,7 @@ public class TuningPanelController implements ITuningPanelController
     private IGpsPidPanelController _gpsPidPanelController;
 
     private Timer _syncTimer = null;
+    private boolean _sendCommandNeeded = false;
 
     private final List<IPidPanelController> _pidPanelControllerList = new ArrayList<IPidPanelController>(1);
 
@@ -219,14 +220,34 @@ public class TuningPanelController implements ITuningPanelController
             }
             synchronized (_pidPanelControllerList)
             {
-                for (final IPidPanelController controller: _pidPanelControllerList)
+                sincedAll();
+            }
+        }
+    }
+
+
+    private void sincedAll()
+    {
+        for (final IPidPanelController controller: _pidPanelControllerList)
+        {
+            if (!controller.haveBeenSincedOnce())
+            {
+                _communicator.sendRequest(controller.getRequest());
+                return;
+            }
+            else if (!controller.isUserDataInSinced())
+            {
+                if (_sendCommandNeeded)
                 {
-                    if (!controller.isSyncked())
-                    {
-                        controller.processSyncing();
-                        return;
-                    }
+                    final String pidSetCommand = controller.getPidSetCommand();
+                    _communicator.sendCommand(pidSetCommand);
                 }
+                else
+                {
+                    _communicator.sendRequest(controller.getRequest());
+                }
+                _sendCommandNeeded = !_sendCommandNeeded;
+                return;
             }
         }
     }

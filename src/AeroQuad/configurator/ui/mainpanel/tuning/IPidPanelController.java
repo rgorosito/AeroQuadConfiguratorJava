@@ -1,10 +1,16 @@
 package AeroQuad.configurator.ui.mainpanel.tuning;
 
+import AeroQuad.configurator.communication.messaging.request.IRequest;
+
 public interface IPidPanelController
 {
     void setUserLevel(UserLevel userLevel);
 
-    boolean isSyncked();
+    IRequest getRequest();
 
-    void processSyncing();
+    boolean haveBeenSincedOnce();
+
+    boolean isUserDataInSinced();
+
+    String getPidSetCommand();
 }
