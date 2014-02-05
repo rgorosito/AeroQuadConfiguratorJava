@@ -79,6 +79,12 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
     }
 
     @Override
+    public void userDefaultButtonPressed()
+    {
+
+    }
+
+    @Override
     public void setPanel(final IAltitudeHoldPidPanel panel)
     {
         _panel = panel;

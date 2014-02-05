@@ -45,6 +45,12 @@ public class GpsPidPanelController implements IGpsPidPanelController
     }
 
     @Override
+    public void userDefaultButtonPressed()
+    {
+
+    }
+
+    @Override
     public void setPanel(final IGpsPidPanel panel)
     {
         _panel = panel;

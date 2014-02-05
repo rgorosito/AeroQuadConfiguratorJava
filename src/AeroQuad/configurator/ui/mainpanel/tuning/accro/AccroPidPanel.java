@@ -82,6 +82,14 @@ public class AccroPidPanel extends JPanel implements IAccroPidPanel
                 _controller.userStickScalingChanged(_stickScalingPanel.getText());
             }
         });
+        _resetDefaultButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userDefaultButtonPressed();
+            }
+        });
     }
 
     @Override

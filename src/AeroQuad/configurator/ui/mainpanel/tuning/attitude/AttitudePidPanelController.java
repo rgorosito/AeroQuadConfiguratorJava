@@ -77,6 +77,12 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
     }
 
     @Override
+    public void userDefaultButtonPressed()
+    {
+
+    }
+
+    @Override
     public void setPanel(final IAttitudePidPanel panel)
     {
         _panel = panel;

@@ -10,7 +10,12 @@ import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 import AeroQuad.configurator.messagedispatcher.MessageDispatcher;
 import AeroQuad.configurator.ui.AQConfiguratorMainFrame;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class Starter
 {
@@ -21,6 +26,8 @@ public class Starter
 
     private void init()
     {
+        initProperties();
+
         final IMessageDispatcher messageDispatcher = new MessageDispatcher();
 
         final ISerialCommunicator communicator = new SerialCommunicator(messageDispatcher);
@@ -28,6 +35,21 @@ public class Starter
         final AQConfiguratorMainFrame mainFrame = new AQConfiguratorMainFrame(communicator,messageDispatcher);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         new ConnectionThreadMonitor(communicator, statisticProcessor);
+    }
+
+    private void initProperties()
+    {
+        try
+        {
+            final Properties prop = new Properties();
+            final InputStream in = new FileInputStream("configurator.properties");
+            prop.load(in);
+            System.getProperties().putAll(prop);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 

@@ -22,6 +22,7 @@ public class AccroPidPanelController implements IAccroPidPanelController
 
     private AccroPidData _pidData = new AccroPidData();
     private AccroPidData _userPidData = new AccroPidData();
+    private UserLevel _userLevel = UserLevel.Beginner;
 
     public AccroPidPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
@@ -34,9 +35,9 @@ public class AccroPidPanelController implements IAccroPidPanelController
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 _pidData = (AccroPidData)evt.getNewValue();
+                updatePanelFromPidData(_pidData);
                 if (!_haveBeenSincedOnce)
                 {
-                    updatePanelFromPidData(_pidData);
                     _userPidData = _pidData.getCopy();
                     _haveBeenSincedOnce = true;
                     _panel.setSinced(true);
@@ -55,6 +56,7 @@ public class AccroPidPanelController implements IAccroPidPanelController
     @Override
     public void setUserLevel(final UserLevel userLevel)
     {
+        _userLevel = userLevel;
         _panel.setUserLevel(userLevel);
     }
 
@@ -78,11 +80,38 @@ public class AccroPidPanelController implements IAccroPidPanelController
         buffer.append(_userPidData.getRollPid().getP() + ";");
         buffer.append(_userPidData.getRollPid().getI() + ";");
         buffer.append(_userPidData.getRollPid().getD() + ";");
-        buffer.append(_userPidData.getPitchPid().getP() + ";");
-        buffer.append(_userPidData.getPitchPid().getI() + ";");
-        buffer.append(_userPidData.getPitchPid().getD() + ";");
+        if (_userLevel == UserLevel.Beginner)
+        {
+            buffer.append(_userPidData.getRollPid().getP() + ";");
+            buffer.append(_userPidData.getRollPid().getI() + ";");
+            buffer.append(_userPidData.getRollPid().getD() + ";");
+        }
+        else
+        {
+            buffer.append(_userPidData.getPitchPid().getP() + ";");
+            buffer.append(_userPidData.getPitchPid().getI() + ";");
+            buffer.append(_userPidData.getPitchPid().getD() + ";");
+        }
         buffer.append(_userPidData.getStickScaling());
         return buffer.toString();
+    }
+
+    @Override
+    public void userDefaultButtonPressed()
+    {
+        final String rollP = System.getProperty(DEFAULT_PID_ROLL_P);
+        final String rollI = System.getProperty(DEFAULT_PID_ROLL_I);
+        final String rollD = System.getProperty(DEFAULT_PID_ROLL_D);
+        final PIDData rollPid = new PIDData(rollP,rollI,rollD);
+
+        final String pitchP = System.getProperty(DEFAULT_PID_PITCH_P);
+        final String pitchI = System.getProperty(DEFAULT_PID_PITCH_I);
+        final String pitchD = System.getProperty(DEFAULT_PID_PITCH_D);
+        final PIDData pichPid = new PIDData(pitchP,pitchI,pitchD);
+
+        final String stickScaling = System.getProperty(DEFAULT_PID_STICK_SCALING);
+        _userPidData = new AccroPidData(rollPid,pichPid,stickScaling);
+        updatePanelFromPidData(_userPidData);
     }
 
     @Override
@@ -95,6 +124,10 @@ public class AccroPidPanelController implements IAccroPidPanelController
     public void userRollPidChanged(final PIDData pid)
     {
         _userPidData.setRollPid(pid);
+        if (_userLevel == UserLevel.Beginner)
+        {
+            _userPidData.setPitchPid(pid);
+        }
     }
 
     @Override

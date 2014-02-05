@@ -75,6 +75,12 @@ public class YawPidPanelController implements IYawPidPanelController
     }
 
     @Override
+    public void userDefaultButtonPressed()
+    {
+
+    }
+
+    @Override
     public void setPanel(final IYawPidPanel panel)
     {
         _panel = panel;

@@ -51,4 +51,10 @@ public class BatteryMonitorPidPanelController implements IBatteryMonitorPidPanel
     {
         return null;
     }
+
+    @Override
+    public void userDefaultButtonPressed()
+    {
+
+    }
 }
