@@ -63,4 +63,9 @@ public class BatteryMonitorPidPanel extends JPanel implements IBatteryMonitorPid
     }
 
 
+    @Override
+    public void setSinced(final boolean haveBeenSincedOnce)
+    {
+
+    }
 }

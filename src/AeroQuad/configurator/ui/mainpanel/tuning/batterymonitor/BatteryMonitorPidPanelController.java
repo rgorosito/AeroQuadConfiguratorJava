@@ -1,6 +1,5 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.batterymonitor;
 
-import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
@@ -8,6 +7,7 @@ import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 public class BatteryMonitorPidPanelController implements IBatteryMonitorPidPanelController
 {
     private IBatteryMonitorPidPanel _panel;
+    private boolean _haveBeenSincedOnce = false;
 
     public BatteryMonitorPidPanelController(final IMessageDispatcher messageDispatcher)
     {
@@ -56,5 +56,12 @@ public class BatteryMonitorPidPanelController implements IBatteryMonitorPidPanel
     public void userDefaultButtonPressed()
     {
 
+    }
+
+    @Override
+    public void setHaveNotBeenSincedOnce()
+    {
+        _haveBeenSincedOnce = false;
+        _panel.setSinced(_haveBeenSincedOnce);
     }
 }

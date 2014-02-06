@@ -17,4 +17,5 @@ public interface IAccroPidPanelController extends IPidPanelController
     void userPitchPidChanged(PIDData pid);
 
     void userStickScalingChanged(String text);
+
 }

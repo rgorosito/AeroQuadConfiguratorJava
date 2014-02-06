@@ -102,6 +102,13 @@ public class YawPidPanelController implements IYawPidPanelController
     }
 
     @Override
+    public void setHaveNotBeenSincedOnce()
+    {
+        _haveBeenSincedOnce = false;
+        _panel.setSinced(_haveBeenSincedOnce);
+    }
+
+    @Override
     public void setPanel(final IYawPidPanel panel)
     {
         _panel = panel;

@@ -3,7 +3,7 @@ package AeroQuad.configurator.messagedispatcher;
 public class YawPidData
 {
     private PIDData _yawPid = new PIDData();
-    private PIDData _headingHoldPidData = new PIDData();
+    private PIDData _headingHoldPid = new PIDData();
 
     public YawPidData()
     {
@@ -15,7 +15,7 @@ public class YawPidData
                       final PIDData headingHoldPidData)
     {
         _yawPid = yawPid;
-        _headingHoldPidData = headingHoldPidData;
+        _headingHoldPid = headingHoldPidData;
     }
 
 
@@ -29,9 +29,9 @@ public class YawPidData
         final YawPidData other = (YawPidData)obj;
         if (!_yawPid.equals(other._yawPid))
         {
-            return true;
+            return false;
         }
-        if (!_headingHoldPidData.equals(other._headingHoldPidData))
+        if (!_headingHoldPid.equals(other._headingHoldPid))
         {
             return false;
         }
@@ -45,6 +45,21 @@ public class YawPidData
 
     public PIDData getHeadingHoldPid()
     {
-        return _headingHoldPidData;
+        return _headingHoldPid;
+    }
+
+    public YawPidData getCopy()
+    {
+        return new YawPidData(_yawPid.getCopy(), _headingHoldPid.getCopy());
+    }
+
+    public void setYawPid(final PIDData yawPid)
+    {
+        _yawPid = yawPid;
+    }
+
+    public void setHeadingHoldPid(final PIDData headingHoldPid)
+    {
+        _headingHoldPid = headingHoldPid;
     }
 }

@@ -107,6 +107,13 @@ public class AccroPidPanelController implements IAccroPidPanelController
     }
 
     @Override
+    public void setHaveNotBeenSincedOnce()
+    {
+        _haveBeenSincedOnce = false;
+        _panel.setSinced(_haveBeenSincedOnce);
+    }
+
+    @Override
     public void setPanel(final IAccroPidPanel panel)
     {
         _panel = panel;

@@ -115,6 +115,29 @@ public class TuningPanelController implements ITuningPanelController
             }
         });
 
+        communicator.addListener(ISerialCommunicator.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final boolean isConnected = (boolean) evt.getNewValue();
+                if (!isConnected)
+                {
+                    resetPanelsControllersInitState();
+                }
+            }
+        });
+
+    }
+
+    private void resetPanelsControllersInitState()
+    {
+        _accroPanelController.setHaveNotBeenSincedOnce();
+        _attitudePanelController.setHaveNotBeenSincedOnce();
+        _yawPidPanelController.setHaveNotBeenSincedOnce();
+        //_altitudeHoldPidPanelController.setHaveNotBeenSincedOnce();
+        //_batteryMonitorPidPanelController.setHaveNotBeenSincedOnce();
+        //_gpsPidPanelController.setHaveNotBeenSincedOnce();
     }
 
     private void buildChildscontrollersAndPanels(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
@@ -161,10 +184,13 @@ public class TuningPanelController implements ITuningPanelController
             _syncTimer = new Timer(true);
             _syncTimer.schedule(new SyncTask(),0,400);
         }
-        else if (_syncTimer != null)
+        else
         {
-            _syncTimer.cancel();
-            _syncTimer = null;
+            if (_syncTimer != null)
+            {
+                _syncTimer.cancel();
+                _syncTimer = null;
+            }
         }
     }
 

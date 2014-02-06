@@ -15,4 +15,6 @@ public interface IPidPanelController
     String getPidSetCommand();
 
     void userDefaultButtonPressed();
+
+    void setHaveNotBeenSincedOnce();
 }

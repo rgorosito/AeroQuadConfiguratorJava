@@ -62,6 +62,12 @@ public class GpsPidPanel extends JPanel implements IGpsPidPanel
         updateCenterPanelFromUserLevel();
     }
 
+    @Override
+    public void setSinced(final boolean sinced)
+    {
+
+    }
+
     private void updateCenterPanelFromUserLevel()
     {
         _centerPanel.removeAll();

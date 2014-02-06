@@ -82,6 +82,13 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
     }
 
     @Override
+    public void setHaveNotBeenSincedOnce()
+    {
+        _haveBeenSincedOnce = false;
+        _panel.setSinced(_haveBeenSincedOnce);
+    }
+
+    @Override
     public void setPanel(final IAltitudeHoldPidPanel panel)
     {
         _panel = panel;

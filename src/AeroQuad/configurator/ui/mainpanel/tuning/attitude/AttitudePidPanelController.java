@@ -131,6 +131,13 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
     }
 
     @Override
+    public void setHaveNotBeenSincedOnce()
+    {
+        _haveBeenSincedOnce = false;
+        _panel.setSinced(_haveBeenSincedOnce);
+    }
+
+    @Override
     public void setPanel(final IAttitudePidPanel panel)
     {
         _panel = panel;

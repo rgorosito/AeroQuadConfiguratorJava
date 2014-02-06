@@ -5,4 +5,6 @@ import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 public interface IGpsPidPanel
 {
     void setUserLevel(UserLevel userLevel);
+
+    void setSinced(boolean sinced);
 }
