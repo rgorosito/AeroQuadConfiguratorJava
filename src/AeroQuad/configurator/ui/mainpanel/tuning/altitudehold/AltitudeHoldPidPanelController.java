@@ -1,6 +1,5 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.altitudehold;
 
-import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.messaging.request.AltitudeHoldPidRequest;
 import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.messagedispatcher.AltitudeHoldPidData;
@@ -12,18 +11,16 @@ import java.beans.PropertyChangeListener;
 
 public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelController
 {
-    private final ISerialCommunicator _communicator;
     private final IMessageDispatcher _messageDispatcher;
     private IAltitudeHoldPidPanel _panel;
 
-    private boolean _initialSyncked = false;
+    private boolean _haveBeenSincedOnce = false;
     private AltitudeHoldPidData _altitudeHoldPidData = new AltitudeHoldPidData();
     private AltitudeHoldPidData _userAltitudeHoldPidData = new AltitudeHoldPidData();
 
 
-    public AltitudeHoldPidPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
+    public AltitudeHoldPidPanelController(final IMessageDispatcher messageDispatcher)
     {
-        _communicator = communicator;
         _messageDispatcher = messageDispatcher;
 
         _messageDispatcher.addListener(IMessageDispatcher.ALTITUDE_HOLD_PID_KEY, new PropertyChangeListener()
@@ -32,11 +29,11 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 _altitudeHoldPidData = (AltitudeHoldPidData)evt.getNewValue();
-                if (!_initialSyncked)
+                if (!_haveBeenSincedOnce)
                 {
                     updatePanelFromPidData(_altitudeHoldPidData);
                     _userAltitudeHoldPidData = _altitudeHoldPidData;
-                    _initialSyncked = true;
+                    _haveBeenSincedOnce = true;
                     _panel.setSinced(true);
                 }
             }
@@ -69,7 +66,7 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
     @Override
     public boolean haveBeenSincedOnce()
     {
-        return _initialSyncked;
+        return _haveBeenSincedOnce;
     }
 
     @Override

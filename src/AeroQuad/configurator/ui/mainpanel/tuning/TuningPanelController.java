@@ -119,20 +119,20 @@ public class TuningPanelController implements ITuningPanelController
 
     private void buildChildscontrollersAndPanels(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
-        _accroPanelController = new AccroPidPanelController(messageDispatcher, communicator);
+        _accroPanelController = new AccroPidPanelController(messageDispatcher);
         _pidPanelControllerList.add(_accroPanelController);
         _accroPanel = new AccroPidPanel(_accroPanelController);
-        _attitudePanelController = new AttitudePidPanelController(messageDispatcher, communicator);
+        _attitudePanelController = new AttitudePidPanelController(messageDispatcher);
         _pidPanelControllerList.add(_attitudePanelController);
         _attitudePanel = new AttitudePidPanel(_attitudePanelController);
-        _yawPidPanelController = new YawPidPanelController(messageDispatcher, communicator);
+        _yawPidPanelController = new YawPidPanelController(messageDispatcher);
         _pidPanelControllerList.add(_yawPidPanelController);
         _yawPanel = new YawPidPanel(_yawPidPanelController);
-        _altitudeHoldPidPanelController = new AltitudeHoldPidPanelController(messageDispatcher, communicator);
+        _altitudeHoldPidPanelController = new AltitudeHoldPidPanelController(messageDispatcher);
         _altitudePanel = new AltitudeHoldPidPanel(_altitudeHoldPidPanelController);
-        _batteryMonitorPidPanelController = new BatteryMonitorPidPanelController(messageDispatcher, communicator);
+        _batteryMonitorPidPanelController = new BatteryMonitorPidPanelController(messageDispatcher);
         _batteryMonitorPanel = new BatteryMonitorPidPanel(_batteryMonitorPidPanelController);
-        _gpsPidPanelController = new GpsPidPanelController(messageDispatcher, communicator);
+        _gpsPidPanelController = new GpsPidPanelController(messageDispatcher);
         _gpsPanel = new GpsPidPanel(_gpsPidPanelController);
     }
 

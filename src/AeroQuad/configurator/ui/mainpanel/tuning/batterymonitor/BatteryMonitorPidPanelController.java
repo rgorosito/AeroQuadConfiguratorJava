@@ -9,7 +9,7 @@ public class BatteryMonitorPidPanelController implements IBatteryMonitorPidPanel
 {
     private IBatteryMonitorPidPanel _panel;
 
-    public BatteryMonitorPidPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
+    public BatteryMonitorPidPanelController(final IMessageDispatcher messageDispatcher)
     {
 
     }

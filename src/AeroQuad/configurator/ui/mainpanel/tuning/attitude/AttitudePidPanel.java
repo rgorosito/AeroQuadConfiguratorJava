@@ -15,6 +15,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class AttitudePidPanel extends JPanel implements IAttitudePidPanel
@@ -55,6 +57,50 @@ public class AttitudePidPanel extends JPanel implements IAttitudePidPanel
 
         mainPanel.add(_centerPanel, BorderLayout.CENTER);
         add(mainPanel, BorderLayout.WEST);
+
+        _gyroRollPidPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userGyroRollPidChanged(_gyroRollPidPanel.getPid());
+            }
+        });
+
+        _gyroPicthPidPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userGyroPitchPidChanged(_gyroPicthPidPanel.getPid());
+            }
+        });
+
+        _accelRollPidPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userAccelRollPidChanged(_accelRollPidPanel.getPid());
+            }
+        });
+
+        _accelPitchPidPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userAccelPitchPidChanged(_accelPitchPidPanel.getPid());
+            }
+        });
+        _resetDefaultButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userDefaultButtonPressed();
+            }
+        });
     }
 
     @Override
@@ -89,7 +135,7 @@ public class AttitudePidPanel extends JPanel implements IAttitudePidPanel
     }
 
     @Override
-    public void setSynced(final boolean synced)
+    public void setSinced(final boolean synced)
     {
         _syncStatePanel.setSynced(synced);
     }

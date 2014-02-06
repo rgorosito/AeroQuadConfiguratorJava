@@ -1,6 +1,5 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.yaw;
 
-import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.communication.messaging.request.YawPidRequest;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
@@ -12,7 +11,6 @@ import java.beans.PropertyChangeListener;
 
 public class YawPidPanelController implements IYawPidPanelController
 {
-    private final ISerialCommunicator _communicator;
     private final IMessageDispatcher _messageDispatcher;
     private IYawPidPanel _panel;
 
@@ -22,9 +20,8 @@ public class YawPidPanelController implements IYawPidPanelController
     private YawPidData _userYawPid = new YawPidData();
 
 
-    public YawPidPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
+    public YawPidPanelController(final IMessageDispatcher messageDispatcher)
     {
-        _communicator = communicator;
         _messageDispatcher = messageDispatcher;
 
         _messageDispatcher.addListener(IMessageDispatcher.YAW_PID_KEY, new PropertyChangeListener()

@@ -44,19 +44,32 @@ public class PIDData
             return false;
         }
         final PIDData other = (PIDData)obj;
-        if (!other._p.equals(_p))
+        if (!areStringToDoubleEquals(other._p, _p))
         {
             return false;
         }
-        if (!other._i.equals(_i))
+        if (!areStringToDoubleEquals(other._i, _i))
         {
             return false;
         }
-        if (!other._d.equals(_d))
+        return areStringToDoubleEquals(other._d,_d);
+    }
+
+    private boolean areStringToDoubleEquals(final String number1String, final String number2String)
+    {
+        try
         {
-            return false;
+            final double number1 = Double.valueOf(number1String);
+            final double number2 = Double.valueOf(number2String);
+            if (number1 == number2)
+            {
+                return true;
+            }
         }
-        return true;
+        catch (final Exception e)
+        {
+        }
+        return false;
     }
 
     public PIDData getCopy()

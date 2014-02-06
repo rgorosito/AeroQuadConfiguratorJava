@@ -9,7 +9,7 @@ public class GpsPidPanelController implements IGpsPidPanelController
 {
     private IGpsPidPanel _panel;
 
-    public GpsPidPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
+    public GpsPidPanelController(final IMessageDispatcher messageDispatcher)
     {
 
     }

@@ -15,5 +15,5 @@ public interface IAttitudePidPanel
 
     void setAccelPitchPid(PIDData pid);
 
-    void setSynced(boolean synced);
+    void setSinced(boolean synced);
 }

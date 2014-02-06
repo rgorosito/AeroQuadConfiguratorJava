@@ -1,6 +1,5 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.accro;
 
-import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 import AeroQuad.configurator.communication.messaging.request.AccroPidRequest;
 import AeroQuad.configurator.communication.messaging.request.IRequest;
@@ -14,7 +13,6 @@ import java.beans.PropertyChangeListener;
 
 public class AccroPidPanelController implements IAccroPidPanelController
 {
-    private final ISerialCommunicator _communicator;
     private final IMessageDispatcher _messageDispatcher;
     private IAccroPidPanel _panel;
 
@@ -24,9 +22,8 @@ public class AccroPidPanelController implements IAccroPidPanelController
     private AccroPidData _userPidData = new AccroPidData();
     private UserLevel _userLevel = UserLevel.Beginner;
 
-    public AccroPidPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
+    public AccroPidPanelController(final IMessageDispatcher messageDispatcher)
     {
-        _communicator = communicator;
         _messageDispatcher = messageDispatcher;
 
         _messageDispatcher.addListener(IMessageDispatcher.ACCRO_PID_DATA_KEY, new PropertyChangeListener()
@@ -99,18 +96,13 @@ public class AccroPidPanelController implements IAccroPidPanelController
     @Override
     public void userDefaultButtonPressed()
     {
-        final String rollP = System.getProperty(DEFAULT_PID_ROLL_P);
-        final String rollI = System.getProperty(DEFAULT_PID_ROLL_I);
-        final String rollD = System.getProperty(DEFAULT_PID_ROLL_D);
+        final String rollP = System.getProperty(DEFAULT_PID_P);
+        final String rollI = System.getProperty(DEFAULT_PID_I);
+        final String rollD = System.getProperty(DEFAULT_PID_D);
         final PIDData rollPid = new PIDData(rollP,rollI,rollD);
 
-        final String pitchP = System.getProperty(DEFAULT_PID_PITCH_P);
-        final String pitchI = System.getProperty(DEFAULT_PID_PITCH_I);
-        final String pitchD = System.getProperty(DEFAULT_PID_PITCH_D);
-        final PIDData pichPid = new PIDData(pitchP,pitchI,pitchD);
-
         final String stickScaling = System.getProperty(DEFAULT_PID_STICK_SCALING);
-        _userPidData = new AccroPidData(rollPid,pichPid,stickScaling);
+        _userPidData = new AccroPidData(rollPid, rollPid.getCopy(), stickScaling);
         updatePanelFromPidData(_userPidData);
     }
 
