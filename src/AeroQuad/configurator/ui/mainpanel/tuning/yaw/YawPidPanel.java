@@ -15,6 +15,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class YawPidPanel extends JPanel implements IYawPidPanel
@@ -54,6 +56,31 @@ public class YawPidPanel extends JPanel implements IYawPidPanel
 
         mainPanel.add(_centerPanel, BorderLayout.CENTER);
         add(mainPanel, BorderLayout.WEST);
+
+        _yawPidPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userYawPidChanged(_yawPidPanel.getPid());
+            }
+        });
+        _headingHoldPidPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.headingHoldPidChanged(_headingHoldPidPanel.getPid());
+            }
+        });
+        _resetDefaultButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userDefaultButtonPressed();
+            }
+        });
     }
 
     @Override

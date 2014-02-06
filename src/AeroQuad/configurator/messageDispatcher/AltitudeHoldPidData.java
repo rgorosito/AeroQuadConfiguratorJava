@@ -73,7 +73,7 @@ public class AltitudeHoldPidData
         final AltitudeHoldPidData other = (AltitudeHoldPidData)obj;
         if (!_altitudeHoldPid.equals(other._altitudeHoldPid))
         {
-            return true;
+            return false;
         }
         if (!_throttleBump.equals(other._throttleBump))
         {

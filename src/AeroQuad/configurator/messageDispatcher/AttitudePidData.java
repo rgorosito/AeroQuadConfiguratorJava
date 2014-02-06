@@ -33,7 +33,7 @@ public class AttitudePidData
         final AttitudePidData other = (AttitudePidData)obj;
         if (!_accelRollPid.equals(other._accelRollPid))
         {
-            return true;
+            return false;
         }
         if (!_accelPitchPid.equals(other._accelPitchPid))
         {
@@ -68,5 +68,33 @@ public class AttitudePidData
     public PIDData getGyroPitchPid()
     {
         return _gyroPitchPid;
+    }
+
+    public void setGyroRollPid(final PIDData gyroRollPid)
+    {
+        _accelPitchPid = gyroRollPid;
+    }
+
+    public void setGyroPitchPid(final PIDData gyroPitchPid)
+    {
+        _gyroPitchPid = gyroPitchPid;
+    }
+
+    public void setAccelRollPid(final PIDData accelRollPid)
+    {
+        _accelRollPid = accelRollPid;
+    }
+
+    public void setAccelPitchPid(final PIDData accelPitchPid)
+    {
+        _accelPitchPid = accelPitchPid;
+    }
+
+    public AttitudePidData getCopy()
+    {
+        return new AttitudePidData(_accelRollPid.getCopy(),
+                                   _accelPitchPid.getCopy(),
+                                   _gyroRollPid.getCopy(),
+                                   _gyroPitchPid.getCopy());
     }
 }

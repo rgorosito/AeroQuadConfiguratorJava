@@ -1,8 +1,10 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.yaw;
 
+import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.communication.messaging.request.YawPidRequest;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagedispatcher.PIDData;
 import AeroQuad.configurator.messagedispatcher.YawPidData;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 
@@ -18,6 +20,7 @@ public class YawPidPanelController implements IYawPidPanelController
 
     private YawPidData _yawPid = new YawPidData();
     private YawPidData _userYawPid = new YawPidData();
+    private UserLevel _userLevel = UserLevel.Beginner;
 
 
     public YawPidPanelController(final IMessageDispatcher messageDispatcher)
@@ -30,10 +33,10 @@ public class YawPidPanelController implements IYawPidPanelController
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 _yawPid = (YawPidData)evt.getNewValue();
+                updatePanelFromPidData(_yawPid);
                 if (!_haveBeenSincedOnce)
                 {
-                    updatePanelFromPidData(_yawPid);
-                    _userYawPid = _yawPid;
+                    _userYawPid = _yawPid.getCopy();
                     _haveBeenSincedOnce = true;
                     _panel.setSinced(true);
                 }
@@ -50,6 +53,7 @@ public class YawPidPanelController implements IYawPidPanelController
     @Override
     public void setUserLevel(final UserLevel userLevel)
     {
+        _userLevel = userLevel;
         _panel.setUserLevel(userLevel);
     }
 
@@ -68,13 +72,33 @@ public class YawPidPanelController implements IYawPidPanelController
     @Override
     public String getPidSetCommand()
     {
-        return null;
+        final StringBuffer buffer = new StringBuffer();
+        buffer.append(IMessageDefinition.YAW_PID_SET_COMMAND);
+        buffer.append(_userYawPid.getYawPid().getP() + ";");
+        buffer.append(_userYawPid.getYawPid().getI() + ";");
+        buffer.append(_userYawPid.getYawPid().getD() + ";");
+        buffer.append(_userYawPid.getHeadingHoldPid().getP() + ";");
+        buffer.append(_userYawPid.getHeadingHoldPid().getI() + ";");
+        buffer.append(_userYawPid.getHeadingHoldPid().getD() + ";");
+        buffer.append("1");
+        return buffer.toString();
     }
 
     @Override
     public void userDefaultButtonPressed()
     {
+        final String yawP = System.getProperty(DEFAULT_YAW_P);
+        final String yawI = System.getProperty(DEFAULT_YAW_I);
+        final String yawD = System.getProperty(DEFAULT_YAW_D);
+        final PIDData yawPid = new PIDData(yawP,yawI,yawD);
 
+        final String headingHoldP = System.getProperty(DEFAULT_HEADING_HOLD_P);
+        final String headingHoldI = System.getProperty(DEFAULT_HEADING_HOLD_I);
+        final String headingHoldD = System.getProperty(DEFAULT_HEADING_HOLD_D);
+        final PIDData headingHoldPid = new PIDData(headingHoldP,headingHoldI,headingHoldD);
+
+        _userYawPid = new YawPidData(yawPid, headingHoldPid);
+        updatePanelFromPidData(_userYawPid);
     }
 
     @Override
@@ -84,12 +108,26 @@ public class YawPidPanelController implements IYawPidPanelController
     }
 
     @Override
+    public void userYawPidChanged(final PIDData pid)
+    {
+        _userYawPid.setYawPid(pid);
+    }
+
+    @Override
+    public void headingHoldPidChanged(final PIDData pid)
+    {
+        _userYawPid.setHeadingHoldPid(pid);
+    }
+
+    @Override
     public boolean isUserDataInSinced()
     {
+        boolean ret = true;
         if (!_yawPid.equals(_userYawPid))
         {
-            return false;
+            ret = false;
         }
-        return true;
+        _panel.setSinced(ret);
+        return ret;
     }
 }
