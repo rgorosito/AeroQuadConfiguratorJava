@@ -206,5 +206,4 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
             System.err.println("unsuported tree key");
         }
     }
-
 }

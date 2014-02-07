@@ -16,6 +16,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPanel
 {
@@ -68,6 +70,78 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
 
         mainPanel.add(_centerPanel, BorderLayout.CENTER);
         add(mainPanel, BorderLayout.WEST);
+
+        _altitudePidPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userAltitudeHoldPidChanged(_altitudePidPanel.getPid());
+            }
+        });
+
+        _throttleBumpPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userThrottleBumpValueChanged(_throttleBumpPanel.getText());
+            }
+        });
+
+        _throttlePanicPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userThrottlePanicValueChanged(_throttlePanicPanel.getText());
+            }
+        });
+
+        _minThrottleAdjustPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userMinThrottleAdjustValueChanged(_minThrottleAdjustPanel.getText());
+            }
+        });
+
+        _maxThrottleAdjustPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userMaxThrottleAdjustValueChanged(_maxThrottleAdjustPanel.getText());
+            }
+        });
+
+        _smoothFactorPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userSmoothFactorValueChanged(_smoothFactorPanel.getText());
+            }
+        });
+
+        _zDampening.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userZDampeningPidChanged(_zDampening.getPid());
+            }
+        });
+
+        _resetDefaultButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userDefaultButtonPressed();
+            }
+        });
     }
 
     @Override
@@ -117,6 +191,12 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
     public void setSmoothFactor(final String smoothFactor)
     {
         _smoothFactorPanel.setText(smoothFactor);
+    }
+
+    @Override
+    public void setZDampening(final PIDData zDampeningPid)
+    {
+        _zDampening.setPid(zDampeningPid);
     }
 
     private void updateCenterPanelFromUserLevel()

@@ -20,4 +20,6 @@ public interface IAltitudeHoldPidPanel
     void setMaxThrottleAdjust(String maxThrottleAdjust);
 
     void setSmoothFactor(String smoothFactor);
+
+    void setZDampening(PIDData zDampeningPid);
 }

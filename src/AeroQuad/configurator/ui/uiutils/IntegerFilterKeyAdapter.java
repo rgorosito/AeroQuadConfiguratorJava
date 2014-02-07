@@ -12,6 +12,7 @@ public class IntegerFilterKeyAdapter extends KeyAdapter
         final char c = e.getKeyChar();
         if (!((c >= '0') && (c <= '9') ||
               (c <= '-') ||
+              (c <= '.') ||
               (c == KeyEvent.VK_BACK_SPACE) ||
               (c == KeyEvent.VK_DELETE))) {
             new JLabel().getToolkit().beep();
