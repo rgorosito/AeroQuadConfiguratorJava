@@ -127,7 +127,6 @@ public class TuningPanelController implements ITuningPanelController
                 }
             }
         });
-
     }
 
     private void resetPanelsControllersInitState()

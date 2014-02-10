@@ -18,22 +18,36 @@ public class SensorsValuesMessageAnalyser implements IMessageAnalyser
 
         try
         {
+
             final String splittedData[] = rawData.split(",");
 
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_GYRO_X_VALUE_CHANGE, splittedData[0]);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_GYRO_Y_VALUE_CHANGE, splittedData[1]);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_GYRO_Z_VALUE_CHANGE, splittedData[2]);
+            final String gyroX = splittedData[0];
+            final String gyroY = splittedData[1];
+            final String gyroZ = splittedData[2];
 
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_ACCEL_X_VALUE_CHANGE, splittedData[3]);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_ACCEL_Y_VALUE_CHANGE, splittedData[4]);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_ACCEL_Z_VALUE_CHANGE, splittedData[5]);
+            final String accelX = splittedData[3];
+            final String accelY = splittedData[4];
+            final String accelZ = splittedData[5];
 
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_MAG_X_VALUE_CHANGE, splittedData[6]);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_MAG_X_VALUE_CHANGE, splittedData[7]);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_MAG_X_VALUE_CHANGE, splittedData[8]);
+            final String magX = splittedData[6];
+            final String magY = splittedData[7];
+            final String magZ = splittedData[8];
+
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_GYRO_X_VALUE_CHANGE, gyroX);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_GYRO_Y_VALUE_CHANGE, gyroY);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_GYRO_Z_VALUE_CHANGE, gyroZ);
+
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_ACCEL_X_VALUE_CHANGE, accelX);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_ACCEL_Y_VALUE_CHANGE, accelY);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_ACCEL_Z_VALUE_CHANGE, accelZ);
+
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_MAG_X_VALUE_CHANGE, magX);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_MAG_Y_VALUE_CHANGE, magY);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_MAG_Z_VALUE_CHANGE, magZ);
         }
         catch (final Exception e)
         {
+            System.out.println("DECODING ERROR");
             return false;
         }
         return true;

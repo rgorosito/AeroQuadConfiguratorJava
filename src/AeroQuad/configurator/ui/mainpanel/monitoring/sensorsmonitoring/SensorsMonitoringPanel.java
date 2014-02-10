@@ -17,7 +17,7 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
 
     private final SensorsSelectionTree _sensorsTree = new SensorsSelectionTree();
 
-    private final GridLayout _plotPanelsLayout = new GridLayout(2, 1);
+    private final GridLayout _plotPanelsLayout = new GridLayout(3, 1);
     private final JPanel _plotPanel = new JPanel(_plotPanelsLayout);
 
     final XYZPlotDrawerPanel _accelPlotDrawerPanel = new XYZPlotDrawerPanel("Accel");
@@ -62,9 +62,9 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
         _sensorsTree.setHaveMagnetometer(value);
         if (value)
         {
-            if (_plotPanelsLayout.getColumns() < 2)
+            if (_plotPanelsLayout.getRows() < 4)
             {
-                _plotPanelsLayout.setColumns(2);
+                _plotPanelsLayout.setRows(4);
             }
             _plotPanel.add(_magPlotDrawerPanel);
         }
@@ -76,9 +76,9 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
         _sensorsTree.setHaveBarometer(value);
         if (value)
         {
-            if (_plotPanelsLayout.getColumns() < 2)
+            if (_plotPanelsLayout.getRows() < 3)
             {
-                _plotPanelsLayout.setColumns(2);
+                _plotPanelsLayout.setRows(3);
             }
             _plotPanel.add(_altitudeDrawerPanel);
         }

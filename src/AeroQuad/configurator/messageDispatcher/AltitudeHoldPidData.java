@@ -38,7 +38,7 @@ public class AltitudeHoldPidData
         return _altitudeHoldPid;
     }
 
-    public String getAltitudeBump()
+    public String getThrottleBump()
     {
         return _throttleBump;
     }
@@ -61,6 +61,11 @@ public class AltitudeHoldPidData
     public String getSmoothFactor()
     {
         return _smoothFactor;
+    }
+
+    public PIDData getZDampeningPid()
+    {
+        return _zDampeningPid;
     }
 
     @Override
@@ -101,5 +106,51 @@ public class AltitudeHoldPidData
         }
 
         return true;
+    }
+
+    public void setAltitudeHoldPid(final PIDData altitudeHoldPid)
+    {
+        _altitudeHoldPid = altitudeHoldPid;
+    }
+
+    public void setThrottleBump(final String throttleBump)
+    {
+        _throttleBump = throttleBump;
+    }
+
+    public void setThrottlePanic(final String throttlePanic)
+    {
+        _throttlePanic = throttlePanic;
+    }
+
+    public void setMinThrottleAdjust(final String minThrottleAdjust)
+    {
+        _minThrottleAdjust = minThrottleAdjust;
+    }
+
+    public void setMaxThrottleAsjust(final String maxThrottleAsjust)
+    {
+        _maxThrottleAdjust = maxThrottleAsjust;
+    }
+
+    public void setSmoothFactor(final String smoothFactor)
+    {
+        _smoothFactor = smoothFactor;
+    }
+
+    public void setZDampeningPid(final PIDData zDampeningPid)
+    {
+        _zDampeningPid = zDampeningPid;
+    }
+
+    public AltitudeHoldPidData getCopy()
+    {
+        return new AltitudeHoldPidData(_altitudeHoldPid.getCopy(),
+                                       _throttleBump,
+                                       _throttlePanic,
+                                       _minThrottleAdjust,
+                                       _maxThrottleAdjust,
+                                       _smoothFactor,
+                                       _zDampeningPid.getCopy());
     }
 }
