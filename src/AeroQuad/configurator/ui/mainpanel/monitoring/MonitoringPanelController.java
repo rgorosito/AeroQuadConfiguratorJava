@@ -2,9 +2,10 @@ package AeroQuad.configurator.ui.mainpanel.monitoring;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
-import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.IMotorDisplayController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.MotorDisplayPanel;
-import AeroQuad.configurator.ui.mainpanel.monitoring.motormonitoring.*;
+import AeroQuad.configurator.ui.mainpanel.monitoring.motormonitoring.IMotorMonitoringPanelController;
+import AeroQuad.configurator.ui.mainpanel.monitoring.motormonitoring.MotorMonitoringPanel;
+import AeroQuad.configurator.ui.mainpanel.monitoring.motormonitoring.MotorMonitoringPanelController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.ISensorsMonitoringController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.SensorsMonitoringController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.SensorsMonitoringPanel;
@@ -42,9 +43,8 @@ public class MonitoringPanelController implements IMonitoringPanelController
         _vehicleStatusPanel = new VehicleStatusPanel(_vehicleStatusController, receiverPanel, motorCommandDisplayPanel,otherSensorsStatusPanel);
 
 
-        final IMotorDisplayPanelController _motorDisplayPanelController = new MotorMonitoringDisplayPanelController(messageDispatcher, communicator);
-        _motorsMonitoringPanelController = new MotorMonitoringPanelController(messageDispatcher, communicator, _motorDisplayPanelController);
-        final JPanel motorDisplayPanel = new MotorDisplayPanel((IMotorDisplayController)_motorDisplayPanelController);
+        _motorsMonitoringPanelController = new MotorMonitoringPanelController(messageDispatcher, communicator);
+        final JPanel motorDisplayPanel = new MotorDisplayPanel(_motorsMonitoringPanelController);
         _motorCommandPanel = new MotorMonitoringPanel(_motorsMonitoringPanelController, motorDisplayPanel);
         _sensorsMonitoringPanelController = new SensorsMonitoringController(messageDispatcher, communicator);
         _sensorsMonitoringPanel = new SensorsMonitoringPanel(_sensorsMonitoringPanelController);

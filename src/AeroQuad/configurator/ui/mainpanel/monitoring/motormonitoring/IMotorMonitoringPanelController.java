@@ -1,8 +1,8 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.motormonitoring;
 
-public interface IMotorMonitoringPanelController
+import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.IMotorDisplayController;
+
+public interface IMotorMonitoringPanelController extends IMotorDisplayController
 {
     void setActivated(boolean activated);
-
-    void setPanel(MotorMonitoringPanel panel);
 }

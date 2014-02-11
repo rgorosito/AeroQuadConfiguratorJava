@@ -2,16 +2,15 @@ package AeroQuad.configurator.ui.mainpanel.monitoring.motormonitoring;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.IMotorDisplayController;
+import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.IMotorDisplayPanel;
 
-public class MotorMonitoringPanelController implements IMotorMonitoringPanelController
+public class MotorMonitoringPanelController implements IMotorMonitoringPanelController, IMotorDisplayController
 {
-    private final IMotorDisplayPanelController _motorDisplayController;
 
     public MotorMonitoringPanelController(final IMessageDispatcher messageDispatcher,
-                                          final ISerialCommunicator communicator,
-                                          final IMotorDisplayPanelController motorDisplayController)
+                                          final ISerialCommunicator communicator)
     {
-        _motorDisplayController = motorDisplayController;
     }
 
     @Override
@@ -20,8 +19,9 @@ public class MotorMonitoringPanelController implements IMotorMonitoringPanelCont
 
     }
 
+
     @Override
-    public void setPanel(final MotorMonitoringPanel panel)
+    public void setPanel(final IMotorDisplayPanel panel)
     {
 
     }

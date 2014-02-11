@@ -11,8 +11,6 @@ public class MotorMonitoringPanel extends JPanel implements IMotorMonitoringPane
     {
         _controller = controller;
 
-        _controller.setPanel(this);
-
         init(motorDisplayPanel);
     }
 
