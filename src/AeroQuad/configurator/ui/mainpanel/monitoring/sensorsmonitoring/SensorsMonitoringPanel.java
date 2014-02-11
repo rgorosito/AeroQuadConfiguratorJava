@@ -62,9 +62,9 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
         _sensorsTree.setHaveMagnetometer(value);
         if (value)
         {
-            if (_plotPanelsLayout.getRows() < 4)
+            if (_plotPanelsLayout.getRows() < 3)
             {
-                _plotPanelsLayout.setRows(4);
+                _plotPanelsLayout.setRows(3);
             }
             _plotPanel.add(_magPlotDrawerPanel);
         }
@@ -73,15 +73,15 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
     @Override
     public void setHaveBarometer(final boolean value)
     {
-        _sensorsTree.setHaveBarometer(value);
-        if (value)
-        {
-            if (_plotPanelsLayout.getRows() < 3)
-            {
-                _plotPanelsLayout.setRows(3);
-            }
-            _plotPanel.add(_altitudeDrawerPanel);
-        }
+        //_sensorsTree.setHaveBarometer(value);
+        //if (value)
+        //{
+        //    if (_plotPanelsLayout.getRows() < 3)
+        //    {
+        //        _plotPanelsLayout.setRows(3);
+        //    }
+        //    _plotPanel.add(_altitudeDrawerPanel);
+        //}
     }
 
     @Override

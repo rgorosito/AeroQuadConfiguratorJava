@@ -47,7 +47,6 @@ public class SensorsValuesMessageAnalyser implements IMessageAnalyser
         }
         catch (final Exception e)
         {
-            System.out.println("DECODING ERROR");
             return false;
         }
         return true;
