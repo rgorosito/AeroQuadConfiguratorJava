@@ -8,10 +8,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
 {
@@ -49,6 +53,8 @@ public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
     final JPanel _motor8Panel = new JPanel(new BorderLayout());
     private final JLabel _motor8Label = new JLabel("Motor 8");
     private final MotorSlider _motor8Slider = new MotorSlider();
+
+    final List<IUserMotorValueChangedListenrer> _userChangeListenerList = new ArrayList<IUserMotorValueChangedListenrer>(1);
 
     public MotorDisplayPanel(final IMotorDisplayController controller)
     {
@@ -128,6 +134,84 @@ public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
         add(motorsPanesContainer, BorderLayout.CENTER);
 
         setBorder(new LineBorder(Color.BLACK,3));
+
+        connectListener();
+    }
+
+    private void connectListener()
+    {
+        _motor1Slider.addChangeListener(new ChangeListener()
+        {
+            @Override
+            public void stateChanged(final ChangeEvent e)
+            {
+                notifyListeners(1, _motor1Slider.getValue());
+            }
+        });
+        _motor2Slider.addChangeListener(new ChangeListener()
+        {
+            @Override
+            public void stateChanged(final ChangeEvent e)
+            {
+                notifyListeners(2, _motor2Slider.getValue());
+            }
+        });
+        _motor3Slider.addChangeListener(new ChangeListener()
+        {
+            @Override
+            public void stateChanged(final ChangeEvent e)
+            {
+                notifyListeners(3, _motor3Slider.getValue());
+            }
+        });
+        _motor4Slider.addChangeListener(new ChangeListener()
+        {
+            @Override
+            public void stateChanged(final ChangeEvent e)
+            {
+                notifyListeners(4, _motor4Slider.getValue());
+            }
+        });
+        _motor5Slider.addChangeListener(new ChangeListener()
+        {
+            @Override
+            public void stateChanged(final ChangeEvent e)
+            {
+                notifyListeners(5, _motor5Slider.getValue());
+            }
+        });
+        _motor6Slider.addChangeListener(new ChangeListener()
+        {
+            @Override
+            public void stateChanged(final ChangeEvent e)
+            {
+                notifyListeners(6, _motor6Slider.getValue());
+            }
+        });
+        _motor7Slider.addChangeListener(new ChangeListener()
+        {
+            @Override
+            public void stateChanged(final ChangeEvent e)
+            {
+                notifyListeners(7, _motor7Slider.getValue());
+            }
+        });
+        _motor8Slider.addChangeListener(new ChangeListener()
+        {
+            @Override
+            public void stateChanged(final ChangeEvent e)
+            {
+                notifyListeners(8, _motor8Slider.getValue());
+            }
+        });
+    }
+
+    private void notifyListeners(final int motor, final int value)
+    {
+        for (IUserMotorValueChangedListenrer listener: _userChangeListenerList)
+        {
+            listener.motorValueChangedByUser(motor,value);
+        }
     }
 
     @Override
@@ -158,6 +242,19 @@ public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
         _motor6Slider.setEnabled(editable);
         _motor7Slider.setEnabled(editable);
         _motor8Slider.setEnabled(editable);
+    }
+
+    @Override
+    public void setMaxMotorsValue(final int maxValue)
+    {
+        _motor1Slider.setMaximum(maxValue);
+        _motor2Slider.setMaximum(maxValue);
+        _motor3Slider.setMaximum(maxValue);
+        _motor4Slider.setMaximum(maxValue);
+        _motor5Slider.setMaximum(maxValue);
+        _motor6Slider.setMaximum(maxValue);
+        _motor7Slider.setMaximum(maxValue);
+        _motor8Slider.setMaximum(maxValue);
     }
 
     @Override
@@ -209,4 +306,8 @@ public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
     }
 
 
+    public void addUserMotorValueChangedByUser(final IUserMotorValueChangedListenrer listener)
+    {
+        _userChangeListenerList.add(listener);
+    }
 }

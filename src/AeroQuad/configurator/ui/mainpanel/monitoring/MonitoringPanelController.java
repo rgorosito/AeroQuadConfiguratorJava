@@ -44,7 +44,7 @@ public class MonitoringPanelController implements IMonitoringPanelController
 
 
         _motorsMonitoringPanelController = new MotorMonitoringPanelController(messageDispatcher, communicator);
-        final JPanel motorDisplayPanel = new MotorDisplayPanel(_motorsMonitoringPanelController);
+        final MotorDisplayPanel motorDisplayPanel = new MotorDisplayPanel(_motorsMonitoringPanelController);
         _motorCommandPanel = new MotorMonitoringPanel(_motorsMonitoringPanelController, motorDisplayPanel);
         _sensorsMonitoringPanelController = new SensorsMonitoringController(messageDispatcher, communicator);
         _sensorsMonitoringPanel = new SensorsMonitoringPanel(_sensorsMonitoringPanelController);

@@ -14,4 +14,8 @@ public interface IMotorDisplayPanel
     void setNbMotor(int nbMotor);
 
     void setEditable(boolean editable);
+
+    void setMaxMotorsValue(int maxValue);
+
+    public void addUserMotorValueChangedByUser(IUserMotorValueChangedListenrer listener);
 }
