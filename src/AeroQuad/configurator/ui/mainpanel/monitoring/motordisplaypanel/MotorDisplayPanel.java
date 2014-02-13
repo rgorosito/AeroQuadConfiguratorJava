@@ -310,4 +310,36 @@ public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
     {
         _userChangeListenerList.add(listener);
     }
+
+    @Override
+    public void setMotorValue(final int motor, final Integer value)
+    {
+        switch (motor)
+        {
+            case 1:
+                _motor1Slider.setValue(value);
+                break;
+            case 2:
+                _motor2Slider.setValue(value);
+                break;
+            case 3:
+                _motor3Slider.setValue(value);
+                break;
+            case 4:
+                _motor4Slider.setValue(value);
+                break;
+            case 5:
+                _motor5Slider.setValue(value);
+                break;
+            case 6:
+                _motor6Slider.setValue(value);
+                break;
+            case 7:
+                _motor7Slider.setValue(value);
+                break;
+            case 8:
+                _motor8Slider.setValue(value);
+                break;
+        }
+    }
 }

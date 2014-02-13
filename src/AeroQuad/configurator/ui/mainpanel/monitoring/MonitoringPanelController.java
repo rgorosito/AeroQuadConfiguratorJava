@@ -2,6 +2,7 @@ package AeroQuad.configurator.ui.mainpanel.monitoring;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.IMotorDisplayController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.MotorDisplayPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.motormonitoring.IMotorMonitoringPanelController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.motormonitoring.MotorMonitoringPanel;
@@ -44,7 +45,7 @@ public class MonitoringPanelController implements IMonitoringPanelController
 
 
         _motorsMonitoringPanelController = new MotorMonitoringPanelController(messageDispatcher, communicator);
-        final MotorDisplayPanel motorDisplayPanel = new MotorDisplayPanel(_motorsMonitoringPanelController);
+        final MotorDisplayPanel motorDisplayPanel = new MotorDisplayPanel((IMotorDisplayController)_motorsMonitoringPanelController);
         _motorCommandPanel = new MotorMonitoringPanel(_motorsMonitoringPanelController, motorDisplayPanel);
         _sensorsMonitoringPanelController = new SensorsMonitoringController(messageDispatcher, communicator);
         _sensorsMonitoringPanel = new SensorsMonitoringPanel(_sensorsMonitoringPanelController);

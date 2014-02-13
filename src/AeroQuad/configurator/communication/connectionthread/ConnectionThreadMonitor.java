@@ -53,7 +53,7 @@ public class ConnectionThreadMonitor implements IConnectionThreadMonitor
     {
         if (_statisticProcessor.getNbCharReceived() == 0)
         {
-            communicator.resendLastCommand();
+            communicator.sendCommand("!");
             _nothingReceivedHit++;
             if (_nothingReceivedHit > NB_EMPTY_HIT_THRESHOLD)
             {

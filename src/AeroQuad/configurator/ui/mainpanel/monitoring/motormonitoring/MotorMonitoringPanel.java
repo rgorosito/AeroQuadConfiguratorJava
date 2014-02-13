@@ -1,5 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.motormonitoring;
 
+import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.IMotorDisplayPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.IUserMotorValueChangedListenrer;
 import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.MotorDisplayPanel;
 
@@ -17,10 +18,14 @@ public class MotorMonitoringPanel extends JPanel implements IMotorMonitoringPane
     final JButton _sendButton = new JButton("<html><center>SEND<br>COMMAND</center></html>");
     final JButton _stopAllButton = new JButton("<html><center>STOP<br>ALL</center></html>");
     final JCheckBox _directCommandCheckBox = new JCheckBox("Button command override");
+    private final IMotorDisplayPanel _motorDisplayPanel;
 
     public MotorMonitoringPanel(final IMotorMonitoringPanelController controller, final MotorDisplayPanel motorDisplayPanel)
     {
+        _motorDisplayPanel = motorDisplayPanel;
         _controller = controller;
+
+        _controller.setPanel(this);
 
         init(motorDisplayPanel);
 
@@ -126,5 +131,17 @@ public class MotorMonitoringPanel extends JPanel implements IMotorMonitoringPane
             }
         });
 
+    }
+
+    @Override
+    public void setMotorValue(final int motor, final Integer value)
+    {
+        _motorDisplayPanel.setMotorValue(motor, value);
+    }
+
+    @Override
+    public void setSendEnabled(final boolean enabled)
+    {
+        _sendButton.setEnabled(enabled);
     }
 }

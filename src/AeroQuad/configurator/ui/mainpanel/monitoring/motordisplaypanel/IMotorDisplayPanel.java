@@ -18,4 +18,6 @@ public interface IMotorDisplayPanel
     void setMaxMotorsValue(int maxValue);
 
     public void addUserMotorValueChangedByUser(IUserMotorValueChangedListenrer listener);
+
+    void setMotorValue(int motor, Integer value);
 }

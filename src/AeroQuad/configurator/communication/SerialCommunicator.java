@@ -40,7 +40,6 @@ public class SerialCommunicator implements ISerialCommunicator
     private IMessageAnalyser _vehicleStateAnalyser;
 
     private final PropertyChangeSupport _propertyChangeSupport = new PropertyChangeSupport(this);
-    private String _lastCommand = "!";
     private boolean _isConnecting = false;
 
     public SerialCommunicator(final IMessageDispatcher messageDispatcher)
@@ -192,7 +191,6 @@ public class SerialCommunicator implements ISerialCommunicator
     @Override
     public void sendCommand(final String command)
     {
-        _lastCommand = command;
         try
         {
             _propertyChangeSupport.firePropertyChange(RAW_DATA_MESSAGE_SENT, null, command);
@@ -211,13 +209,6 @@ public class SerialCommunicator implements ISerialCommunicator
     {
         return _isConnected;
     }
-
-    @Override
-    public void resendLastCommand()
-    {
-        sendCommand(_lastCommand);
-    }
-
 
     private void processSerialEvent(final SerialPortEvent event)
     {
