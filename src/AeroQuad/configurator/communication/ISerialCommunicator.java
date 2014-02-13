@@ -44,5 +44,5 @@ public interface ISerialCommunicator
     boolean isConnected();
 
 
-
+    void resendLastCommand();
 }

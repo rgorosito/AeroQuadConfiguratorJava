@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ConnectionThreadMonitor implements IConnectionThreadMonitor
 {
-    private final int NB_EMPTY_HIT_THRESHOLD = 2; // @todo: use some config in property file
+    private final int NB_EMPTY_HIT_THRESHOLD = 4; // @todo: use some config in property file
 
     private final ICommunicationStatisticsProcessor _statisticProcessor;
     private int _nothingReceivedHit;
@@ -53,7 +53,7 @@ public class ConnectionThreadMonitor implements IConnectionThreadMonitor
     {
         if (_statisticProcessor.getNbCharReceived() == 0)
         {
-            communicator.sendCommand("!");
+            communicator.resendLastCommand();
             _nothingReceivedHit++;
             if (_nothingReceivedHit > NB_EMPTY_HIT_THRESHOLD)
             {

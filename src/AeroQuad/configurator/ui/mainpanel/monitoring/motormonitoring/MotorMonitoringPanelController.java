@@ -22,7 +22,10 @@ public class MotorMonitoringPanelController implements IMotorMonitoringPanelCont
     @Override
     public void setActivated(final boolean activated)
     {
-        _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+        if (activated)
+        {
+            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+        }
     }
 
     @Override

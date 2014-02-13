@@ -115,6 +115,9 @@ public class MonitoringPanelController implements IMonitoringPanelController
     @Override
     public void setActivated(final boolean activated)
     {
-        vehicleMonitoringButtonPressed();
+        if (activated)
+        {
+            vehicleMonitoringButtonPressed();
+        }
     }
 }

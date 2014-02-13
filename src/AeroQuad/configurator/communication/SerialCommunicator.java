@@ -10,6 +10,7 @@ import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 
 import javax.swing.SwingUtilities;
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.BufferedReader;
@@ -39,10 +40,23 @@ public class SerialCommunicator implements ISerialCommunicator
     private IMessageAnalyser _vehicleStateAnalyser;
 
     private final PropertyChangeSupport _propertyChangeSupport = new PropertyChangeSupport(this);
+    private String _lastCommand = "!";
+    private boolean _isConnecting = false;
 
     public SerialCommunicator(final IMessageDispatcher messageDispatcher)
     {
         _messageDispatcher = messageDispatcher;
+
+        _messageDispatcher.addListener(IMessageDispatcher.FLIGHT_SOFTWARE_VERSION_PROPERTY_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                _isConnecting = false;
+                _isConnected = true;
+                _propertyChangeSupport.firePropertyChange(CONNECTION_STATE_CHANGE, null, _isConnected);
+            }
+        });
     }
 
     @Override
@@ -75,6 +89,11 @@ public class SerialCommunicator implements ISerialCommunicator
     @Override
     public void connect(final int baudRate, final String defaultPort)
     {
+        if (_isConnecting)
+        {
+            return;
+        }
+        _isConnecting = true;
         _connectedPortName = defaultPort;
 
         boolean portFound = false;
@@ -113,11 +132,17 @@ public class SerialCommunicator implements ISerialCommunicator
                 _imputStreamReader = null;
             }
             // Advise if data available to be read on the port
+            try
+            {
+                Thread.sleep(1000);
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
             _connectedPort.notifyOnDataAvailable(true);
 
             System.out.println("Port: " + _connectedPortName + " opened");
-            _isConnected = true;
-            _propertyChangeSupport.firePropertyChange(CONNECTION_STATE_CHANGE, null, _isConnected);
             sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
             final VehicleInfoRequest request = new VehicleInfoRequest(_messageDispatcher);
             _vehicleStateAnalyser = request.getMessageAnalyser();
@@ -167,6 +192,7 @@ public class SerialCommunicator implements ISerialCommunicator
     @Override
     public void sendCommand(final String command)
     {
+        _lastCommand = command;
         try
         {
             _propertyChangeSupport.firePropertyChange(RAW_DATA_MESSAGE_SENT, null, command);
@@ -184,6 +210,12 @@ public class SerialCommunicator implements ISerialCommunicator
     public boolean isConnected()
     {
         return _isConnected;
+    }
+
+    @Override
+    public void resendLastCommand()
+    {
+        sendCommand(_lastCommand);
     }
 
 
