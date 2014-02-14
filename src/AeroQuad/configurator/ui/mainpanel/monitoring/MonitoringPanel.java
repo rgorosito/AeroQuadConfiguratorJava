@@ -35,21 +35,18 @@ public class MonitoringPanel extends JPanel implements IMonitoringPanel
 
     private void init()
     {
-
-        final JPanel vehicleStatusPanel = _controller.getVehicleStatusPanel();
-        final JPanel sensorsMonitoringPanel = _controller.getSensorsMonitoringPanel();
-        final JPanel motorCommandPanel = _controller.getMotorCommandPanel();
-
         final JPanel monitoringButtonPanel = new JPanel(new GridLayout(4,1));
         monitoringButtonPanel.add(_sensorsMonitoringButton);
         monitoringButtonPanel.add(_motorsMonitoringButton);
         monitoringButtonPanel.add(_vehicleMonitoringButton);
-        //monitoringButtonPanel.setBorder(new LineBorder(Color.BLACK,3));
         add(monitoringButtonPanel,BorderLayout.WEST);
+        _buttonGroup.add(_sensorsMonitoringButton);
+        _buttonGroup.add(_motorsMonitoringButton);
+        _buttonGroup.add(_vehicleMonitoringButton);
 
-        _cardLayoutPanel.add(vehicleStatusPanel, VEHICLE);
-        _cardLayoutPanel.add(sensorsMonitoringPanel, SENSORS);
-        _cardLayoutPanel.add(motorCommandPanel, MOTORS);
+        _cardLayoutPanel.add(_controller.getVehicleStatusPanel(), VEHICLE);
+        _cardLayoutPanel.add(_controller.getSensorsMonitoringPanel(), SENSORS);
+        _cardLayoutPanel.add(_controller.getMotorCommandPanel(), MOTORS);
         add(_cardLayoutPanel,BorderLayout.CENTER);
 
         _sensorsMonitoringButton.addActionListener(new ActionListener()
@@ -77,9 +74,6 @@ public class MonitoringPanel extends JPanel implements IMonitoringPanel
             }
         });
 
-        _buttonGroup.add(_sensorsMonitoringButton);
-        _buttonGroup.add(_motorsMonitoringButton);
-        _buttonGroup.add(_vehicleMonitoringButton);
     }
 
     @Override

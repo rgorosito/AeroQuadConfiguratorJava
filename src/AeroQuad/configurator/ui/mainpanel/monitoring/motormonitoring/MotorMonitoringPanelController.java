@@ -55,6 +55,12 @@ public class MotorMonitoringPanelController implements IMotorMonitoringPanelCont
         {
             _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
         }
+        else
+        {
+            _overrideSendButton = false;
+            stopAllMotor();
+            _panel.setSendEnabled(true);
+        }
     }
 
     @Override
@@ -81,7 +87,6 @@ public class MotorMonitoringPanelController implements IMotorMonitoringPanelCont
     {
         sendMotorCommand();
     }
-
 
     @Override
     public void stopAllMotor()

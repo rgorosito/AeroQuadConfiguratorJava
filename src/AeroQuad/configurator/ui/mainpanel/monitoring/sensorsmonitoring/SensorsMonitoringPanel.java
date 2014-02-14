@@ -5,11 +5,11 @@ import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsse
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsselectiontree.SensorsSelectionTree;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsselectiontree.TreeSelectionChangeListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridLayout;
 
 public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoringPanel
 {
@@ -17,8 +17,7 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
 
     private final SensorsSelectionTree _sensorsTree = new SensorsSelectionTree();
 
-    private final GridLayout _plotPanelsLayout = new GridLayout(3, 1);
-    private final JPanel _plotPanel = new JPanel(_plotPanelsLayout);
+    private final JPanel _plotPanel = new JPanel();
 
     final XYZPlotDrawerPanel _accelPlotDrawerPanel = new XYZPlotDrawerPanel("Accel");
     final XYZPlotDrawerPanel _gyroPlotDrawerPanel = new XYZPlotDrawerPanel("Gyro");
@@ -36,6 +35,7 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
 
     private void init()
     {
+        _plotPanel.setLayout(new BoxLayout(_plotPanel, BoxLayout.PAGE_AXIS));
         setLayout(new BorderLayout());
 
         add(_sensorsTree, BorderLayout.WEST);
@@ -62,10 +62,6 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
         _sensorsTree.setHaveMagnetometer(value);
         if (value)
         {
-            if (_plotPanelsLayout.getRows() < 3)
-            {
-                _plotPanelsLayout.setRows(3);
-            }
             _plotPanel.add(_magPlotDrawerPanel);
         }
     }
@@ -73,15 +69,11 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
     @Override
     public void setHaveBarometer(final boolean value)
     {
-        //_sensorsTree.setHaveBarometer(value);
-        //if (value)
-        //{
-        //    if (_plotPanelsLayout.getRows() < 3)
-        //    {
-        //        _plotPanelsLayout.setRows(3);
-        //    }
-        //    _plotPanel.add(_altitudeDrawerPanel);
-        //}
+        _sensorsTree.setHaveBarometer(value);
+        if (value)
+        {
+            _plotPanel.add(_altitudeDrawerPanel);
+        }
     }
 
     @Override

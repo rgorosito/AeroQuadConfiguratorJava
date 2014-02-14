@@ -32,7 +32,7 @@ public class MainPanelController implements IMainPanelController
     {
         _monitoringPanelController = new MonitoringPanelController(messageDispatcher, communicator);
         _monitoringPanel = new MonitoringPanel(_monitoringPanelController);
-        _setupPanelController = new SetupPanelController();
+        _setupPanelController = new SetupPanelController(messageDispatcher, communicator);
         _setupPanel = new SetupPanel(_setupPanelController);
         _tuningController = new TuningPanelController(messageDispatcher, communicator);
         _tuningPanel = new TuningPanel(_tuningController);
@@ -62,6 +62,7 @@ public class MainPanelController implements IMainPanelController
     @Override
     public void showMonitoringPanel()
     {
+        _setupPanelController.setActivated(false);
         _tuningController.setActivated(false);
         _monitoringPanelController.setActivated(true);
         _panel.showMonitoringPanel();
@@ -70,6 +71,7 @@ public class MainPanelController implements IMainPanelController
     @Override
     public void showSetupPanel()
     {
+        _setupPanelController.setActivated(true);
         _tuningController.setActivated(false);
         _monitoringPanelController.setActivated(false);
         _panel.showSetupPanel();
@@ -78,6 +80,7 @@ public class MainPanelController implements IMainPanelController
     @Override
     public void showTuningPanel()
     {
+        _setupPanelController.setActivated(false);
         _tuningController.setActivated(true);
         _monitoringPanelController.setActivated(false);
         _panel.showTuningPanel();
