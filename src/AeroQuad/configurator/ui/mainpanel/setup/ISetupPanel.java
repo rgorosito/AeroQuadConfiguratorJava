@@ -8,4 +8,6 @@ public interface ISetupPanel
     static final String ESC_CALIBRATION = "<html><center>ESC<br>CALIBATION</center></html>";
 
     void showPanel(String panelId);
+
+    void setMagBalenEnable(boolean enable);
 }

@@ -97,4 +97,10 @@ public class SetupPanel extends JPanel implements ISetupPanel
     {
         _cardLayout.show(_cardLayoutPanel, panelId);
     }
+
+    @Override
+    public void setMagBalenEnable(final boolean enable)
+    {
+        _magCalibrationButton.setVisible(enable);
+    }
 }

@@ -16,6 +16,8 @@ import AeroQuad.configurator.ui.mainpanel.setup.radiocalibration.RadioCalibratio
 import AeroQuad.configurator.ui.mainpanel.setup.radiocalibration.RadioCalibrationPanelController;
 
 import javax.swing.JPanel;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public class SetupPanelController implements ISetupPanelController
 {
@@ -33,6 +35,16 @@ public class SetupPanelController implements ISetupPanelController
     public SetupPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
         initControllers(messageDispatcher, communicator);
+
+        messageDispatcher.addListener(IMessageDispatcher.MAGNETOMETER_PROPERTY_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                boolean magEnabled = (boolean)evt.getNewValue();
+                _panel.setMagBalenEnable(magEnabled);
+            }
+        });
     }
 
     private void initControllers(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
@@ -40,7 +52,7 @@ public class SetupPanelController implements ISetupPanelController
         _accelCalibrationController = new AccelCalibrationPanelController(messageDispatcher,communicator);
         _accelCalibrationPanel = new AccelCalibrationPanel(_accelCalibrationController);
 
-        _escCalibrationController = new EscCalibrationPanelController(messageDispatcher,communicator);
+        _escCalibrationController = new EscCalibrationPanelController(communicator);
         _escCalibrationPanel = new EscCalibrationPanel(_escCalibrationController);
 
         _magCalibrationController = new MagCalibrationPanelController(messageDispatcher,communicator);
