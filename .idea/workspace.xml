@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="afae10c6-bd8d-46ee-955a-920ddfa63c7e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/messagedispatcher/AccelRawData.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/messageanalyzer/AccelRawValueMessageAnalyser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/request/AccelRawValueRequest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/CalibrationStep.java" />
-      <change type="MOVED" beforePath="C:\Working\AQConfiguratorJava\run\ressources\calFront v2.png" afterPath="$PROJECT_DIR$/run/ressources/AccelCalNoseDown.png" />
-      <change type="MOVED" beforePath="C:\Working\AQConfiguratorJava\run\ressources\calLeft v2.png" afterPath="$PROJECT_DIR$/run/ressources/AccelCalLeftSideDown.png" />
-      <change type="MOVED" beforePath="C:\Working\AQConfiguratorJava\run\ressources\calRear V2.png" afterPath="$PROJECT_DIR$/run/ressources/AccelCalNoseUp.png" />
-      <change type="MOVED" beforePath="C:\Working\AQConfiguratorJava\run\ressources\calRight v2.png" afterPath="$PROJECT_DIR$/run/ressources/AccelCalRightSideDown.png" />
-      <change type="MOVED" beforePath="C:\Working\AQConfiguratorJava\run\ressources\calTop Down v2.png" afterPath="$PROJECT_DIR$/run/ressources/AccelCalflatDown.png" />
-      <change type="MOVED" beforePath="C:\Working\AQConfiguratorJava\run\ressources\calTop Up v2.png" afterPath="$PROJECT_DIR$/run/ressources/AccelCalflatUp.png" />
+    <list default="true" id="afae10c6-bd8d-46ee-955a-920ddfa63c7e" name="Default" comment="Accel calibration">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanel.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanelController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanel.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/messagedispatcher/IMessageDispatcher.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/messagedispatcher/IMessageDispatcher.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AQ_PCRemoteController.iws" />
@@ -83,10 +72,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AccelCalibrationPanel.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AccelCalibrationPanel.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="0" selection-start="2897" selection-end="2897" vertical-scroll-proportion="0.37423313" vertical-offset="946" max-vertical-offset="2295">
+            <state line="136" column="23" selection-start="4784" selection-end="4784" vertical-scroll-proportion="0.0" vertical-offset="1615" max-vertical-offset="2312">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -94,10 +83,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CalibrationStep.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/CalibrationStep.java">
+      <file leaf-file-name="IAccelCalibrationPanel.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="4" selection-start="199" selection-end="207" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+            <state line="23" column="96" selection-start="1738" selection-end="1738" vertical-scroll-proportion="0.0" vertical-offset="13" max-vertical-offset="680">
               <folding />
             </state>
           </provider>
@@ -106,25 +95,28 @@
       <file leaf-file-name="AccelCalibrationPanelController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanelController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="0" selection-start="1813" selection-end="1813" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2057">
-              <folding />
+            <state line="140" column="0" selection-start="4730" selection-end="4730" vertical-scroll-proportion="0.0" vertical-offset="2251" max-vertical-offset="2890">
+              <folding>
+                <element signature="e#2243#2244#0" expanded="true" />
+                <element signature="e#2273#2274#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IAccelCalibrationPanel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="120" selection-start="311" selection-end="311" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IAccelCalibrationPanelController.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="IAccelCalibrationPanelController.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanelController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="49" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+            <state line="4" column="49" selection-start="169" selection-end="169" vertical-scroll-proportion="0.10429448" vertical-offset="0" max-vertical-offset="652">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CalibrationStep.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/CalibrationStep.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="4" selection-start="102" selection-end="102" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
               <folding />
             </state>
           </provider>
@@ -195,10 +187,10 @@
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/request/AccelRawValueRequest.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/messagedispatcher/AccelRawData.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/CalibrationStep.java" />
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanelController.java" />
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanelController.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanel.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanel.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanelController.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanelController.java" />
       </list>
     </option>
   </component>
@@ -1292,7 +1284,11 @@
       <created>1393465886361</created>
       <updated>1393465886361</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Accel calibration progress&#10;">
+      <created>1393550702209</created>
+      <updated>1393550702209</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1385,7 +1381,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Panels and controller little refactoring, putting stuff where they belong" />
     <MESSAGE value="Panels and controller little refactoring, putting stuff where they belong&#10;" />
     <MESSAGE value="PID Panels startup ans some other work" />
     <MESSAGE value="PID Panels startup ans some other work part 2&#10;" />
@@ -1410,7 +1405,8 @@
     <MESSAGE value="ESC Calibration done" />
     <MESSAGE value="Accel calibration" />
     <MESSAGE value="Accel calibration&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Accel calibration&#10;" />
+    <MESSAGE value="Accel calibration progress&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Accel calibration progress&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1725,40 +1721,43 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="49" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="0" selection-start="1813" selection-end="1813" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2057">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/CalibrationStep.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="4" selection-start="199" selection-end="207" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="120" selection-start="311" selection-end="311" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+        <state line="23" column="96" selection-start="1738" selection-end="1738" vertical-scroll-proportion="0.0" vertical-offset="13" max-vertical-offset="680">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="0" selection-start="2897" selection-end="2897" vertical-scroll-proportion="0.37423313" vertical-offset="946" max-vertical-offset="2295">
+        <state line="136" column="23" selection-start="4784" selection-end="4784" vertical-scroll-proportion="0.0" vertical-offset="1615" max-vertical-offset="2312">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/CalibrationStep.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="4" selection-start="102" selection-end="102" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="140" column="0" selection-start="4730" selection-end="4730" vertical-scroll-proportion="0.0" vertical-offset="2251" max-vertical-offset="2890">
+          <folding>
+            <element signature="e#2243#2244#0" expanded="true" />
+            <element signature="e#2273#2274#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="49" selection-start="169" selection-end="169" vertical-scroll-proportion="0.10429448" vertical-offset="0" max-vertical-offset="652">
+          <folding />
         </state>
       </provider>
     </entry>

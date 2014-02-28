@@ -134,6 +134,7 @@ public class AccelCalibrationPanel extends JPanel implements IAccelCalibrationPa
                 _imageLabel.setIcon(new ImageIcon(NOSE_DOWN_IMAGE_NAME));
                 _nextButton.setText("Next");
                 _textLabel.setText(NOSE_DOWN_TEXT);
+                return;
             case FINISHED:
                 _imageLabel.setIcon(new ImageIcon(FLAT_UP_IMAGE_NAME));
                 _nextButton.setText("Finish");
