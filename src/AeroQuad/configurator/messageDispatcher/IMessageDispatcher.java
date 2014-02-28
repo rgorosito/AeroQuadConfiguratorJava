@@ -63,6 +63,8 @@ public interface IMessageDispatcher
     final String YAW_PID_KEY = "YAW_PID_KEY";
     final String ALTITUDE_HOLD_PID_KEY = "ALTITUDE_HOLD_PID_KEY";
 
+    final String ACCEL_RAW_DATA_KEY = "ACCEL_RAW_DATA_KEY";
+
 
 
     void addListener(String propertyName, PropertyChangeListener propertyChangeListener);
