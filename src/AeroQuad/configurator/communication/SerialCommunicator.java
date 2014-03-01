@@ -133,7 +133,7 @@ public class SerialCommunicator implements ISerialCommunicator
             // Advise if data available to be read on the port
             try
             {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             }
             catch (InterruptedException e)
             {
@@ -261,7 +261,7 @@ public class SerialCommunicator implements ISerialCommunicator
 
     private void handleReceivedString(final String rawData)
     {
-//        System.out.println(rawData);
+        //System.out.println(rawData);
         _propertyChangeSupport.firePropertyChange(RAW_DATA_MESSAGE_RECEIVED, null, rawData);
         if (!_vehicleStateAnalyser.analyzeRawData(rawData))
         {
