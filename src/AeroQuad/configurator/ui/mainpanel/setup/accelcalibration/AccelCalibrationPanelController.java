@@ -45,12 +45,7 @@ public class AccelCalibrationPanelController implements IAccelCalibrationPanelCo
         }
         else
         {
-            _currentCalibrationStep = CalibrationStep.FLAT_UP;
-            _readingSample = 0;
-            _panel.setCancelButtonEnabled(false);
-            _panel.setNextButtonEnabeld(true);
-            _panel.setProgress(0);
-            _panel.setCurrentCalibrationStep(_currentCalibrationStep);
+            resetInitialState();
             for (int i = 0; i < 6; i++)
             {
                 _rawAccelSumValue[i] = 0.0F;
@@ -169,6 +164,19 @@ public class AccelCalibrationPanelController implements IAccelCalibrationPanelCo
         buffer.append(zScaleFactor).append(";").append(0).append(";");
 
         _communicator.sendCommand(buffer.toString());
+
+
+        resetInitialState();
+    }
+
+    private void resetInitialState()
+    {
+        _currentCalibrationStep = CalibrationStep.FLAT_UP;
+        _readingSample = 0;
+        _panel.setCancelButtonEnabled(false);
+        _panel.setNextButtonEnabeld(true);
+        _panel.setProgress(0);
+        _panel.setCurrentCalibrationStep(_currentCalibrationStep);
     }
 
 }
