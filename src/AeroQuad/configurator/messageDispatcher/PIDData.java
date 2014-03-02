@@ -23,17 +23,41 @@ public class PIDData
 
     public String getP()
     {
-        return _p;
+        try
+        {
+            final String ret = Integer.toString(Integer.valueOf(_p));
+            return ret;
+        }
+        catch (NumberFormatException e)
+        {
+        }
+        return Float.toString(Float.valueOf(_p));
     }
 
     public String getI()
     {
-        return _i;
+        try
+        {
+            final String ret = Integer.toString(Integer.valueOf(_i));
+            return ret;
+        }
+        catch (NumberFormatException e)
+        {
+        }
+        return Float.toString(Float.valueOf(_i));
     }
 
     public String getD()
     {
-        return _d;
+        try
+        {
+            final String ret = Integer.toString(Integer.valueOf(_d));
+            return ret;
+        }
+        catch (NumberFormatException e)
+        {
+        }
+        return Float.toString(Float.valueOf(_d));
     }
 
     @Override

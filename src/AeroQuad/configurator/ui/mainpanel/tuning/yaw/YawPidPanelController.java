@@ -33,9 +33,9 @@ public class YawPidPanelController implements IYawPidPanelController
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 _yawPid = (YawPidData)evt.getNewValue();
-                updatePanelFromPidData(_yawPid);
                 if (!_haveBeenSincedOnce)
                 {
+                    updatePanelFromPidData(_yawPid);
                     _userYawPid = _yawPid.getCopy();
                     _haveBeenSincedOnce = true;
                     _panel.setSinced(true);
@@ -70,7 +70,7 @@ public class YawPidPanelController implements IYawPidPanelController
     }
 
     @Override
-    public String getPidSetCommand()
+    public String getSetPidCommand()
     {
         final StringBuffer buffer = new StringBuffer();
         buffer.append(IMessageDefinition.YAW_PID_SET_COMMAND);

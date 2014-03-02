@@ -31,11 +31,10 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                System.out.println("UPDATED");
                 _attitudePidData = (AttitudePidData) evt.getNewValue();
-                updatePanelFromPidData(_attitudePidData);
                 if (!_haveBeenSincedOnce)
                 {
+                    updatePanelFromPidData(_attitudePidData);
                     _userAttitudePidData = _attitudePidData.getCopy();
                     _haveBeenSincedOnce = true;
                     _panel.setSinced(true);
@@ -62,7 +61,6 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
     @Override
     public IRequest getRequest()
     {
-        System.out.println("Send request");
         return new AttitudePidRequest(_messageDispatcher);
     }
 
@@ -73,7 +71,7 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
     }
 
     @Override
-    public String getPidSetCommand()
+    public String getSetPidCommand()
     {
         final StringBuffer buffer = new StringBuffer();
         buffer.append(IMessageDefinition.ATTITUDE_PID_SET_COMMAND);
@@ -100,16 +98,16 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
         {
             buffer.append(_userAttitudePidData.getGyroRollPid().getP() + ";");
             buffer.append(_userAttitudePidData.getGyroRollPid().getI() + ";");
-            buffer.append(_userAttitudePidData.getGyroRollPid().getD());
+            buffer.append(_userAttitudePidData.getGyroRollPid().getD() + ";");
         }
         else
         {
             buffer.append(_userAttitudePidData.getGyroPitchPid().getP() + ";");
             buffer.append(_userAttitudePidData.getGyroPitchPid().getI() + ";");
-            buffer.append(_userAttitudePidData.getGyroPitchPid().getD());
+            buffer.append(_userAttitudePidData.getGyroPitchPid().getD() + ";");
         }
+        buffer.append("0;");
 
-        System.out.println(buffer.toString());
         return buffer.toString();
     }
 
@@ -150,6 +148,7 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
         if (_userLevel == UserLevel.Beginner)
         {
             _userAttitudePidData.setGyroPitchPid(pid);
+            _panel.setGyroPitchPid(pid);
         }
     }
 
@@ -162,11 +161,11 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
     @Override
     public void userAccelRollPidChanged(final PIDData pid)
     {
-        System.out.println("User accel roll changed = " + pid.getP());
         _userAttitudePidData.setAccelRollPid(pid);
         if(_userLevel == UserLevel.Beginner)
         {
             _userAttitudePidData.setAccelPitchPid(pid);
+            _panel.setAccelPitchPid(pid);
         }
     }
 

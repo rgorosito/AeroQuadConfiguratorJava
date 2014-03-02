@@ -47,7 +47,7 @@ public class BatteryMonitorPidPanelController implements IBatteryMonitorPidPanel
     }
 
     @Override
-    public String getPidSetCommand()
+    public String getSetPidCommand()
     {
         return null;
     }

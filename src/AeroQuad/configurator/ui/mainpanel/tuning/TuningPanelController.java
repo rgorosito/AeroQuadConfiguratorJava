@@ -181,7 +181,7 @@ public class TuningPanelController implements ITuningPanelController
         {
             _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
             _syncTimer = new Timer(true);
-            _syncTimer.schedule(new SyncTask(),0,400);
+            _syncTimer.schedule(new SyncTask(),0,800);
         }
         else
         {
@@ -237,7 +237,7 @@ public class TuningPanelController implements ITuningPanelController
         {
             try
             {
-                Thread.sleep(400);
+                Thread.sleep(300);
             }
             catch (InterruptedException e)
             {
@@ -264,8 +264,9 @@ public class TuningPanelController implements ITuningPanelController
             {
                 if (_sendCommandNeeded)
                 {
-                    final String pidSetCommand = controller.getPidSetCommand();
+                    final String pidSetCommand = controller.getSetPidCommand();
                     _communicator.sendCommand(pidSetCommand);
+                    _communicator.sendCommand("W"); // Write Eeprom
                 }
                 else
                 {

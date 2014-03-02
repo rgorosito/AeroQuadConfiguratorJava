@@ -12,7 +12,7 @@ public interface IPidPanelController
 
     boolean isUserDataInSinced();
 
-    String getPidSetCommand();
+    String getSetPidCommand();
 
     void userDefaultButtonPressed();
 

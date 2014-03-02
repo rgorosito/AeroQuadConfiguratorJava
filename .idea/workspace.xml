@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="afae10c6-bd8d-46ee-955a-920ddfa63c7e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/AQConfiguratorJava_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/accro/AccroPidPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/accro/AccroPidPanelController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/altitudehold/AltitudeHoldPidPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/altitudehold/AltitudeHoldPidPanelController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/attitude/AttitudePidPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/attitude/AttitudePidPanelController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/batterymonitor/BatteryMonitorPidPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/batterymonitor/BatteryMonitorPidPanelController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/gps/GpsPidPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/gps/GpsPidPanelController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/IPidPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/IPidPanelController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/messagedispatcher/PIDData.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/messagedispatcher/PIDData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/TuningPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/TuningPanelController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/yaw/YawPidPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/yaw/YawPidPanelController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AQ_PCRemoteController.iws" />
@@ -71,37 +77,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="IVehicleStatusController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/vehiclestatus/IVehicleStatusController.java">
+      <file leaf-file-name="AccroPidPanelController.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/accro/AccroPidPanelController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="1" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="289">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SerialCommunicator.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="238" column="0" selection-start="7755" selection-end="7755" vertical-scroll-proportion="0.44375" vertical-offset="3065" max-vertical-offset="4012">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VehicleInfoMessageAnalyser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/messageanalyzer/VehicleInfoMessageAnalyser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="13" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0" vertical-offset="1598" max-vertical-offset="2278">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VehicleInfoRequest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/request/VehicleInfoRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="13" selection-start="329" selection-end="329" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="561">
+            <state line="100" column="63" selection-start="3561" selection-end="3561" vertical-scroll-proportion="0.32874617" vertical-offset="1247" max-vertical-offset="2465">
               <folding />
             </state>
           </provider>
@@ -125,15 +104,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/TuningPanelController.java" />
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/messageanalyzer/SensorsValuesMessageAnalyser.java" />
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/motordisplay/MotorDisplayController.java" />
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/motormonitoring/MotorDisplayController.java" />
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/motordisplaypanel/IMotorDisplayController.java" />
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/motormonitoring/IMotorDisplayPanelController.java" />
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/motormonitoring/MotorDisplayPanelController.java" />
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/motormonitoring/MotorMonitoringDisplayPanelController.java" />
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/motordisplaypanel/MotorDisplayController.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/vehiclestatus/motordisplaypanel/MotorDisplayPanelController.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/motordisplaypanel/IUserMotorValueChangedListenrer.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/communication/connectionthread/ConnectionThreadMonitor.java" />
@@ -173,9 +143,18 @@
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/CalibrationStep.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanel.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanel.java" />
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanelController.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanelController.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanelController.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/messagedispatcher/PIDData.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/altitudehold/AltitudeHoldPidPanelController.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/yaw/YawPidPanelController.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/messageanalyzer/AltitudeHoldPidMessageAnalyser.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/messageanalyzer/AttitudePidMessageAnalyser.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/messagedispatcher/AttitudePidData.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/attitude/AttitudePidPanelController.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/TuningPanelController.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/accro/AccroPidPanelController.java" />
       </list>
     </option>
   </component>
@@ -605,6 +584,232 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="splashpanel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="configurator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainpanel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="configurator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainpanel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tuning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="configurator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainpanel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tuning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yaw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="configurator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainpanel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tuning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="batterymonitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="configurator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainpanel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tuning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="attitude" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="configurator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainpanel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tuning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="altitudehold" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="configurator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainpanel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tuning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="accro" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1212,7 +1417,15 @@
       <created>1393554336239</created>
       <updated>1393554336239</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="somme little work on release process to test">
+      <created>1393640244433</created>
+      <updated>1393640244433</updated>
+    </task>
+    <task id="LOCAL-00057" summary="somme little work on release process to test&#10;">
+      <created>1393718235413</created>
+      <updated>1393718235413</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1240,12 +1453,12 @@
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28526315" sideWeight="0.4968383" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28421053" sideWeight="0.4968383" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2568421" sideWeight="0.6775068" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28105262" sideWeight="0.6775068" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3495702" sideWeight="0.31616983" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1305,8 +1518,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="PID Panels startup ans some other work" />
-    <MESSAGE value="PID Panels startup ans some other work part 2&#10;" />
     <MESSAGE value="PID panels user level implementations" />
     <MESSAGE value="Some work on PID sync process" />
     <MESSAGE value="Altitude Hold PID synced process" />
@@ -1330,7 +1541,9 @@
     <MESSAGE value="Accel calibration progress&#10;" />
     <MESSAGE value="Accel calibration" />
     <MESSAGE value="Accel calibration done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Accel calibration done" />
+    <MESSAGE value="somme little work on release process to test" />
+    <MESSAGE value="somme little work on release process to test&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="somme little work on release process to test&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1357,66 +1570,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/magcalibration/IMagCalibrationPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="66" selection-end="66" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radiocalibration/IRadioCalibationPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="68" selection-end="68" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/magcalibration/MagCalibrationPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radiocalibration/RadioCalibrationPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="270" selection-end="270" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/magcalibration/IMagCalibrationPanelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="41" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radiocalibration/IRadioCalibrationPanelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="41" selection-start="161" selection-end="161" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/magcalibration/MagCalibrationPanelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="498" selection-end="498" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radiocalibration/RadioCalibrationPanelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="507" selection-end="507" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/MainPanelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="42" selection-start="3151" selection-end="3151" vertical-scroll-proportion="0.25" vertical-offset="1224" max-vertical-offset="1904" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/ISetupPanelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="41" selection-start="525" selection-end="525" vertical-scroll-proportion="0.625" vertical-offset="0" max-vertical-offset="680" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/MonitoringPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="1688" selection-end="1688" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1292" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/sensorsmonitoring/SensorsMonitoringController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="70" selection-start="1095" selection-end="1122" vertical-scroll-proportion="0.4" vertical-offset="0" max-vertical-offset="1394" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/ISetupPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="43" selection-start="549" selection-end="549" vertical-scroll-proportion="0.275" vertical-offset="0" max-vertical-offset="680" />
@@ -1535,11 +1688,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="5" selection-start="443" selection-end="443" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
           <folding>
-            <element signature="e#328#329#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#385#386#0" expanded="true" />
-            <element signature="e#410#411#0" expanded="true" />
-            <element signature="e#467#468#0" expanded="true" />
+            <element signature="e#328#329#0" expanded="false" />
+            <element signature="e#353#354#0" expanded="false" />
+            <element signature="e#385#386#0" expanded="false" />
+            <element signature="e#410#411#0" expanded="false" />
+            <element signature="e#467#468#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1594,11 +1747,6 @@
         <state line="4" column="4" selection-start="102" selection-end="102" vertical-scroll-proportion="0.1" vertical-offset="0" max-vertical-offset="680" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="140" column="0" selection-start="4730" selection-end="4730" vertical-scroll-proportion="0.0" vertical-offset="2251" max-vertical-offset="2890" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/IAccelCalibrationPanelController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="49" selection-start="169" selection-end="169" vertical-scroll-proportion="0.1" vertical-offset="0" max-vertical-offset="680" />
@@ -1606,9 +1754,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/vehiclestatus/IVehicleStatusController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="1" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
-          <folding />
-        </state>
+        <state line="10" column="1" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/request/VehicleInfoRequest.java">
@@ -1627,7 +1773,99 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="238" column="0" selection-start="7755" selection-end="7755" vertical-scroll-proportion="0.44375" vertical-offset="3065" max-vertical-offset="4012">
+        <state line="219" column="37" selection-start="7163" selection-end="7163" vertical-scroll-proportion="0.0" vertical-offset="3065" max-vertical-offset="4012">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="152" column="45" selection-start="5235" selection-end="5235" vertical-scroll-proportion="0.056971513" vertical-offset="2308" max-vertical-offset="2975" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/messagedispatcher/MessageDispatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="13" selection-start="148" selection-end="148" vertical-scroll-proportion="-1.9755352" vertical-offset="1377" max-vertical-offset="3723">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/request/AttitudePidRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="11" selection-start="439" selection-end="439" vertical-scroll-proportion="0.20795107" vertical-offset="0" max-vertical-offset="654">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/messagedispatcher/PIDData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="5" selection-start="953" selection-end="953" vertical-scroll-proportion="0.0" vertical-offset="580" max-vertical-offset="1853">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/batterymonitor/BatteryMonitorPidPanelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="13" selection-start="279" selection-end="279" vertical-scroll-proportion="0.10691824" vertical-offset="0" max-vertical-offset="1156">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/altitudehold/AltitudeHoldPidPanelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="0" selection-start="1482" selection-end="1482" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3077">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/yaw/YawPidPanelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="0" selection-start="1381" selection-end="1381" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2193">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/messageanalyzer/AltitudeHoldPidMessageAnalyser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="642" selection-end="642" vertical-scroll-proportion="0.49162862" vertical-offset="0" max-vertical-offset="799">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/messageanalyzer/AttitudePidMessageAnalyser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="630" selection-end="630" vertical-scroll-proportion="0.4068323" vertical-offset="61" max-vertical-offset="748">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/messagedispatcher/AttitudePidData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="20" selection-start="1771" selection-end="1771" vertical-scroll-proportion="0.40487063" vertical-offset="788" max-vertical-offset="1445">
+          <folding>
+            <element signature="e#1749#1750#0" expanded="true" />
+            <element signature="e#1791#1792#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/attitude/AttitudePidPanelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="110" column="0" selection-start="4374" selection-end="4374" vertical-scroll-proportion="-8.576923" vertical-offset="1409" max-vertical-offset="3026">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/TuningPanelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="242" column="13" selection-start="9123" selection-end="9123" vertical-scroll-proportion="0.2826087" vertical-offset="2776" max-vertical-offset="3706">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/accro/AccroPidPanelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="63" selection-start="3561" selection-end="3561" vertical-scroll-proportion="0.32874617" vertical-offset="1247" max-vertical-offset="2465">
           <folding />
         </state>
       </provider>

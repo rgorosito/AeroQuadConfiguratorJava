@@ -32,9 +32,9 @@ public class AccroPidPanelController implements IAccroPidPanelController
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 _pidData = (AccroPidData)evt.getNewValue();
-                updatePanelFromPidData(_pidData);
                 if (!_haveBeenSincedOnce)
                 {
+                    updatePanelFromPidData(_pidData);
                     _userPidData = _pidData.getCopy();
                     _haveBeenSincedOnce = true;
                     _panel.setSinced(true);
@@ -70,7 +70,7 @@ public class AccroPidPanelController implements IAccroPidPanelController
     }
 
     @Override
-    public String getPidSetCommand()
+    public String getSetPidCommand()
     {
         final StringBuffer buffer = new StringBuffer();
         buffer.append(IMessageDefinition.ACCRO_PID_SET_COMMAND);
@@ -126,6 +126,7 @@ public class AccroPidPanelController implements IAccroPidPanelController
         if (_userLevel == UserLevel.Beginner)
         {
             _userPidData.setPitchPid(pid);
+            _panel.setPitchPid(pid);
         }
     }
 

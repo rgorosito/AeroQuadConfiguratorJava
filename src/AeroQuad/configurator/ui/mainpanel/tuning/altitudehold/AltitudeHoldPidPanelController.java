@@ -31,9 +31,9 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 _altitudeHoldPidData = (AltitudeHoldPidData)evt.getNewValue();
-                updatePanelFromPidData(_altitudeHoldPidData);
                 if (!_haveBeenSincedOnce)
                 {
+                    updatePanelFromPidData(_altitudeHoldPidData);
                     _userAltitudeHoldPidData = _altitudeHoldPidData.getCopy();
                     _haveBeenSincedOnce = true;
                     _panel.setSinced(true);
@@ -73,7 +73,7 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
     }
 
     @Override
-    public String getPidSetCommand()
+    public String getSetPidCommand()
     {
         final StringBuffer buffer = new StringBuffer();
         buffer.append(IMessageDefinition.ALTITUDE_HOLD_PID_SET_COMMAND);

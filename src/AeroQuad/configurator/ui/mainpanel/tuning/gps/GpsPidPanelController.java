@@ -39,7 +39,7 @@ public class GpsPidPanelController implements IGpsPidPanelController
     }
 
     @Override
-    public String getPidSetCommand()
+    public String getSetPidCommand()
     {
         return null;
     }
