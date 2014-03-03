@@ -72,7 +72,7 @@ public class AttitudePidData
 
     public void setGyroRollPid(final PIDData gyroRollPid)
     {
-        _accelPitchPid = gyroRollPid;
+        _gyroRollPid = gyroRollPid;
     }
 
     public void setGyroPitchPid(final PIDData gyroPitchPid)
