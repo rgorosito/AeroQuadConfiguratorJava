@@ -3,7 +3,7 @@ package AeroQuad.configurator.communication.messaging.request;
 
 import AeroQuad.configurator.communication.messaging.messageanalyzer.AccelRawValueMessageAnalyser;
 import AeroQuad.configurator.communication.messaging.messageanalyzer.IMessageAnalyser;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
 public class AccelRawValueRequest implements IRequest
 {

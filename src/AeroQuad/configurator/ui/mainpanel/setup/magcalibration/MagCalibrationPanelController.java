@@ -1,7 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.setup.magcalibration;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
 public class MagCalibrationPanelController implements IMagCalibrationPanelController
 {

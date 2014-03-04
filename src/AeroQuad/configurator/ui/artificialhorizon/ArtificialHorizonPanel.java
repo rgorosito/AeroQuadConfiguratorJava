@@ -8,7 +8,7 @@
  *********************************************/
 package AeroQuad.configurator.ui.artificialhorizon;
 
-import AeroQuad.configurator.messagedispatcher.VehicleAttitude;
+import AeroQuad.configurator.messagesdispatcher.VehicleAttitude;
 
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;

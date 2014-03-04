@@ -1,20 +1,13 @@
 package AeroQuad.configurator.ui;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.connectionpanel.ConnectionPanelController;
 import AeroQuad.configurator.ui.connectionpanel.ConnectionStatusPanel;
 import AeroQuad.configurator.ui.mainmenue.MainMenuController;
 import AeroQuad.configurator.ui.mainmenue.MainMenuPanel;
 import AeroQuad.configurator.ui.mainpanel.MainPanel;
 import AeroQuad.configurator.ui.mainpanel.MainPanelController;
-import AeroQuad.configurator.ui.mainpanel.monitoring.MonitoringPanel;
-import AeroQuad.configurator.ui.mainpanel.monitoring.MonitoringPanelController;
-import AeroQuad.configurator.ui.mainpanel.setup.SetupPanel;
-import AeroQuad.configurator.ui.mainpanel.setup.SetupPanelController;
-import AeroQuad.configurator.ui.mainpanel.tuning.ITuningPanelController;
-import AeroQuad.configurator.ui.mainpanel.tuning.TuningPanel;
-import AeroQuad.configurator.ui.mainpanel.tuning.TuningPanelController;
 import AeroQuad.configurator.ui.uiutils.UiUtils;
 
 import javax.swing.JFrame;

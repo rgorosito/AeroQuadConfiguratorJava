@@ -3,7 +3,7 @@ package AeroQuad.configurator.communication;
 import AeroQuad.configurator.communication.messaging.messageanalyzer.IMessageAnalyser;
 import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.communication.messaging.request.VehicleInfoRequest;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;

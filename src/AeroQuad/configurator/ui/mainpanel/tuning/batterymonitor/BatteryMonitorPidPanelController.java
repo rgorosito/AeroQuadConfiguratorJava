@@ -1,7 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.batterymonitor;
 
 import AeroQuad.configurator.communication.messaging.request.IRequest;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 
 public class BatteryMonitorPidPanelController implements IBatteryMonitorPidPanelController

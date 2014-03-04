@@ -2,7 +2,7 @@ package AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.messaging.request.SensorsValueRequest;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

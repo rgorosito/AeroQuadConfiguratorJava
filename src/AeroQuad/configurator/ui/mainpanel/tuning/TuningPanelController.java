@@ -1,7 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.tuning;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.tuning.accro.AccroPidPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.accro.AccroPidPanelController;
 import AeroQuad.configurator.ui.mainpanel.tuning.accro.IAccroPidPanelController;

@@ -1,7 +1,7 @@
 package AeroQuad.configurator.communication.messaging.messageanalyzer;
 
-import AeroQuad.configurator.messagedispatcher.AccelRawData;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.AccelRawData;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
 public class AccelRawValueMessageAnalyser  implements IMessageAnalyser
 {

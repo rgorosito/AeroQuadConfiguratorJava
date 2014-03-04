@@ -1,4 +1,4 @@
-package AeroQuad.configurator.messagedispatcher;
+package AeroQuad.configurator.messagesdispatcher;
 
 
 public enum FlightMode

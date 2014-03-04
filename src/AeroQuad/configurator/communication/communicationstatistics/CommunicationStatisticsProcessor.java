@@ -2,7 +2,7 @@ package AeroQuad.configurator.communication.communicationstatistics;
 
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

@@ -1,8 +1,8 @@
 package AeroQuad.configurator.communication.messaging.messageanalyzer;
 
-import AeroQuad.configurator.messagedispatcher.AttitudePidData;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
-import AeroQuad.configurator.messagedispatcher.PIDData;
+import AeroQuad.configurator.messagesdispatcher.AttitudePidData;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.PIDData;
 
 public class AttitudePidMessageAnalyser implements IMessageAnalyser
 {

@@ -6,8 +6,8 @@ import AeroQuad.configurator.communication.SerialCommunicator;
 import AeroQuad.configurator.communication.communicationstatistics.CommunicationStatisticsProcessor;
 import AeroQuad.configurator.communication.communicationstatistics.ICommunicationStatisticsProcessor;
 import AeroQuad.configurator.communication.connectionthread.ConnectionThreadMonitor;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
-import AeroQuad.configurator.messagedispatcher.MessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.MessageDispatcher;
 import AeroQuad.configurator.ui.AQConfiguratorMainFrame;
 
 import javax.swing.JFrame;

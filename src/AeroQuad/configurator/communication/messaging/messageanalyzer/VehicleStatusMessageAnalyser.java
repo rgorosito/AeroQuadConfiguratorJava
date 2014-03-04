@@ -1,6 +1,6 @@
 package AeroQuad.configurator.communication.messaging.messageanalyzer;
 
-import AeroQuad.configurator.messagedispatcher.*;
+import AeroQuad.configurator.messagesdispatcher.*;
 
 public class VehicleStatusMessageAnalyser implements IMessageAnalyser
 {

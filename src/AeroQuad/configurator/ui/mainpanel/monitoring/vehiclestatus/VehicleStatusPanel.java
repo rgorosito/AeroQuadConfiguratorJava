@@ -1,6 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus;
 
-import AeroQuad.configurator.messagedispatcher.VehicleAttitude;
+import AeroQuad.configurator.messagesdispatcher.VehicleAttitude;
 import AeroQuad.configurator.ui.artificialhorizon.ArtificialHorizonPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.MotorDisplayPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensorsstatuspanel.OtherSensorsStatusPanel;

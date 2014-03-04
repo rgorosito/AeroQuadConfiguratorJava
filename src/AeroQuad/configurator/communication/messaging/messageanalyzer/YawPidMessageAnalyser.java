@@ -1,8 +1,8 @@
 package AeroQuad.configurator.communication.messaging.messageanalyzer;
 
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
-import AeroQuad.configurator.messagedispatcher.PIDData;
-import AeroQuad.configurator.messagedispatcher.YawPidData;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.PIDData;
+import AeroQuad.configurator.messagesdispatcher.YawPidData;
 
 public class YawPidMessageAnalyser implements IMessageAnalyser
 {

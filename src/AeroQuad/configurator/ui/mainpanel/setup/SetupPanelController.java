@@ -1,7 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.setup;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.setup.accelcalibration.AccelCalibrationPanel;
 import AeroQuad.configurator.ui.mainpanel.setup.accelcalibration.AccelCalibrationPanelController;
 import AeroQuad.configurator.ui.mainpanel.setup.accelcalibration.IAccelCalibrationPanelController;

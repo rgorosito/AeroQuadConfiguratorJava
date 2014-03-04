@@ -3,9 +3,9 @@ package AeroQuad.configurator.ui.mainpanel.tuning.attitude;
 import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 import AeroQuad.configurator.communication.messaging.request.AttitudePidRequest;
 import AeroQuad.configurator.communication.messaging.request.IRequest;
-import AeroQuad.configurator.messagedispatcher.AttitudePidData;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
-import AeroQuad.configurator.messagedispatcher.PIDData;
+import AeroQuad.configurator.messagesdispatcher.AttitudePidData;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.PIDData;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 
 import java.beans.PropertyChangeEvent;

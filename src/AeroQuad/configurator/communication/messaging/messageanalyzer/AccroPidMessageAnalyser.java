@@ -1,8 +1,8 @@
 package AeroQuad.configurator.communication.messaging.messageanalyzer;
 
-import AeroQuad.configurator.messagedispatcher.AccroPidData;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
-import AeroQuad.configurator.messagedispatcher.PIDData;
+import AeroQuad.configurator.messagesdispatcher.AccroPidData;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.PIDData;
 
 public class AccroPidMessageAnalyser implements IMessageAnalyser
 {

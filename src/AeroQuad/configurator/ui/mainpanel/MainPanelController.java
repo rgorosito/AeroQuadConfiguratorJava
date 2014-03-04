@@ -1,7 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.monitoring.IMonitoringPanelController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.MonitoringPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.MonitoringPanelController;

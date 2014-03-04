@@ -3,9 +3,9 @@ package AeroQuad.configurator.ui.mainpanel.tuning.yaw;
 import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.communication.messaging.request.YawPidRequest;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
-import AeroQuad.configurator.messagedispatcher.PIDData;
-import AeroQuad.configurator.messagedispatcher.YawPidData;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.PIDData;
+import AeroQuad.configurator.messagesdispatcher.YawPidData;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 
 import java.beans.PropertyChangeEvent;

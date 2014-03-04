@@ -1,6 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.attitude;
 
-import AeroQuad.configurator.messagedispatcher.PIDData;
+import AeroQuad.configurator.messagesdispatcher.PIDData;
 import AeroQuad.configurator.ui.mainpanel.tuning.IPidPanelController;
 
 public interface IAttitudePidPanelController extends IPidPanelController

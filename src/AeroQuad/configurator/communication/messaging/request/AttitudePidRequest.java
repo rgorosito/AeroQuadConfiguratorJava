@@ -2,7 +2,7 @@ package AeroQuad.configurator.communication.messaging.request;
 
 import AeroQuad.configurator.communication.messaging.messageanalyzer.AttitudePidMessageAnalyser;
 import AeroQuad.configurator.communication.messaging.messageanalyzer.IMessageAnalyser;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
 public class AttitudePidRequest implements IRequest
 {

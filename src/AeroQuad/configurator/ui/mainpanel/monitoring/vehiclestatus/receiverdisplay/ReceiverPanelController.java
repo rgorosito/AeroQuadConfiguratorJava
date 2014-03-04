@@ -1,6 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.receiverdisplay;
 
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

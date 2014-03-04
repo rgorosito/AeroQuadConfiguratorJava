@@ -2,8 +2,8 @@ package AeroQuad.configurator.ui.mainpanel.setup.accelcalibration;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.messaging.request.AccelRawValueRequest;
-import AeroQuad.configurator.messagedispatcher.AccelRawData;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.AccelRawData;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

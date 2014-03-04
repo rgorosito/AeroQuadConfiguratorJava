@@ -1,7 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensorsstatuspanel;
 
 
-import AeroQuad.configurator.messagedispatcher.FlightMode;
+import AeroQuad.configurator.messagesdispatcher.FlightMode;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;

@@ -1,6 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.altitudehold;
 
-import AeroQuad.configurator.messagedispatcher.PIDData;
+import AeroQuad.configurator.messagesdispatcher.PIDData;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 import AeroQuad.configurator.ui.mainpanel.tuning.pidpanel.PidPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.singleparamconfigpanel.SingleParamConfigPanel;

@@ -1,11 +1,10 @@
 package AeroQuad.configurator.ui.connectionpanel;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.List;
 
 public class ConnectionPanelController implements IConnectionStatusPanelController
 {

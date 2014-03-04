@@ -1,7 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.gps;
 
 import AeroQuad.configurator.communication.messaging.request.IRequest;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 
 public class GpsPidPanelController implements IGpsPidPanelController

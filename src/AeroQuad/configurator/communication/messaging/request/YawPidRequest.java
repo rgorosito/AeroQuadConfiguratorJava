@@ -2,7 +2,7 @@ package AeroQuad.configurator.communication.messaging.request;
 
 import AeroQuad.configurator.communication.messaging.messageanalyzer.IMessageAnalyser;
 import AeroQuad.configurator.communication.messaging.messageanalyzer.YawPidMessageAnalyser;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
 public class YawPidRequest implements IRequest
 {

@@ -2,7 +2,7 @@ package AeroQuad.configurator.communication.messaging.request;
 
 import AeroQuad.configurator.communication.messaging.messageanalyzer.IMessageAnalyser;
 import AeroQuad.configurator.communication.messaging.messageanalyzer.SensorsValuesMessageAnalyser;
-import AeroQuad.configurator.messagedispatcher.IMessageDispatcher;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
 
 public class SensorsValueRequest implements IRequest

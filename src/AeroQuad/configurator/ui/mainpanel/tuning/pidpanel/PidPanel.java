@@ -1,6 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.pidpanel;
 
-import AeroQuad.configurator.messagedispatcher.PIDData;
+import AeroQuad.configurator.messagesdispatcher.PIDData;
 import AeroQuad.configurator.ui.uiutils.IntegerFilterKeyAdapter;
 import AeroQuad.configurator.ui.uiutils.UiUtils;
 
