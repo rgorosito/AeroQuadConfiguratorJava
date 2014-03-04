@@ -53,6 +53,14 @@ public class OtherSensorsStatusPanelController implements IOtherSensorsStatusPan
                 _panel.setVehicleAltitude((Float) evt.getNewValue());
             }
         });
+        messageDispatcher.addListener(IMessageDispatcher.VEHICLE_ZVELOCITY_STATE_CHANGE, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                _panel.setZVelocity((Float) evt.getNewValue());
+            }
+        });
         messageDispatcher.addListener(IMessageDispatcher.VEHICLE_FLIGHT_MODE_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override
@@ -61,7 +69,6 @@ public class OtherSensorsStatusPanelController implements IOtherSensorsStatusPan
                 _panel.setFlightMode((FlightMode) evt.getNewValue());
             }
         });
-
         messageDispatcher.addListener(IMessageDispatcher.VEHICLE_VOLTAGE_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override

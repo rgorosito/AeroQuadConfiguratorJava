@@ -4,7 +4,7 @@ import AeroQuad.configurator.messagesdispatcher.VehicleAttitude;
 import AeroQuad.configurator.ui.artificialhorizon.ArtificialHorizonPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.MotorDisplayPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensorsstatuspanel.OtherSensorsStatusPanel;
-import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.receiverdisplay.ReceiverDisplayPanel;
+import AeroQuad.configurator.ui.mainpanel.receiverdisplay.ReceiverDisplayPanel;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;

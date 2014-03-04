@@ -95,6 +95,12 @@ public class AccelCalibrationPanelController implements IAccelCalibrationPanelCo
         }
     }
 
+    @Override
+    public void calibrateLevel()
+    {
+        _communicator.sendCommand("L");
+    }
+
     private void processAccelRawDataReceived(final AccelRawData accelRawData)
     {
         _readingSample++;

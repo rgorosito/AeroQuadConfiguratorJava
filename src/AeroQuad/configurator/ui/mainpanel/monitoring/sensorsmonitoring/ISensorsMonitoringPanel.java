@@ -16,5 +16,5 @@ public interface ISensorsMonitoringPanel
     void setMagZ(String value);
 
 
-    void setBaroAltitude(float value);
+    void setBaroAltitude(String value);
 }

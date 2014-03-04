@@ -3,6 +3,7 @@ package AeroQuad.configurator.ui.mainpanel.tuning;
 import AeroQuad.configurator.ui.uiutils.UiUtils;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,12 +39,24 @@ public class TuningPanel extends JPanel implements ITuningPanel
     private void init()
     {
         final JPanel mainPanel = new JPanel(new BorderLayout());
-        final JPanel topPanel = new JPanel(new GridLayout(1,3));
-        topPanel.setPreferredSize(new Dimension(0, UiUtils.HEATHER_PREFERED_HEIGHT));
-        topPanel.add(_beginnerButton);
+        final JPanel topPanel = new JPanel(new BorderLayout());
+
+        final JPanel resetEepromPanel = new JPanel(new BorderLayout());
+        resetEepromPanel.setBorder(new LineBorder(Color.black,1));
+        final JLabel resetEepromLabel = new JLabel("Reset EEPROM, All values will be reset to default and all calibration will need to be done");
+        resetEepromPanel.add(resetEepromLabel,BorderLayout.WEST);
+        final JButton resetEepromButton = new JButton("Reset EEPROM");
+        resetEepromButton.setPreferredSize(new Dimension(200, 50));
+        resetEepromPanel.add(resetEepromButton,BorderLayout.EAST);
+        topPanel.add(resetEepromPanel,BorderLayout.NORTH);
+
+        final JPanel buttonLevelPanel = new JPanel(new GridLayout(1,3));
+        buttonLevelPanel.setPreferredSize(new Dimension(0, UiUtils.HEATHER_PREFERED_HEIGHT));
+        buttonLevelPanel.add(_beginnerButton);
         _beginnerButton.setSelected(true);
-        topPanel.add(_intermediateButton);
-        topPanel.add(_advancedButton);
+        buttonLevelPanel.add(_intermediateButton);
+        buttonLevelPanel.add(_advancedButton);
+        topPanel.add(buttonLevelPanel,BorderLayout.SOUTH);
         mainPanel.add(topPanel, BorderLayout.NORTH);
         _userLevelButtonGroup.add(_beginnerButton);
         _userLevelButtonGroup.add(_intermediateButton);
@@ -64,6 +77,16 @@ public class TuningPanel extends JPanel implements ITuningPanel
         final JScrollPane scrollPane = new JScrollPane(mainPanel);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         add(scrollPane, BorderLayout.CENTER);
+
+
+        resetEepromButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.resetEeprom();
+            }
+        });
     }
 
     private void bindUserLevelButtonAction()

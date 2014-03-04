@@ -230,6 +230,12 @@ public class TuningPanelController implements ITuningPanelController
         return _gpsPanel;
     }
 
+    @Override
+    public void resetEeprom()
+    {
+        _communicator.sendCommand("I");
+    }
+
     class SyncTask extends TimerTask
     {
         @Override

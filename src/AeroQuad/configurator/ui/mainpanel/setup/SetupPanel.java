@@ -36,16 +36,16 @@ public class SetupPanel extends JPanel implements ISetupPanel
     private void initButtonPanel()
     {
         final JPanel monitoringButtonPanel = new JPanel(new GridLayout(4,1));
-        monitoringButtonPanel.add(_accelCalibrationButton);
-        monitoringButtonPanel.add(_radioCalibrationButton);
         monitoringButtonPanel.add(_escCalibrationButton);
+        monitoringButtonPanel.add(_radioCalibrationButton);
+        monitoringButtonPanel.add(_accelCalibrationButton);
         monitoringButtonPanel.add(_magCalibrationButton);
         add(monitoringButtonPanel,BorderLayout.WEST);
         _buttonGroup.add(_accelCalibrationButton);
         _buttonGroup.add(_radioCalibrationButton);
         _buttonGroup.add(_escCalibrationButton);
         _buttonGroup.add(_magCalibrationButton);
-        _accelCalibrationButton.doClick();
+        _escCalibrationButton.doClick();
 
         _magCalibrationButton.setVisible(false);
 

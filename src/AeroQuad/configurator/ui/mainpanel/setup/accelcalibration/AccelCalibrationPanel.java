@@ -51,12 +51,14 @@ public class AccelCalibrationPanel extends JPanel implements IAccelCalibrationPa
         setLayout(new BorderLayout());
         setBorder(new LineBorder(Color.black,3));
 
+        final JPanel calibrationPanel = new JPanel(new BorderLayout());
         _imageLabel.setIcon(new ImageIcon(FLAT_UP_IMAGE_NAME));
         _imageLabel.setBorder(new LineBorder(Color.black, 1));
         _imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        add(_imageLabel, BorderLayout.CENTER);
+        calibrationPanel.add(_imageLabel, BorderLayout.CENTER);
 
         final JPanel bottomPanel = new JPanel(new BorderLayout());
+        bottomPanel.setBorder(new LineBorder(Color.black,1));
         bottomPanel.add(_textLabel, BorderLayout.WEST);
         _textLabel.setPreferredSize(new Dimension(600,125));
         _textLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -77,7 +79,31 @@ public class AccelCalibrationPanel extends JPanel implements IAccelCalibrationPa
         progressPanel.add(_progressBar, BorderLayout.CENTER);
         bottomPanel.add(progressPanel, BorderLayout.NORTH);
 
-        add(bottomPanel, BorderLayout.SOUTH);
+        calibrationPanel.add(bottomPanel, BorderLayout.SOUTH);
+
+        add(calibrationPanel, BorderLayout.CENTER);
+
+        final JPanel levelCalibrationPanel = new JPanel(new BorderLayout());
+        levelCalibrationPanel.setBorder(new LineBorder(Color.black,1));
+        final JLabel levelInfoLabel = new JLabel("<HTML>To calibrate vehicle level, press here after the accel calibration procedure</HTML>");
+        levelInfoLabel.setPreferredSize(new Dimension(600,125));
+        levelCalibrationPanel.add(levelInfoLabel, BorderLayout.WEST);
+        final JPanel calibrateLevelButtonPanel = new JPanel(new GridLayout(1,2));
+        calibrateLevelButtonPanel.add(new JLabel());
+        final JButton calibrateLevelButton = new JButton("<HTML>Calibrate level</HTML>");
+        calibrateLevelButtonPanel.add(calibrateLevelButton);
+
+        levelCalibrationPanel.add(calibrateLevelButtonPanel, BorderLayout.CENTER);
+        calibrateLevelButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.calibrateLevel();
+            }
+        });
+
+        add(levelCalibrationPanel, BorderLayout.SOUTH);
 
         _cancelbutton.setEnabled(false);
     }

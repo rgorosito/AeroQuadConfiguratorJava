@@ -116,12 +116,12 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
                 _panel.setMagZ((String) evt.getNewValue());
             }
         });
-        messageDispatcher.addListener(IMessageDispatcher.VEHICLE_ALTITUDE_STATE_CHANGE, new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.SENSOR_BARO_ALTITUDE_VALUE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _panel.setBaroAltitude((Float) evt.getNewValue());
+                _panel.setBaroAltitude((String) evt.getNewValue());
             }
         });
     }

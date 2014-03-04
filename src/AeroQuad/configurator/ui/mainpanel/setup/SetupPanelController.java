@@ -2,6 +2,9 @@ package AeroQuad.configurator.ui.mainpanel.setup;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
+import AeroQuad.configurator.ui.mainpanel.receiverdisplay.IReceiverDisplayPanelController;
+import AeroQuad.configurator.ui.mainpanel.receiverdisplay.ReceiverDisplayPanel;
+import AeroQuad.configurator.ui.mainpanel.receiverdisplay.ReceiverPanelController;
 import AeroQuad.configurator.ui.mainpanel.setup.accelcalibration.AccelCalibrationPanel;
 import AeroQuad.configurator.ui.mainpanel.setup.accelcalibration.AccelCalibrationPanelController;
 import AeroQuad.configurator.ui.mainpanel.setup.accelcalibration.IAccelCalibrationPanelController;
@@ -58,8 +61,11 @@ public class SetupPanelController implements ISetupPanelController
         _magCalibrationController = new MagCalibrationPanelController(messageDispatcher,communicator);
         _magCalibrationPanel = new MagCalibrationPanel(_magCalibrationController);
 
-        _radioCalibrationController = new RadioCalibrationPanelController(messageDispatcher,communicator);
-        _radioCalibrationPanel = new RadioCalibrationPanel(_radioCalibrationController);
+
+        final IReceiverDisplayPanelController receiverDisplayPanelController = new ReceiverPanelController(messageDispatcher);
+        final JPanel receiverPanel = new ReceiverDisplayPanel(receiverDisplayPanelController);
+        _radioCalibrationController = new RadioCalibrationPanelController(messageDispatcher,communicator, receiverDisplayPanelController);
+        _radioCalibrationPanel = new RadioCalibrationPanel(_radioCalibrationController, receiverPanel);
     }
 
     @Override
@@ -137,7 +143,7 @@ public class SetupPanelController implements ISetupPanelController
     {
         if (activated)
         {
-            accelCalibrationButtonPressed();
+            escCalibrationButtonPressed();
         }
     }
 }

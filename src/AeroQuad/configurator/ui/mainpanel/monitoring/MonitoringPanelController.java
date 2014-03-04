@@ -16,8 +16,8 @@ import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.VehicleStatus
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.motordisplaypanel.MotorDisplayPanelController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensorsstatuspanel.OtherSensorsStatusPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensorsstatuspanel.OtherSensorsStatusPanelController;
-import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.receiverdisplay.ReceiverDisplayPanel;
-import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.receiverdisplay.ReceiverPanelController;
+import AeroQuad.configurator.ui.mainpanel.receiverdisplay.ReceiverDisplayPanel;
+import AeroQuad.configurator.ui.mainpanel.receiverdisplay.ReceiverPanelController;
 
 import javax.swing.JPanel;
 import java.beans.PropertyChangeEvent;

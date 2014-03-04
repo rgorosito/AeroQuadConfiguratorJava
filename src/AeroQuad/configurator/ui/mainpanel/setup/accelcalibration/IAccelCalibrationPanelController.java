@@ -13,4 +13,6 @@ public interface IAccelCalibrationPanelController
     void nextButtonPressed();
 
     void cancelButtonPressed();
+
+    void calibrateLevel();
 }

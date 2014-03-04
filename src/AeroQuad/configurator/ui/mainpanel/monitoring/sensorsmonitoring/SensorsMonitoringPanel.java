@@ -1,15 +1,14 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring;
 
+import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.plotdrawer.SingleDataPlotDrawerPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.plotdrawer.XYZPlotDrawerPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsselectiontree.ISensorsSelectionTree;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsselectiontree.SensorsSelectionTree;
 import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsselectiontree.TreeSelectionChangeListener;
 
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.*;
 
 public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoringPanel
 {
@@ -22,7 +21,7 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
     final XYZPlotDrawerPanel _accelPlotDrawerPanel = new XYZPlotDrawerPanel("Accel");
     final XYZPlotDrawerPanel _gyroPlotDrawerPanel = new XYZPlotDrawerPanel("Gyro");
     final XYZPlotDrawerPanel _magPlotDrawerPanel = new XYZPlotDrawerPanel("Magnetometer");
-    final XYZPlotDrawerPanel _altitudeDrawerPanel = new XYZPlotDrawerPanel("Altitude");
+    final SingleDataPlotDrawerPanel _altitudeDrawerPanel = new SingleDataPlotDrawerPanel("Altitude");
 
     public SensorsMonitoringPanel(final ISensorsMonitoringController controller)
     {
@@ -131,9 +130,9 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
     }
 
     @Override
-    public void setBaroAltitude(final float value)
+    public void setBaroAltitude(final String value)
     {
-        _altitudeDrawerPanel.addXValue(value);
+        _altitudeDrawerPanel.addValue(Float.parseFloat(value));
     }
 
 
@@ -192,6 +191,10 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
             _magPlotDrawerPanel.setXVisible(selected);
             _magPlotDrawerPanel.setYVisible(selected);
             _magPlotDrawerPanel.setZVisible(selected);
+        }
+        else if (key.equals(ISensorsSelectionTree.ALTITUDE_KEY))
+        {
+            _altitudeDrawerPanel.setValueVisible(selected);
         }
         else
         {

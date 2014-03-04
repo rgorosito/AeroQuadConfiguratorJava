@@ -17,4 +17,6 @@ public interface IOtherSensorsStatusPanel
     void setFlightMode(FlightMode flightMode);
 
     void setVoltage(Float value);
+
+    void setZVelocity(Float value);
 }
