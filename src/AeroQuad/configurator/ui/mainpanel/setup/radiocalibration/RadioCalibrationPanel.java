@@ -33,10 +33,15 @@ public class RadioCalibrationPanel extends JPanel implements IRadioCalibrationPa
 
         final JPanel buttonPanel = new JPanel(new BorderLayout());
         buttonPanel.setBorder(new LineBorder(Color.black, 1));
-        final JLabel infoLabel = new JLabel("<HTML><CENTER>Press start button<br>move all stick and switch to all min and max position<br>and press finish.</CENTER><HTML>");
-        infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        infoLabel.setPreferredSize(new Dimension(600, 125));
-        buttonPanel.add(infoLabel, BorderLayout.WEST);
+        final JPanel infoPanel = new JPanel(new BorderLayout());
+        final JLabel trimInfoLabel = new JLabel("<HTML><CENTER>First, set all trim at neutral position</CENTER><HTML>");
+        trimInfoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        infoPanel.add(trimInfoLabel, BorderLayout.NORTH);
+        final JLabel bottomInfoLabel = new JLabel("<HTML><CENTER>Then press start button<br>move all stick and switch to all min and max position<br>and press finish.</CENTER><HTML>");
+        bottomInfoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        infoPanel.setPreferredSize(new Dimension(600, 125));
+        infoPanel.add(bottomInfoLabel, BorderLayout.CENTER);
+        buttonPanel.add(infoPanel, BorderLayout.WEST);
         final JPanel startStopButtonPanel = new JPanel(new GridLayout(1,2));
         startStopButtonPanel.add(new JLabel());
         startStopButtonPanel.add(_startStopButton);

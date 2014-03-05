@@ -23,12 +23,12 @@ public class MagCalibrationPanelController implements IMagCalibrationPanelContro
     private IMagCalibrationPanel _panel;
     private final ISerialCommunicator _communicator;
 
-    private int _xMin = 0;
-    private int _xMax = 0;
-    private int _yMin = 0;
-    private int _yMax = 0;
-    private int _zMin = 0;
-    private int _zMax = 0;
+    private double _xMin = 0.0;
+    private double _xMax = 0.0;
+    private double _yMin = 0.0;
+    private double _yMax = 0.0;
+    private double _zMin = 0.0;
+    private double _zMax = 0.0;
 
 
     public MagCalibrationPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
@@ -110,29 +110,30 @@ public class MagCalibrationPanelController implements IMagCalibrationPanelContro
     private void processReceivedMagRawData(final MagRawData magRawData)
     {
         final String xValue = magRawData.getX();
-        int x = Integer.valueOf(xValue);
+        double x = Double.valueOf(xValue);
         _xMin = Math.min(x,_xMin);
         _xMax = Math.max(x, _xMax);
-        _panel.setXSliderValue(x);
-        _panel.setXMinValue(Integer.toString(_xMin));
-        _panel.setXMaxValue(Integer.toString(_xMax));
+        _panel.setXSliderValue((int)x);
+        _panel.setXMinValue(Integer.toString((int)_xMin));
+        _panel.setXMaxValue(Integer.toString((int)_xMax));
 
         final String yValue = magRawData.getY();
-        int y = Integer.valueOf(yValue);
+        double y = Double.valueOf(yValue);
         _yMin = Math.min(y,_yMin);
         _yMax = Math.max(y, _yMax);
-        _panel.setYSliderValue(y);
-        _panel.setYMinValue(Integer.toString(_yMin));
-        _panel.setYMaxValue(Integer.toString(_yMax));
+        _panel.setYSliderValue((int)y);
+        _panel.setYMinValue(Integer.toString((int)_yMin));
+        _panel.setYMaxValue(Integer.toString((int)_yMax));
 
         final String zValue = magRawData.getZ();
-        int z = Integer.valueOf(zValue);
+        double z = Double.valueOf(zValue);
         _zMin = Math.min(z,_zMin);
         _zMax = Math.max(z, _zMax);
-        _panel.setZSliderValue(z);
-        _panel.setZMinValue(Integer.toString(_zMin));
-        _panel.setZMaxValue(Integer.toString(_zMax));
+        _panel.setZSliderValue((int)z);
+        _panel.setZMinValue(Integer.toString((int)_zMin));
+        _panel.setZMaxValue(Integer.toString((int)_zMax));
     }
+
 
     private void updateCalValueToBoard()
     {

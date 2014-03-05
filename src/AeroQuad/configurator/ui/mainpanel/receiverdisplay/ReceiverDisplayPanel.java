@@ -160,7 +160,6 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
             aux3Panel.add(_aux3Label);
             aux3Panel.add(_aux3Slider);
             _middlePanel.add(aux3Panel);
-
         }
     }
 }

@@ -105,10 +105,7 @@ public class ReceiverPanelController implements IReceiverDisplayPanelController
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                if (_enabled)
-                {
-                    _panel.setNbChannel((Integer) evt.getNewValue());
-                }
+                _panel.setNbChannel((Integer) evt.getNewValue());
             }
         });
     }
