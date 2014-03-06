@@ -17,4 +17,6 @@ public interface ISensorsMonitoringPanel
 
 
     void setBaroAltitude(String value);
+
+    void setZVelocity(String value);
 }

@@ -1,19 +1,14 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.batterymonitor;
 
-import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 import AeroQuad.configurator.ui.mainpanel.tuning.singleparamconfigpanel.SingleParamConfigPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.syncedstate.SyncedStatePanel;
 import AeroQuad.configurator.ui.uiutils.UiUtils;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BatteryMonitorPidPanel extends JPanel implements IBatteryMonitorPidPanel
 {
@@ -25,7 +20,6 @@ public class BatteryMonitorPidPanel extends JPanel implements IBatteryMonitorPid
     private final SyncedStatePanel _syncStatePanel = new SyncedStatePanel();
 
     private final JButton _resetDefaultButton = new JButton("<HTML><CENTER>Reset<BR>Default</CENTER></HTML>");
-    private UserLevel _userLevel = UserLevel.Beginner;
     private JPanel _centerPanel;
 
     public BatteryMonitorPidPanel(final IBatteryMonitorPidPanelController batteryMonitorPidPanelController)
@@ -35,6 +29,8 @@ public class BatteryMonitorPidPanel extends JPanel implements IBatteryMonitorPid
         _controller.setPanel(this);
 
         initPanel();
+
+        connectListener();
     }
 
     private void initPanel()
@@ -62,10 +58,63 @@ public class BatteryMonitorPidPanel extends JPanel implements IBatteryMonitorPid
         add(mainPanel, BorderLayout.WEST);
     }
 
+    private void connectListener()
+    {
+        _alarmVoltagePanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userAlarmVoltageChanged(_alarmVoltagePanel.getText());
+            }
+        });
+        _throttleTargetPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userThrottleTargetChanged(_throttleTargetPanel.getText());
+            }
+        });
+        _goingDownTimePanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userGoingDownTimeChanged(_goingDownTimePanel.getText());
+            }
+        });
+        _resetDefaultButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userDefaultButtonPressed();
+            }
+        });
+    }
 
     @Override
-    public void setSinced(final boolean haveBeenSincedOnce)
+    public void setSinced(final boolean synced)
     {
+        _syncStatePanel.setSynced(synced);
+    }
 
+    @Override
+    public void setAlarmVoltage(final String alarmVoltage)
+    {
+        _alarmVoltagePanel.setText(alarmVoltage);
+    }
+
+    @Override
+    public void setThrottleTarget(final String throttleTarget)
+    {
+        _throttleTargetPanel.setText(throttleTarget);
+    }
+
+    @Override
+    public void setGoingDownTime(final String goingDownTime)
+    {
+        _goingDownTimePanel.setText(goingDownTime);
     }
 }

@@ -22,6 +22,7 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
     final XYZPlotDrawerPanel _gyroPlotDrawerPanel = new XYZPlotDrawerPanel("Gyro");
     final XYZPlotDrawerPanel _magPlotDrawerPanel = new XYZPlotDrawerPanel("Magnetometer");
     final SingleDataPlotDrawerPanel _altitudeDrawerPanel = new SingleDataPlotDrawerPanel("Altitude");
+    final SingleDataPlotDrawerPanel _zVelocityDrawerPanel = new SingleDataPlotDrawerPanel("Z Velocity");
 
     public SensorsMonitoringPanel(final ISensorsMonitoringController controller)
     {
@@ -72,6 +73,7 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
         if (value)
         {
             _plotPanel.add(_altitudeDrawerPanel);
+            _plotPanel.add(_zVelocityDrawerPanel);
         }
     }
 
@@ -133,6 +135,12 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
     public void setBaroAltitude(final String value)
     {
         _altitudeDrawerPanel.addValue(Float.parseFloat(value));
+    }
+
+    @Override
+    public void setZVelocity(final String value)
+    {
+        _zVelocityDrawerPanel.addValue(Float.parseFloat(value));
     }
 
 
@@ -198,7 +206,7 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
         }
         else
         {
-            System.err.println("unsuported tree key");
+            System.err.println("unsuported tree key = " + key);
         }
     }
 }

@@ -52,6 +52,7 @@ public class TuningPanelController implements ITuningPanelController
     private boolean _sendCommandNeeded = false;
 
     private final List<IPidPanelController> _pidPanelControllerList = new ArrayList<IPidPanelController>(1);
+    private boolean _activated = false;
 
     public TuningPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
@@ -134,9 +135,9 @@ public class TuningPanelController implements ITuningPanelController
         _accroPanelController.setHaveNotBeenSincedOnce();
         _attitudePanelController.setHaveNotBeenSincedOnce();
         _yawPidPanelController.setHaveNotBeenSincedOnce();
-        //_altitudeHoldPidPanelController.setHaveNotBeenSincedOnce();
-        //_batteryMonitorPidPanelController.setHaveNotBeenSincedOnce();
-        //_gpsPidPanelController.setHaveNotBeenSincedOnce();
+        _altitudeHoldPidPanelController.setHaveNotBeenSincedOnce();
+        _batteryMonitorPidPanelController.setHaveNotBeenSincedOnce();
+        _gpsPidPanelController.setHaveNotBeenSincedOnce();
     }
 
     private void buildChildscontrollersAndPanels(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
@@ -177,11 +178,12 @@ public class TuningPanelController implements ITuningPanelController
     @Override
     public void setActivated(final boolean activated)
     {
+        _activated = activated;
         if (activated)
         {
             _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
             _syncTimer = new Timer(true);
-            _syncTimer.schedule(new SyncTask(),0,800);
+            _syncTimer.schedule(new SyncTask(),0,100);
         }
         else
         {
@@ -190,6 +192,7 @@ public class TuningPanelController implements ITuningPanelController
                 _syncTimer.cancel();
                 _syncTimer = null;
             }
+            resetPanelsControllersInitState();
         }
     }
 
@@ -243,7 +246,7 @@ public class TuningPanelController implements ITuningPanelController
         {
             try
             {
-                Thread.sleep(300);
+                Thread.sleep(200);
             }
             catch (InterruptedException e)
             {
@@ -251,7 +254,10 @@ public class TuningPanelController implements ITuningPanelController
             }
             synchronized (_pidPanelControllerList)
             {
-                sincedAll();
+                if (_activated)
+                {
+                    sincedAll();
+                }
             }
         }
     }

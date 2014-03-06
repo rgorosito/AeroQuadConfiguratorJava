@@ -17,10 +17,10 @@ public class TuningPanel extends JPanel implements ITuningPanel
 
     private final ITuningPanelController _controller;
 
-    private final GridLayout _gridLayout = new GridLayout(6,1);
     private JPanel _gpsPanel;
     private JPanel _altitudePanel;
     private JPanel _batteryMonitorPanel;
+    private JPanel _centerPanel = new JPanel();
 
 
     public TuningPanel(final ITuningPanelController tuningPanelController)
@@ -62,20 +62,16 @@ public class TuningPanel extends JPanel implements ITuningPanel
         _userLevelButtonGroup.add(_intermediateButton);
         _userLevelButtonGroup.add(_advancedButton);
 
-        final JPanel centerPanel = new JPanel(_gridLayout);
-        centerPanel.add(_controller.getAccroPanel());
-        centerPanel.add(_controller.getAttitudePanel());
-        centerPanel.add(_controller.getYawPanel());
+        _centerPanel.setLayout(new BoxLayout(_centerPanel, BoxLayout.PAGE_AXIS));
+        _centerPanel.add(_controller.getAccroPanel());
+        _centerPanel.add(_controller.getAttitudePanel());
+        _centerPanel.add(_controller.getYawPanel());
         _altitudePanel = _controller.getAltitudePanel();
-        centerPanel.add(_altitudePanel);
         _batteryMonitorPanel = _controller.getBatteryMonitorPanel();
-        centerPanel.add(_batteryMonitorPanel);
         _gpsPanel = _controller.getGpsPanel();
-        centerPanel.add(_gpsPanel);
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
+        mainPanel.add(_centerPanel, BorderLayout.CENTER);
 
         final JScrollPane scrollPane = new JScrollPane(mainPanel);
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         add(scrollPane, BorderLayout.CENTER);
 
 
@@ -120,18 +116,39 @@ public class TuningPanel extends JPanel implements ITuningPanel
     @Override
     public void setGpsPanelVisible(final boolean visible)
     {
-        _gpsPanel.setVisible(visible);
+        if (visible)
+        {
+            _centerPanel.add(_gpsPanel);
+        }
+        else
+        {
+            _centerPanel.remove(_gpsPanel);
+        }
     }
 
     @Override
     public void setBatteryMonitorVisible(final boolean visible)
     {
-        _batteryMonitorPanel.setVisible(visible);
+        if (visible)
+        {
+            _centerPanel.add(_batteryMonitorPanel);
+        }
+        else
+        {
+            _centerPanel.remove(_batteryMonitorPanel);
+        }
     }
 
     @Override
     public void setAltitudeHoldVisible(final boolean visible)
     {
-        _altitudePanel.setVisible(visible);
+        if (visible)
+        {
+            _centerPanel.add(_altitudePanel);
+        }
+        else
+        {
+            _centerPanel.remove(_altitudePanel);
+        }
     }
 }

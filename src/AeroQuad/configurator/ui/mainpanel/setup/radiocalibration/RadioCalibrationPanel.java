@@ -10,6 +10,7 @@ public class RadioCalibrationPanel extends JPanel implements IRadioCalibrationPa
 {
     private final IRadioCalibrationPanelController _controller;
     private final JButton _startStopButton = new JButton("Start");
+    private final JButton _cancelButton = new JButton("Cancel");
 
     public RadioCalibrationPanel(final IRadioCalibrationPanelController controller, final JPanel radioPanelDisplay)
     {
@@ -43,10 +44,12 @@ public class RadioCalibrationPanel extends JPanel implements IRadioCalibrationPa
         infoPanel.add(bottomInfoLabel, BorderLayout.CENTER);
         buttonPanel.add(infoPanel, BorderLayout.WEST);
         final JPanel startStopButtonPanel = new JPanel(new GridLayout(1,2));
-        startStopButtonPanel.add(new JLabel());
         startStopButtonPanel.add(_startStopButton);
+        startStopButtonPanel.add(_cancelButton);
         buttonPanel.add(startStopButtonPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
+
+        _cancelButton.setEnabled(false);
 
         _startStopButton.addActionListener(new ActionListener()
         {
@@ -56,11 +59,25 @@ public class RadioCalibrationPanel extends JPanel implements IRadioCalibrationPa
                 _controller.buttonPressed();
             }
         });
+        _cancelButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.cancel();
+            }
+        });
     }
 
     @Override
     public void setButtonText(final String text)
     {
         _startStopButton.setText(text);
+    }
+
+    @Override
+    public void setCancelEnable(final boolean enable)
+    {
+        _cancelButton.setEnabled(enable);
     }
 }

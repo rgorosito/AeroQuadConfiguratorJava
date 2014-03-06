@@ -191,6 +191,7 @@ public class RadioCalibrationPanelController implements IRadioCalibrationPanelCo
     private void setStandbyState()
     {
         _panel.setButtonText("Start");
+        _panel.setCancelEnable(false);
         _receiverDisplayPanelController.setEnabled(false);
         _currentCalibrationState = RadioCalibrationState.STANDBY;
 
@@ -228,17 +229,86 @@ public class RadioCalibrationPanelController implements IRadioCalibrationPanelCo
             _currentCalibrationState = RadioCalibrationState.GATTERING_DATA;
             _receiverDisplayPanelController.setEnabled(true);
             _communicator.sendRequest(new ReceiverRawValueRequest(_messageDispatcher, _nbChannel));
+            _panel.setCancelEnable(true);
         }
         else
         {
             _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
             sendRadioCalValueCommand();
-            setStandbyState();
         }
+    }
+
+    @Override
+    public void cancel()
+    {
+        _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+        setStandbyState();
     }
 
     private void sendRadioCalValueCommand()
     {
-        System.out.println();
+        final Thread sendingThread = new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                sendValueToAeroquad();
+            }
+        });
+        sendingThread.start();
+
+    }
+
+    private void sendValueToAeroquad()
+    {
+        System.out.println(getMinSetCommand().toString());
+        _communicator.sendCommand(getMinSetCommand().toString());
+        try
+        {
+            Thread.sleep(200);
+        }
+        catch (InterruptedException e)
+        {
+
+        }
+        System.out.println(getMaxSetCommand().toString());
+        _communicator.sendCommand(getMaxSetCommand().toString());
+        setStandbyState();
+    }
+
+    private StringBuffer getMinSetCommand()
+    {
+        final StringBuffer minSetCommand = new StringBuffer();
+        minSetCommand.append("G ");
+        minSetCommand.append(_minRoll).append(";");
+        minSetCommand.append(_minPitch).append(";");
+        minSetCommand.append(_minYaw).append(";");
+        minSetCommand.append(_minThrottle).append(";");
+        minSetCommand.append(_minMode).append(";");
+        minSetCommand.append(_minAux1).append(";");
+        if (_nbChannel > 6)
+        {
+            minSetCommand.append(_minAux2).append(";");
+            minSetCommand.append(_minAux3).append(";");
+        }
+        return minSetCommand;
+    }
+
+    private StringBuffer getMaxSetCommand()
+    {
+        final StringBuffer minSetCommand = new StringBuffer();
+        minSetCommand.append("H ");
+        minSetCommand.append(_maxRoll).append(";");
+        minSetCommand.append(_maxPitch).append(";");
+        minSetCommand.append(_maxYaw).append(";");
+        minSetCommand.append(_maxThrottle).append(";");
+        minSetCommand.append(_maxMode).append(";");
+        minSetCommand.append(_maxAux1).append(";");
+        if (_nbChannel > 6)
+        {
+            minSetCommand.append(_maxAux2).append(";");
+            minSetCommand.append(_maxAux3).append(";");
+        }
+        return minSetCommand;
     }
 }

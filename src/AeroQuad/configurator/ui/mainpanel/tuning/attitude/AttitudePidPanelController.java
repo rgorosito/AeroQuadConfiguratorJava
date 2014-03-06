@@ -133,6 +133,8 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
     {
         _haveBeenSincedOnce = false;
         _panel.setSinced(_haveBeenSincedOnce);
+        _attitudePidData = new AttitudePidData();
+        updatePanelFromPidData(_attitudePidData);
     }
 
     @Override

@@ -93,6 +93,8 @@ public class SensorsSelectionTree extends JTree implements ISensorsSelectionTree
         {
             final DefaultMutableTreeNode altitude = new DefaultMutableTreeNode("altitude");
             _treeModel.insertNodeInto(altitude,_root,_root.getChildCount());
+            final DefaultMutableTreeNode zVelocicy = new DefaultMutableTreeNode("Z Velocity");
+            _treeModel.insertNodeInto(zVelocicy,_root,_root.getChildCount());
             expandAllNode();
         }
     }

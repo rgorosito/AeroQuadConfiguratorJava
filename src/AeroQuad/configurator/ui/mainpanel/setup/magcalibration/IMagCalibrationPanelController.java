@@ -7,4 +7,6 @@ public interface IMagCalibrationPanelController
     void setPanel(IMagCalibrationPanel panel);
 
     void buttonPressed();
+
+    void cancelCalibration();
 }

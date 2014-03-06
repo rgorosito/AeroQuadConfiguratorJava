@@ -124,6 +124,14 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
                 _panel.setBaroAltitude((String) evt.getNewValue());
             }
         });
+        messageDispatcher.addListener(IMessageDispatcher.SENSOR_Z_VELOCITY_VALUE_CHANGE, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                _panel.setZVelocity((String) evt.getNewValue());
+            }
+        });
     }
 
     @Override

@@ -45,16 +45,22 @@ public class StickPanel extends JLabel
     private void drawStickFeedback(final Graphics g)
     {
         final int minSize = Math.min(_width, _height);
-
         final int x = (int) MathUtil.map(_x, 1000, 2000, 0, minSize);
         final int y = (int) MathUtil.map(_y, 2000, 1000, 0, minSize);
 
         final int offsetX = _width - minSize;
         final int offsetY = _height - minSize;
-
         g.setColor(Color.blue);
-        final int dotSize = (int) (minSize*0.1);
-        g.fillOval(x-(dotSize/2)+offsetX,y-(dotSize/2)+(offsetY/2),dotSize,dotSize);
+        final int dotSize = (int) (minSize*0.12);
+
+        if (_width < _height)
+        {
+            g.fillOval(x-(dotSize/2)+offsetX,y-(dotSize/2)+(offsetY/2),dotSize,dotSize);
+        }
+        else
+        {
+            g.fillOval(x-(dotSize/2)+offsetX/2,y-(dotSize/2)+(offsetY),dotSize,dotSize);
+        }
     }
 
 
@@ -64,29 +70,31 @@ public class StickPanel extends JLabel
 
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-
-
         g2d.setStroke(new BasicStroke(5));
-        g2d.setColor(Color.black);
-
         final int minSize = Math.min(_width, _height);
         if (_width < _height)
         {
             final int offset =  _height - _width;
             int seccondCircleOffset = 5;
-            g2d.drawOval(0+(seccondCircleOffset/2),offset-(offset/2)+(seccondCircleOffset/2),minSize-seccondCircleOffset,minSize-seccondCircleOffset);
+            g2d.setColor(Color.LIGHT_GRAY);
+            g2d.fillRect(0+(seccondCircleOffset/2),offset-(offset/2)+(seccondCircleOffset/2),minSize-seccondCircleOffset,minSize-seccondCircleOffset);
+            g2d.setColor(Color.black);
+            g2d.drawRect(0+(seccondCircleOffset/2),offset-(offset/2)+(seccondCircleOffset/2),minSize-seccondCircleOffset,minSize-seccondCircleOffset);
             seccondCircleOffset = 18;
             g2d.setStroke(new BasicStroke(2));
-            g2d.drawOval(0+(seccondCircleOffset/2),offset-(offset/2)+(seccondCircleOffset/2),minSize-seccondCircleOffset,minSize-seccondCircleOffset);
+            g2d.drawRect(0+(seccondCircleOffset/2),offset-(offset/2)+(seccondCircleOffset/2),minSize-seccondCircleOffset,minSize-seccondCircleOffset);
         }
         else
         {
             final int offset = _width - _height;
             int seccondCircleOffset = 5;
-            g2d.drawOval(offset-(offset/2)+(seccondCircleOffset/2),0+(seccondCircleOffset/2),minSize-seccondCircleOffset,minSize-seccondCircleOffset);
+            g2d.setColor(Color.LIGHT_GRAY);
+            g2d.fillRect(offset-(offset/2)+(seccondCircleOffset/2),0+(seccondCircleOffset/2),minSize-seccondCircleOffset,minSize-seccondCircleOffset);
+            g2d.setColor(Color.black);
+            g2d.drawRect(offset-(offset/2)+(seccondCircleOffset/2),0+(seccondCircleOffset/2),minSize-seccondCircleOffset,minSize-seccondCircleOffset);
             seccondCircleOffset = 18;
             g2d.setStroke(new BasicStroke(2));
-            g2d.drawOval(offset-(offset/2)+(seccondCircleOffset/2),0+(seccondCircleOffset/2),minSize-seccondCircleOffset,minSize-seccondCircleOffset);
+            g2d.drawRect(offset-(offset/2)+(seccondCircleOffset/2),0+(seccondCircleOffset/2),minSize-seccondCircleOffset,minSize-seccondCircleOffset);
         }
     }
 

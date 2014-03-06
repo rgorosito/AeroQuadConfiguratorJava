@@ -34,6 +34,7 @@ public class SensorsValuesMessageAnalyser implements IMessageAnalyser
             final String magZ = splittedData[8];
 
             final String baroAltitude = splittedData[9];
+            final String zVelocity = splittedData[10];
 
             _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_GYRO_X_VALUE_CHANGE, gyroX);
             _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_GYRO_Y_VALUE_CHANGE, gyroY);
@@ -48,6 +49,7 @@ public class SensorsValuesMessageAnalyser implements IMessageAnalyser
             _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_MAG_Z_VALUE_CHANGE, magZ);
 
             _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_BARO_ALTITUDE_VALUE_CHANGE, baroAltitude);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.SENSOR_Z_VELOCITY_VALUE_CHANGE, zVelocity);
 
         }
         catch (final Exception e)

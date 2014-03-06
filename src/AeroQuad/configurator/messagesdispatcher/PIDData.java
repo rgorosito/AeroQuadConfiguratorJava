@@ -8,9 +8,9 @@ public class PIDData
 
     public PIDData()
     {
-        _p = "";
-        _i = "";
-        _d = "";
+        _p = "0";
+        _i = "0";
+        _d = "0";
     }
 
     public PIDData(final String p, final String i, final String d)

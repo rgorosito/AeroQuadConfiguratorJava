@@ -4,11 +4,11 @@ package AeroQuad.configurator.messagesdispatcher;
 public class AltitudeHoldPidData
 {
     private PIDData _altitudeHoldPid = new PIDData();
-    private String _throttleBump = "";
-    private String _throttlePanic = "";
-    private String _minThrottleAdjust = "";
-    private String _maxThrottleAdjust = "";
-    private String _smoothFactor = "";
+    private String _throttleBump = "0";
+    private String _throttlePanic = "0";
+    private String _minThrottleAdjust = "0";
+    private String _maxThrottleAdjust = "0";
+    private String _smoothFactor = "0";
     private PIDData _zDampeningPid = new PIDData();
 
     public AltitudeHoldPidData()

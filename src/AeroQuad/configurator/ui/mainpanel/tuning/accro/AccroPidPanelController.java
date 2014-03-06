@@ -90,6 +90,7 @@ public class AccroPidPanelController implements IAccroPidPanelController
             buffer.append(_userPidData.getPitchPid().getD() + ";");
         }
         buffer.append(_userPidData.getStickScaling());
+
         return buffer.toString();
     }
 
@@ -111,6 +112,8 @@ public class AccroPidPanelController implements IAccroPidPanelController
     {
         _haveBeenSincedOnce = false;
         _panel.setSinced(_haveBeenSincedOnce);
+        _pidData = new AccroPidData();
+        updatePanelFromPidData(_pidData);
     }
 
     @Override

@@ -61,7 +61,7 @@ public class ArtificialHorizonPanel extends JPanel
             System.err.println("Format fonts not correct!!!");
         }
 
-        setMinimumSize(new Dimension(200,200));
+        setMinimumSize(new Dimension(100,100));
 
         setPreferredSize(new Dimension(350,350));
 
@@ -278,7 +278,8 @@ public class ArtificialHorizonPanel extends JPanel
     private void drawStringData(final Graphics2D g2d)
     {
         g2d.setTransform(_originalTransform);
-        g2d.setColor(Color.YELLOW);
+        g2d.setColor(Color.BLUE);
+
         final String rollString = "R:" + Integer.toString(_rollAngle);
         g2d.drawString(rollString,3, (float) PREFERRED_PANEL_SIZE-65);
         final String pitchString = "P:" + Integer.toString(_pitchAngle);

@@ -30,11 +30,9 @@ public class PidPanel extends JPanel
     private final JTextField _dTextField = new JTextField("0");
     private boolean _isIVisible = true;
     private boolean _isDVisible = true;
-    private String header;
     private JLabel _headerLabel;
 
     private final List<ActionListener> _actionListenerList = new ArrayList<ActionListener>(1);
-    private PIDData pid;
 
 
     public PidPanel(final String header)
@@ -47,7 +45,6 @@ public class PidPanel extends JPanel
         setLayout(new BorderLayout());
         setBorder(new LineBorder(Color.black,1));
 
-        //setPreferredSize(new Dimension(100,100));
 
         _headerLabel = new JLabel(header);
         _headerLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -62,7 +59,7 @@ public class PidPanel extends JPanel
         _pTextField.setHorizontalAlignment(SwingConstants.CENTER);
         _pTextField.addKeyListener(new IntegerFilterKeyAdapter());
         _pTextField.addKeyListener(new MyKeyListener());
-        _pTextField.setPreferredSize(new Dimension(50,0));
+        _pTextField.setPreferredSize(new Dimension(50,UiUtils.HEATHER_SMALL_PREFERED_HEIGHT));
         _pPanel.add(_pTextField, BorderLayout.CENTER);
         _centerPanel.add(_pPanel);
 
@@ -73,7 +70,7 @@ public class PidPanel extends JPanel
         _iPanel.add(iLabel, BorderLayout.NORTH);
         _iTextField.setHorizontalAlignment(SwingConstants.CENTER);
         _iTextField.addKeyListener(new IntegerFilterKeyAdapter());
-        _iTextField.setPreferredSize(new Dimension(50,0));
+        _iTextField.setPreferredSize(new Dimension(50,UiUtils.HEATHER_SMALL_PREFERED_HEIGHT));
         _iTextField.addKeyListener(new MyKeyListener());
         _iPanel.add(_iTextField, BorderLayout.CENTER);
         _centerPanel.add(_iPanel);
@@ -86,7 +83,7 @@ public class PidPanel extends JPanel
         _dTextField.setHorizontalAlignment(SwingConstants.CENTER);
         _dTextField.addKeyListener(new IntegerFilterKeyAdapter());
         _dTextField.addKeyListener(new MyKeyListener());
-        _dTextField.setPreferredSize(new Dimension(50,0));
+        _dTextField.setPreferredSize(new Dimension(50,UiUtils.HEATHER_SMALL_PREFERED_HEIGHT));
         _dPanel.add(_dTextField, BorderLayout.CENTER);
         _centerPanel.add(_dPanel);
 

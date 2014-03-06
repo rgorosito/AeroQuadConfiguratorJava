@@ -21,4 +21,6 @@ public interface IMagCalibrationPanel
     void setZSliderValue(int value);
 
     void setButtonText(String text);
+
+    void setCancelEnable(boolean enable);
 }

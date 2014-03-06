@@ -86,6 +86,7 @@ public class AccelCalibrationPanel extends JPanel implements IAccelCalibrationPa
         final JPanel levelCalibrationPanel = new JPanel(new BorderLayout());
         levelCalibrationPanel.setBorder(new LineBorder(Color.black,1));
         final JLabel levelInfoLabel = new JLabel("<HTML>To calibrate vehicle level, press here after the accel calibration procedure</HTML>");
+        levelInfoLabel.setHorizontalAlignment(SwingConstants.CENTER);
         levelInfoLabel.setPreferredSize(new Dimension(600,125));
         levelCalibrationPanel.add(levelInfoLabel, BorderLayout.WEST);
         final JPanel calibrateLevelButtonPanel = new JPanel(new GridLayout(1,2));

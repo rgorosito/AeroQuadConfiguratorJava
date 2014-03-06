@@ -1,5 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.tuning.gps;
 
+import AeroQuad.configurator.messagesdispatcher.PIDData;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 import AeroQuad.configurator.ui.mainpanel.tuning.pidpanel.PidPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.syncedstate.SyncedStatePanel;
@@ -14,6 +15,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GpsPidPanel extends JPanel implements IGpsPidPanel
 {
@@ -35,6 +38,8 @@ public class GpsPidPanel extends JPanel implements IGpsPidPanel
         _controller.setPanel(this);
 
         initPanel();
+
+        connectListener();
     }
 
     private void initPanel()
@@ -55,6 +60,42 @@ public class GpsPidPanel extends JPanel implements IGpsPidPanel
         add(mainPanel, BorderLayout.WEST);
     }
 
+    private void connectListener()
+    {
+        _rollPidPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userRollPidChanged(_rollPidPanel.getPid());
+            }
+        });
+        _pitchPidPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userPitchPidChanged(_pitchPidPanel.getPid());
+            }
+        });
+        _yawPidPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userYawPidChanged(_yawPidPanel.getPid());
+            }
+        });
+        _resetDefaultButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userDefaultButtonPressed();
+            }
+        });
+    }
+
     @Override
     public void setUserLevel(final UserLevel userLevel)
     {
@@ -65,7 +106,25 @@ public class GpsPidPanel extends JPanel implements IGpsPidPanel
     @Override
     public void setSinced(final boolean sinced)
     {
+        _syncStatePanel.setSynced(sinced);
+    }
 
+    @Override
+    public void setRollPid(final PIDData rollPid)
+    {
+        _rollPidPanel.setPid(rollPid);
+    }
+
+    @Override
+    public void setPitchPid(final PIDData pitchPid)
+    {
+        _pitchPidPanel.setPid(pitchPid);
+    }
+
+    @Override
+    public void setYawPid(final PIDData yawPid)
+    {
+        _yawPidPanel.setPid(yawPid);
     }
 
     private void updateCenterPanelFromUserLevel()

@@ -22,7 +22,8 @@ public class MagCalibrationPanel extends JPanel implements IMagCalibrationPanel
     private final JSlider _zSlider = new JSlider(-1000,1000);
     private final JLabel _zMaxLabel = new JLabel("0");
 
-    private final JButton _calibrateLevelButton = new JButton("Start");
+    private final JButton _startFinishCalibrationButton = new JButton("Start");
+    private final JButton _cancelButton = new JButton("Cancel");
 
     public MagCalibrationPanel(final IMagCalibrationPanelController controller)
     {
@@ -112,12 +113,13 @@ public class MagCalibrationPanel extends JPanel implements IMagCalibrationPanel
         levelInfoLabel.setPreferredSize(new Dimension(600,125));
         levelCalibrationPanel.add(levelInfoLabel, BorderLayout.WEST);
         final JPanel calibrateLevelButtonPanel = new JPanel(new GridLayout(1,2));
-        calibrateLevelButtonPanel.add(new JLabel());
-        calibrateLevelButtonPanel.add(_calibrateLevelButton);
+
+        calibrateLevelButtonPanel.add(_startFinishCalibrationButton);
+        calibrateLevelButtonPanel.add(_cancelButton);
         levelCalibrationPanel.add(calibrateLevelButtonPanel, BorderLayout.CENTER);
         add(levelCalibrationPanel, BorderLayout.SOUTH);
 
-        _calibrateLevelButton.addActionListener(new ActionListener()
+        _startFinishCalibrationButton.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(final ActionEvent e)
@@ -125,6 +127,15 @@ public class MagCalibrationPanel extends JPanel implements IMagCalibrationPanel
                 _controller.buttonPressed();
             }
         });
+        _cancelButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.cancelCalibration();
+            }
+        });
+        _cancelButton.setEnabled(false);
     }
 
     @Override
@@ -184,6 +195,12 @@ public class MagCalibrationPanel extends JPanel implements IMagCalibrationPanel
     @Override
     public void setButtonText(final String text)
     {
-        _calibrateLevelButton.setText(text);
+        _startFinishCalibrationButton.setText(text);
+    }
+
+    @Override
+    public void setCancelEnable(final boolean enable)
+    {
+        _cancelButton.setEnabled(enable);
     }
 }

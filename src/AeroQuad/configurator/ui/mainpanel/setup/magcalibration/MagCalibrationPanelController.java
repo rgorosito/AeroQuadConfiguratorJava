@@ -81,8 +81,8 @@ public class MagCalibrationPanelController implements IMagCalibrationPanelContro
         _panel.setZMaxValue("0");
         _panel.setZSliderValue(0);
         _panel.setButtonText("Start");
-        _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
         _currentCalibrationState = MagCalibrationState.STANDBY;
+        _panel.setCancelEnable(false);
     }
 
     @Override
@@ -99,12 +99,21 @@ public class MagCalibrationPanelController implements IMagCalibrationPanelContro
             _communicator.sendRequest(new MagRawValueRequest(_messageDispatcher));
             _panel.setButtonText("Finish");
             _currentCalibrationState = MagCalibrationState.GATTERING_DATA;
+            _panel.setCancelEnable(true);
         }
         else
         {
+            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
             updateCalValueToBoard();
             setStandbyState();
         }
+    }
+
+    @Override
+    public void cancelCalibration()
+    {
+        _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+        setStandbyState();
     }
 
     private void processReceivedMagRawData(final MagRawData magRawData)
@@ -134,25 +143,20 @@ public class MagCalibrationPanelController implements IMagCalibrationPanelContro
         _panel.setZMaxValue(Integer.toString((int)_zMax));
     }
 
-    // AQ Conf = 5.000000,-93.000000,-21.500000
-
+    // AQ Conf = 5.000000,-93.000000,-21.500000 // maison
+    // AQ Conf = 158.500000,-63.000000,-19.000000 // JOb!?!?
 
     private void updateCalValueToBoard()
     {
-        //final double xMagBias = -((_xMin +_xMax) / 2);
-        //final double yMagBias = -((_yMin +_yMax) / 2);
-        //final double zMagBias = -((_zMin +_zMax) / 2);
-
-        final double xMagBias = (_xMax+_xMin);
-        final double yMagBias = (_yMax+_yMin);
-        final double zMagBias = (_zMax+_zMin);
+        final double xMagBias = -((_xMin + _xMax) / 2);
+        final double yMagBias = -((_yMin + _yMax) / 2);
+        final double zMagBias = -((_zMin + _zMax) / 2);
 
         final StringBuffer magBiasSetCommand = new StringBuffer();
         magBiasSetCommand.append("M ");
         magBiasSetCommand.append(xMagBias).append(";");
         magBiasSetCommand.append(yMagBias).append(";");
         magBiasSetCommand.append(zMagBias).append(";");
-        System.out.println(magBiasSetCommand.toString());
-        //_communicator.sendCommand(magBiasSetCommand.toString());
+        _communicator.sendCommand(magBiasSetCommand.toString());
     }
 }
