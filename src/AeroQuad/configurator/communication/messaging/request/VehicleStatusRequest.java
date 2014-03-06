@@ -7,12 +7,10 @@ import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 public class VehicleStatusRequest implements IRequest
 {
     private final IMessageDispatcher _messageDispatcher;
-    private boolean _activated;
 
-    public VehicleStatusRequest(final IMessageDispatcher messageDispatcher, final boolean activated)
+    public VehicleStatusRequest(final IMessageDispatcher messageDispatcher)
     {
         _messageDispatcher = messageDispatcher;
-        _activated = activated;
     }
 
     @Override
@@ -24,13 +22,6 @@ public class VehicleStatusRequest implements IRequest
     @Override
     public String getStringMessage()
     {
-        if (_activated)
-        {
-            return "s";
-        }
-        else
-        {
-            return "S";
-        }
+        return "s";
     }
 }

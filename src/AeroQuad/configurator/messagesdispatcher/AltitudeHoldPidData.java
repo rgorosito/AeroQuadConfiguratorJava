@@ -1,6 +1,8 @@
 package AeroQuad.configurator.messagesdispatcher;
 
 
+import AeroQuad.configurator.ui.uiutils.UiUtils;
+
 public class AltitudeHoldPidData
 {
     private PIDData _altitudeHoldPid = new PIDData();
@@ -80,23 +82,23 @@ public class AltitudeHoldPidData
         {
             return false;
         }
-        if (!_throttleBump.equals(other._throttleBump))
+        if (!UiUtils.areFloatEquals(_throttleBump, other._throttleBump))
         {
             return false;
         }
-        if (!_throttlePanic.equals(other._throttlePanic))
+        if (!UiUtils.areFloatEquals(_throttlePanic, other._throttlePanic))
         {
             return false;
         }
-        if (!_minThrottleAdjust.equals(other._minThrottleAdjust))
+        if (!UiUtils.areFloatEquals(_minThrottleAdjust, other._minThrottleAdjust))
         {
             return false;
         }
-        if (!_maxThrottleAdjust.equals(other._maxThrottleAdjust))
+        if (!UiUtils.areFloatEquals(_maxThrottleAdjust, other._maxThrottleAdjust))
         {
             return false;
         }
-        if (!_smoothFactor.equals(other._smoothFactor))
+        if (!UiUtils.areFloatEquals(_smoothFactor, other._smoothFactor))
         {
             return false;
         }

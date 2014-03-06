@@ -19,4 +19,6 @@ public interface IReceiverDisplayPanel
     void setAux3Value(String value);
 
     void setNbChannel(int nbChannel);
+
+    void setDisconnected();
 }

@@ -3,17 +3,11 @@ package AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel;
 import AeroQuad.configurator.ui.uiutils.MotorSlider;
 import AeroQuad.configurator.ui.uiutils.UiUtils;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +15,6 @@ public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
 {
     private final IMotorDisplayController _controller;
 
-    final GridLayout _gridLayout = new GridLayout(1,4);
     final JPanel _motor1Panel = new JPanel(new BorderLayout());
     private final JLabel _motor1Label = new JLabel("Motor 1");
     private final MotorSlider _motor1Slider = new MotorSlider();
@@ -55,6 +48,7 @@ public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
     private final MotorSlider _motor8Slider = new MotorSlider();
 
     final List<IUserMotorValueChangedListenrer> _userChangeListenerList = new ArrayList<IUserMotorValueChangedListenrer>(1);
+    private JPanel _motorsPanesContainer = new JPanel();
 
     public MotorDisplayPanel(final IMotorDisplayController controller)
     {
@@ -74,38 +68,38 @@ public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
         motorsLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(motorsLabel, BorderLayout.NORTH);
 
-        final JPanel motorsPanesContainer = new JPanel(_gridLayout);
 
+        _motorsPanesContainer.setLayout(new BoxLayout(_motorsPanesContainer, BoxLayout.X_AXIS));
 
-        setPreferredSize(new Dimension(0,250));
+        setPreferredSize(new Dimension(0, 250));
 
         _motor1Label.setHorizontalAlignment(SwingConstants.CENTER);
         _motor1Label.setBorder(BorderFactory.createLineBorder(Color.black));
         _motor1Label.setPreferredSize(new Dimension(0, UiUtils.HEATHER_PREFERED_HEIGHT));
         _motor1Panel.add(_motor1Label, BorderLayout.NORTH);
         _motor1Panel.add(_motor1Slider, BorderLayout.CENTER);
-        motorsPanesContainer.add(_motor1Panel);
+        _motorsPanesContainer.add(_motor1Panel);
 
         _motor2Label.setHorizontalAlignment(SwingConstants.CENTER);
         _motor2Label.setBorder(BorderFactory.createLineBorder(Color.black));
         _motor2Label.setPreferredSize(new Dimension(0, UiUtils.HEATHER_PREFERED_HEIGHT));
         _motor2Panel.add(_motor2Label, BorderLayout.NORTH);
         _motor2Panel.add(_motor2Slider, BorderLayout.CENTER);
-        motorsPanesContainer.add(_motor2Panel);
+        _motorsPanesContainer.add(_motor2Panel);
 
         _motor3Label.setHorizontalAlignment(SwingConstants.CENTER);
         _motor3Label.setBorder(BorderFactory.createLineBorder(Color.black));
         _motor3Label.setPreferredSize(new Dimension(0, UiUtils.HEATHER_PREFERED_HEIGHT));
         _motor3Panel.add(_motor3Label, BorderLayout.NORTH);
         _motor3Panel.add(_motor3Slider, BorderLayout.CENTER);
-        motorsPanesContainer.add(_motor3Panel);
+        _motorsPanesContainer.add(_motor3Panel);
 
         _motor4Label.setHorizontalAlignment(SwingConstants.CENTER);
         _motor4Label.setBorder(BorderFactory.createLineBorder(Color.black));
         _motor4Label.setPreferredSize(new Dimension(0, UiUtils.HEATHER_PREFERED_HEIGHT));
         _motor4Panel.add(_motor4Label, BorderLayout.NORTH);
         _motor4Panel.add(_motor4Slider, BorderLayout.CENTER);
-        motorsPanesContainer.add(_motor4Panel);
+        _motorsPanesContainer.add(_motor4Panel);
 
         _motor5Label.setHorizontalAlignment(SwingConstants.CENTER);
         _motor5Label.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -131,7 +125,7 @@ public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
         _motor8Panel.add(_motor8Label, BorderLayout.NORTH);
         _motor8Panel.add(_motor8Slider, BorderLayout.CENTER);
 
-        add(motorsPanesContainer, BorderLayout.CENTER);
+        add(_motorsPanesContainer, BorderLayout.CENTER);
 
         setBorder(new LineBorder(Color.BLACK,3));
 
@@ -217,17 +211,15 @@ public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
     @Override
     public void setNbMotor(final int nbMotor)
     {
-        if (nbMotor >= 6)
+        if (nbMotor > 4)
         {
-            _gridLayout.setColumns(6);
-            add(_motor5Panel);
-            add(_motor6Panel);
+            _motorsPanesContainer.add(_motor5Panel);
+            _motorsPanesContainer.add(_motor6Panel);
         }
-        if (nbMotor >= 8)
+        if (nbMotor > 6)
         {
-            _gridLayout.setColumns(8);
-            add(_motor7Panel);
-            add(_motor8Panel);
+            _motorsPanesContainer.add(_motor7Panel);
+            _motorsPanesContainer.add(_motor8Panel);
         }
     }
 
@@ -341,5 +333,14 @@ public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
                 _motor8Slider.setValue(value);
                 break;
         }
+    }
+
+    @Override
+    public void setDisconnected()
+    {
+        _motorsPanesContainer.remove(_motor5Panel);
+        _motorsPanesContainer.remove(_motor6Panel);
+        _motorsPanesContainer.remove(_motor7Panel);
+        _motorsPanesContainer.remove(_motor8Panel);
     }
 }

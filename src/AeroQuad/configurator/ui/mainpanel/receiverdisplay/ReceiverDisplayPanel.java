@@ -2,18 +2,14 @@ package AeroQuad.configurator.ui.mainpanel.receiverdisplay;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.*;
 
 public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPanel
 {
     private final StickPanel _throttleYawPanel = new StickPanel();
     private final StickPanel _rollPitchPanel = new StickPanel();
 
-    final GridLayout _gridLayout = new GridLayout(2,1);
-    final JPanel _middlePanel = new JPanel(_gridLayout);
+    final JPanel _middlePanel = new JPanel();
 
     private final JLabel _modeLabel = new JLabel("Mode");
     private final JSlider _modeSlider = new JSlider();
@@ -23,6 +19,11 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
     private final JSlider _aux2Slider = new JSlider();
     private final JLabel _aux3Label = new JLabel("AUX 3");
     private final JSlider _aux3Slider = new JSlider();
+
+    final JPanel _modePanel = new JPanel();
+    final JPanel _aux1Panel = new JPanel();
+    final JPanel _aux2Panel = new JPanel();
+    final JPanel _aux3Panel = new JPanel();
 
 
     public ReceiverDisplayPanel(final IReceiverDisplayPanelController controller)
@@ -41,7 +42,7 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         add(_throttleYawPanel, BorderLayout.WEST);
         add(_rollPitchPanel,BorderLayout.EAST);
 
-
+        _middlePanel.setLayout(new BoxLayout(_middlePanel, BoxLayout.PAGE_AXIS));
         _modeSlider.setPaintLabels(true);
         _modeSlider.setMinimum(1000);
         _modeSlider.setMaximum(2000);
@@ -51,11 +52,11 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _modeSlider.setPaintTicks(true);
         _modeSlider.setPaintLabels(true);
         _modeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        final JPanel modePanel = new JPanel(new GridLayout(2,1));
-        modePanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        modePanel.add(_modeLabel);
-        modePanel.add(_modeSlider);
-        _middlePanel.add(modePanel);
+        _modePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        _modePanel.setLayout(new BoxLayout(_modePanel, BoxLayout.PAGE_AXIS));
+        _modePanel.add(_modeLabel);
+        _modePanel.add(_modeSlider);
+        _middlePanel.add(_modePanel);
 
         _aux1Slider.setMinimum(1000);
         _aux1Slider.setMaximum(2000);
@@ -64,13 +65,12 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux1Slider.setMinorTickSpacing(50);
         _aux1Slider.setPaintTicks(true);
         _aux1Slider.setPaintLabels(true);
-
         _aux1Label.setHorizontalAlignment(SwingConstants.CENTER);
-        final JPanel aux1Panel = new JPanel(new GridLayout(2,1));
-        aux1Panel.setBorder(BorderFactory.createLineBorder(Color.black));
-        aux1Panel.add(_aux1Label);
-        aux1Panel.add(_aux1Slider);
-        _middlePanel.add(aux1Panel);
+        _aux1Panel.setBorder(BorderFactory.createLineBorder(Color.black));
+        _aux1Panel.setLayout(new BoxLayout(_aux1Panel, BoxLayout.PAGE_AXIS));
+        _aux1Panel.add(_aux1Label);
+        _aux1Panel.add(_aux1Slider);
+        _middlePanel.add(_aux1Panel);
 
         _aux2Slider.setMinimum(1000);
         _aux2Slider.setMaximum(2000);
@@ -80,6 +80,10 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux2Slider.setMinorTickSpacing(50);
         _aux2Slider.setPaintTicks(true);
         _aux2Slider.setPaintLabels(true);
+        _aux2Panel.setLayout(new BoxLayout(_aux2Panel, BoxLayout.PAGE_AXIS));
+        _aux2Panel.setBorder(BorderFactory.createLineBorder(Color.black));
+        _aux2Panel.add(_aux2Label);
+        _aux2Panel.add(_aux2Slider);
 
         _aux3Slider.setMinimum(1000);
         _aux3Slider.setMaximum(2000);
@@ -89,6 +93,11 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux3Slider.setMinorTickSpacing(50);
         _aux3Slider.setPaintTicks(true);
         _aux3Slider.setPaintLabels(true);
+        _aux3Panel.setLayout(new BoxLayout(_aux3Panel, BoxLayout.PAGE_AXIS));
+        _aux3Panel.setBorder(BorderFactory.createLineBorder(Color.black));
+        _aux3Panel.add(_aux3Label);
+        _aux3Panel.add(_aux3Slider);
+
 
         add(_middlePanel,BorderLayout.CENTER);
 
@@ -148,18 +157,15 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
     {
         if (nbChannel >= 8)
         {
-            _gridLayout.setRows(4);
-            final JPanel aux2Panel = new JPanel(new GridLayout(2,1));
-            aux2Panel.setBorder(BorderFactory.createLineBorder(Color.black));
-            aux2Panel.add(_aux2Label);
-            aux2Panel.add(_aux2Slider);
-            _middlePanel.add(aux2Panel);
-
-            final JPanel aux3Panel = new JPanel(new GridLayout(2,1));
-            aux3Panel.setBorder(BorderFactory.createLineBorder(Color.black));
-            aux3Panel.add(_aux3Label);
-            aux3Panel.add(_aux3Slider);
-            _middlePanel.add(aux3Panel);
+            _middlePanel.add(_aux2Panel);
+            _middlePanel.add(_aux3Panel);
         }
+    }
+
+    @Override
+    public void setDisconnected()
+    {
+        _middlePanel.remove(_aux2Panel);
+        _middlePanel.remove(_aux3Panel);
     }
 }

@@ -16,7 +16,7 @@ public class CommunicationStatisticsProcessor implements ICommunicationStatistic
     public CommunicationStatisticsProcessor(final ISerialCommunicator communicator, IMessageDispatcher messageDispatcher)
     {
         _messageDispatcher = messageDispatcher;
-        communicator.addListener(ISerialCommunicator.RAW_DATA_MESSAGE_SENT, new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.RAW_DATA_MESSAGE_SENT, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
@@ -25,7 +25,7 @@ public class CommunicationStatisticsProcessor implements ICommunicationStatistic
                 _nbCharSent += sentString.length();
             }
         });
-        communicator.addListener(ISerialCommunicator.RAW_DATA_MESSAGE_RECEIVED, new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.RAW_DATA_MESSAGE_RECEIVED, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)

@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.setup.accelcalibration;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 import AeroQuad.configurator.communication.messaging.request.AccelRawValueRequest;
 import AeroQuad.configurator.messagesdispatcher.AccelRawData;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
@@ -41,7 +42,7 @@ public class AccelCalibrationPanelController implements IAccelCalibrationPanelCo
     {
         if (activated)
         {
-            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+            _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
         }
         else
         {
@@ -83,7 +84,7 @@ public class AccelCalibrationPanelController implements IAccelCalibrationPanelCo
     public void cancelButtonPressed()
     {
         _currentCalibrationStep = CalibrationStep.FLAT_UP;
-        _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+        _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
         _readingSample = 0;
         _panel.setCancelButtonEnabled(false);
         _panel.setNextButtonEnabeld(true);
@@ -131,7 +132,7 @@ public class AccelCalibrationPanelController implements IAccelCalibrationPanelCo
 
     private void processReadingSampleTerminated()
     {
-        _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+        _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
         _panel.setNextButtonEnabeld(true);
         _readingSample = 0;
         _panel.setProgress(0);

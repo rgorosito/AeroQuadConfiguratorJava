@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.setup.magcalibration;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 import AeroQuad.configurator.communication.messaging.request.MagRawValueRequest;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.messagesdispatcher.MagRawData;
@@ -54,7 +55,7 @@ public class MagCalibrationPanelController implements IMagCalibrationPanelContro
     {
         if (activated)
         {
-            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+            _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
         }
         else
         {
@@ -103,7 +104,7 @@ public class MagCalibrationPanelController implements IMagCalibrationPanelContro
         }
         else
         {
-            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+            _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
             updateCalValueToBoard();
             setStandbyState();
         }
@@ -112,7 +113,7 @@ public class MagCalibrationPanelController implements IMagCalibrationPanelContro
     @Override
     public void cancelCalibration()
     {
-        _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+        _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
         setStandbyState();
     }
 

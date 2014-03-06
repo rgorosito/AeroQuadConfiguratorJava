@@ -144,4 +144,10 @@ public class MotorMonitoringPanel extends JPanel implements IMotorMonitoringPane
     {
         _sendButton.setEnabled(enabled);
     }
+
+    @Override
+    public void setNbMotors(final int nbMotors)
+    {
+        _motorDisplayPanel.setNbMotor(nbMotors);
+    }
 }

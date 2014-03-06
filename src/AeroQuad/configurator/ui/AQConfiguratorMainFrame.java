@@ -109,7 +109,7 @@ public class AQConfiguratorMainFrame extends JFrame
 
 
 
-        final MainMenuPanel mainMenue = new MainMenuPanel(new MainMenuController(communicator, mainPanelController));
+        final MainMenuPanel mainMenue = new MainMenuPanel(new MainMenuController(messageDispatcher, mainPanelController));
         mainContainer.add(mainMenue, BorderLayout.WEST);
 
 

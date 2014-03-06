@@ -15,7 +15,7 @@ public class ConnectionPanelController implements IConnectionStatusPanelControll
     {
         _communicator = communicator;
 
-        _communicator.addListener(ISerialCommunicator.CONNECTION_STATE_CHANGE,new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.CONNECTION_STATE_CHANGE,new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent event)
@@ -46,7 +46,5 @@ public class ConnectionPanelController implements IConnectionStatusPanelControll
     public void setPanel(IConnectionStatusPanel panel)
     {
         _panel = panel;
-//        _panel.setConnectionButtonEnabled(true);
-//        _panel.setDeconnectionButtonEnabled(false);
     }
 }

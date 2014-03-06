@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 import AeroQuad.configurator.communication.messaging.request.SensorsValueRequest;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
@@ -132,6 +133,15 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
                 _panel.setZVelocity((String) evt.getNewValue());
             }
         });
+
+        //messageDispatcher.addListener(IMessageDispatcher.SENSOR_Z_VELOCITY_VALUE_CHANGE, new PropertyChangeListener()
+        //{
+        //    @Override
+        //    public void propertyChange(final PropertyChangeEvent evt)
+        //    {
+        //        _panel.setZVelocity((String) evt.getNewValue());
+        //    }
+        //});
     }
 
     @Override
@@ -139,7 +149,7 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
     {
         if (activated)
         {
-            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+            _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
             _communicator.sendRequest(new SensorsValueRequest(_messageDispatcher, activated));
         }
     }

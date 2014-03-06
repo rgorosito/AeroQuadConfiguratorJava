@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.tuning;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.tuning.accro.AccroPidPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.accro.AccroPidPanelController;
@@ -51,7 +52,7 @@ public class TuningPanelController implements ITuningPanelController
     private Timer _syncTimer = null;
     private boolean _sendCommandNeeded = false;
 
-    private final List<IPidPanelController> _pidPanelControllerList = new ArrayList<IPidPanelController>(1);
+    private final List<IPidPanelController> _pidPanelControllerList = new ArrayList<>(1);
     private boolean _activated = false;
 
     public TuningPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
@@ -116,7 +117,7 @@ public class TuningPanelController implements ITuningPanelController
             }
         });
 
-        communicator.addListener(ISerialCommunicator.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
@@ -181,7 +182,7 @@ public class TuningPanelController implements ITuningPanelController
         _activated = activated;
         if (activated)
         {
-            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+            _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
             _syncTimer = new Timer(true);
             _syncTimer.schedule(new SyncTask(),0,100);
         }
@@ -237,6 +238,25 @@ public class TuningPanelController implements ITuningPanelController
     public void resetEeprom()
     {
         _communicator.sendCommand("I");
+        _panel.setResetEepromEnabled(false);
+        final Thread disabledResetEepromThread = new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    Thread.sleep(3000);
+                }
+                catch (Exception e)
+                {
+                    // do nothing
+                }
+                _panel.setResetEepromEnabled(true);
+            }
+        });
+        disabledResetEepromThread.start();  // cause it can take some time for the board and we get disconected if we ask 2 time in a row!
+        resetPanelsControllersInitState();
     }
 
     class SyncTask extends TimerTask

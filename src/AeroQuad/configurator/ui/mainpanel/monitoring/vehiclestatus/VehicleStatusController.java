@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 import AeroQuad.configurator.communication.messaging.request.VehicleStatusRequest;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.messagesdispatcher.VehicleAttitude;
@@ -35,8 +36,8 @@ public class VehicleStatusController implements IVehicleStatusController
     {
         if (activated)
         {
-            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
-            _communicator.sendRequest(new VehicleStatusRequest(_messageDispatcher,activated));
+            _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
+            _communicator.sendRequest(new VehicleStatusRequest(_messageDispatcher));
         }
     }
 

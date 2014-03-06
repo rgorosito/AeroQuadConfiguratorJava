@@ -5,4 +5,6 @@ public interface IMotorMonitoringPanel
     void setMotorValue(int motor, Integer value);
 
     void setSendEnabled(boolean enabled);
+
+    void setNbMotors(int nbMotors);
 }

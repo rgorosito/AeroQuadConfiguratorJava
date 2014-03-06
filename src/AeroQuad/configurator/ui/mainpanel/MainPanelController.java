@@ -37,7 +37,7 @@ public class MainPanelController implements IMainPanelController
         _tuningController = new TuningPanelController(messageDispatcher, communicator);
         _tuningPanel = new TuningPanel(_tuningController);
 
-        communicator.addListener(ISerialCommunicator.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)

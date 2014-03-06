@@ -1,6 +1,6 @@
 package AeroQuad.configurator.ui.mainmenue;
 
-import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.IMainPanelController;
 
 import java.beans.PropertyChangeEvent;
@@ -11,11 +11,11 @@ public class MainMenuController implements IMainMenuController
     private IMainMenuPanel _panel;
     private final IMainPanelController _mainPanelController;
 
-    public MainMenuController(final ISerialCommunicator communicator,
+    public MainMenuController(final IMessageDispatcher messageDispatcher,
                               final IMainPanelController mainPanelController)
     {
         _mainPanelController = mainPanelController;
-        communicator.addListener(ISerialCommunicator.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(PropertyChangeEvent evt)

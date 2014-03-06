@@ -51,7 +51,7 @@ public class MonitoringPanelController implements IMonitoringPanelController
         _sensorsMonitoringPanel = new SensorsMonitoringPanel(_sensorsMonitoringPanelController);
 
 
-        communicator.addListener(ISerialCommunicator.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
+        messageDispatcher.addListener(IMessageDispatcher.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)

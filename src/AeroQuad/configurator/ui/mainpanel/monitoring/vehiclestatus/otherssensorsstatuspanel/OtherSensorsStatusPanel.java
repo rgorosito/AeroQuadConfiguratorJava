@@ -3,26 +3,23 @@ package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensor
 
 import AeroQuad.configurator.messagesdispatcher.FlightMode;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.*;
 
 public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStatusPanel
 {
-    private final int DEFAULT_NB_ROW = 2;
-    private int _currentNbRow = DEFAULT_NB_ROW;
-
     private final JLabel _motorStatusLabel = new JLabel();
     private final JLabel _flightModeLabel = new JLabel();
     private final JLabel _batteryVoltageLabel = new JLabel();
     private final JLabel _altitudeHoldStateLabel = new JLabel();
     private final JLabel _currentVehicleAltitudeLabel = new JLabel();
     private final JLabel _currentZVelocityLabel = new JLabel();
+
+    private final JPanel _altitudeHoldPanel = new JPanel(new GridLayout(1,2));
+    private final JPanel _currentAltitudePanel = new JPanel(new GridLayout(1,2));
+    private final JPanel _currenZVelocityPanel = new JPanel(new GridLayout(1,2));
+    private final JPanel _currenBatteryVoltagePanel = new JPanel(new GridLayout(1,2));
 
     public OtherSensorsStatusPanel(final IOtherSensorsStatusPanelController controller)
     {
@@ -35,7 +32,8 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
 
     private void init()
     {
-        setLayout(new GridLayout(DEFAULT_NB_ROW, 2));
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        setBorder(new LineBorder(Color.BLACK,3));
 
         _motorStatusLabel.setOpaque(true);
         _motorStatusLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -53,18 +51,48 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
         _currentZVelocityLabel.setHorizontalAlignment(SwingConstants.CENTER);
         _currentZVelocityLabel.setBorder(BorderFactory.createLineBorder(Color.black));
 
+        final JPanel motorArmedPanel = new JPanel(new GridLayout(1,2));
         final JLabel motorLabel = new JLabel("Motor");
         motorLabel.setOpaque(true);
         motorLabel.setBorder(BorderFactory.createLineBorder(Color.black));
-        add(motorLabel);
-        add(_motorStatusLabel);
+        motorArmedPanel.add(motorLabel);
+        motorArmedPanel.add(_motorStatusLabel);
+        add(motorArmedPanel);
+
+        final JPanel flightModePanel = new JPanel(new GridLayout(1,2));
         final JLabel flightModeLabel = new JLabel("Flight Mode");
         flightModeLabel.setOpaque(true);
         flightModeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
-        add(flightModeLabel);
-        add(_flightModeLabel);
+        flightModePanel.add(flightModeLabel);
+        flightModePanel.add(_flightModeLabel);
+        add(flightModePanel);
 
-        setBorder(new LineBorder(Color.BLACK,3));
+
+        final JLabel altitudeHoldLabel = new JLabel("Altitude Hold");
+        altitudeHoldLabel.setOpaque(true);
+        altitudeHoldLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        _altitudeHoldPanel.add(altitudeHoldLabel);
+        _altitudeHoldPanel.add(_altitudeHoldStateLabel);
+
+        final JLabel currentAltitudeLabel = new JLabel("Current Altitude");
+        currentAltitudeLabel.setOpaque(true);
+        currentAltitudeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        _currentAltitudePanel.add(currentAltitudeLabel);
+        _currentAltitudePanel.add(_currentVehicleAltitudeLabel);
+
+        final JLabel currentZVelocityLabel = new JLabel("Z Velocity");
+        currentZVelocityLabel.setOpaque(true);
+        currentZVelocityLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        _currenZVelocityPanel.add(currentZVelocityLabel);
+        _currenZVelocityPanel.add(_currentZVelocityLabel);
+
+        final JLabel batteryLabel = new JLabel("Battery");
+        batteryLabel.setOpaque(true);
+        batteryLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        _currenBatteryVoltagePanel.add(batteryLabel);
+        _currenBatteryVoltagePanel.add(_batteryVoltageLabel);
+
+
     }
 
     @Override
@@ -72,27 +100,9 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
     {
         if (enabled)
         {
-            _currentNbRow+=3;
-
-            setLayout(new GridLayout(_currentNbRow, 2));
-            final JLabel altitudeHoldLabel = new JLabel("Altitude Hold");
-            altitudeHoldLabel.setOpaque(true);
-            altitudeHoldLabel.setBorder(BorderFactory.createLineBorder(Color.black));
-            add(altitudeHoldLabel);
-            add(_altitudeHoldStateLabel);
-
-            final JLabel currentAltitudeLabel = new JLabel("Current Altitude");
-            currentAltitudeLabel.setOpaque(true);
-            currentAltitudeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
-            add(currentAltitudeLabel);
-            add(_currentVehicleAltitudeLabel);
-
-            final JLabel currentZVelocityLabel = new JLabel("Z Velocity");
-            currentZVelocityLabel.setOpaque(true);
-            currentZVelocityLabel.setBorder(BorderFactory.createLineBorder(Color.black));
-            add(currentZVelocityLabel);
-            add(_currentZVelocityLabel);
-
+            add(_currenZVelocityPanel);
+            add(_currentAltitudePanel);
+            add(_currenZVelocityPanel);
         }
     }
 
@@ -101,14 +111,7 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
     {
         if (enabled)
         {
-            _currentNbRow++;
-
-            setLayout(new GridLayout(_currentNbRow, 2));
-            final JLabel batteryLabel = new JLabel("Battery");
-            batteryLabel.setOpaque(true);
-            batteryLabel.setBorder(BorderFactory.createLineBorder(Color.black));
-            add(batteryLabel);
-            add(_batteryVoltageLabel);
+            add(_currenBatteryVoltagePanel);
         }
     }
 
@@ -173,5 +176,14 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
     public void setZVelocity(final Float value)
     {
         _currentZVelocityLabel.setText(value.toString());
+    }
+
+    @Override
+    public void setDisconected()
+    {
+        remove(_currenZVelocityPanel);
+        remove(_currentAltitudePanel);
+        remove(_currenZVelocityPanel);
+        remove(_currenBatteryVoltagePanel);
     }
 }

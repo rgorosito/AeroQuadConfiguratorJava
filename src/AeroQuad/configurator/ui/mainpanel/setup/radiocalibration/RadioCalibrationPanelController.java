@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.setup.radiocalibration;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 import AeroQuad.configurator.communication.messaging.request.ReceiverRawValueRequest;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.receiverdisplay.IReceiverDisplayPanelController;
@@ -180,7 +181,7 @@ public class RadioCalibrationPanelController implements IRadioCalibrationPanelCo
     {
         if (activated)
         {
-            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+            _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
         }
         else
         {
@@ -233,7 +234,7 @@ public class RadioCalibrationPanelController implements IRadioCalibrationPanelCo
         }
         else
         {
-            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+            _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
             sendRadioCalValueCommand();
         }
     }
@@ -241,7 +242,7 @@ public class RadioCalibrationPanelController implements IRadioCalibrationPanelCo
     @Override
     public void cancel()
     {
-        _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+        _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
         setStandbyState();
     }
 
@@ -261,7 +262,6 @@ public class RadioCalibrationPanelController implements IRadioCalibrationPanelCo
 
     private void sendValueToAeroquad()
     {
-        System.out.println(getMinSetCommand().toString());
         _communicator.sendCommand(getMinSetCommand().toString());
         try
         {
@@ -271,7 +271,6 @@ public class RadioCalibrationPanelController implements IRadioCalibrationPanelCo
         {
 
         }
-        System.out.println(getMaxSetCommand().toString());
         _communicator.sendCommand(getMaxSetCommand().toString());
         setStandbyState();
     }

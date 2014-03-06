@@ -18,4 +18,22 @@ public class UiUtils
 
     public static final int HEATHER_PREFERED_HEIGHT = 40;
     public static final int HEATHER_SMALL_PREFERED_HEIGHT = 25;
+
+    public static boolean areFloatEquals(final String str1, final String str2)
+    {
+        try
+        {
+            float v1 = Float.valueOf(str1);
+            float v2  = Float.valueOf(str2);
+            if (v1 == v2)
+            {
+                return true;
+            }
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+        return false;
+    }
 }

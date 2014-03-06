@@ -1,5 +1,6 @@
 package AeroQuad.configurator.communication;
 
+import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 import AeroQuad.configurator.communication.messaging.messageanalyzer.IMessageAnalyser;
 import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.communication.messaging.request.VehicleInfoRequest;
@@ -9,15 +10,10 @@ import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -37,31 +33,23 @@ public class SerialCommunicator implements ISerialCommunicator
 
     private final IMessageDispatcher _messageDispatcher;
     private IMessageAnalyser _messageAnalyser;
-    private IMessageAnalyser _vehicleStateAnalyser;
 
-    private final PropertyChangeSupport _propertyChangeSupport = new PropertyChangeSupport(this);
     private boolean _isConnecting = false;
 
     public SerialCommunicator(final IMessageDispatcher messageDispatcher)
     {
         _messageDispatcher = messageDispatcher;
 
-        _messageDispatcher.addListener(IMessageDispatcher.FLIGHT_SOFTWARE_VERSION_PROPERTY_KEY, new PropertyChangeListener()
+        _messageDispatcher.addListener(IMessageDispatcher.GPS_PROPERTY_KEY, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 _isConnecting = false;
                 _isConnected = true;
-                _propertyChangeSupport.firePropertyChange(CONNECTION_STATE_CHANGE, null, _isConnected);
+                _messageDispatcher.dispatchMessage(IMessageDispatcher.CONNECTION_STATE_CHANGE, _isConnected);
             }
         });
-    }
-
-    @Override
-    public void addListener(final String propertyName, final PropertyChangeListener listener)
-    {
-        _propertyChangeSupport.addPropertyChangeListener(propertyName, listener);
     }
 
     @Override
@@ -97,7 +85,7 @@ public class SerialCommunicator implements ISerialCommunicator
 
         boolean portFound = false;
         if (_portId != null)
-        {               // If _portId contains at least one element!!!
+        {
             if (_portId.getName().equals(_connectedPortName))
             {
                 portFound = true;
@@ -142,17 +130,17 @@ public class SerialCommunicator implements ISerialCommunicator
             _connectedPort.notifyOnDataAvailable(true);
 
             System.out.println("Port: " + _connectedPortName + " opened");
-            sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+            sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
             final VehicleInfoRequest request = new VehicleInfoRequest(_messageDispatcher);
-            _vehicleStateAnalyser = request.getMessageAnalyser();
+            _messageAnalyser = request.getMessageAnalyser();
             sendRequest(request);
         }
     }
 
-    @Override
-    public void disconnect()
+   @Override
+    public void disconnect(final boolean forceDisconnect)
     {
-        if (_isConnected)
+        if (_isConnected || forceDisconnect)
         {
             try
             {
@@ -176,7 +164,8 @@ public class SerialCommunicator implements ISerialCommunicator
 
             System.out.println("Serial Port closed!!");
             _isConnected = false;
-            _propertyChangeSupport.firePropertyChange(CONNECTION_STATE_CHANGE, null, _isConnected);
+            _isConnecting = false;
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.CONNECTION_STATE_CHANGE, _isConnected);
         }
     }
 
@@ -193,14 +182,14 @@ public class SerialCommunicator implements ISerialCommunicator
     {
         try
         {
-            _propertyChangeSupport.firePropertyChange(RAW_DATA_MESSAGE_SENT, null, command);
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.RAW_DATA_MESSAGE_SENT, command);
             _outputStream.write(command.getBytes());
             _outputStream.close();
         }
         catch (IOException e)
         {
             System.err.println("Send command error");
-            disconnect();
+            disconnect(false);
         }
     }
 
@@ -255,17 +244,18 @@ public class SerialCommunicator implements ISerialCommunicator
         }
         catch (IOException e)
         {
-            //System.err.println("Decoding message error = " + rawData);
+            // do nothing
+        }
+        catch (Exception e)
+        {
+            System.err.println("Decoding message error = " + rawData);
         }
     }
 
     private void handleReceivedString(final String rawData)
     {
         //System.out.println(rawData);
-        _propertyChangeSupport.firePropertyChange(RAW_DATA_MESSAGE_RECEIVED, null, rawData);
-        if (!_vehicleStateAnalyser.analyzeRawData(rawData))
-        {
-            _messageAnalyser.analyzeRawData(rawData);
-        }
+        _messageDispatcher.dispatchMessage(IMessageDispatcher.RAW_DATA_MESSAGE_RECEIVED,  rawData);
+        _messageAnalyser.analyzeRawData(rawData);
     }
 }

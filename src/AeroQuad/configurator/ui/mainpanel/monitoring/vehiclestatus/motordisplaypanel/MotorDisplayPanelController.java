@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.motordisplaypanel;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.IMotorDisplayController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.IMotorDisplayPanel;
@@ -90,6 +91,19 @@ public class MotorDisplayPanelController implements IMotorDisplayController
                 _panel.setMotor8CommandValue((String) evt.getNewValue());
             }
         });
+
+        messageDispatcher.addListener(IMessageDispatcher.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final boolean isConnected = (boolean)evt.getNewValue();
+                if (!isConnected)
+                {
+                    _panel.setDisconnected();
+                }
+            }
+        });
     }
 
     @Override
@@ -102,6 +116,9 @@ public class MotorDisplayPanelController implements IMotorDisplayController
     @Override
     public void setActivated(final boolean activated)
     {
-        _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+        if (activated)
+        {
+            _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
+        }
     }
 }

@@ -7,6 +7,10 @@ import java.beans.PropertyChangeListener;
  */
 public interface IMessageDispatcher
 {
+    final String CONNECTION_STATE_CHANGE = "CONNECTION_STATE_CHANGE";
+    final String RAW_DATA_MESSAGE_RECEIVED = "RAW_DATA_MESSAGE_RECEIVED";
+    final String RAW_DATA_MESSAGE_SENT = "RAW_DATA_MESSAGE_SENT";
+
     final String GPS_PROPERTY_KEY = "GPS_PROPERTY_KEY";
     final String RANGE_DETECTION_PROPERTY_KEY = "RANGE_DETECTION_PROPERTY_KEY";
     final String CAMERA_STABILITY_PROPERTY_KEY = "CAMERA_STABILITY_PROPERTY_KEY";

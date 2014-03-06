@@ -19,4 +19,6 @@ public interface IOtherSensorsStatusPanel
     void setVoltage(Float value);
 
     void setZVelocity(Float value);
+
+    void setDisconected();
 }

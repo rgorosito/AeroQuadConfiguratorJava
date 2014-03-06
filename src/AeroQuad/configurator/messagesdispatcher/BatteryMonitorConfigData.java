@@ -1,5 +1,7 @@
 package AeroQuad.configurator.messagesdispatcher;
 
+import AeroQuad.configurator.ui.uiutils.UiUtils;
+
 public class BatteryMonitorConfigData
 {
 
@@ -47,15 +49,15 @@ public class BatteryMonitorConfigData
             return false;
         }
         final BatteryMonitorConfigData other = (BatteryMonitorConfigData)obj;
-        if (!_alarmVoltage.equals(other._alarmVoltage))
+        if (!UiUtils.areFloatEquals(_alarmVoltage, other._alarmVoltage))
         {
             return false;
         }
-        if (!_throttelTarget.equals(other._throttelTarget))
+        if (!UiUtils.areFloatEquals(_throttelTarget, other._throttelTarget))
         {
             return false;
         }
-        if (!_goingDownTime.equals(other._goingDownTime))
+        if (!UiUtils.areFloatEquals(_goingDownTime, other._goingDownTime))
         {
             return false;
         }

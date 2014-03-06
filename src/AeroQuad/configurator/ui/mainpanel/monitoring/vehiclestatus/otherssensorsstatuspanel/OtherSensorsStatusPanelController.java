@@ -77,6 +77,19 @@ public class OtherSensorsStatusPanelController implements IOtherSensorsStatusPan
                 _panel.setVoltage((Float) evt.getNewValue());
             }
         });
+
+        messageDispatcher.addListener(IMessageDispatcher.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final boolean isConnected = (boolean) evt.getNewValue();
+                if (!isConnected)
+                {
+                    _panel.setDisconected();
+                }
+            }
+        });
     }
 
     @Override

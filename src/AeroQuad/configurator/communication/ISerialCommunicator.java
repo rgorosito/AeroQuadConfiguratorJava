@@ -3,11 +3,12 @@ package AeroQuad.configurator.communication;
 
 import AeroQuad.configurator.communication.messaging.request.IRequest;
 
-import java.beans.PropertyChangeListener;
 import java.util.List;
 
 public interface ISerialCommunicator
 {
+    final static String CONNECTION_TIMEOUT_PROPERTY_KEY = "connection.timeout";
+
     final int BOAD_RATE_4800 = 4800;
     final int BOAD_RATE_9400 = 9400;
     final int BOAD_RATE_14000 = 14000;
@@ -18,24 +19,13 @@ public interface ISerialCommunicator
     final int BOAD_RATE_115200 = 115200;
     final int DEFAULT_BOAD_RATE = BOAD_RATE_115200;
 
-    //final String VEHICLE_STATE_REQUEST_MESSAGE = "#";
-    final String REQUEST_STOP_SENDING = "X";
-
-    final String RAW_DATA_MESSAGE_RECEIVED = "RAW_DATA_MESSAGE_RECEIVED";
-    final String RAW_DATA_MESSAGE_SENT = "RAW_DATA_MESSAGE_SENT";
-
-    final String CONNECTION_STATE_CHANGE = "CONNECTION_STATE_CHANGE";
-
-
-    void addListener(String propertyName, PropertyChangeListener propertyChangeListener);
-
     List<String> getComPortAvailable();
 
     void connect(int baudRate, String defaultPort);
 
     void connect(String commPort);
 
-    void disconnect();
+    void disconnect(final boolean b);
 
     void sendRequest(IRequest vehicleStatusRequest);
 

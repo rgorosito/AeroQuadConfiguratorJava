@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.setup.esccalibration;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 
 public class EscCalibrationPanelController implements IEscCalibrationPanelController
 {
@@ -16,7 +17,7 @@ public class EscCalibrationPanelController implements IEscCalibrationPanelContro
     {
         if (activated)
         {
-            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+            _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
         }
     }
 

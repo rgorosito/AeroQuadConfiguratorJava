@@ -20,4 +20,6 @@ public interface IMotorDisplayPanel
     public void addUserMotorValueChangedByUser(IUserMotorValueChangedListenrer listener);
 
     void setMotorValue(int motor, Integer value);
+
+    void setDisconnected();
 }

@@ -108,6 +108,19 @@ public class ReceiverPanelController implements IReceiverDisplayPanelController
                 _panel.setNbChannel((Integer) evt.getNewValue());
             }
         });
+
+        messageDispatcher.addListener(IMessageDispatcher.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final boolean isConnected = (boolean)evt.getNewValue();
+                if (!isConnected)
+                {
+                    _panel.setDisconnected();
+                }
+            }
+        });
     }
 
     @Override

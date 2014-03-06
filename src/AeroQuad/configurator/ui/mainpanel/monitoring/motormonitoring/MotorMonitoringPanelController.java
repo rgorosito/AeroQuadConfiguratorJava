@@ -36,13 +36,14 @@ public class MotorMonitoringPanelController implements IMotorMonitoringPanelCont
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 _nbMotors = (int)evt.getNewValue();
+                _panel.setNbMotors(_nbMotors);
             }
         });
     }
 
     private void setMotorsCommandToStopped()
     {
-        for (int i = 1;i < 8; i++)
+        for (int i = 1;i <= 8; i++)
         {
             _motorsCommandValues.put(i, 1000);
         }
@@ -53,7 +54,7 @@ public class MotorMonitoringPanelController implements IMotorMonitoringPanelCont
     {
         if (activated)
         {
-            _communicator.sendCommand(ISerialCommunicator.REQUEST_STOP_SENDING);
+            _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
         }
         else
         {

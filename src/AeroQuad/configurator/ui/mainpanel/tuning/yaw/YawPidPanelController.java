@@ -106,6 +106,8 @@ public class YawPidPanelController implements IYawPidPanelController
     {
         _haveBeenSincedOnce = false;
         _panel.setSinced(_haveBeenSincedOnce);
+        _yawPid = new YawPidData();
+        updatePanelFromPidData(_yawPid);
     }
 
     @Override

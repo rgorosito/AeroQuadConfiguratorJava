@@ -55,8 +55,6 @@ public class VehicleStatusMessageAnalyser implements IMessageAnalyser
 
             final FlightMode flightMode = splittedData[24].equals("1") ? FlightMode.Stable : FlightMode.Acrobatic;
             _messageDispatcher.dispatchMessage(IMessageDispatcher.VEHICLE_FLIGHT_MODE_STATE_CHANGE, flightMode);
-
-
         }
         catch (Exception e)
         {
