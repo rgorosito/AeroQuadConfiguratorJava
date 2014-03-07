@@ -32,7 +32,6 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                // need a message change, will wait for 3.2 to be released
                 _panel.setHaveBarometer((Boolean) evt.getNewValue());
             }
         });
@@ -134,14 +133,19 @@ public class SensorsMonitoringController implements ISensorsMonitoringController
             }
         });
 
-        //messageDispatcher.addListener(IMessageDispatcher.SENSOR_Z_VELOCITY_VALUE_CHANGE, new PropertyChangeListener()
-        //{
-        //    @Override
-        //    public void propertyChange(final PropertyChangeEvent evt)
-        //    {
-        //        _panel.setZVelocity((String) evt.getNewValue());
-        //    }
-        //});
+        messageDispatcher.addListener(IMessageDispatcher.CONNECTION_STATE_CHANGE, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final boolean isConnected = (boolean) evt.getNewValue();
+                if (!isConnected)
+                {
+                    _panel.setHaveMagnetometer(isConnected);
+                    _panel.setHaveBarometer(isConnected);
+                }
+            }
+        });
     }
 
     @Override

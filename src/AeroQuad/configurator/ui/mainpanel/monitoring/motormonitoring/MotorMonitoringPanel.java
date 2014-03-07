@@ -100,7 +100,7 @@ public class MotorMonitoringPanel extends JPanel implements IMotorMonitoringPane
         buffer.append("<html>By checking this, you are aware that motor will rotate<br>as soon as you will move a slider<html>");
         leftPanel.add(new JLabel(buffer.toString()));
         final JLabel warningLabel = new JLabel("PLEASE, REMOVE ALL PROPELLER FOR YOUR OWN SAFETY");
-        warningLabel.setForeground(Color.YELLOW);
+        warningLabel.setForeground(Color.RED);
         leftPanel.add(warningLabel);
         bottomPanel.add(leftPanel, BorderLayout.EAST);
 

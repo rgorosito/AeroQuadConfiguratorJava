@@ -25,6 +25,10 @@ public class SensorsSelectionTree extends JTree implements ISensorsSelectionTree
     final Map<String, Boolean> _selectionMap = new HashMap<>(1);
     final List<TreeSelectionChangeListener> _selectionListenerList = new ArrayList<>(1);
 
+    final DefaultMutableTreeNode _mag = new DefaultMutableTreeNode("Magnetometer");
+    final DefaultMutableTreeNode _altitude = new DefaultMutableTreeNode("altitude");
+    final DefaultMutableTreeNode _zVelocicy = new DefaultMutableTreeNode("Z Velocity");
+
     public SensorsSelectionTree()
     {
         init();
@@ -45,6 +49,11 @@ public class SensorsSelectionTree extends JTree implements ISensorsSelectionTree
         accel.add(new DefaultMutableTreeNode("Y"));
         accel.add(new DefaultMutableTreeNode("Z"));
         _root.add(accel);
+
+
+        _mag.add(new DefaultMutableTreeNode("X"));
+        _mag.add(new DefaultMutableTreeNode("Y"));
+        _mag.add(new DefaultMutableTreeNode("Z"));
 
 
         setModel(_treeModel);
@@ -74,27 +83,32 @@ public class SensorsSelectionTree extends JTree implements ISensorsSelectionTree
         return new CellRenderer();
     }
 
-    public void setHaveMagnetometer(final boolean value)
+    public void setHaveMagnetometer(final boolean isPresent)
     {
-        if (value)
+        if (isPresent)
         {
-            final DefaultMutableTreeNode mag = new DefaultMutableTreeNode("Magnetometer");
-            mag.add(new DefaultMutableTreeNode("X"));
-            mag.add(new DefaultMutableTreeNode("Y"));
-            mag.add(new DefaultMutableTreeNode("Z"));
-            _treeModel.insertNodeInto(mag,_root,_root.getChildCount());
+            _treeModel.insertNodeInto(_mag,_root,_root.getChildCount());
+            expandAllNode();
+        }
+        else
+        {
+            _treeModel.removeNodeFromParent(_mag);
             expandAllNode();
         }
     }
 
-    public void setHaveBarometer(final boolean value)
+    public void setHaveBarometer(final boolean isPresent)
     {
-        if (value)
+        if (isPresent)
         {
-            final DefaultMutableTreeNode altitude = new DefaultMutableTreeNode("altitude");
-            _treeModel.insertNodeInto(altitude,_root,_root.getChildCount());
-            final DefaultMutableTreeNode zVelocicy = new DefaultMutableTreeNode("Z Velocity");
-            _treeModel.insertNodeInto(zVelocicy,_root,_root.getChildCount());
+            _treeModel.insertNodeInto(_altitude,_root,_root.getChildCount());
+            _treeModel.insertNodeInto(_zVelocicy,_root,_root.getChildCount());
+            expandAllNode();
+        }
+        else
+        {
+            _treeModel.removeNodeFromParent(_altitude);
+            _treeModel.removeNodeFromParent(_zVelocicy);
             expandAllNode();
         }
     }
@@ -106,8 +120,6 @@ public class SensorsSelectionTree extends JTree implements ISensorsSelectionTree
             expandRow(i);
         }
     }
-
-
 
     private class CellRenderer implements TreeCellRenderer
     {

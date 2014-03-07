@@ -44,7 +44,7 @@ public class TuningPanel extends JPanel implements ITuningPanel
 
         final JPanel resetEepromPanel = new JPanel(new BorderLayout());
         resetEepromPanel.setBorder(new LineBorder(Color.black,1));
-        final JLabel resetEepromLabel = new JLabel("Reset EEPROM, All values will be reset to default and all calibration will need to be done");
+        final JLabel resetEepromLabel = new JLabel(" Reset EEPROM, All values will be reset to default and all calibration will need to be done");
         resetEepromPanel.add(resetEepromLabel,BorderLayout.WEST);
 
         _resetEepromButton.setPreferredSize(new Dimension(200, 50));

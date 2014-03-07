@@ -15,5 +15,6 @@ public interface ISensorsSelectionTree
     final String MAG_Y_KEY = "[Aeroquad, Magnetometer, Y]";
     final String MAG_Z_KEY = "[Aeroquad, Magnetometer, Z]";
     final String ALTITUDE_KEY = "[Aeroquad, altitude]";
+    final String ZVELOCITY_KEY = "[Aeroquad, Z Velocity]";
 
 }

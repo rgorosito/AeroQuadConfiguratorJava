@@ -91,8 +91,6 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
         batteryLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         _currenBatteryVoltagePanel.add(batteryLabel);
         _currenBatteryVoltagePanel.add(_batteryVoltageLabel);
-
-
     }
 
     @Override
@@ -100,6 +98,7 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
     {
         if (enabled)
         {
+            add(_altitudeHoldPanel);
             add(_currenZVelocityPanel);
             add(_currentAltitudePanel);
             add(_currenZVelocityPanel);
@@ -181,6 +180,7 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
     @Override
     public void setDisconected()
     {
+        remove(_altitudeHoldPanel);
         remove(_currenZVelocityPanel);
         remove(_currentAltitudePanel);
         remove(_currenZVelocityPanel);

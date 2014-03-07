@@ -10,8 +10,11 @@ import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 
 public class SingleDataPlotDrawerPanel extends JPanel
 {
@@ -29,11 +32,11 @@ public class SingleDataPlotDrawerPanel extends JPanel
         setBorder(BorderFactory.createLineBorder(Color.black));
 
         final TimeSeriesCollection timeSeriesCollection = new TimeSeriesCollection(_series);
-        final JFreeChart chart = ChartFactory.createTimeSeriesChart(name, "Time", "Value", timeSeriesCollection, true, true, false);
+        final JFreeChart chart = ChartFactory.createTimeSeriesChart(name, null, null, timeSeriesCollection, false, false, false);
+
         final XYPlot xyplot = (XYPlot) chart.getPlot();
         final ValueAxis valueaxis = xyplot.getDomainAxis();
-        valueaxis.setFixedAutoRange(15000);
-        valueaxis.setAxisLineStroke(new BasicStroke(3));
+        valueaxis.setFixedAutoRange(20000);
 
         final ChartPanel chartpanel = new ChartPanel(chart);
         chartpanel.setPreferredSize(new Dimension(0, 250));
@@ -41,12 +44,13 @@ public class SingleDataPlotDrawerPanel extends JPanel
 
     }
 
-    public void addValue(final float value)
+    public void addValue(float value)
     {
-        if (_visible)
+        if (!_visible)
         {
-            _series.addOrUpdate(new Millisecond(), value);
+            value = 0.0F;
         }
+        _series.addOrUpdate(new Millisecond(), value);
     }
 
     public void setValueVisible(final boolean visible)

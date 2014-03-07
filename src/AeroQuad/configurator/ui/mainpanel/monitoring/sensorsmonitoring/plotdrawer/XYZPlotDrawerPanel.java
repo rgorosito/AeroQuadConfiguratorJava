@@ -40,11 +40,11 @@ public class XYZPlotDrawerPanel extends JPanel
         final TimeSeriesCollection yTimeSeriesCollection = new TimeSeriesCollection(_ySeries);
         final TimeSeriesCollection zTimeSeriesCollection = new TimeSeriesCollection(_zSeries);
 
-        final JFreeChart chart = ChartFactory.createTimeSeriesChart(sensorName, "Time", "Value", xTimeSeriesCollection, true, true, false);
+        final JFreeChart chart = ChartFactory.createTimeSeriesChart(sensorName, null, null, xTimeSeriesCollection, true, false, false);
 
         final XYPlot xyplot = (XYPlot) chart.getPlot();
         final ValueAxis valueaxis = xyplot.getDomainAxis();
-        valueaxis.setFixedAutoRange(15000);
+        valueaxis.setFixedAutoRange(20000);
         valueaxis.setAxisLineStroke(new BasicStroke(3));
         xyplot.setDataset(1, yTimeSeriesCollection);
         final DefaultXYItemRenderer yItemRenderer = new DefaultXYItemRenderer();
@@ -61,28 +61,31 @@ public class XYZPlotDrawerPanel extends JPanel
         add(chartpanel);
     }
 
-    public void addXValue(final float xValue)
+    public void addXValue(float xValue)
     {
-        if (_xVisible)
+        if (!_xVisible)
         {
-            _xSeries.addOrUpdate(new Millisecond(), xValue);
+            xValue = 0.0F;
         }
+        _xSeries.addOrUpdate(new Millisecond(), xValue);
     }
 
-    public void addYValue(final float yValue)
+    public void addYValue(float yValue)
     {
-        if (_yVisible)
+        if (!_yVisible)
         {
-            _ySeries.addOrUpdate(new Millisecond(), yValue);
+            yValue = 0.0F;
         }
+        _ySeries.addOrUpdate(new Millisecond(), yValue);
     }
 
-    public void addZValue(final float zValue)
+    public void addZValue(float zValue)
     {
-        if (_zVisible)
+        if (!_zVisible)
         {
-            _zSeries.addOrUpdate(new Millisecond(), zValue);
+            zValue = 0.0F;
         }
+        _zSeries.addOrUpdate(new Millisecond(), zValue);
     }
 
     public void setXVisible(final boolean XVisible)

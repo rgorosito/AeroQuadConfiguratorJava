@@ -248,7 +248,10 @@ public class SerialCommunicator implements ISerialCommunicator
         }
         catch (Exception e)
         {
-            System.err.println("Decoding message error = " + rawData);
+            if (rawData != null)
+            {
+                System.err.println("Decoding message error = " + rawData);
+            }
         }
     }
 

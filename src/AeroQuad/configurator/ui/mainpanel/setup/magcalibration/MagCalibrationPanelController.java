@@ -144,8 +144,7 @@ public class MagCalibrationPanelController implements IMagCalibrationPanelContro
         _panel.setZMaxValue(Integer.toString((int)_zMax));
     }
 
-    // AQ Conf = 5.000000,-93.000000,-21.500000 // maison
-    // AQ Conf = 158.500000,-63.000000,-19.000000 // JOb!?!?
+    // AQ Conf = -5.500000,-87.500000,-37.000000
 
     private void updateCalValueToBoard()
     {

@@ -57,23 +57,28 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
     }
 
     @Override
-    public void setHaveMagnetometer(final boolean value)
+    public void setHaveMagnetometer(final boolean isPresent)
     {
-        _sensorsTree.setHaveMagnetometer(value);
-        if (value)
+        _sensorsTree.setHaveMagnetometer(isPresent);
+        if (isPresent)
         {
             _plotPanel.add(_magPlotDrawerPanel);
         }
     }
 
     @Override
-    public void setHaveBarometer(final boolean value)
+    public void setHaveBarometer(final boolean isPresent)
     {
-        _sensorsTree.setHaveBarometer(value);
-        if (value)
+        _sensorsTree.setHaveBarometer(isPresent);
+        if (isPresent)
         {
             _plotPanel.add(_altitudeDrawerPanel);
             _plotPanel.add(_zVelocityDrawerPanel);
+        }
+        else
+        {
+            _plotPanel.remove(_altitudeDrawerPanel);
+            _plotPanel.remove(_zVelocityDrawerPanel);
         }
     }
 
@@ -203,6 +208,10 @@ public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoring
         else if (key.equals(ISensorsSelectionTree.ALTITUDE_KEY))
         {
             _altitudeDrawerPanel.setValueVisible(selected);
+        }
+        else if (key.equals(ISensorsSelectionTree.ZVELOCITY_KEY))
+        {
+            _zVelocityDrawerPanel.setValueVisible(selected);
         }
         else
         {

@@ -166,9 +166,9 @@ public class AccelCalibrationPanelController implements IAccelCalibrationPanelCo
 
         StringBuffer buffer = new StringBuffer(1);
         buffer.append("K ");
-        buffer.append(xScaleFactor).append(";").append(0).append(";");
-        buffer.append(yScaleFactor).append(";").append(0).append(";");
-        buffer.append(zScaleFactor).append(";").append(0).append(";");
+        buffer.append(xScaleFactor).append(";");
+        buffer.append(yScaleFactor).append(";");
+        buffer.append(zScaleFactor).append(";");
 
         _communicator.sendCommand(buffer.toString());
 
