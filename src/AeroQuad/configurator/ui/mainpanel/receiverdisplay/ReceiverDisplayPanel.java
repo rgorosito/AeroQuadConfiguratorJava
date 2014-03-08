@@ -25,6 +25,9 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
     final JPanel _aux2Panel = new JPanel();
     final JPanel _aux3Panel = new JPanel();
 
+    final JLabel _northSpacerLabel = new JLabel();
+    final JLabel _southSpacerLabel = new JLabel();
+
 
     public ReceiverDisplayPanel(final IReceiverDisplayPanelController controller)
     {
@@ -42,15 +45,13 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         add(_throttleYawPanel, BorderLayout.WEST);
         add(_rollPitchPanel,BorderLayout.EAST);
 
-        _middlePanel.setLayout(new BoxLayout(_middlePanel, BoxLayout.PAGE_AXIS));
-        _modeSlider.setPaintLabels(true);
+        _middlePanel.setLayout(new BoxLayout(_middlePanel, BoxLayout.Y_AXIS));
         _modeSlider.setMinimum(1000);
         _modeSlider.setMaximum(2000);
         _modeSlider.setOrientation(JSlider.HORIZONTAL);
         _modeSlider.setMajorTickSpacing(200);
         _modeSlider.setMinorTickSpacing(50);
-        _modeSlider.setPaintTicks(true);
-        _modeSlider.setPaintLabels(true);
+        //_modeSlider.setPaintTicks(true);
         _modeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         _modePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         _modePanel.setLayout(new BoxLayout(_modePanel, BoxLayout.PAGE_AXIS));
@@ -63,8 +64,7 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux1Slider.setOrientation(JSlider.HORIZONTAL);
         _aux1Slider.setMajorTickSpacing(200);
         _aux1Slider.setMinorTickSpacing(50);
-        _aux1Slider.setPaintTicks(true);
-        _aux1Slider.setPaintLabels(true);
+        //_aux1Slider.setPaintTicks(true);
         _aux1Label.setHorizontalAlignment(SwingConstants.CENTER);
         _aux1Panel.setBorder(BorderFactory.createLineBorder(Color.black));
         _aux1Panel.setLayout(new BoxLayout(_aux1Panel, BoxLayout.PAGE_AXIS));
@@ -78,8 +78,7 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux2Slider.setOrientation(JSlider.HORIZONTAL);
         _aux2Slider.setMajorTickSpacing(200);
         _aux2Slider.setMinorTickSpacing(50);
-        _aux2Slider.setPaintTicks(true);
-        _aux2Slider.setPaintLabels(true);
+        //_aux2Slider.setPaintTicks(true);
         _aux2Panel.setLayout(new BoxLayout(_aux2Panel, BoxLayout.PAGE_AXIS));
         _aux2Panel.setBorder(BorderFactory.createLineBorder(Color.black));
         _aux2Panel.add(_aux2Label);
@@ -91,15 +90,16 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux3Slider.setOrientation(JSlider.HORIZONTAL);
         _aux3Slider.setMajorTickSpacing(200);
         _aux3Slider.setMinorTickSpacing(50);
-        _aux3Slider.setPaintTicks(true);
-        _aux3Slider.setPaintLabels(true);
+        //_aux3Slider.setPaintTicks(true);
         _aux3Panel.setLayout(new BoxLayout(_aux3Panel, BoxLayout.PAGE_AXIS));
         _aux3Panel.setBorder(BorderFactory.createLineBorder(Color.black));
         _aux3Panel.add(_aux3Label);
         _aux3Panel.add(_aux3Slider);
 
 
+        add(_northSpacerLabel, BorderLayout.NORTH);
         add(_middlePanel,BorderLayout.CENTER);
+        add(_southSpacerLabel, BorderLayout.SOUTH);
 
         setBorder(new LineBorder(Color.BLACK,3));
     }
@@ -167,5 +167,26 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
     {
         _middlePanel.remove(_aux2Panel);
         _middlePanel.remove(_aux3Panel);
+    }
+
+    @Override
+    public void setBounds(final int x, final int y, final int width, final int height)
+    {
+        final int componentWidth = width/3;
+        if (height > componentWidth)
+        {
+            int offset = (height - componentWidth) / 2;
+            _northSpacerLabel.setPreferredSize(new Dimension(0,offset));
+            _southSpacerLabel.setPreferredSize(new Dimension(0,offset));
+        }
+        else
+        {
+            _northSpacerLabel.setPreferredSize(new Dimension(0,0));
+            _southSpacerLabel.setPreferredSize(new Dimension(0,0));
+        }
+
+        _throttleYawPanel.setParentSize(width,height);
+        _rollPitchPanel.setParentSize(width,height);
+        super.setBounds(x, y, width, height);
     }
 }

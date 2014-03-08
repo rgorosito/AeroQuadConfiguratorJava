@@ -29,6 +29,15 @@ public class VehicleStatusController implements IVehicleStatusController
                 _panel.setVehicleAttitude(vehicleAttitude);
             }
         });
+        _messageDispatcher.addListener(IMessageDispatcher.GPS_PROPERTY_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final boolean haveGps = (boolean) evt.getNewValue();
+                _panel.setHaveGps(haveGps);
+            }
+        });
     }
 
     @Override

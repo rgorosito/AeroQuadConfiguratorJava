@@ -5,4 +5,6 @@ import AeroQuad.configurator.messagesdispatcher.VehicleAttitude;
 public interface IVehicleStatusPanel
 {
     void setVehicleAttitude(VehicleAttitude vehicleAttitude);
+
+    void setHaveGps(boolean haveGps);
 }

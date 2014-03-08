@@ -13,13 +13,15 @@ import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.SensorsMo
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.IVehicleStatusController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.VehicleStatusController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.VehicleStatusPanel;
+import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.gpsstatepanel.GpsStatusPanel;
+import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.gpsstatepanel.GpsStatusPanelController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.motordisplaypanel.MotorDisplayPanelController;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensorsstatuspanel.OtherSensorsStatusPanel;
 import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensorsstatuspanel.OtherSensorsStatusPanelController;
 import AeroQuad.configurator.ui.mainpanel.receiverdisplay.ReceiverDisplayPanel;
 import AeroQuad.configurator.ui.mainpanel.receiverdisplay.ReceiverPanelController;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -37,11 +39,13 @@ public class MonitoringPanelController implements IMonitoringPanelController
 
     public MonitoringPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
-        final ReceiverDisplayPanel receiverPanel = new ReceiverDisplayPanel(new ReceiverPanelController(messageDispatcher));
+        final JPanel receiverPanel = new ReceiverDisplayPanel(new ReceiverPanelController(messageDispatcher));
         _vehicleStatusController = new VehicleStatusController(messageDispatcher, communicator);
-        final MotorDisplayPanel motorCommandDisplayPanel = new MotorDisplayPanel(new MotorDisplayPanelController(messageDispatcher, communicator));
-        final OtherSensorsStatusPanel otherSensorsStatusPanel = new OtherSensorsStatusPanel(new OtherSensorsStatusPanelController(messageDispatcher));
-        _vehicleStatusPanel = new VehicleStatusPanel(_vehicleStatusController, receiverPanel, motorCommandDisplayPanel,otherSensorsStatusPanel);
+        final JPanel motorCommandDisplayPanel = new MotorDisplayPanel(new MotorDisplayPanelController(messageDispatcher, communicator));
+        final JPanel otherSensorsStatusPanel = new OtherSensorsStatusPanel(new OtherSensorsStatusPanelController(messageDispatcher));
+        final GpsStatusPanelController gpsStatePanelController = new GpsStatusPanelController(messageDispatcher);
+        final JPanel gpsStatePanel = new GpsStatusPanel(gpsStatePanelController);
+        _vehicleStatusPanel = new VehicleStatusPanel(_vehicleStatusController, receiverPanel, motorCommandDisplayPanel,otherSensorsStatusPanel,gpsStatePanel);
 
 
         _motorsMonitoringPanelController = new MotorMonitoringPanelController(messageDispatcher, communicator);

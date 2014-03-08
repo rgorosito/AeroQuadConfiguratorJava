@@ -32,6 +32,7 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
 
     private void init()
     {
+        setPreferredSize(new Dimension(250,0));
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         setBorder(new LineBorder(Color.BLACK,3));
 
@@ -52,7 +53,7 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
         _currentZVelocityLabel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         final JPanel motorArmedPanel = new JPanel(new GridLayout(1,2));
-        final JLabel motorLabel = new JLabel("Motor");
+        final JLabel motorLabel = new JLabel(" Motor");
         motorLabel.setOpaque(true);
         motorLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         motorArmedPanel.add(motorLabel);
@@ -60,33 +61,32 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
         add(motorArmedPanel);
 
         final JPanel flightModePanel = new JPanel(new GridLayout(1,2));
-        final JLabel flightModeLabel = new JLabel("Flight Mode");
+        final JLabel flightModeLabel = new JLabel(" Flight Mode");
         flightModeLabel.setOpaque(true);
         flightModeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         flightModePanel.add(flightModeLabel);
         flightModePanel.add(_flightModeLabel);
         add(flightModePanel);
 
-
-        final JLabel altitudeHoldLabel = new JLabel("Altitude Hold");
+        final JLabel altitudeHoldLabel = new JLabel(" Altitude Hold");
         altitudeHoldLabel.setOpaque(true);
         altitudeHoldLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         _altitudeHoldPanel.add(altitudeHoldLabel);
         _altitudeHoldPanel.add(_altitudeHoldStateLabel);
 
-        final JLabel currentAltitudeLabel = new JLabel("Current Altitude");
+        final JLabel currentAltitudeLabel = new JLabel(" Current Altitude");
         currentAltitudeLabel.setOpaque(true);
         currentAltitudeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         _currentAltitudePanel.add(currentAltitudeLabel);
         _currentAltitudePanel.add(_currentVehicleAltitudeLabel);
 
-        final JLabel currentZVelocityLabel = new JLabel("Z Velocity");
+        final JLabel currentZVelocityLabel = new JLabel(" Z Velocity");
         currentZVelocityLabel.setOpaque(true);
         currentZVelocityLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         _currenZVelocityPanel.add(currentZVelocityLabel);
         _currenZVelocityPanel.add(_currentZVelocityLabel);
 
-        final JLabel batteryLabel = new JLabel("Battery");
+        final JLabel batteryLabel = new JLabel(" Battery");
         batteryLabel.setOpaque(true);
         batteryLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         _currenBatteryVoltagePanel.add(batteryLabel);

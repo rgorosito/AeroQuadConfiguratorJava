@@ -92,7 +92,10 @@ public class SensorsSelectionTree extends JTree implements ISensorsSelectionTree
         }
         else
         {
-            _treeModel.removeNodeFromParent(_mag);
+            if (_root.isNodeDescendant(_mag))
+            {
+                _treeModel.removeNodeFromParent(_mag);
+            }
             expandAllNode();
         }
     }
@@ -107,8 +110,11 @@ public class SensorsSelectionTree extends JTree implements ISensorsSelectionTree
         }
         else
         {
-            _treeModel.removeNodeFromParent(_altitude);
-            _treeModel.removeNodeFromParent(_zVelocicy);
+            if (_root.isNodeDescendant(_altitude))
+            {
+                _treeModel.removeNodeFromParent(_altitude);
+                _treeModel.removeNodeFromParent(_zVelocicy);
+            }
             expandAllNode();
         }
     }

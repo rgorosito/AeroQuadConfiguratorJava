@@ -89,7 +89,8 @@ public class SerialCommunicator implements ISerialCommunicator
             if (_portId.getName().equals(_connectedPortName))
             {
                 portFound = true;
-                System.out.println("Port found on: " + _connectedPortName);
+                _messageDispatcher.dispatchMessage(IMessageDispatcher.BAUD_RATE, baudRate);
+                _messageDispatcher.dispatchMessage(IMessageDispatcher.COMM_PORT_OPENED, _connectedPortName);
             }
         }
 
@@ -128,8 +129,6 @@ public class SerialCommunicator implements ISerialCommunicator
                 e.printStackTrace();
             }
             _connectedPort.notifyOnDataAvailable(true);
-
-            System.out.println("Port: " + _connectedPortName + " opened");
             sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
             final VehicleInfoRequest request = new VehicleInfoRequest(_messageDispatcher);
             _messageAnalyser = request.getMessageAnalyser();

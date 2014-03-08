@@ -2,7 +2,7 @@ package AeroQuad.configurator.ui;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
-import AeroQuad.configurator.ui.connectionpanel.ConnectionPanelController;
+import AeroQuad.configurator.ui.connectionpanel.ConnectionStatusPanelController;
 import AeroQuad.configurator.ui.connectionpanel.ConnectionStatusPanel;
 import AeroQuad.configurator.ui.mainmenue.MainMenuController;
 import AeroQuad.configurator.ui.mainmenue.MainMenuPanel;
@@ -101,20 +101,14 @@ public class AQConfiguratorMainFrame extends JFrame
     {
         final JPanel mainContainer = new JPanel(new BorderLayout());
 
-
-
         final MainPanelController mainPanelController = new MainPanelController(messageDispatcher, communicator);
         final MainPanel mainPanel = new MainPanel(mainPanelController);
         mainContainer.add(mainPanel, BorderLayout.CENTER);
 
-
-
         final MainMenuPanel mainMenue = new MainMenuPanel(new MainMenuController(messageDispatcher, mainPanelController));
         mainContainer.add(mainMenue, BorderLayout.WEST);
 
-
-
-        final ConnectionStatusPanel connectionPanel = new ConnectionStatusPanel(new ConnectionPanelController(communicator,messageDispatcher));
+        final ConnectionStatusPanel connectionPanel = new ConnectionStatusPanel(new ConnectionStatusPanelController(communicator,messageDispatcher));
         mainContainer.add(connectionPanel, BorderLayout.SOUTH);
 
         getContentPane().add(mainContainer);

@@ -2,52 +2,73 @@ package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus;
 
 import AeroQuad.configurator.messagesdispatcher.VehicleAttitude;
 import AeroQuad.configurator.ui.artificialhorizon.ArtificialHorizonPanel;
-import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.MotorDisplayPanel;
-import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensorsstatuspanel.OtherSensorsStatusPanel;
-import AeroQuad.configurator.ui.mainpanel.receiverdisplay.ReceiverDisplayPanel;
 
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 
 public class VehicleStatusPanel extends JPanel implements IVehicleStatusPanel
 {
     private final IVehicleStatusController _controller;
 
     final ArtificialHorizonPanel _artificialHorizonPanel = new ArtificialHorizonPanel();
+    private final JPanel _receiverPanel;
+    private final JPanel _motorCommandPanel;
+    private final JPanel _gpsStatusPanel;
+    private final JPanel _otherSensorsStatusPanel;
+
+    private final JPanel _bottomPanel = new JPanel();
 
     public VehicleStatusPanel(
             final IVehicleStatusController controller,
-            final ReceiverDisplayPanel receiverPanel,
-            final MotorDisplayPanel motorCommandPanel,
-            final OtherSensorsStatusPanel otherSensorsStatusPanel)
+            final JPanel receiverPanel,
+            final JPanel motorCommandPanel,
+            final JPanel otherSensorsStatusPanel,
+            final JPanel gpsStatusPanel)
     {
         _controller = controller;
+        _receiverPanel = receiverPanel;
+        _motorCommandPanel = motorCommandPanel;
+        _gpsStatusPanel = gpsStatusPanel;
+        _otherSensorsStatusPanel = otherSensorsStatusPanel;
         _controller.setPanel(this);
-        setLayout(new BorderLayout());
 
-        init(receiverPanel, motorCommandPanel, otherSensorsStatusPanel);
+        init();
     }
 
-    private void init(final ReceiverDisplayPanel receiverPanel,
-                      final MotorDisplayPanel motorCommandPanel,
-                      final OtherSensorsStatusPanel otherSensorsStatusPanel)
+    private void init()
     {
 
-        final JPanel leftPanel = new JPanel(new GridLayout(2,1));
-        leftPanel.add(_artificialHorizonPanel);
-        leftPanel.add(otherSensorsStatusPanel);        
-        add(leftPanel, BorderLayout.WEST);
+        setLayout(new GridLayout(2, 1));
+        final JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(_artificialHorizonPanel, BorderLayout.WEST);
+        topPanel.add(_motorCommandPanel, BorderLayout.CENTER);
+        add(topPanel);
 
-        final JPanel rightPanel = new JPanel(new GridLayout(2,1));
-        rightPanel.add(receiverPanel);
-        rightPanel.add(motorCommandPanel);
-        add(rightPanel, BorderLayout.CENTER);
+
+        _bottomPanel.setLayout(new BoxLayout(_bottomPanel, BoxLayout.X_AXIS));
+        _bottomPanel.add(_otherSensorsStatusPanel);
+        _bottomPanel.add(_receiverPanel);
+        add(_bottomPanel);
     }
 
     @Override
     public void setVehicleAttitude(final VehicleAttitude vehicleAttitude)
     {
         _artificialHorizonPanel.setVehicleAttitude(vehicleAttitude);
+    }
+
+    @Override
+    public void setHaveGps(final boolean haveGps)
+    {
+        _bottomPanel.remove(_otherSensorsStatusPanel);
+        _bottomPanel.remove(_receiverPanel);
+        _bottomPanel.remove(_gpsStatusPanel);
+
+        _bottomPanel.add(_otherSensorsStatusPanel);
+        if (haveGps)
+        {
+            _bottomPanel.add(_gpsStatusPanel);
+        }
+        _bottomPanel.add(_receiverPanel);
     }
 }

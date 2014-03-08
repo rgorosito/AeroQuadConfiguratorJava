@@ -13,6 +13,8 @@ public class CommunicationStatisticsProcessor implements ICommunicationStatistic
     private int _nbCharSent;
     private int _nbCharReceived;
 
+    private float _boadRate = 0;
+
     public CommunicationStatisticsProcessor(final ISerialCommunicator communicator, IMessageDispatcher messageDispatcher)
     {
         _messageDispatcher = messageDispatcher;
@@ -34,6 +36,14 @@ public class CommunicationStatisticsProcessor implements ICommunicationStatistic
                 _nbCharReceived += receivedString.length();
             }
         });
+        messageDispatcher.addListener(IMessageDispatcher.BAUD_RATE, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                _boadRate = (int)evt.getNewValue();
+            }
+        });
     }
 
     @Override
@@ -45,7 +55,7 @@ public class CommunicationStatisticsProcessor implements ICommunicationStatistic
     @Override
     public void processCommunicationStatistics()
     {
-        final double percentUsed = 1000 * (((_nbCharReceived + _nbCharSent) * 8F) / 115200F);
+        final double percentUsed = 100 * (((_nbCharReceived + _nbCharSent) * 8F) / _boadRate);
         _messageDispatcher.dispatchMessage(IMessageDispatcher.COMMUNICATION_USAGE_VALUE_CAHNGED, percentUsed);
         _nbCharReceived = 0;
         _nbCharSent = 0;

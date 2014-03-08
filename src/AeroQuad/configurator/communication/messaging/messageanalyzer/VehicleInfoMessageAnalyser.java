@@ -43,7 +43,6 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
         }
 
         return analyzeData(datas);
-
     }
 
     private boolean analyzeData(final String[] datas)

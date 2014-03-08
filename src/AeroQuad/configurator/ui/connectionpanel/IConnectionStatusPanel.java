@@ -8,4 +8,8 @@ public interface IConnectionStatusPanel
     void setConnected(boolean connected);
 
     void setUsage(double usage);
+
+    void setCommPortOpen(String comPort);
+
+    void setBaudRate(String boadRate);
 }

@@ -14,6 +14,9 @@ public class ConnectionStatusPanel extends JPanel implements IConnectionStatusPa
     private boolean _isConnected = false;
     private Color _defaultBackgroundColor;
     private double _usage;
+    private String _baudRate = "";
+    private String _comPort = "";
+    private boolean _wasConnected = false;
 
     public ConnectionStatusPanel(final IConnectionStatusPanelController controller)
     {
@@ -28,23 +31,55 @@ public class ConnectionStatusPanel extends JPanel implements IConnectionStatusPa
     @Override
     public void setConnected(final boolean isConnected)
     {
+        _wasConnected = _isConnected;
         _isConnected = isConnected;
         updateStatusLabel();
     }
 
-    private void updateStatusLabel()
-    {
-        _connectionStateLabel.setBackground(_isConnected ? Color.GREEN : _defaultBackgroundColor);
-        final DecimalFormat decimalFormat = new DecimalFormat("0.00");
-        final String usageString = decimalFormat.format(_usage);
-        _connectionStateLabel.setForeground(Color.black);
-        _connectionStateLabel.setText(_isConnected ? CONNECTED + " Usage = " + usageString + " %": DISCONNECTED);
-    }
+
 
     @Override
     public void setUsage(final double usage)
     {
         _usage = usage;
         updateStatusLabel();
+    }
+
+    @Override
+    public void setCommPortOpen(final String comPort)
+    {
+        _comPort = comPort;
+
+        updateStatusLabel();
+    }
+
+    @Override
+    public void setBaudRate(final String boadRate)
+    {
+        _baudRate = boadRate;
+    }
+
+
+    private void updateStatusLabel()
+    {
+        if (_wasConnected && !_isConnected)
+        {
+            _comPort = "";
+            _baudRate = "";
+        }
+        if (!_isConnected && _comPort.length() > 0)
+        {
+            _connectionStateLabel.setForeground(Color.white);
+            _connectionStateLabel.setText("OPEN " + _comPort + " @ " +_baudRate);
+        }
+        else
+        {
+            _connectionStateLabel.setBackground(_isConnected ? Color.GREEN : _defaultBackgroundColor);
+            final DecimalFormat decimalFormat = new DecimalFormat("0.00");
+            final String usageString = decimalFormat.format(_usage);
+            _connectionStateLabel.setForeground(Color.black);
+            _connectionStateLabel.setText(_isConnected ? CONNECTED + " Usage = " + usageString + " %": DISCONNECTED);
+        }
+        _wasConnected = _isConnected;
     }
 }

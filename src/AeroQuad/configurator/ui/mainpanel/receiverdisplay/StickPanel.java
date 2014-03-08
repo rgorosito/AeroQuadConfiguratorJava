@@ -16,8 +16,7 @@ public class StickPanel extends JLabel
     {
         setBorder(BorderFactory.createLineBorder(Color.black));
 
-        setPreferredSize(new Dimension(225,225));
-        setMinimumSize(new Dimension(225, 225));
+        setPreferredSize(new Dimension(175,175));
     }
 
     void setX(final int x)
@@ -98,11 +97,11 @@ public class StickPanel extends JLabel
         }
     }
 
-    @Override
-    public void setBounds(final int x, final int y, final int width, final int height)
+    public void setParentSize(final int width, final int height)
     {
-        _width = width;
-        _height = height;
-        super.setBounds(x, y, width, height);    //To change body of overridden methods use File | Settings | File Templates.
+        final int maxSize = Math.max(width,height);
+        _width = (maxSize/3);
+        _height = _width-7;
+        setPreferredSize(new Dimension(maxSize/3,maxSize/3));
     }
 }

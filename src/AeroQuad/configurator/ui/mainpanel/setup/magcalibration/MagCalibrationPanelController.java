@@ -144,13 +144,12 @@ public class MagCalibrationPanelController implements IMagCalibrationPanelContro
         _panel.setZMaxValue(Integer.toString((int)_zMax));
     }
 
-    // AQ Conf = -5.500000,-87.500000,-37.000000
 
     private void updateCalValueToBoard()
     {
-        final double xMagBias = -((_xMin + _xMax) / 2);
-        final double yMagBias = -((_yMin + _yMax) / 2);
-        final double zMagBias = -((_zMin + _zMax) / 2);
+        final double xMagBias = ((_xMax + _xMin) / 2);
+        final double yMagBias = ((_yMax + _yMin) / 2);
+        final double zMagBias = ((_zMax + _zMin) / 2);
 
         final StringBuffer magBiasSetCommand = new StringBuffer();
         magBiasSetCommand.append("M ");
