@@ -220,7 +220,6 @@ public class ArtificialHorizonPanel extends JPanel
         g2d.draw(centerShape);
     }
 
-
     private void drawBankRollTriangle(final Graphics2D g2d)
     {
         g2d.transform(_originalTransform);
@@ -232,13 +231,14 @@ public class ArtificialHorizonPanel extends JPanel
         triangle.lineTo((_centerPoint.getX() - 15), (_centerPoint.getY() - _radius + 30));
         triangle.lineTo((_centerPoint.getX() + 15), (_centerPoint.getY() - _radius + 30));
         triangle.closePath();
-        g2d.fill(triangle);
-
-        triangle.moveTo(_centerPoint.getX(), (_centerPoint.getY() + _radius - 5));
-        triangle.lineTo((_centerPoint.getX() - 10), (_centerPoint.getY() + _radius - 25));
-        triangle.lineTo((_centerPoint.getX() + 10), (_centerPoint.getY() + _radius - 25));
-        triangle.closePath();
+        g2d.setColor(Color.yellow);
         g2d.draw(triangle);
+
+        //triangle.moveTo(_centerPoint.getX(), (_centerPoint.getY() + _radius - 5));
+        //triangle.lineTo((_centerPoint.getX() - 10), (_centerPoint.getY() + _radius - 25));
+        //triangle.lineTo((_centerPoint.getX() + 10), (_centerPoint.getY() + _radius - 25));
+        //triangle.closePath();
+        //g2d.draw(triangle);
     }
 
 

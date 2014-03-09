@@ -144,7 +144,6 @@ public class MagCalibrationPanelController implements IMagCalibrationPanelContro
         _panel.setZMaxValue(Integer.toString((int)_zMax));
     }
 
-
     private void updateCalValueToBoard()
     {
         final double xMagBias = ((_xMax + _xMin) / 2);
