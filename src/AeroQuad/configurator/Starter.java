@@ -9,9 +9,11 @@ import AeroQuad.configurator.communication.connectionthread.ConnectionThreadMoni
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.messagesdispatcher.MessageDispatcher;
 import AeroQuad.configurator.ui.AQConfiguratorMainFrame;
+import org.apache.log4j.xml.DOMConfigurator;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +21,12 @@ import java.util.Properties;
 
 public class Starter
 {
+
+    private static final String DEFAULT_CONFIGURATIONS_PATH = "configurations";
+    private static final String DEFAULT_LOGGING_PROPERTIES = DEFAULT_CONFIGURATIONS_PATH + File.separator + "log4j.xml";
+    private static final String DEFAULT_AQ_PROPERTIES = DEFAULT_CONFIGURATIONS_PATH + File.separator + "configurator.properties";
+
+
     public Starter()
     {
         init();
@@ -27,6 +35,8 @@ public class Starter
     private void init()
     {
         initProperties();
+
+        initLog4j();
 
         final IMessageDispatcher messageDispatcher = new MessageDispatcher();
 
@@ -37,12 +47,19 @@ public class Starter
         new ConnectionThreadMonitor(communicator, statisticProcessor);
     }
 
+    private void initLog4j()
+    {
+        org.apache.log4j.LogManager.resetConfiguration();
+        DOMConfigurator.configure(DEFAULT_LOGGING_PROPERTIES);
+    }
+
     private void initProperties()
     {
         try
         {
             final Properties prop = new Properties();
-            final InputStream in = new FileInputStream("configurator.properties");
+
+            final InputStream in = new FileInputStream(DEFAULT_AQ_PROPERTIES);
             prop.load(in);
             System.getProperties().putAll(prop);
         }

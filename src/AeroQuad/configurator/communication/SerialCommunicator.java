@@ -9,8 +9,10 @@ import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.*;
@@ -22,6 +24,9 @@ import java.util.List;
 public class SerialCommunicator implements ISerialCommunicator
 {
     @SuppressWarnings("unchecked")
+
+    private static final Logger LOGGER = LogManager.getLogger(SerialCommunicator.class);
+
     private CommPortIdentifier _portId = null;
     private String _connectedPortName;
     private SerialPort _connectedPort = null;
@@ -47,6 +52,7 @@ public class SerialCommunicator implements ISerialCommunicator
             {
                 _isConnecting = false;
                 _isConnected = true;
+                LOGGER.info("CONNECTED TO AEROQUAD");
                 _messageDispatcher.dispatchMessage(IMessageDispatcher.CONNECTION_STATE_CHANGE, _isConnected);
             }
         });
@@ -98,6 +104,7 @@ public class SerialCommunicator implements ISerialCommunicator
         {
             try
             {
+                LOGGER.info("Trying to connect to " + defaultPort + "@" + baudRate);
                 _connectedPort = (SerialPort) _portId.open("Aeroquad Serial Communicator", 2000);
                 _imputStreamReader = _connectedPort.getInputStream();
                 _outputStream = _connectedPort.getOutputStream();
@@ -129,9 +136,11 @@ public class SerialCommunicator implements ISerialCommunicator
                 e.printStackTrace();
             }
             _connectedPort.notifyOnDataAvailable(true);
+            LOGGER.info("Port " + defaultPort + "@" + baudRate + " open");
             sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
             final VehicleInfoRequest request = new VehicleInfoRequest(_messageDispatcher);
             _messageAnalyser = request.getMessageAnalyser();
+            LOGGER.info("Request vehicle information");
             sendRequest(request);
         }
     }
@@ -181,6 +190,7 @@ public class SerialCommunicator implements ISerialCommunicator
     {
         try
         {
+            LOGGER.debug("Send = " + command);
             _messageDispatcher.dispatchMessage(IMessageDispatcher.RAW_DATA_MESSAGE_SENT, command);
             _outputStream.write(command.getBytes());
             _outputStream.close();
@@ -256,6 +266,7 @@ public class SerialCommunicator implements ISerialCommunicator
 
     private void handleReceivedString(final String rawData)
     {
+        LOGGER.debug("Received = " + rawData);
         //System.out.println(rawData);
         _messageDispatcher.dispatchMessage(IMessageDispatcher.RAW_DATA_MESSAGE_RECEIVED,  rawData);
         _messageAnalyser.analyzeRawData(rawData);
