@@ -103,4 +103,10 @@ public class SetupPanel extends JPanel implements ISetupPanel
     {
         _magCalibrationButton.setVisible(enable);
     }
+
+    @Override
+    public void performEscCalibrationSelection()
+    {
+        _escCalibrationButton.doClick();
+    }
 }

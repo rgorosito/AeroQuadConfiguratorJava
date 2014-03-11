@@ -9,4 +9,6 @@ public interface IMonitoringPanel
     void setConnectedState(boolean connected);
 
     void showPanel(String panelId);
+
+    void performVehicleMonitoringSelection();
 }

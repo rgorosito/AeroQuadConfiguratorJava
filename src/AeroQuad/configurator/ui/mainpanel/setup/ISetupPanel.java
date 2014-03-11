@@ -10,4 +10,6 @@ public interface ISetupPanel
     void showPanel(String panelId);
 
     void setMagBalenEnable(boolean enable);
+
+    void performEscCalibrationSelection();
 }

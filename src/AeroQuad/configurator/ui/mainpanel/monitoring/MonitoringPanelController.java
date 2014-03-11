@@ -122,7 +122,7 @@ public class MonitoringPanelController implements IMonitoringPanelController
     {
         if (activated)
         {
-            vehicleMonitoringButtonPressed();
+            _panel.performVehicleMonitoringSelection();
         }
     }
 }

@@ -143,7 +143,7 @@ public class SetupPanelController implements ISetupPanelController
     {
         if (activated)
         {
-            escCalibrationButtonPressed();
+            _panel.performEscCalibrationSelection();
         }
     }
 }

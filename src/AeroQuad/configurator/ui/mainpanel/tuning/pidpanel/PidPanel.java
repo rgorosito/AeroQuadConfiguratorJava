@@ -125,15 +125,24 @@ public class PidPanel extends JPanel
     {
         int position = _pTextField.getCaretPosition();
         _pTextField.setText(pid.getP());
-        _pTextField.setCaretPosition(position);
+        if (_pTextField.getText().length() > position)
+        {
+            _pTextField.setCaretPosition(position);
+        }
 
         position = _iTextField.getCaretPosition();
         _iTextField.setText(pid.getI());
-        _iTextField.setCaretPosition(position);
+        if (_iTextField.getText().length() > position)
+        {
+            _iTextField.setCaretPosition(position);
+        }
 
         position = _dTextField.getCaretPosition();
         _dTextField.setText(pid.getD());
-        _dTextField.setCaretPosition(position);
+        if (_dTextField.getText().length() > position)
+        {
+            _dTextField.setCaretPosition(position);
+        }
     }
 
     public void addActionListener(final ActionListener actionListener)

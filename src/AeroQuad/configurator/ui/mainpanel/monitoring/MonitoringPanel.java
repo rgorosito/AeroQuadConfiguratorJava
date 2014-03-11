@@ -97,4 +97,10 @@ public class MonitoringPanel extends JPanel implements IMonitoringPanel
     {
         _cardLayout.show(_cardLayoutPanel, panelId);
     }
+
+    @Override
+    public void performVehicleMonitoringSelection()
+    {
+        _vehicleMonitoringButton.doClick();
+    }
 }
