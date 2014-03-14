@@ -9,7 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="RXTXcomm" level="project" />
     <orderEntry type="library" name="JFreeChart" level="project" />
-    <orderEntry type="library" name="Log4j" level="project" />
   </component>
 </module>
 

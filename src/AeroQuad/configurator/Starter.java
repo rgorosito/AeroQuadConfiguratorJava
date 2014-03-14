@@ -9,7 +9,6 @@ import AeroQuad.configurator.communication.connectionthread.ConnectionThreadMoni
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.messagesdispatcher.MessageDispatcher;
 import AeroQuad.configurator.ui.AQConfiguratorMainFrame;
-import org.apache.log4j.xml.DOMConfigurator;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -21,6 +20,8 @@ import java.util.Properties;
 
 public class Starter
 {
+
+    //private static final Logger LOGGER = LogManager.getLogger(Starter.class);
 
     private static final String DEFAULT_CONFIGURATIONS_PATH = "configurations";
     private static final String DEFAULT_LOGGING_PROPERTIES = DEFAULT_CONFIGURATIONS_PATH + File.separator + "log4j.xml";
@@ -34,9 +35,10 @@ public class Starter
 
     private void init()
     {
-        initProperties();
-
         initLog4j();
+
+        //LOGGER.debug("INIT APPLICATION");
+        initProperties();
 
         final IMessageDispatcher messageDispatcher = new MessageDispatcher();
 
@@ -44,13 +46,14 @@ public class Starter
         final ICommunicationStatisticsProcessor statisticProcessor = new CommunicationStatisticsProcessor(communicator, messageDispatcher);
         final AQConfiguratorMainFrame mainFrame = new AQConfiguratorMainFrame(communicator,messageDispatcher);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //LOGGER.debug("START CONNECTION MONITORING");
         new ConnectionThreadMonitor(communicator, statisticProcessor);
     }
 
     private void initLog4j()
     {
-        org.apache.log4j.LogManager.resetConfiguration();
-        DOMConfigurator.configure(DEFAULT_LOGGING_PROPERTIES);
+        //org.apache.log4j.LogManager.resetConfiguration();
+        //DOMConfigurator.configure(DEFAULT_LOGGING_PROPERTIES);
     }
 
     private void initProperties()

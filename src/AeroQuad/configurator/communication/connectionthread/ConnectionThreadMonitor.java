@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ConnectionThreadMonitor implements IConnectionThreadMonitor
 {
+    //private static final Logger LOGGER = LogManager.getLogger(ConnectionThreadMonitor.class);
     private final int NB_EMPTY_HIT_THRESHOLD = 6; // @todo: use some config in property file
 
     private final ICommunicationStatisticsProcessor _statisticProcessor;
@@ -35,6 +36,7 @@ public class ConnectionThreadMonitor implements IConnectionThreadMonitor
 
     private void tryToConnect(final ISerialCommunicator communicator)
     {
+        //LOGGER.debug("TRY TO CONNECT");
         final List<String> commPortList = communicator.getComPortAvailable();
         if (commPortList.size() != 0)
         {
@@ -46,6 +48,10 @@ public class ConnectionThreadMonitor implements IConnectionThreadMonitor
                     break;
                 }
             }
+        }
+        else
+        {
+            //LOGGER.debug("NO COMM PORT DETECTED");
         }
     }
 

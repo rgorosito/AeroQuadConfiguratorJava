@@ -2,15 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="afae10c6-bd8d-46ee-955a-920ddfa63c7e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/Log4j/log4j-1.2.17.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Log4j.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/run/configurations/log4j.xml" />
-      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\.idea\libraries\JXInput.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\lib\JXInput\jxinput.dll" afterPath="" />
-      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\lib\JXInput\jxinput.jar" afterPath="" />
-      <change type="MOVED" beforePath="C:\Working\AQConfiguratorJava\run\configurator.properties" afterPath="$PROJECT_DIR$/run/configurations/configurator.properties" />
+      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\.idea\libraries\Log4j.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\run\jxinput.dll" afterPath="" />
+      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\src\AeroQuad\configurator\gamepad\controller\GamePad.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\src\AeroQuad\configurator\gamepad\controller\IGamePad.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\src\AeroQuad\configurator\gamepad\controller\SaitecEvoFlightStick.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\src\AeroQuad\configurator\gamepad\controller\XBox360Pad.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\src\AeroQuad\configurator\gamepad\detection\GamePadDetectionController.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\src\AeroQuad\configurator\gamepad\detection\IGamePadDetectionController.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\src\AeroQuad\configurator\gamepad\ui\GamePadPanel.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\src\AeroQuad\configurator\gamepad\ui\GamePadPanelController.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\src\AeroQuad\configurator\gamepad\ui\IGamePadPanel.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Working\AQConfiguratorJava\src\AeroQuad\configurator\gamepad\ui\IGamePadPanelController.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/AQConfiguratorJava.jar" afterPath="$PROJECT_DIR$/run/AQConfiguratorJava.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AQConfiguratorJava.iml" afterPath="$PROJECT_DIR$/AQConfiguratorJava.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/communication/connectionthread/ConnectionThreadMonitor.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/communication/connectionthread/ConnectionThreadMonitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/Starter.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/Starter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -79,21 +86,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SerialCommunicator.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="SerialCommunicator.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="192" column="44" selection-start="6592" selection-end="6592" vertical-scroll-proportion="0.0" vertical-offset="2696" max-vertical-offset="4097">
-              <folding>
-                <element signature="e#911#941#0" expanded="true" />
-              </folding>
+            <state line="255" column="9" selection-start="8227" selection-end="8227" vertical-scroll-proportion="0.94561404" vertical-offset="3473" max-vertical-offset="4420">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="configurator.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/run/configurations/configurator.properties">
+      <file leaf-file-name="ConnectionThreadMonitor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/connectionthread/ConnectionThreadMonitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="29" selection-start="476" selection-end="476" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
+            <state line="54" column="9" selection-start="1883" selection-end="1883" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="2023">
               <folding />
             </state>
           </provider>
@@ -102,18 +107,7 @@
       <file leaf-file-name="Starter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/Starter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="76" selection-start="2295" selection-end="2295" vertical-scroll-proportion="0.0" vertical-offset="500" max-vertical-offset="1411">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="log4j.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/run/configurations/log4j.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="40" selection-start="343" selection-end="343" vertical-scroll-proportion="0.20481928" vertical-offset="0" max-vertical-offset="1258">
+            <state line="51" column="0" selection-start="2073" selection-end="2073" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1564">
               <folding />
             </state>
           </provider>
@@ -137,7 +131,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/esccalibration/EscCalibrationPanel.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/esccalibration/EscCalibrationPanelController.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/CalibrationStepsState.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/messagedispatcher/IMessageDispatcher.java" />
@@ -185,9 +178,10 @@
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/SetupPanelController.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/ISetupPanel.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/SetupPanel.java" />
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java" />
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/Starter.java" />
         <option value="$PROJECT_DIR$/run/configurations/log4j.xml" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/communication/connectionthread/ConnectionThreadMonitor.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/Starter.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java" />
       </list>
     </option>
   </component>
@@ -253,16 +247,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="AQConfigurator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -595,6 +579,92 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="configurator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="communication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="messaging" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="configurator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="communication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="messaging" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="request" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="configurator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="communication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="messaging" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="messageanalyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AQConfiguratorJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="run" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -633,6 +703,16 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Favorites" />
     </panes>
   </component>
@@ -657,7 +737,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/Log4j" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/run" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -1132,7 +1212,11 @@
       <created>1394502439045</created>
       <updated>1394502439045</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="add log4j support for debug purpose">
+      <created>1394579623073</created>
+      <updated>1394579623073</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1160,17 +1244,15 @@
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36105263" sideWeight="0.4968383" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3602941" sideWeight="0.4968383" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21157895" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27157894" sideWeight="0.6775068" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26842105" sideWeight="0.6775068" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3495702" sideWeight="0.31616983" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2" sideWeight="0.48961157" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1182,6 +1264,8 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21052632" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2" sideWeight="0.48961157" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1225,7 +1309,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Altitude hold pid tuning done&#10;" />
     <MESSAGE value="Mag data fix for sensors monitoring" />
     <MESSAGE value="Some work on Motor Monitoring vs motordisplay panel controller" />
     <MESSAGE value="Some little refactoring" />
@@ -1250,7 +1333,8 @@
     <MESSAGE value="Many fix&#10;" />
     <MESSAGE value="Some little fix," />
     <MESSAGE value="Some little fix on panels navigations&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some little fix on panels navigations&#10;" />
+    <MESSAGE value="add log4j support for debug purpose" />
+    <option name="LAST_COMMIT_MESSAGE" value="add log4j support for debug purpose" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1277,14 +1361,11 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/accro/AccroPidPanelController.java">
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/Starter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="63" selection-start="3561" selection-end="3561" vertical-scroll-proportion="-0.21493903" vertical-offset="1603" max-vertical-offset="2465" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/messagesdispatcher/AltitudeHoldPidData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="13" selection-start="65" selection-end="65" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2040" />
+        <state line="56" column="0" selection-start="2109" selection-end="2234" vertical-scroll-proportion="0.0" vertical-offset="952" max-vertical-offset="1564">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/messagesdispatcher/AttitudePidData.java">
@@ -1334,16 +1415,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/messageanalyzer/SensorsValuesMessageAnalyser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="37" selection-start="1058" selection-end="1070" vertical-scroll-proportion="0.6408094" vertical-offset="215" max-vertical-offset="1139">
-          <folding />
-        </state>
+        <state line="35" column="37" selection-start="1058" selection-end="1070" vertical-scroll-proportion="0.6408094" vertical-offset="215" max-vertical-offset="1139" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/messageanalyzer/VehicleStatusMessageAnalyser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="74" selection-start="634" selection-end="634" vertical-scroll-proportion="0.26206896" vertical-offset="188" max-vertical-offset="1241">
-          <folding />
-        </state>
+        <state line="20" column="74" selection-start="634" selection-end="634" vertical-scroll-proportion="0.26206896" vertical-offset="188" max-vertical-offset="1241" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/messagesdispatcher/VehicleAttitude.java">
@@ -1469,9 +1546,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/messaging/messageanalyzer/VehicleInfoMessageAnalyser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="0" selection-start="1609" selection-end="1609" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="2261">
-          <folding />
-        </state>
+        <state line="42" column="0" selection-start="1609" selection-end="1609" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="2261" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/magcalibration/MagCalibrationPanelController.java">
@@ -1535,39 +1610,38 @@
     </entry>
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.7.0_45/src.zip!/java/io/FileInputStream.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="145" column="0" selection-start="4823" selection-end="4823" vertical-scroll-proportion="0.33333334" vertical-offset="1818" max-vertical-offset="7191">
+        <state line="145" column="0" selection-start="4823" selection-end="4823" vertical-scroll-proportion="0.33333334" vertical-offset="1818" max-vertical-offset="7191" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run/configurations/log4j.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="41" selection-start="344" selection-end="344" vertical-scroll-proportion="0.1784108" vertical-offset="0" max-vertical-offset="1258">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/run/configurations/configurator.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="29" selection-start="476" selection-end="476" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
+        <state line="17" column="29" selection-start="476" selection-end="476" vertical-scroll-proportion="0.15892054" vertical-offset="183" max-vertical-offset="850" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/connectionthread/ConnectionThreadMonitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="9" selection-start="1883" selection-end="1883" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1904">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/Starter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="76" selection-start="2295" selection-end="2295" vertical-scroll-proportion="0.0" vertical-offset="500" max-vertical-offset="1411">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="51" column="0" selection-start="2073" selection-end="2073" vertical-scroll-proportion="0.0" vertical-offset="549" max-vertical-offset="1462">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="192" column="44" selection-start="6592" selection-end="6592" vertical-scroll-proportion="0.0" vertical-offset="2696" max-vertical-offset="4097">
-          <folding>
-            <element signature="e#911#941#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run/configurations/log4j.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="40" selection-start="343" selection-end="343" vertical-scroll-proportion="0.20481928" vertical-offset="0" max-vertical-offset="1258">
+        <state line="255" column="9" selection-start="8227" selection-end="8227" vertical-scroll-proportion="0.94561404" vertical-offset="3473" max-vertical-offset="4420">
           <folding />
         </state>
       </provider>
@@ -1650,7 +1724,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Log4j</last-edited>
+          <last-edited>RXTXcomm</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
