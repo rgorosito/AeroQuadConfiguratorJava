@@ -106,7 +106,6 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
             buffer.append(_userAttitudePidData.getGyroPitchPid().getI() + ";");
             buffer.append(_userAttitudePidData.getGyroPitchPid().getD() + ";");
         }
-        buffer.append("0;");
 
         return buffer.toString();
     }

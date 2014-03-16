@@ -164,15 +164,12 @@ public class AccelCalibrationPanelController implements IAccelCalibrationPanelCo
             xScaleFactor = xScaleFactor * -1;
         }
 
-        StringBuffer buffer = new StringBuffer(1);
+        final StringBuffer buffer = new StringBuffer(1);
         buffer.append("K ");
-        buffer.append(xScaleFactor).append(";");
-        buffer.append(yScaleFactor).append(";");
-        buffer.append(zScaleFactor).append(";");
-
+        buffer.append(String.format("%.6f", xScaleFactor)).append(";");
+        buffer.append(String.format("%.6f", yScaleFactor)).append(";");
+        buffer.append(String.format("%.6f", zScaleFactor)).append(";");
         _communicator.sendCommand(buffer.toString());
-
-
         resetInitialState();
     }
 

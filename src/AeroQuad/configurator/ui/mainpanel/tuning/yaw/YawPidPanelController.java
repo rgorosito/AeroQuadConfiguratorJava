@@ -80,7 +80,6 @@ public class YawPidPanelController implements IYawPidPanelController
         buffer.append(_userYawPid.getHeadingHoldPid().getP() + ";");
         buffer.append(_userYawPid.getHeadingHoldPid().getI() + ";");
         buffer.append(_userYawPid.getHeadingHoldPid().getD() + ";");
-        buffer.append("1");
         return buffer.toString();
     }
 
