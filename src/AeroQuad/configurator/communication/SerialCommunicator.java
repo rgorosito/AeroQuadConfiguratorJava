@@ -189,6 +189,7 @@ public class SerialCommunicator implements ISerialCommunicator
     {
         try
         {
+            //System.out.println(command);
             //LOGGER.debug("Send = " + command);
             _messageDispatcher.dispatchMessage(IMessageDispatcher.RAW_DATA_MESSAGE_SENT, command);
             _outputStream.write(command.getBytes());

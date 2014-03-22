@@ -32,6 +32,8 @@ import java.util.TimerTask;
 
 public class TuningPanelController implements ITuningPanelController
 {
+
+    private final int SYNC_TASK_SLEEP_DELAY = 700;
     private final ISerialCommunicator _communicator;
     private ITuningPanel _panel;
 
@@ -184,7 +186,7 @@ public class TuningPanelController implements ITuningPanelController
         {
             _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
             _syncTimer = new Timer(true);
-            _syncTimer.schedule(new SyncTask(),0,100);
+            _syncTimer.schedule(new SyncTask(),0,SYNC_TASK_SLEEP_DELAY);
         }
         else
         {
@@ -266,7 +268,7 @@ public class TuningPanelController implements ITuningPanelController
         {
             try
             {
-                Thread.sleep(200);
+                Thread.sleep(SYNC_TASK_SLEEP_DELAY);
             }
             catch (InterruptedException e)
             {

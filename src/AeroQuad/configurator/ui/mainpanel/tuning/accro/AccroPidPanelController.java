@@ -89,7 +89,7 @@ public class AccroPidPanelController implements IAccroPidPanelController
             buffer.append(_userPidData.getPitchPid().getI() + ";");
             buffer.append(_userPidData.getPitchPid().getD() + ";");
         }
-        buffer.append(_userPidData.getStickScaling());
+        buffer.append(_userPidData.getStickScaling()).append(";");
 
         return buffer.toString();
     }
