@@ -16,7 +16,12 @@ public class VehicleStatusMessageAnalyser implements IMessageAnalyser
     {
         try
         {
+
             final String splittedData[] = rawData.split(",");
+            if (splittedData.length != 32)
+            {
+                return false;
+            }
 
             _messageDispatcher.dispatchMessage(IMessageDispatcher.MOTOR_ARMED_STATE_CHANGED, !splittedData[0].equals("0"));
 

@@ -14,9 +14,12 @@ import AeroQuad.configurator.ui.mainpanel.setup.esccalibration.IEscCalibrationPa
 import AeroQuad.configurator.ui.mainpanel.setup.magcalibration.IMagCalibrationPanelController;
 import AeroQuad.configurator.ui.mainpanel.setup.magcalibration.MagCalibrationPanel;
 import AeroQuad.configurator.ui.mainpanel.setup.magcalibration.MagCalibrationPanelController;
-import AeroQuad.configurator.ui.mainpanel.setup.radiocalibration.IRadioCalibrationPanelController;
-import AeroQuad.configurator.ui.mainpanel.setup.radiocalibration.RadioCalibrationPanel;
-import AeroQuad.configurator.ui.mainpanel.setup.radiocalibration.RadioCalibrationPanelController;
+import AeroQuad.configurator.ui.mainpanel.setup.radio.IRadioSetupController;
+import AeroQuad.configurator.ui.mainpanel.setup.radio.RadioSetupController;
+import AeroQuad.configurator.ui.mainpanel.setup.radio.RadioSetupPanel;
+import AeroQuad.configurator.ui.mainpanel.setup.radio.radiocalibration.IRadioCalibrationPanelController;
+import AeroQuad.configurator.ui.mainpanel.setup.radio.radiocalibration.RadioCalibrationPanel;
+import AeroQuad.configurator.ui.mainpanel.setup.radio.radiocalibration.RadioCalibrationPanelController;
 
 import javax.swing.JPanel;
 import java.beans.PropertyChangeEvent;
@@ -32,8 +35,9 @@ public class SetupPanelController implements ISetupPanelController
     private JPanel _escCalibrationPanel;
     private IMagCalibrationPanelController _magCalibrationController;
     private JPanel _magCalibrationPanel;
-    private IRadioCalibrationPanelController _radioCalibrationController;
-    private JPanel _radioCalibrationPanel;
+
+    private IRadioSetupController _radioSetupController;
+    private JPanel _radioSetupPanel;
 
     public SetupPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
@@ -61,11 +65,8 @@ public class SetupPanelController implements ISetupPanelController
         _magCalibrationController = new MagCalibrationPanelController(messageDispatcher,communicator);
         _magCalibrationPanel = new MagCalibrationPanel(_magCalibrationController);
 
-
-        final IReceiverDisplayPanelController receiverDisplayPanelController = new ReceiverPanelController(messageDispatcher);
-        final JPanel receiverPanel = new ReceiverDisplayPanel(receiverDisplayPanelController);
-        _radioCalibrationController = new RadioCalibrationPanelController(messageDispatcher,communicator, receiverDisplayPanelController);
-        _radioCalibrationPanel = new RadioCalibrationPanel(_radioCalibrationController, receiverPanel);
+        _radioSetupController = new RadioSetupController(messageDispatcher,communicator);
+        _radioSetupPanel = new RadioSetupPanel(_radioSetupController);
     }
 
     @Override
@@ -80,7 +81,7 @@ public class SetupPanelController implements ISetupPanelController
         _accelCalibrationController.setActivated(true);
         _escCalibrationController.setActivated(false);
         _magCalibrationController.setActivated(false);
-        _radioCalibrationController.setActivated(false);
+        _radioSetupController.setActivated(false);
         _panel.showPanel(ISetupPanel.ACCEL_CALIBRATION);
     }
 
@@ -90,7 +91,7 @@ public class SetupPanelController implements ISetupPanelController
         _accelCalibrationController.setActivated(false);
         _escCalibrationController.setActivated(false);
         _magCalibrationController.setActivated(false);
-        _radioCalibrationController.setActivated(true);
+        _radioSetupController.setActivated(true);
         _panel.showPanel(ISetupPanel.RADIO_CALIBRATION);
     }
 
@@ -100,7 +101,7 @@ public class SetupPanelController implements ISetupPanelController
         _accelCalibrationController.setActivated(false);
         _escCalibrationController.setActivated(true);
         _magCalibrationController.setActivated(false);
-        _radioCalibrationController.setActivated(false);
+        _radioSetupController.setActivated(false);
         _panel.showPanel(ISetupPanel.ESC_CALIBRATION);
     }
 
@@ -110,7 +111,7 @@ public class SetupPanelController implements ISetupPanelController
         _accelCalibrationController.setActivated(false);
         _escCalibrationController.setActivated(false);
         _magCalibrationController.setActivated(true);
-        _radioCalibrationController.setActivated(false);
+        _radioSetupController.setActivated(false);
         _panel.showPanel(ISetupPanel.MAG_CALIBRATION);
     }
 
@@ -123,7 +124,7 @@ public class SetupPanelController implements ISetupPanelController
     @Override
     public JPanel getRadioCalibrationPanel()
     {
-        return _radioCalibrationPanel;
+        return _radioSetupPanel;
     }
 
     @Override

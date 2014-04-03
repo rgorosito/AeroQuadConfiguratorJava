@@ -67,4 +67,10 @@ public class ConnectionStatusPanelController implements IConnectionStatusPanelCo
     {
         _panel = panel;
     }
+
+    @Override
+    public void useWireless(boolean useWireless)
+    {
+        _communicator.setUseWireless(useWireless);
+    }
 }

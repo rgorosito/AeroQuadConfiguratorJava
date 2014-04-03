@@ -3,16 +3,18 @@ package AeroQuad.configurator.ui.connectionpanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 
 public class ConnectionStatusPanel extends JPanel implements IConnectionStatusPanel
 {
     private final JLabel _connectionStateLabel = new JLabel(DISCONNECTED,SwingConstants.CENTER);
+    private final JCheckBox _wirelessCheckBox = new JCheckBox("Wireless");
 
     private IConnectionStatusPanelController _controller;
     private boolean _isConnected = false;
-    private Color _defaultBackgroundColor;
     private double _usage;
     private String _baudRate = "";
     private String _comPort = "";
@@ -26,6 +28,16 @@ public class ConnectionStatusPanel extends JPanel implements IConnectionStatusPa
 
         _connectionStateLabel.setOpaque(true);
         add(_connectionStateLabel, BorderLayout.CENTER);
+        add(_wirelessCheckBox, BorderLayout.EAST);
+
+        _wirelessCheckBox.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                _controller.useWireless(_wirelessCheckBox.isSelected());
+            }
+        });
     }
 
     @Override
@@ -74,7 +86,7 @@ public class ConnectionStatusPanel extends JPanel implements IConnectionStatusPa
         }
         else
         {
-            _connectionStateLabel.setBackground(_isConnected ? Color.GREEN : _defaultBackgroundColor);
+            _connectionStateLabel.setBackground(Color.GREEN);
             final DecimalFormat decimalFormat = new DecimalFormat("0.00");
             final String usageString = decimalFormat.format(_usage);
             _connectionStateLabel.setForeground(Color.black);

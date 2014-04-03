@@ -21,6 +21,11 @@ public class SensorsValuesMessageAnalyser implements IMessageAnalyser
 
             final String splittedData[] = rawData.split(",");
 
+            if (splittedData.length != 11)
+            {
+                return false;
+            }
+
             final String gyroX = splittedData[0];
             final String gyroY = splittedData[1];
             final String gyroZ = splittedData[2];

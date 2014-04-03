@@ -32,4 +32,6 @@ public interface ISerialCommunicator
     void sendCommand(String command);
 
     boolean isConnected();
+
+    void setUseWireless(boolean useWireless);
 }

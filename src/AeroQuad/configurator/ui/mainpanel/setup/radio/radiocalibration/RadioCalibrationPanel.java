@@ -1,4 +1,4 @@
-package AeroQuad.configurator.ui.mainpanel.setup.radiocalibration;
+package AeroQuad.configurator.ui.mainpanel.setup.radio.radiocalibration;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

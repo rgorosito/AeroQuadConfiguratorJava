@@ -20,9 +20,9 @@ public class SetupPanel extends JPanel implements ISetupPanel
     private final ButtonGroup _buttonGroup = new ButtonGroup();
     private final ISetupPanelController _controller;
 
-    public SetupPanel(final ISetupPanelController setupPanelController)
+    public SetupPanel(final ISetupPanelController controller)
     {
-        _controller = setupPanelController;
+        _controller = controller;
 
         setLayout(new BorderLayout());
 

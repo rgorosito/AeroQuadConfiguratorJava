@@ -39,6 +39,8 @@ public class SerialCommunicator implements ISerialCommunicator
 
     private boolean _isConnecting = false;
 
+    private int _baudRate = DEFAULT_BOAD_RATE;
+
     public SerialCommunicator(final IMessageDispatcher messageDispatcher)
     {
         _messageDispatcher = messageDispatcher;
@@ -74,7 +76,7 @@ public class SerialCommunicator implements ISerialCommunicator
     @Override
     public void connect(final String commPort)
     {
-        connect(ISerialCommunicator.DEFAULT_BOAD_RATE, commPort);
+        connect(_baudRate, commPort);
     }
 
     @Override
@@ -206,6 +208,17 @@ public class SerialCommunicator implements ISerialCommunicator
     public boolean isConnected()
     {
         return _isConnected;
+    }
+
+    @Override
+    public void setUseWireless(boolean useWireless)
+    {
+        _baudRate = BOAD_RATE_115200;
+        if (useWireless)
+        {
+            _baudRate = BOAD_RATE_57600;
+        }
+        disconnect(true);
     }
 
     private void processSerialEvent(final SerialPortEvent event)
