@@ -2,11 +2,13 @@
   <artifact type="jar" build-on-make="true" name="AQConfiguratorJava:jar">
     <output-path>$PROJECT_DIR$/run</output-path>
     <root id="archive" name="AQConfiguratorJava.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/run/META-INF/MANIFEST.MF" />
+      </element>
       <element id="module-output" name="AQConfiguratorJava" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/JFreeChart/jcommon-1.0.17.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/JFreeChart/jfreechart-1.0.14-swt.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/JFreeChart/jfreechart-1.0.14.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/SerialComm/RXTXcomm.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/JFreeChart/jfreechart-1.0.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/JFreeChart/jcommon-1.0.17.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

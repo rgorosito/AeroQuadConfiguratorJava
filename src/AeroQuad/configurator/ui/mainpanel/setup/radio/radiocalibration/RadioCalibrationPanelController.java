@@ -229,7 +229,7 @@ public class RadioCalibrationPanelController implements IRadioCalibrationPanelCo
             _panel.setButtonText("Finish");
             _currentCalibrationState = RadioCalibrationState.GATTERING_DATA;
             _receiverDisplayPanelController.setEnabled(true);
-            _communicator.sendRequest(new ReceiverRawValueRequest(_messageDispatcher, _nbChannel));
+            _communicator.sendRequest(new ReceiverRawValueRequest(_messageDispatcher));
             _panel.setCancelEnable(true);
         }
         else

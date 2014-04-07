@@ -86,14 +86,7 @@ public class ConnectionThreadMonitor implements IConnectionThreadMonitor
         {
             while (true)
             {
-                SwingUtilities.invokeLater(new Runnable()
-                {
-                    @Override
-                    public void run()
-                    {
-                        monitorConnection(_communicator);
-                    }
-                });
+                monitorConnection(_communicator);
 
                 try
                 {

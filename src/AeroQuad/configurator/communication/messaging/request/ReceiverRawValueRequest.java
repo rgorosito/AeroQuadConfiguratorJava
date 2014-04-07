@@ -7,18 +7,16 @@ import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 public class ReceiverRawValueRequest implements IRequest
 {
     private final IMessageDispatcher _messageDispatcher;
-    private final int _nbChannel;
 
-    public ReceiverRawValueRequest(final IMessageDispatcher messageDispatcher, final int nbChannel)
+    public ReceiverRawValueRequest(final IMessageDispatcher messageDispatcher)
     {
         _messageDispatcher = messageDispatcher;
-        _nbChannel = nbChannel;
     }
 
     @Override
     public IMessageAnalyser getMessageAnalyser()
     {
-        return new ReceiverRawValueMessageAnalyser(_messageDispatcher, _nbChannel) ;
+        return new ReceiverRawValueMessageAnalyser(_messageDispatcher) ;
     }
 
     @Override

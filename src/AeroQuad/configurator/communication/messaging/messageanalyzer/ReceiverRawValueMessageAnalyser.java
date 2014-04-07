@@ -6,12 +6,10 @@ import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 public class ReceiverRawValueMessageAnalyser implements IMessageAnalyser
 {
     private final IMessageDispatcher _messageDispatcher;
-    private final int _nbChannel;
 
-    public ReceiverRawValueMessageAnalyser(final IMessageDispatcher messageDispatcher, final int nbChannel)
+    public ReceiverRawValueMessageAnalyser(final IMessageDispatcher messageDispatcher)
     {
         _messageDispatcher = messageDispatcher;
-        _nbChannel = nbChannel;
     }
 
     @Override
@@ -19,6 +17,8 @@ public class ReceiverRawValueMessageAnalyser implements IMessageAnalyser
     {
         try
         {
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.RECEIVER_ALL_RAW_DATA_CHANGED, rawData);
+
             final String splittedData[] = rawData.split(",");
 
             _messageDispatcher.dispatchMessage(IMessageDispatcher.RECEIVER_ROLL_STATE_CHANGE, splittedData[0]);

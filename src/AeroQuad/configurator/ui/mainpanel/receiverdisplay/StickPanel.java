@@ -21,13 +21,14 @@ public class StickPanel extends JLabel
 
     void setX(final int x)
     {
-        _x = x;
+
+        _x = MathUtil.constrain(x,1000,2000);
         repaint();
     }
 
     void setY(final int y)
     {
-        _y = y;
+        _y = MathUtil.constrain(y,1000,2000);
         repaint();
     }
 

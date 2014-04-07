@@ -182,7 +182,7 @@ public class RadioChannelDetectionPanel extends JPanel implements IRadioChannelD
             }
         });
 
-        _startButton.addActionListener(new ActionListener()
+        _cancelButton.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(final ActionEvent e)
@@ -190,5 +190,7 @@ public class RadioChannelDetectionPanel extends JPanel implements IRadioChannelD
                 _controller.cancelDetection();
             }
         });
+
+        _cancelButton.setEnabled(false);
     }
 }
