@@ -45,8 +45,28 @@ public class VehicleStatusController implements IVehicleStatusController
     {
         if (activated)
         {
-            _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
-            _communicator.sendRequest(new VehicleStatusRequest(_messageDispatcher));
+            final Thread startRequestThread = new Thread(new RequestStartThread());
+            startRequestThread.start();
+        }
+    }
+
+    private class RequestStartThread implements Runnable
+    {
+
+        @Override
+        public void run()
+        {
+            try
+            {
+                Thread.sleep(300);
+                _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
+                Thread.sleep(300);
+                _communicator.sendRequest(new VehicleStatusRequest(_messageDispatcher));
+            }
+            catch (InterruptedException e)
+            {
+
+            }
         }
     }
 

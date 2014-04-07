@@ -79,17 +79,17 @@ public class MonitoringPanel extends JPanel implements IMonitoringPanel
     @Override
     public void setConnectedState(final boolean isConnected)
     {
-        if (isConnected)
-        {
-            SwingUtilities.invokeLater(new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    _vehicleMonitoringButton.doClick();
-                }
-            });
-        }
+//        if (isConnected)
+//        {
+//            SwingUtilities.invokeLater(new Runnable()
+//            {
+//                @Override
+//                public void run()
+//                {
+//                    _vehicleMonitoringButton.doClick();
+//                }
+//            });
+//        }
     }
 
     @Override

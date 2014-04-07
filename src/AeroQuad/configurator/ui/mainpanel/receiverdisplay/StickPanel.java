@@ -7,8 +7,8 @@ import java.awt.*;
 
 public class StickPanel extends JLabel
 {
-    private int _x;
-    private int _y;
+    private int _x = 1500;
+    private int _y = 1500;
     private int _width;
     private int _height;
 

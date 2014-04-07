@@ -52,6 +52,7 @@ public class SerialCommunicator implements ISerialCommunicator
             {
                 _isConnecting = false;
                 _isConnected = true;
+
                 System.out.println("CONNECTED TO AEROQUAD");
                 _messageDispatcher.dispatchMessage(IMessageDispatcher.CONNECTION_STATE_CHANGE, _isConnected);
             }
@@ -129,7 +130,7 @@ public class SerialCommunicator implements ISerialCommunicator
             // Advise if data available to be read on the port
             try
             {
-                Thread.sleep(2000);
+                Thread.sleep(5000);
             }
             catch (InterruptedException e)
             {
