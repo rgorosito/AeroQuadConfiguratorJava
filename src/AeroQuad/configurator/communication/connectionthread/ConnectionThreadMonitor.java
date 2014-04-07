@@ -3,27 +3,39 @@ package AeroQuad.configurator.communication.connectionthread;
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.communicationstatistics.ICommunicationStatisticsProcessor;
 
-import javax.swing.*;
 import java.util.List;
 
 public class ConnectionThreadMonitor implements IConnectionThreadMonitor
 {
-    //private static final Logger LOGGER = LogManager.getLogger(ConnectionThreadMonitor.class);
-    private final int NB_EMPTY_HIT_THRESHOLD = 6; // @todo: use some config in property file
+    private final int NB_EMPTY_HIT_THRESHOLD = 4;
+    private final int NB_CONNECTING_COUNT_TO_FAILED = 8;
 
     private final ICommunicationStatisticsProcessor _statisticProcessor;
     private int _nothingReceivedHit;
+    private int _tryingToConnectNbHit;
 
     public ConnectionThreadMonitor(final ISerialCommunicator communicator, ICommunicationStatisticsProcessor statisticProcessor)
     {
         _statisticProcessor = statisticProcessor;
         final Thread connectionThread = new Thread(new CommunicationThread(communicator));
+        connectionThread.setName("WatchDog");
         connectionThread.start();
     }
 
     private void monitorConnection(final ISerialCommunicator communicator)
     {
-        if (!communicator.isConnected())
+        if (communicator.isConnecting())
+        {
+            System.out.println("Connecting");
+            _tryingToConnectNbHit++;
+            if (_tryingToConnectNbHit > NB_CONNECTING_COUNT_TO_FAILED)
+            {
+                System.out.println("Cant connect, close and retry");
+                _tryingToConnectNbHit = 0;
+                communicator.disconnect();
+            }
+        }
+        else if (!communicator.isConnected())
         {
             tryToConnect(communicator);
         }
@@ -36,7 +48,6 @@ public class ConnectionThreadMonitor implements IConnectionThreadMonitor
 
     private void tryToConnect(final ISerialCommunicator communicator)
     {
-        //LOGGER.debug("TRY TO CONNECT");
         final List<String> commPortList = communicator.getComPortAvailable();
         if (commPortList.size() != 0)
         {
@@ -49,10 +60,6 @@ public class ConnectionThreadMonitor implements IConnectionThreadMonitor
                 }
             }
         }
-        else
-        {
-            //LOGGER.debug("NO COMM PORT DETECTED");
-        }
     }
 
     private void monitorConnectedState(final ISerialCommunicator communicator)
@@ -63,11 +70,12 @@ public class ConnectionThreadMonitor implements IConnectionThreadMonitor
             _nothingReceivedHit++;
             if (_nothingReceivedHit > NB_EMPTY_HIT_THRESHOLD)
             {
-                communicator.disconnect(false);
+                communicator.disconnect();
             }
         }
         else
         {
+            _tryingToConnectNbHit = 0;
             _nothingReceivedHit = 0;
         }
     }
@@ -91,8 +99,7 @@ public class ConnectionThreadMonitor implements IConnectionThreadMonitor
                 try
                 {
                     Thread.sleep(1000);
-                }
-                catch (InterruptedException e)
+                } catch (InterruptedException e)
                 {
                     System.err.println("Communication thread error = " + e);
                 }

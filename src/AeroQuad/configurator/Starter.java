@@ -10,8 +10,7 @@ import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.messagesdispatcher.MessageDispatcher;
 import AeroQuad.configurator.ui.AQConfiguratorMainFrame;
 
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

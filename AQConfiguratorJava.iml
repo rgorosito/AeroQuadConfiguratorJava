@@ -6,8 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="SerialComm" level="project" />
     <orderEntry type="library" exported="" name="jfreechart-1.0.14" level="project" />
+    <orderEntry type="library" exported="" name="jssc" level="project" />
     <orderEntry type="inheritedJdk" />
   </component>
 </module>

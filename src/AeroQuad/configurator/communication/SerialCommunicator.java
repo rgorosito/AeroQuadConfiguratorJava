@@ -1,45 +1,29 @@
 package AeroQuad.configurator.communication;
 
-import AeroQuad.configurator.communication.messaging.IMessageDefinition;
+
 import AeroQuad.configurator.communication.messaging.messageanalyzer.IMessageAnalyser;
 import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.communication.messaging.request.VehicleInfoRequest;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
-import gnu.io.CommPortIdentifier;
-import gnu.io.SerialPort;
-import gnu.io.SerialPortEvent;
-import gnu.io.SerialPortEventListener;
+import jssc.*;
 
-import javax.swing.SwingUtilities;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.*;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
-
 
 public class SerialCommunicator implements ISerialCommunicator
 {
-    @SuppressWarnings("unchecked")
-
-    //private static final Logger LOGGER = LogManager.getLogger(SerialCommunicator.class);
-
-    private CommPortIdentifier _portId = null;
-    private String _connectedPortName;
-    private SerialPort _connectedPort = null;
-
-    private InputStream _imputStreamReader = null;
-    private OutputStream _outputStream = null;
-    private boolean _isConnected = false;
-    private BufferedReader _bufferedReader = null;
-
     private final IMessageDispatcher _messageDispatcher;
-    private IMessageAnalyser _messageAnalyser;
 
+    private boolean _isConnected = false;
     private boolean _isConnecting = false;
 
-    private int _baudRate = DEFAULT_BOAD_RATE;
+    private int _baudRateSpeed = SerialPort.BAUDRATE_115200;
+    private IMessageAnalyser _messageAnalyser;
+    private SerialPort _serialPort;
+
+    private int _connectionDelay = 2000;
 
     public SerialCommunicator(final IMessageDispatcher messageDispatcher)
     {
@@ -57,128 +41,122 @@ public class SerialCommunicator implements ISerialCommunicator
                 _messageDispatcher.dispatchMessage(IMessageDispatcher.CONNECTION_STATE_CHANGE, _isConnected);
             }
         });
+
     }
 
     @Override
     public List<String> getComPortAvailable()
     {
-        final ArrayList<String> portListName = new ArrayList<String>(1);
-        final Enumeration portList = CommPortIdentifier.getPortIdentifiers();
-
-        while (portList.hasMoreElements())
+        final List<String> ret = new ArrayList<String>(1);
+        final String[] portNames = SerialPortList.getPortNames();
+        for (int i = 0; i < portNames.length; i++)
         {
-            _portId = (CommPortIdentifier) portList.nextElement();
-            portListName.add(_portId.getName().toString());
+            ret.add(portNames[i]);
         }
 
-        return portListName;      // Return the ports found on the system
+        return ret;
     }
 
     @Override
     public void connect(final String commPort)
     {
-        connect(_baudRate, commPort);
-    }
-
-    @Override
-    public void connect(final int baudRate, final String defaultPort)
-    {
-        if (_isConnecting || _isConnected)
+        if (_isConnecting)
         {
             return;
         }
+
+        System.out.println("Trying to connect to " + commPort + "@" + _baudRateSpeed);
+
+        _messageDispatcher.dispatchMessage(IMessageDispatcher.BAUD_RATE, _baudRateSpeed);
+        _messageDispatcher.dispatchMessage(IMessageDispatcher.COMM_PORT_OPENED, commPort);
         _isConnecting = true;
-        _connectedPortName = defaultPort;
-
-        boolean portFound = false;
-        if (_portId != null)
+        _serialPort = new SerialPort(commPort);
+        try
         {
-            if (_portId.getName().equals(_connectedPortName))
+            _serialPort.openPort();
+            _serialPort.setParams(_baudRateSpeed, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+            _serialPort.addEventListener(new SerialPortEventListener()
             {
-                portFound = true;
-                _messageDispatcher.dispatchMessage(IMessageDispatcher.BAUD_RATE, baudRate);
-                _messageDispatcher.dispatchMessage(IMessageDispatcher.COMM_PORT_OPENED, _connectedPortName);
-            }
-        }
-
-        if (portFound)
-        {
-            try
-            {
-                System.out.println("Trying to connect to " + defaultPort + "@" + baudRate);
-                _connectedPort = (SerialPort) _portId.open("Aeroquad Serial Communicator", 2000);
-                _imputStreamReader = _connectedPort.getInputStream();
-                _outputStream = _connectedPort.getOutputStream();
-                _bufferedReader = new BufferedReader(new InputStreamReader(_imputStreamReader), 5);
-                _connectedPort.setSerialPortParams(baudRate, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
-                _connectedPort.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
-                _connectedPort.addEventListener(new SerialPortEventListener()
+                @Override
+                public void serialEvent(final SerialPortEvent event)
                 {
+                    analyseSerialPortEvent(event);
+                }
+            });
 
-                    @Override
-                    public void serialEvent(SerialPortEvent serialPortEvent)
+            final Thread initialRequestThread = new Thread(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    try
                     {
-                        processSerialEvent(serialPortEvent);
+                        Thread.sleep(_connectionDelay);
                     }
-                });
-            }
-            catch (final Exception e)
-            {
-                System.err.println("Can't connect to comm port because of " + e);
-                _imputStreamReader = null;
-            }
-            // Advise if data available to be read on the port
-            try
-            {
-                Thread.sleep(5000);
-            }
-            catch (InterruptedException e)
-            {
-                e.printStackTrace();
-            }
-            _connectedPort.notifyOnDataAvailable(true);
-//            System.out.println("Port " + defaultPort + "@" + baudRate + " open");
-            sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
-            final VehicleInfoRequest request = new VehicleInfoRequest(_messageDispatcher);
-            _messageAnalyser = request.getMessageAnalyser();
-//            System.out.println("Request vehicle information");
-            sendRequest(request);
+                    catch (InterruptedException e)
+                    {
+                        e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    }
+                    sendRequest(new VehicleInfoRequest(_messageDispatcher));
+                }
+            });
+            initialRequestThread.start();
+
+        }
+        catch (SerialPortException ex)
+        {
+            System.out.println(ex);
         }
     }
 
-   @Override
-    public void disconnect(final boolean forceDisconnect)
+    private void analyseSerialPortEvent(final SerialPortEvent event)
     {
-        if (_isConnected || forceDisconnect)
+        if(event.isRXCHAR())
         {
             try
             {
-                if (_imputStreamReader != null)
+                synchronized (_serialPort)
                 {
-                    _imputStreamReader.close();
-                    _imputStreamReader = null;
+                    final String rawData = _serialPort.readString();
+                    analyseIncommingData(rawData);
                 }
-                if (_bufferedReader != null)
-                {
-                    _bufferedReader.close();
-                    _bufferedReader = null;
-                }
+            }
+            catch (SerialPortException e)
+            {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+        }
+    }
+
+    private void analyseIncommingData(final String rawData)
+    {
+        final String splittedData[] = rawData.split("\r\n");
+        for (final String line : splittedData)
+        {
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.RAW_DATA_MESSAGE_RECEIVED,  line);
+            _messageAnalyser.analyzeRawData(line);
+        }
+    }
+
+    @Override
+    public void disconnect()
+    {
+        if (_serialPort != null)
+        {
+            try
+            {
+                _isConnected = false;
+                _isConnecting = false;
+                _serialPort.closePort();
             }
             catch (Exception e)
             {
-                System.err.println("Close connection problem");
+                System.out.println("DISCONNECTED");
             }
-
-            _connectedPort.close();
-
-            System.out.println("Serial Port closed!!");
-            _isConnected = false;
-            _isConnecting = false;
             _messageDispatcher.dispatchMessage(IMessageDispatcher.CONNECTION_STATE_CHANGE, _isConnected);
+            _serialPort = null;
         }
-        //LOGGER.debug("***DISCONECTED***");
     }
-
 
     @Override
     public void sendRequest(final IRequest request)
@@ -190,18 +168,19 @@ public class SerialCommunicator implements ISerialCommunicator
     @Override
     public void sendCommand(final String command)
     {
+        final String msgToSent = command.replace(",",".");
+        System.out.println("WRITE = " + msgToSent);
+
+        _messageDispatcher.dispatchMessage(IMessageDispatcher.RAW_DATA_MESSAGE_SENT, msgToSent);
+
         try
         {
-//            System.out.println(command);
-            //LOGGER.debug("Send = " + command);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.RAW_DATA_MESSAGE_SENT, command);
-            _outputStream.write(command.getBytes());
-            _outputStream.close();
+            _serialPort.writeString(msgToSent);
         }
-        catch (IOException e)
+        catch (Exception e)
         {
-            System.err.println("Send command error");
-            disconnect(false);
+            e.printStackTrace();
+            // do nothing
         }
     }
 
@@ -212,77 +191,15 @@ public class SerialCommunicator implements ISerialCommunicator
     }
 
     @Override
-    public void setUseWireless(boolean useWireless)
+    public void setUseWireless(final boolean useWireless)
     {
-        _baudRate = BOAD_RATE_115200;
-        if (useWireless)
-        {
-            _baudRate = BOAD_RATE_57600;
-        }
-        disconnect(true);
+        _baudRateSpeed = useWireless ? SerialPort.BAUDRATE_57600 : SerialPort.BAUDRATE_115200;
+        disconnect();
     }
 
-    private void processSerialEvent(final SerialPortEvent event)
+    @Override
+    public boolean isConnecting()
     {
-
-        switch (event.getEventType())
-        {
-            case SerialPortEvent.BI:
-            case SerialPortEvent.CD:
-            case SerialPortEvent.CTS:
-            case SerialPortEvent.DSR:
-            case SerialPortEvent.FE:
-            case SerialPortEvent.OE:
-            case SerialPortEvent.PE:
-            case SerialPortEvent.RI:
-            case SerialPortEvent.OUTPUT_BUFFER_EMPTY:
-                break;
-
-            case SerialPortEvent.DATA_AVAILABLE:
-                SwingUtilities.invokeLater(new Runnable()
-                {
-                    @Override
-                    public void run()
-                    {
-                        analyzeIncomingData();
-                    }
-                });
-                break;
-
-            default:
-                break;
-        }
-    }
-
-
-    private void analyzeIncomingData()
-    {
-        String rawData = null;
-        try
-        {
-            while ((rawData = _bufferedReader.readLine()) != null)
-            {
-                handleReceivedString(rawData);
-            }
-        }
-        catch (IOException e)
-        {
-            // do nothing
-        }
-        catch (Exception e)
-        {
-            if (rawData != null)
-            {
-                System.err.println("Decoding message error = " + rawData);
-            }
-        }
-    }
-
-    private void handleReceivedString(final String rawData)
-    {
-        //LOGGER.debug("Received = " + rawData);
-//        System.out.println(rawData);
-        _messageDispatcher.dispatchMessage(IMessageDispatcher.RAW_DATA_MESSAGE_RECEIVED,  rawData);
-        _messageAnalyser.analyzeRawData(rawData);
+        return _isConnecting;
     }
 }

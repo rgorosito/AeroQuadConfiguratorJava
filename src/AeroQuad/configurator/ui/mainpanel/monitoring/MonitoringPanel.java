@@ -1,12 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JPanel;
-import javax.swing.JToggleButton;
-import javax.swing.SwingUtilities;
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
