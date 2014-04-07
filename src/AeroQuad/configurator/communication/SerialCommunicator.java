@@ -169,7 +169,6 @@ public class SerialCommunicator implements ISerialCommunicator
     public void sendCommand(final String command)
     {
         final String msgToSent = command.replace(",",".");
-        System.out.println("WRITE = " + msgToSent);
 
         _messageDispatcher.dispatchMessage(IMessageDispatcher.RAW_DATA_MESSAGE_SENT, msgToSent);
 
@@ -179,7 +178,6 @@ public class SerialCommunicator implements ISerialCommunicator
         }
         catch (Exception e)
         {
-            e.printStackTrace();
             // do nothing
         }
     }

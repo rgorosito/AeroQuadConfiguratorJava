@@ -2,40 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8da3fbad-a540-4d61-9b78-67057be62ea6" name="Default" comment="">
+      <change type="DELETED" beforePath="D:\Working\AQConfiguratorJava\lib\SerialComm\RXTXcomm.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Working\AQConfiguratorJava\lib\SerialComm\rxtxSerial.dll" afterPath="" />
+      <change type="DELETED" beforePath="D:\Working\AQConfiguratorJava\run\AQConfigurator.bat" afterPath="" />
+      <change type="DELETED" beforePath="D:\Working\AQConfiguratorJava\run\rxtxSerial.dll" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/AQConfiguratorJava.jar" afterPath="$PROJECT_DIR$/run/AQConfiguratorJava.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/AQConfigurator.bat" afterPath="$PROJECT_DIR$/run/AQConfigurator.bat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AQConfiguratorJava.iml" afterPath="$PROJECT_DIR$/AQConfiguratorJava.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/AQConfiguratorJava_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/AQConfiguratorJava_jar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/accro/AccroPidPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/accro/AccroPidPanelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/altitudehold/AltitudeHoldPidPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/altitudehold/AltitudeHoldPidPanelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/attitude/AttitudePidPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/attitude/AttitudePidPanelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/batterymonitor/BatteryMonitorPidPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/batterymonitor/BatteryMonitorPidPanelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/connectionpanel/ConnectionStatusPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/connectionpanel/ConnectionStatusPanelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/communication/connectionthread/ConnectionThreadMonitor.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/communication/connectionthread/ConnectionThreadMonitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/messagesdispatcher/GpsDatas.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/messagesdispatcher/GpsDatas.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/gps/GpsPidPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/gps/GpsPidPanelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/vehiclestatus/gpsstatepanel/GpsState.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/vehiclestatus/gpsstatepanel/GpsState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/vehiclestatus/gpsstatepanel/GpsStatusPanel.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/vehiclestatus/gpsstatepanel/GpsStatusPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/vehiclestatus/gpsstatepanel/GpsStatusPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/vehiclestatus/gpsstatepanel/GpsStatusPanelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/vehiclestatus/gpsstatepanel/IGpsStatusPanel.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/vehiclestatus/gpsstatepanel/IGpsStatusPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/vehiclestatus/gpsstatepanel/IGpsStatusPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/vehiclestatus/gpsstatepanel/IGpsStatusPanelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/IPidPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/IPidPanelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/radiochanneldetection/IRadioChannelDetectionController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/radiochanneldetection/IRadioChannelDetectionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/radiochanneldetection/IRadioChannelDetectionPanel.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/radiochanneldetection/IRadioChannelDetectionPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/IRadioSetupController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/IRadioSetupController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/IRadioSetupPanel.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/IRadioSetupPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/communication/ISerialCommunicator.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/communication/ISerialCommunicator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/MonitoringPanel.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/monitoring/MonitoringPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/radiochanneldetection/RadioChannelDetectionController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/radiochanneldetection/RadioChannelDetectionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/radiochanneldetection/RadioChannelDetectionPanel.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/radiochanneldetection/RadioChannelDetectionPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/RadioSetupController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/RadioSetupController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/RadioSetupPanel.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/radio/RadioSetupPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/SerialComm.xml" afterPath="$PROJECT_DIR$/.idea/libraries/SerialComm.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/Starter.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/Starter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/yaw/YawPidPanelController.java" afterPath="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/yaw/YawPidPanelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/jfreechart_1_0_14.xml" afterPath="$PROJECT_DIR$/.idea/libraries/jfreechart_1_0_14.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AQConfigurator.iws" />
@@ -99,31 +71,7 @@
     <favorites_list name="AQConfigurator" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="TuningPanelController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/TuningPanelController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="4607">
-              <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SerialCommunicator.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.6639478" vertical-offset="1598" max-vertical-offset="3196">
-              <caret line="171" column="49" selection-start-line="171" selection-start-column="49" selection-end-line="171" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1643#1651#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -152,8 +100,8 @@
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/communication/connectionthread/ConnectionThreadMonitor.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/accelcalibration/AccelCalibrationPanelController.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/setup/magcalibration/MagCalibrationPanelController.java" />
-        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java" />
         <option value="$PROJECT_DIR$/src/AeroQuad/configurator/ui/mainpanel/tuning/TuningPanelController.java" />
+        <option value="$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java" />
       </list>
     </option>
   </component>
@@ -639,7 +587,11 @@
       <created>1396832056945</created>
       <updated>1396832056945</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Change Serial library and some bug fix and improvement">
+      <created>1396908405589</created>
+      <updated>1396908405589</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -713,7 +665,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="Fix runtime bug... I believe" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix runtime bug... I believe" />
+    <MESSAGE value="Change Serial library and some bug fix and improvement" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change Serial library and some bug fix and improvement" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -795,6 +748,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27175844" vertical-offset="0" max-vertical-offset="0">
           <caret line="30" column="69" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -816,6 +770,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41184387" vertical-offset="0" max-vertical-offset="0">
           <caret line="20" column="9" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -829,8 +784,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AeroQuad/configurator/communication/SerialCommunicator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6639478" vertical-offset="1598" max-vertical-offset="3196">
-          <caret line="171" column="49" selection-start-line="171" selection-start-column="49" selection-end-line="171" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.3275563" vertical-offset="2344" max-vertical-offset="3162">
+          <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1643#1651#0" expanded="true" />
