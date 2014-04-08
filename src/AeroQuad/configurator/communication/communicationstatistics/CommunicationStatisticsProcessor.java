@@ -55,7 +55,7 @@ public class CommunicationStatisticsProcessor implements ICommunicationStatistic
     @Override
     public void processCommunicationStatistics()
     {
-        final double percentUsed = 100 * (((_nbCharReceived + _nbCharSent) * 8F) / _boadRate);
+        final double percentUsed = 1000 * ((_nbCharReceived + _nbCharSent) / _boadRate);
         _messageDispatcher.dispatchMessage(IMessageDispatcher.COMMUNICATION_USAGE_VALUE_CAHNGED, percentUsed);
         _nbCharReceived = 0;
         _nbCharSent = 0;

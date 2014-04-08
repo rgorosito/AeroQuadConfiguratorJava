@@ -1,6 +1,7 @@
 package AeroQuad.configurator.communication;
 
 
+import AeroQuad.configurator.communication.messaging.IMessageDefinition;
 import AeroQuad.configurator.communication.messaging.messageanalyzer.IMessageAnalyser;
 import AeroQuad.configurator.communication.messaging.request.IRequest;
 import AeroQuad.configurator.communication.messaging.request.VehicleInfoRequest;
@@ -14,6 +15,8 @@ import java.util.List;
 
 public class SerialCommunicator implements ISerialCommunicator
 {
+    private final String SERIAL_END_OF_LINE = "\r\n";
+
     private final IMessageDispatcher _messageDispatcher;
 
     private boolean _isConnected = false;
@@ -22,6 +25,7 @@ public class SerialCommunicator implements ISerialCommunicator
     private int _baudRateSpeed = SerialPort.BAUDRATE_115200;
     private IMessageAnalyser _messageAnalyser;
     private SerialPort _serialPort;
+    private String _rawLine = "";
 
     private int _connectionDelay = 2000;
 
@@ -92,12 +96,15 @@ public class SerialCommunicator implements ISerialCommunicator
                     try
                     {
                         Thread.sleep(_connectionDelay);
+                        sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
+                        Thread.sleep(_connectionDelay);
+                        sendRequest(new VehicleInfoRequest(_messageDispatcher));
                     }
                     catch (InterruptedException e)
                     {
                         e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                     }
-                    sendRequest(new VehicleInfoRequest(_messageDispatcher));
+
                 }
             });
             initialRequestThread.start();
@@ -106,6 +113,9 @@ public class SerialCommunicator implements ISerialCommunicator
         catch (SerialPortException ex)
         {
             System.out.println(ex);
+            _isConnecting = false;
+            _isConnected = false;
+            _rawLine = "";
         }
     }
 
@@ -128,13 +138,27 @@ public class SerialCommunicator implements ISerialCommunicator
         }
     }
 
+
     private void analyseIncommingData(final String rawData)
     {
-        final String splittedData[] = rawData.split("\r\n");
-        for (final String line : splittedData)
+        if (rawData == null)
         {
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.RAW_DATA_MESSAGE_RECEIVED,  line);
-            _messageAnalyser.analyzeRawData(line);
+            return;
+        }
+        _rawLine += rawData;
+        String line = "";
+        while (_rawLine.contains(SERIAL_END_OF_LINE))
+        {
+            line += _rawLine.charAt(0);
+            _rawLine = _rawLine.substring(1);
+            if (_rawLine.length() >= 2 && _rawLine.charAt(0) == '\r' && _rawLine.charAt(1) == '\n')
+            {
+//                System.out.println("Received " + line);
+                _rawLine = _rawLine.substring(2);
+                _messageDispatcher.dispatchMessage(IMessageDispatcher.RAW_DATA_MESSAGE_RECEIVED,  line);
+                _messageAnalyser.analyzeRawData(line);
+                line = "";
+            }
         }
     }
 
@@ -147,15 +171,18 @@ public class SerialCommunicator implements ISerialCommunicator
             {
                 _isConnected = false;
                 _isConnecting = false;
+                _rawLine = "";
                 _serialPort.closePort();
             }
             catch (Exception e)
             {
-                System.out.println("DISCONNECTED");
+
             }
             _messageDispatcher.dispatchMessage(IMessageDispatcher.CONNECTION_STATE_CHANGE, _isConnected);
             _serialPort = null;
         }
+        _serialPort = null;
+        System.out.println("DISCONNECTED");
     }
 
     @Override
@@ -169,6 +196,8 @@ public class SerialCommunicator implements ISerialCommunicator
     public void sendCommand(final String command)
     {
         final String msgToSent = command.replace(",",".");
+
+//        System.out.println("WRITE " + msgToSent);
 
         _messageDispatcher.dispatchMessage(IMessageDispatcher.RAW_DATA_MESSAGE_SENT, msgToSent);
 
