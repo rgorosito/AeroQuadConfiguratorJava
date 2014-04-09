@@ -18,7 +18,9 @@ public interface IReceiverDisplayPanel
 
     void setAux3Value(String value);
 
-    void setNbChannel(int nbChannel);
-
     void setDisconnected();
+
+    void setAux1Visible(boolean visible);
+    void setAux2Visible(boolean visible);
+    void setAux3Visible(boolean visible);
 }

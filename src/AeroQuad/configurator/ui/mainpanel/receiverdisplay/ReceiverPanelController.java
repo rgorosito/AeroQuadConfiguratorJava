@@ -105,7 +105,7 @@ public class ReceiverPanelController implements IReceiverDisplayPanelController
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _panel.setNbChannel((Integer) evt.getNewValue());
+                updatePannelChannelsDisplay((Integer) evt.getNewValue());
             }
         });
 
@@ -121,6 +121,13 @@ public class ReceiverPanelController implements IReceiverDisplayPanelController
                 }
             }
         });
+    }
+
+    private void updatePannelChannelsDisplay(final int nbChannels)
+    {
+        _panel.setAux1Visible(nbChannels >= 6);
+        _panel.setAux2Visible(nbChannels >= 7);
+        _panel.setAux3Visible(nbChannels >= 8);
     }
 
     @Override

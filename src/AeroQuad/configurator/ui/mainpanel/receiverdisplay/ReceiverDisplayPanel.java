@@ -152,21 +152,30 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux3Slider.setValue(Integer.parseInt(value));
     }
 
-    @Override
-    public void setNbChannel(final int nbChannel)
-    {
-        if (nbChannel >= 8)
-        {
-            _middlePanel.add(_aux2Panel);
-            _middlePanel.add(_aux3Panel);
-        }
-    }
 
     @Override
     public void setDisconnected()
     {
         _middlePanel.remove(_aux2Panel);
         _middlePanel.remove(_aux3Panel);
+    }
+
+    @Override
+    public void setAux1Visible(final boolean visible)
+    {
+        _aux1Panel.setVisible(visible);
+    }
+
+    @Override
+    public void setAux2Visible(final boolean visible)
+    {
+        _aux2Panel.setVisible(visible);
+    }
+
+    @Override
+    public void setAux3Visible(final boolean visible)
+    {
+        _aux3Panel.setVisible(visible);
     }
 
     @Override

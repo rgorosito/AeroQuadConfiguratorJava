@@ -7,4 +7,6 @@ public interface IRadioChannelDetectionController
     void startDetection();
 
     void cancelDetection();
+
+    void setPanel(IRadioChannelDetectionPanel panel);
 }
