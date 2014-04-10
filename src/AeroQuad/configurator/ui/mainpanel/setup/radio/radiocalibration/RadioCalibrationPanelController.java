@@ -21,7 +21,7 @@ public class RadioCalibrationPanelController implements IRadioCalibrationPanelCo
     private IRadioCalibrationPanel _panel;
     private final ISerialCommunicator _communicator;
     private final IReceiverDisplayPanelController _receiverDisplayPanelController;
-    private int _nbChannel = 6;
+    private int _nbChannel = 5;
 
     private RadioCalibrationState _currentCalibrationState = RadioCalibrationState.STANDBY;
 
@@ -229,6 +229,7 @@ public class RadioCalibrationPanelController implements IRadioCalibrationPanelCo
             _panel.setButtonText("Finish");
             _currentCalibrationState = RadioCalibrationState.GATTERING_DATA;
             _receiverDisplayPanelController.setEnabled(true);
+            _communicator.sendCommand(IMessageDefinition.RESET_RECEIVER_CALIBRATION);
             _communicator.sendRequest(new ReceiverRawValueRequest(_messageDispatcher));
             _panel.setCancelEnable(true);
         }
@@ -262,52 +263,40 @@ public class RadioCalibrationPanelController implements IRadioCalibrationPanelCo
 
     private void sendValueToAeroquad()
     {
-        _communicator.sendCommand(getMinSetCommand().toString());
-        try
-        {
-            Thread.sleep(200);
-        }
-        catch (InterruptedException e)
-        {
-
-        }
-        _communicator.sendCommand(getMaxSetCommand().toString());
+        _communicator.sendCommand(getCalibrationCommand());
         setStandbyState();
     }
 
-    private StringBuffer getMinSetCommand()
+    private String getCalibrationCommand()
     {
-        final StringBuffer minSetCommand = new StringBuffer();
-        minSetCommand.append("G ");
-        minSetCommand.append(_minRoll).append(";");
-        minSetCommand.append(_minPitch).append(";");
-        minSetCommand.append(_minYaw).append(";");
-        minSetCommand.append(_minThrottle).append(";");
-        minSetCommand.append(_minMode).append(";");
-        minSetCommand.append(_minAux1).append(";");
-        if (_nbChannel > 6)
-        {
-            minSetCommand.append(_minAux2).append(";");
-            minSetCommand.append(_minAux3).append(";");
-        }
-        return minSetCommand;
-    }
+        final StringBuffer calibrationSetCommand = new StringBuffer();
+        calibrationSetCommand.append("G ");
+        calibrationSetCommand.append(_minRoll).append(";");
+        calibrationSetCommand.append(_maxRoll).append(";");
+        calibrationSetCommand.append(_minPitch).append(";");
+        calibrationSetCommand.append(_maxPitch).append(";");
+        calibrationSetCommand.append(_minYaw).append(";");
+        calibrationSetCommand.append(_maxYaw).append(";");
+        calibrationSetCommand.append(_minThrottle).append(";");
+        calibrationSetCommand.append(_maxThrottle).append(";");
+        calibrationSetCommand.append(_minMode).append(";");
+        calibrationSetCommand.append(_maxMode).append(";");
 
-    private StringBuffer getMaxSetCommand()
-    {
-        final StringBuffer minSetCommand = new StringBuffer();
-        minSetCommand.append("H ");
-        minSetCommand.append(_maxRoll).append(";");
-        minSetCommand.append(_maxPitch).append(";");
-        minSetCommand.append(_maxYaw).append(";");
-        minSetCommand.append(_maxThrottle).append(";");
-        minSetCommand.append(_maxMode).append(";");
-        minSetCommand.append(_maxAux1).append(";");
-        if (_nbChannel > 6)
+        if (_nbChannel >= 6)
         {
-            minSetCommand.append(_maxAux2).append(";");
-            minSetCommand.append(_maxAux3).append(";");
+            calibrationSetCommand.append(_minAux1).append(";");
+            calibrationSetCommand.append(_maxAux1).append(";");
         }
-        return minSetCommand;
+        if (_nbChannel >= 7)
+        {
+            calibrationSetCommand.append(_minAux2).append(";");
+            calibrationSetCommand.append(_maxAux3).append(";");
+        }
+        if (_nbChannel >= 8)
+        {
+            calibrationSetCommand.append(_minAux3).append(";");
+            calibrationSetCommand.append(_maxAux3).append(";");
+        }
+        return calibrationSetCommand.toString();
     }
 }

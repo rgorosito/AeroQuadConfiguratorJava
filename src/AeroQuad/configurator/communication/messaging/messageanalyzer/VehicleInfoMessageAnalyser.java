@@ -13,10 +13,13 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
     private final String ACCELEROMETER_KEY = "Accelerometer";
     private final String GYROSCOPE_KEY = "Gyroscope";
     private final String MOTORS_KEY = "Motors";
-    private final String NB_RECEIVER_CHANNEL_KEY = "Receiver Channels";
+    private final String NB_RECEIVER_CHANNEL_KEY = "ReceiverNbChannels";
     private final String FLIGHT_CONFIG_KEY = "Flight Config";
     private final String BOARD_TYPE_KEY = "Board Type";
     private final String FLIGHT_SOFTWARE_VERSION_KEY = "Software Version";
+
+    private final String RECEIVER_TYPE_KEY = "ReceiverType";
+    private final String RECEIVER_CHANNELS_MAP = "ReceiverChannelMap";
 
     private final String NOT_ENABLED = "Not Enabled";
     private final String NOT_DETECTED = "Not Detected";
@@ -120,6 +123,18 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
         else if (datas[0].contains(FLIGHT_SOFTWARE_VERSION_KEY))
         {
             _messageDispatcher.dispatchMessage(IMessageDispatcher.FLIGHT_SOFTWARE_VERSION_PROPERTY_KEY, datas[1]);
+            return true;
+        }
+        else if (datas[0].contains(RECEIVER_TYPE_KEY))
+        {
+            System.out.println("RECEIVER TYPE = " + datas[1]);
+//            _messageDispatcher.dispatchMessage(IMessageDispatcher.FLIGHT_SOFTWARE_VERSION_PROPERTY_KEY, datas[1]);
+            return true;
+        }
+        else if (datas[0].contains(RECEIVER_CHANNELS_MAP))
+        {
+            System.out.println("RECEIVER CHANNELS MAP = " + datas[1]);
+//            _messageDispatcher.dispatchMessage(IMessageDispatcher.FLIGHT_SOFTWARE_VERSION_PROPERTY_KEY, datas[1]);
             return true;
         }
         return false;
