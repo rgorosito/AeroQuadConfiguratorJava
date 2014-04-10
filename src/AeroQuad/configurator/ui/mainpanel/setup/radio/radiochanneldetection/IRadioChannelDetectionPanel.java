@@ -4,7 +4,8 @@ public interface IRadioChannelDetectionPanel
 {
     final static String UNDETECTED = "Undetected";
     final static String DETECTING = "Detecting";
-    final static String DETECTED= "Detected";
+    final static String DETECTED = "Detected";
+    final static String FINISH = "Complete";
 
     void setAux1Visible(boolean visible);
     void setAux2Visible(boolean visible);
@@ -14,7 +15,13 @@ public interface IRadioChannelDetectionPanel
 
     void setStartButtonEnabled(boolean enabled);
 
-    void updateUserFeedback(ReceiverDetectionState currentDetectingChannel, int cpt);
+    void updateUserFeedback(ReceiverChannel currentDetectingChannel, int cpt);
 
-    void setCurrentChannelDetected(ReceiverDetectionState currentDetectingChannel);
+    void setCurrentChannelDetected(ReceiverChannel currentDetectingChannel);
+
+    void setChannelDetected(ReceiverChannel currentDetectingChannel);
+
+    void setFinishing();
+
+    void resetWidgetInitialState();
 }

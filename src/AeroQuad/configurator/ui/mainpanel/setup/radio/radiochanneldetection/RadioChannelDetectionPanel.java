@@ -187,7 +187,14 @@ public class RadioChannelDetectionPanel extends JPanel implements IRadioChannelD
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                _controller.startDetection();
+                if (_startButton.getText().equals(FINISH))
+                {
+                    _controller.completeDetection();
+                }
+                else
+                {
+                    _controller.startDetection();
+                }
             }
         });
 
@@ -235,14 +242,16 @@ public class RadioChannelDetectionPanel extends JPanel implements IRadioChannelD
     }
 
     @Override
-    public void setCurrentChannelDetected(final ReceiverDetectionState currentDetectingChannel)
+    public void setCurrentChannelDetected(final ReceiverChannel currentDetectingChannel)
     {
         _userMessage = "Move your " + currentDetectingChannel.toString() + " stick";
         _indicationTextLabel.setText(_userMessage);
     }
 
+
+
     @Override
-    public void updateUserFeedback(final ReceiverDetectionState currentDetectingChannel, final int cpt)
+    public void updateUserFeedback(final ReceiverChannel currentDetectingChannel, final int cpt)
     {
         switch (currentDetectingChannel)
         {
@@ -286,4 +295,72 @@ public class RadioChannelDetectionPanel extends JPanel implements IRadioChannelD
         _indicationTextLabel.setText(_visible ? _userMessage : "");
     }
 
+    @Override
+    public void setChannelDetected(final ReceiverChannel currentDetectingChannel)
+    {
+        switch (currentDetectingChannel)
+        {
+            case THROTTLE:
+                setSpecificChannelDetected(_throttleProgressBar, _throttleDetectionStateLabel);
+                break;
+            case ROLL:
+                setSpecificChannelDetected(_rollProgressBar, _rollDetectionStateLabel);
+                break;
+            case PITCH:
+                setSpecificChannelDetected(_pitchProgressBar, _pitchDetectionStateLabel);
+                break;
+            case YAW:
+                setSpecificChannelDetected(_yawProgressBar, _yawDetectionStateLabel);
+                break;
+            case MODE:
+                setSpecificChannelDetected(_modeProgressBar, _modeDetectionStateLabel);
+                break;
+            case AUX1:
+                setSpecificChannelDetected(_aux1ProgressBar, _aux1DetectionStateLabel);
+                break;
+            case AUX2:
+                setSpecificChannelDetected(_aux2ProgressBar, _aux2DetectionStateLabel);
+                break;
+            case AUX3:
+                setSpecificChannelDetected(_aux3ProgressBar, _aux3DetectionStateLabel);
+                break;
+        }
+    }
+
+    @Override
+    public void setFinishing()
+    {
+        _startButton.setEnabled(true);
+        _startButton.setText(FINISH);
+    }
+
+    @Override
+    public void resetWidgetInitialState()
+    {
+        _throttleProgressBar.setValue(0);
+        _rollProgressBar.setValue(0);
+        _pitchProgressBar.setValue(0);
+        _yawProgressBar.setValue(0);
+        _modeProgressBar.setValue(0);
+        _aux1ProgressBar.setValue(0);
+        _aux2ProgressBar.setValue(0);
+        _aux3ProgressBar.setValue(0);
+
+        _startButton.setText("Start");
+
+        _throttleDetectionStateLabel.setText(UNDETECTED);
+        _rollDetectionStateLabel.setText(UNDETECTED);
+        _pitchDetectionStateLabel.setText(UNDETECTED);
+        _yawDetectionStateLabel.setText(UNDETECTED);
+        _modeDetectionStateLabel.setText(UNDETECTED);
+        _aux1DetectionStateLabel.setText(UNDETECTED);
+        _aux2DetectionStateLabel.setText(UNDETECTED);
+        _aux3DetectionStateLabel.setText(UNDETECTED);
+    }
+
+    private void setSpecificChannelDetected(final JProgressBar progressBar, final JLabel label)
+    {
+        progressBar.setValue(5);
+        label.setText(DETECTED);
+    }
 }
