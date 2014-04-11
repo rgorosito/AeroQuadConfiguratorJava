@@ -62,19 +62,6 @@ public class RadioChannelDetectionPanel extends JPanel implements IRadioChannelD
         channelDisplayPanelConntainer.setLayout(new BoxLayout(channelDisplayPanelConntainer, BoxLayout.Y_AXIS));
 
 
-        final JPanel throttlePanel = new JPanel(new GridLayout(1,3));
-        throttlePanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        final JLabel throttleLabel = new JLabel("Throttle");
-        throttleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        throttleLabel.setBorder(BorderFactory.createLineBorder(Color.black));
-        throttleLabel.setPreferredSize(new Dimension(0, UiUtils.HEATHER_PREFERED_HEIGHT));
-        throttlePanel.add(throttleLabel);
-        _throttleProgressBar.setOrientation(SwingConstants.HORIZONTAL);
-        throttlePanel.add(_throttleProgressBar);
-        throttlePanel.add(_throttleDetectionStateLabel);
-        _throttleDetectionStateLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        channelDisplayPanelConntainer.add(throttlePanel);
-
         final JPanel rollPanel = new JPanel(new GridLayout(1,3));
         rollPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         final JLabel rollLabel = new JLabel("Roll");
@@ -113,6 +100,19 @@ public class RadioChannelDetectionPanel extends JPanel implements IRadioChannelD
         yawPanel.add(_yawDetectionStateLabel);
         _yawDetectionStateLabel.setHorizontalAlignment(SwingConstants.CENTER);
         channelDisplayPanelConntainer.add(yawPanel);
+
+        final JPanel throttlePanel = new JPanel(new GridLayout(1,3));
+        throttlePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        final JLabel throttleLabel = new JLabel("Throttle");
+        throttleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        throttleLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        throttleLabel.setPreferredSize(new Dimension(0, UiUtils.HEATHER_PREFERED_HEIGHT));
+        throttlePanel.add(throttleLabel);
+        _throttleProgressBar.setOrientation(SwingConstants.HORIZONTAL);
+        throttlePanel.add(_throttleProgressBar);
+        throttlePanel.add(_throttleDetectionStateLabel);
+        _throttleDetectionStateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        channelDisplayPanelConntainer.add(throttlePanel);
 
         final JPanel modePanel = new JPanel(new GridLayout(1,3));
         modePanel.setBorder(BorderFactory.createLineBorder(Color.black));

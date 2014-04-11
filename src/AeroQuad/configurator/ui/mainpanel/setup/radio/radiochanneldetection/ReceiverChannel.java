@@ -3,10 +3,10 @@ package AeroQuad.configurator.ui.mainpanel.setup.radio.radiochanneldetection;
 
 public enum ReceiverChannel
 {
-    THROTTLE,
     ROLL,
     PITCH,
     YAW,
+    THROTTLE,
     MODE,
     AUX1,
     AUX2,
@@ -17,13 +17,13 @@ public enum ReceiverChannel
     {
         switch (channel)
         {
-            case THROTTLE:
-                return ROLL;
             case ROLL:
                 return PITCH;
             case PITCH:
                 return YAW;
             case YAW:
+                return THROTTLE;
+            case THROTTLE:
                 return MODE;
             case MODE:
                 return AUX1;

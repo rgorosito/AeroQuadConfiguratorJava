@@ -28,7 +28,7 @@ public class RadioChannelDetectionController implements IRadioChannelDetectionCo
 
     private final Map<Integer,Integer> _detectedIndex = new HashMap<Integer,Integer>(8);
 
-    private ReceiverChannel _currentDetectingChannel= ReceiverChannel.THROTTLE;
+    private ReceiverChannel _currentDetectingChannel= ReceiverChannel.ROLL;
     private int _nbResetSampleTOCount;
 
     private int _currentDetectingState = NOT_DETECTING;
@@ -80,12 +80,40 @@ public class RadioChannelDetectionController implements IRadioChannelDetectionCo
     {
         _panel.setCancelButtonEnabled(true);
         _panel.setStartButtonEnabled(false);
-        _currentDetectingChannel = ReceiverChannel.THROTTLE;
+        _currentDetectingChannel = ReceiverChannel.ROLL;
         _panel.setCurrentChannelDetected(_currentDetectingChannel);
         _currentDetectingState = DETECTING;
-        final Thread _uiFeedbackThread = new Thread(new UiDetectionFeedbackThread());
-        _uiFeedbackThread.start();
-        _communicator.sendRequest(new ReceiverRawValueRequest(_messageDispatcher));
+        final Thread uiFeedbackThread = new Thread(new UiDetectionFeedbackThread());
+        uiFeedbackThread.start();
+
+        final Thread requestStartThread = new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+
+                try
+                {
+                    _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        Thread.sleep(200);
+                        _communicator.sendCommand(IMessageDefinition.RESET_RECEIVER_CHANNEL_MAP);
+                    }
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Thread.sleep(200);
+                        _communicator.sendRequest(new ReceiverRawValueRequest(_messageDispatcher));
+                    }
+                }
+                catch (InterruptedException e)
+                {
+                }
+
+            }
+        });
+        requestStartThread.start();
+
     }
 
     @Override
@@ -102,9 +130,6 @@ public class RadioChannelDetectionController implements IRadioChannelDetectionCo
     {
         _panel = panel;
     }
-
-
-
 
     private void detectChannelsFromRawData(final String rawData)
     {
@@ -200,17 +225,17 @@ public class RadioChannelDetectionController implements IRadioChannelDetectionCo
             _panel.setCancelButtonEnabled(false);
             _panel.resetWidgetInitialState();
         }
-
     }
 
     private void sendDetectionValues()
     {
-        System.out.print("Index = ");
+        final StringBuffer command = new StringBuffer();
+        command.append("R ");
         for (int i = 0; i < _nbChannels; i++)
         {
-            System.out.print(_detectedIndex.get(i) + ",");
+            command.append(_detectedIndex.get(i)).append(";");
         }
-        System.out.printf("");
+        _communicator.sendCommand(command.toString());
     }
 
     class UiDetectionFeedbackThread implements Runnable

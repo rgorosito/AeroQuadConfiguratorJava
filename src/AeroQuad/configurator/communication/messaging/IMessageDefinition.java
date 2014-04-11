@@ -14,4 +14,5 @@ public class IMessageDefinition
     public static String GPS_PID_SET_COMMAND = "V";
 
     public static String RESET_RECEIVER_CALIBRATION = "H";
+    public static String RESET_RECEIVER_CHANNEL_MAP = "S";
 }

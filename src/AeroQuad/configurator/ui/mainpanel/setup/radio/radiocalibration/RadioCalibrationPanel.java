@@ -56,7 +56,7 @@ public class RadioCalibrationPanel extends JPanel implements IRadioCalibrationPa
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                _controller.buttonPressed();
+                _controller.startButtonPressed();
             }
         });
         _cancelButton.addActionListener(new ActionListener()

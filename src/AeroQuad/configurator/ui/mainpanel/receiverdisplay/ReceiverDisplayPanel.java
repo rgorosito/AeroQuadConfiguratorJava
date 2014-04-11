@@ -83,6 +83,7 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux2Panel.setBorder(BorderFactory.createLineBorder(Color.black));
         _aux2Panel.add(_aux2Label);
         _aux2Panel.add(_aux2Slider);
+        _middlePanel.add(_aux2Panel);
 
         _aux3Slider.setMinimum(1000);
         _aux3Slider.setMaximum(2000);
@@ -95,7 +96,7 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
         _aux3Panel.setBorder(BorderFactory.createLineBorder(Color.black));
         _aux3Panel.add(_aux3Label);
         _aux3Panel.add(_aux3Slider);
-
+        _middlePanel.add(_aux3Panel);
 
         add(_northSpacerLabel, BorderLayout.NORTH);
         add(_middlePanel,BorderLayout.CENTER);

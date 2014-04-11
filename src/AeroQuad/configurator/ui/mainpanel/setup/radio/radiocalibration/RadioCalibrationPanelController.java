@@ -222,15 +222,40 @@ public class RadioCalibrationPanelController implements IRadioCalibrationPanelCo
     }
 
     @Override
-    public void buttonPressed()
+    public void startButtonPressed()
     {
         if (_currentCalibrationState == RadioCalibrationState.STANDBY)
         {
             _panel.setButtonText("Finish");
             _currentCalibrationState = RadioCalibrationState.GATTERING_DATA;
             _receiverDisplayPanelController.setEnabled(true);
-            _communicator.sendCommand(IMessageDefinition.RESET_RECEIVER_CALIBRATION);
-            _communicator.sendRequest(new ReceiverRawValueRequest(_messageDispatcher));
+            final Thread commandRequest = new Thread(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+
+                    try
+                    {
+                        _communicator.sendCommand(IMessageDefinition.REQUEST_STOP_SENDING);
+                        for (int i = 0; i < 2; i++)
+                        {
+                            Thread.sleep(200);
+                            _communicator.sendCommand(IMessageDefinition.RESET_RECEIVER_CALIBRATION);
+                        }
+                        for (int i = 0; i < 5; i++)
+                        {
+                            Thread.sleep(200);
+                            _communicator.sendRequest(new ReceiverRawValueRequest(_messageDispatcher));
+                        }
+
+                    }
+                    catch (InterruptedException e)
+                    {
+                    }
+                }
+            });
+            commandRequest.start();
             _panel.setCancelEnable(true);
         }
         else

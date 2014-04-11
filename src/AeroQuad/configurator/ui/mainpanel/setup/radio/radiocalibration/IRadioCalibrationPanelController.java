@@ -6,7 +6,7 @@ public interface IRadioCalibrationPanelController
 
     void setPanel(IRadioCalibrationPanel panel);
 
-    void buttonPressed();
+    void startButtonPressed();
 
     void cancel();
 }
