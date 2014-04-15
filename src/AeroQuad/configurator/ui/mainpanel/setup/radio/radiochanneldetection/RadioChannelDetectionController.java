@@ -100,11 +100,7 @@ public class RadioChannelDetectionController implements IRadioChannelDetectionCo
                         Thread.sleep(200);
                         _communicator.sendCommand(IMessageDefinition.RESET_RECEIVER_CHANNEL_MAP);
                     }
-                    for (int i = 0; i < 5; i++)
-                    {
-                        Thread.sleep(200);
-                        _communicator.sendRequest(new ReceiverRawValueRequest(_messageDispatcher));
-                    }
+                    _communicator.sendRequest(new ReceiverRawValueRequest(_messageDispatcher));
                 }
                 catch (InterruptedException e)
                 {
@@ -254,6 +250,7 @@ public class RadioChannelDetectionController implements IRadioChannelDetectionCo
                 catch (InterruptedException e)
                 {
                 }
+                _communicator.sendRequest(new ReceiverRawValueRequest(_messageDispatcher));
                 _cpt++;
                 if (_cpt > 5)
                 {
