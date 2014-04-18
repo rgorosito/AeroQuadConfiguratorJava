@@ -11,6 +11,9 @@ import AeroQuad.configurator.ui.mainpanel.setup.SetupPanelController;
 import AeroQuad.configurator.ui.mainpanel.tuning.ITuningPanelController;
 import AeroQuad.configurator.ui.mainpanel.tuning.TuningPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.TuningPanelController;
+import AeroQuad.configurator.ui.mainpanel.vehicleinfosfeedback.IVehicleInfoFeedbackController;
+import AeroQuad.configurator.ui.mainpanel.vehicleinfosfeedback.VehicleInfoFeedbackController;
+import AeroQuad.configurator.ui.mainpanel.vehicleinfosfeedback.VehicleInfoFeedbackPanel;
 
 import javax.swing.JPanel;
 import java.beans.PropertyChangeEvent;
@@ -21,15 +24,19 @@ public class MainPanelController implements IMainPanelController
     private final JPanel _monitoringPanel;
     private final JPanel _setupPanel;
     private final JPanel _tuningPanel;
+    private final JPanel _vehicleInfoFeedbackPanel;
 
     private final ITuningPanelController _tuningController;
     private final ISetupPanelController _setupPanelController;
     private final IMonitoringPanelController _monitoringPanelController;
+    private final IVehicleInfoFeedbackController _vehicleInfoFeedbackController;
 
     private IMainPanel _panel;
 
     public MainPanelController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
+        _vehicleInfoFeedbackController = new VehicleInfoFeedbackController(messageDispatcher);
+        _vehicleInfoFeedbackPanel = new VehicleInfoFeedbackPanel(_vehicleInfoFeedbackController);
         _monitoringPanelController = new MonitoringPanelController(messageDispatcher, communicator);
         _monitoringPanel = new MonitoringPanel(_monitoringPanelController);
         _setupPanelController = new SetupPanelController(messageDispatcher, communicator);
@@ -102,5 +109,11 @@ public class MainPanelController implements IMainPanelController
     public JPanel getTuningPanel()
     {
         return _tuningPanel;
+    }
+
+    @Override
+    public JPanel getVehicleInfosFeedback()
+    {
+        return _vehicleInfoFeedbackPanel;
     }
 }

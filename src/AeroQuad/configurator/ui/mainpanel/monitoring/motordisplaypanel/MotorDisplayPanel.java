@@ -68,7 +68,6 @@ public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
         motorsLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(motorsLabel, BorderLayout.NORTH);
 
-
         _motorsPanesContainer.setLayout(new BoxLayout(_motorsPanesContainer, BoxLayout.X_AXIS));
 
         setPreferredSize(new Dimension(0, 250));

@@ -12,6 +12,7 @@ public class SetupPanel extends JPanel implements ISetupPanel
     private final CardLayout _cardLayout = new CardLayout();
     private final JPanel _cardLayoutPanel = new JPanel(_cardLayout);
 
+    private final JToggleButton _vehicleConfigButton = new JToggleButton(VEHICLE_CONFIG);
     private final JToggleButton _accelCalibrationButton = new JToggleButton(ACCEL_CALIBRATION);
     private final JToggleButton _radioCalibrationButton = new JToggleButton(RADIO_CALIBRATION);
     private final JToggleButton _magCalibrationButton = new JToggleButton(MAG_CALIBRATION);
@@ -35,12 +36,14 @@ public class SetupPanel extends JPanel implements ISetupPanel
 
     private void initButtonPanel()
     {
-        final JPanel monitoringButtonPanel = new JPanel(new GridLayout(4,1));
+        final JPanel monitoringButtonPanel = new JPanel(new GridLayout(5,1));
+        monitoringButtonPanel.add(_vehicleConfigButton);
         monitoringButtonPanel.add(_escCalibrationButton);
         monitoringButtonPanel.add(_radioCalibrationButton);
         monitoringButtonPanel.add(_accelCalibrationButton);
         monitoringButtonPanel.add(_magCalibrationButton);
         add(monitoringButtonPanel,BorderLayout.WEST);
+        _buttonGroup.add(_vehicleConfigButton);
         _buttonGroup.add(_accelCalibrationButton);
         _buttonGroup.add(_radioCalibrationButton);
         _buttonGroup.add(_escCalibrationButton);
@@ -49,6 +52,14 @@ public class SetupPanel extends JPanel implements ISetupPanel
 
         _magCalibrationButton.setVisible(false);
 
+        _vehicleConfigButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.vehicleConfigButtonPressed();
+            }
+        });
         _accelCalibrationButton.addActionListener(new ActionListener()
         {
             @Override
@@ -85,6 +96,7 @@ public class SetupPanel extends JPanel implements ISetupPanel
 
     private void initSubPanels()
     {
+        _cardLayoutPanel.add(_controller.getVehicleSetupPanel(), VEHICLE_CONFIG);
         _cardLayoutPanel.add(_controller.getAccelCalibrationPanel(), ACCEL_CALIBRATION);
         _cardLayoutPanel.add(_controller.getRadioCalibrationPanel(), RADIO_CALIBRATION);
         _cardLayoutPanel.add(_controller.getEscCalibrationPanel(), ESC_CALIBRATION);

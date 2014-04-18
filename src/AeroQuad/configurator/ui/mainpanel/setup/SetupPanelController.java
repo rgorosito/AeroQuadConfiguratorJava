@@ -2,6 +2,7 @@ package AeroQuad.configurator.ui.mainpanel.setup;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
+import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.VehicleStatusPanel;
 import AeroQuad.configurator.ui.mainpanel.receiverdisplay.IReceiverDisplayPanelController;
 import AeroQuad.configurator.ui.mainpanel.receiverdisplay.ReceiverDisplayPanel;
 import AeroQuad.configurator.ui.mainpanel.receiverdisplay.ReceiverPanelController;
@@ -20,6 +21,9 @@ import AeroQuad.configurator.ui.mainpanel.setup.radio.RadioSetupPanel;
 import AeroQuad.configurator.ui.mainpanel.setup.radio.radiocalibration.IRadioCalibrationPanelController;
 import AeroQuad.configurator.ui.mainpanel.setup.radio.radiocalibration.RadioCalibrationPanel;
 import AeroQuad.configurator.ui.mainpanel.setup.radio.radiocalibration.RadioCalibrationPanelController;
+import AeroQuad.configurator.ui.mainpanel.setup.vehiclesetup.IVehicleSetupController;
+import AeroQuad.configurator.ui.mainpanel.setup.vehiclesetup.VehicleSetupController;
+import AeroQuad.configurator.ui.mainpanel.setup.vehiclesetup.VehicleSetupPanel;
 
 import javax.swing.JPanel;
 import java.beans.PropertyChangeEvent;
@@ -29,6 +33,8 @@ public class SetupPanelController implements ISetupPanelController
 {
     private ISetupPanel _panel;
 
+    private IVehicleSetupController _vehicleSetupController;
+    private JPanel _vehicleSetupPanel;
     private IAccelCalibrationPanelController _accelCalibrationController;
     private JPanel _accelCalibrationPanel;
     private IEscCalibrationPanelController _escCalibrationController;
@@ -56,6 +62,9 @@ public class SetupPanelController implements ISetupPanelController
 
     private void initControllers(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
+        _vehicleSetupController = new VehicleSetupController(messageDispatcher, communicator);
+        _vehicleSetupPanel = new VehicleSetupPanel(_vehicleSetupController);
+
         _accelCalibrationController = new AccelCalibrationPanelController(messageDispatcher,communicator);
         _accelCalibrationPanel = new AccelCalibrationPanel(_accelCalibrationController);
 
@@ -75,9 +84,24 @@ public class SetupPanelController implements ISetupPanelController
         _panel = panel;
     }
 
+
+    @Override
+    public void vehicleConfigButtonPressed()
+    {
+        _vehicleSetupController.setActivated(true);
+        _accelCalibrationController.setActivated(true);
+        _escCalibrationController.setActivated(false);
+        _magCalibrationController.setActivated(false);
+        _radioSetupController.setActivated(false);
+        _panel.showPanel(ISetupPanel.VEHICLE_CONFIG);
+
+    }
+
+
     @Override
     public void accelCalibrationButtonPressed()
     {
+        _vehicleSetupController.setActivated(false);
         _accelCalibrationController.setActivated(true);
         _escCalibrationController.setActivated(false);
         _magCalibrationController.setActivated(false);
@@ -88,6 +112,7 @@ public class SetupPanelController implements ISetupPanelController
     @Override
     public void radioCalibrationButtonPressed()
     {
+        _vehicleSetupController.setActivated(false);
         _accelCalibrationController.setActivated(false);
         _escCalibrationController.setActivated(false);
         _magCalibrationController.setActivated(false);
@@ -98,6 +123,7 @@ public class SetupPanelController implements ISetupPanelController
     @Override
     public void escCalibrationButtonPressed()
     {
+        _vehicleSetupController.setActivated(false);
         _accelCalibrationController.setActivated(false);
         _escCalibrationController.setActivated(true);
         _magCalibrationController.setActivated(false);
@@ -108,6 +134,7 @@ public class SetupPanelController implements ISetupPanelController
     @Override
     public void magCalibrationButtonPressed()
     {
+        _vehicleSetupController.setActivated(false);
         _accelCalibrationController.setActivated(false);
         _escCalibrationController.setActivated(false);
         _magCalibrationController.setActivated(true);
@@ -140,6 +167,13 @@ public class SetupPanelController implements ISetupPanelController
     }
 
     @Override
+    public JPanel getVehicleSetupPanel()
+    {
+        return _vehicleSetupPanel;
+    }
+
+
+    @Override
     public void setActivated(final boolean activated)
     {
         if (activated)
@@ -147,4 +181,5 @@ public class SetupPanelController implements ISetupPanelController
             _panel.performEscCalibrationSelection();
         }
     }
+
 }

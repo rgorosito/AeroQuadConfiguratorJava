@@ -8,12 +8,16 @@ import java.awt.*;
 public class MainPanel extends JPanel implements IMainPanel
 {
     private final CardLayout _cardLayout = new CardLayout();
+    final JPanel _cardPanel = new JPanel(_cardLayout);
+
     private final IMainPanelController _controller;
+
+
 
     public MainPanel(final IMainPanelController controller)
     {
         _controller = controller;
-        setLayout(_cardLayout);
+        setLayout(new BorderLayout());
 
         controller.setPanel(this);
         init();
@@ -21,11 +25,13 @@ public class MainPanel extends JPanel implements IMainPanel
 
     private void init()
     {
+        add(_controller.getVehicleInfosFeedback(),BorderLayout.NORTH);
+        add(_cardPanel, BorderLayout.CENTER);
         final JPanel slashPanel = new SplashPanel();
-        add(slashPanel,SPLASH_SCREEN_KEY);
-        add(_controller.getSetupPanel(),SETUP_SCREEN_KEY);
-        add(_controller.getMonitoringPanel(),MONITORING_SCREEN_KEY);
-        add(_controller.getTuningPanel(),TUNING_SCREEN_KEY);
+        _cardPanel.add(slashPanel,SPLASH_SCREEN_KEY);
+        _cardPanel.add(_controller.getSetupPanel(),SETUP_SCREEN_KEY);
+        _cardPanel.add(_controller.getMonitoringPanel(),MONITORING_SCREEN_KEY);
+        _cardPanel.add(_controller.getTuningPanel(),TUNING_SCREEN_KEY);
     }
 
     @Override
@@ -33,29 +39,29 @@ public class MainPanel extends JPanel implements IMainPanel
     {
         if (isConnected)
         {
-            _cardLayout.show(this,MONITORING_SCREEN_KEY);
+            _cardLayout.show(_cardPanel,MONITORING_SCREEN_KEY);
         }
         else
         {
-            _cardLayout.show(this,SPLASH_SCREEN_KEY);
+            _cardLayout.show(_cardPanel,SPLASH_SCREEN_KEY);
         }
     }
 
     @Override
     public void showMonitoringPanel()
     {
-        _cardLayout.show(this,MONITORING_SCREEN_KEY);
+        _cardLayout.show(_cardPanel,MONITORING_SCREEN_KEY);
     }
 
     @Override
     public void showSetupPanel()
     {
-        _cardLayout.show(this,SETUP_SCREEN_KEY);
+        _cardLayout.show(_cardPanel,SETUP_SCREEN_KEY);
     }
 
     @Override
     public void showTuningPanel()
     {
-        _cardLayout.show(this,TUNING_SCREEN_KEY);
+        _cardLayout.show(_cardPanel,TUNING_SCREEN_KEY);
     }
 }
