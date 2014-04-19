@@ -79,46 +79,13 @@ public interface IMessageDispatcher
     final String ACCEL_RAW_DATA_KEY = "ACCEL_RAW_DATA_KEY";
     final String MAG_RAW_DATA_KEY = "MAG_RAW_DATA_KEY";
 
+    final String RECEIVER_TYPE_KEY = "RECEIVER_TYPE_KEY";
+    final String YAW_DIRECTION_KET = "YAW_DIRECTION_KET";
+
+
 
 
     void addListener(String propertyName, PropertyChangeListener propertyChangeListener);
 
     void dispatchMessage(String messageId, Object value);
-
-
-    //void setHaveGPS(boolean gpsEnabled);
-    //void setHaveRangeFinder(boolean rangerEnabled);
-    //void setHaveCameraStability(boolean cameraStabilityEnabled);
-    //void setHaveBatteryMonitor(boolean batteryMonitorEnabled);
-    //void setMagnetometerDectected(boolean magnetometerDetected);
-    //void setBarometerDectected(boolean barometerDetected);
-    //void setAccelerometerDectected(boolean accelerometerDetected);
-    //void setGyroscopeDectected(boolean gyroscopeDetected);
-    //void setNbMotors(int nbMotors);
-    //void setNbReceiverChannel(int nbReceiverChannel);
-    //void setFlightConfig(String data);
-    //void setBoardType(String data);
-    //void setFlightSoftwareVersion(String data);
-    //
-    //void setMotorArmed(boolean armed);
-    //void setVehicleAttitude(VehicleAttitude vehicleAttitude);
-    //void setCurrentAltitude(float altitude);
-    //void setAltitudeHoldState(boolean altitudeHoldState);
-    //void setCurrentVoltage(float currentVoltage);
-    //void setFlightMode(FlightMode flightMode);
-    //void setChannelValue(ReceiverChannel channel, String value);
-    //void setMotorCommandValue(MotorsIndex motor, String value);
-
-
-    //void setGyroXValue(String value);
-    //void setGyroYValue(String value);
-    //void setGyroZValue(String value);
-    //void setAccelXValue(String value);
-    //void setAccelYValue(String value);
-    //void setAccelZValue(String value);
-    //void setMagXValue(String value);
-    //void setMagYValue(String value);
-    //void setMagZValue(String value);
-    //
-    //void setCommunicationUsage(double value);
 }

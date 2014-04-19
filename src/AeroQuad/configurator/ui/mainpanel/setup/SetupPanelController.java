@@ -2,10 +2,6 @@ package AeroQuad.configurator.ui.mainpanel.setup;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
-import AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.VehicleStatusPanel;
-import AeroQuad.configurator.ui.mainpanel.receiverdisplay.IReceiverDisplayPanelController;
-import AeroQuad.configurator.ui.mainpanel.receiverdisplay.ReceiverDisplayPanel;
-import AeroQuad.configurator.ui.mainpanel.receiverdisplay.ReceiverPanelController;
 import AeroQuad.configurator.ui.mainpanel.setup.accelcalibration.AccelCalibrationPanel;
 import AeroQuad.configurator.ui.mainpanel.setup.accelcalibration.AccelCalibrationPanelController;
 import AeroQuad.configurator.ui.mainpanel.setup.accelcalibration.IAccelCalibrationPanelController;
@@ -18,9 +14,6 @@ import AeroQuad.configurator.ui.mainpanel.setup.magcalibration.MagCalibrationPan
 import AeroQuad.configurator.ui.mainpanel.setup.radio.IRadioSetupController;
 import AeroQuad.configurator.ui.mainpanel.setup.radio.RadioSetupController;
 import AeroQuad.configurator.ui.mainpanel.setup.radio.RadioSetupPanel;
-import AeroQuad.configurator.ui.mainpanel.setup.radio.radiocalibration.IRadioCalibrationPanelController;
-import AeroQuad.configurator.ui.mainpanel.setup.radio.radiocalibration.RadioCalibrationPanel;
-import AeroQuad.configurator.ui.mainpanel.setup.radio.radiocalibration.RadioCalibrationPanelController;
 import AeroQuad.configurator.ui.mainpanel.setup.vehiclesetup.IVehicleSetupController;
 import AeroQuad.configurator.ui.mainpanel.setup.vehiclesetup.VehicleSetupController;
 import AeroQuad.configurator.ui.mainpanel.setup.vehiclesetup.VehicleSetupPanel;
@@ -88,20 +81,16 @@ public class SetupPanelController implements ISetupPanelController
     @Override
     public void vehicleConfigButtonPressed()
     {
-        _vehicleSetupController.setActivated(true);
         _accelCalibrationController.setActivated(true);
         _escCalibrationController.setActivated(false);
         _magCalibrationController.setActivated(false);
         _radioSetupController.setActivated(false);
         _panel.showPanel(ISetupPanel.VEHICLE_CONFIG);
-
     }
-
 
     @Override
     public void accelCalibrationButtonPressed()
     {
-        _vehicleSetupController.setActivated(false);
         _accelCalibrationController.setActivated(true);
         _escCalibrationController.setActivated(false);
         _magCalibrationController.setActivated(false);
@@ -112,7 +101,6 @@ public class SetupPanelController implements ISetupPanelController
     @Override
     public void radioCalibrationButtonPressed()
     {
-        _vehicleSetupController.setActivated(false);
         _accelCalibrationController.setActivated(false);
         _escCalibrationController.setActivated(false);
         _magCalibrationController.setActivated(false);
@@ -123,7 +111,6 @@ public class SetupPanelController implements ISetupPanelController
     @Override
     public void escCalibrationButtonPressed()
     {
-        _vehicleSetupController.setActivated(false);
         _accelCalibrationController.setActivated(false);
         _escCalibrationController.setActivated(true);
         _magCalibrationController.setActivated(false);
@@ -134,7 +121,6 @@ public class SetupPanelController implements ISetupPanelController
     @Override
     public void magCalibrationButtonPressed()
     {
-        _vehicleSetupController.setActivated(false);
         _accelCalibrationController.setActivated(false);
         _escCalibrationController.setActivated(false);
         _magCalibrationController.setActivated(true);
@@ -178,8 +164,7 @@ public class SetupPanelController implements ISetupPanelController
     {
         if (activated)
         {
-            _panel.performEscCalibrationSelection();
+            _panel.performVehicleSetupSelection();
         }
     }
-
 }

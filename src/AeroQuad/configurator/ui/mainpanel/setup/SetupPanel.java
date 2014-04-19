@@ -117,8 +117,8 @@ public class SetupPanel extends JPanel implements ISetupPanel
     }
 
     @Override
-    public void performEscCalibrationSelection()
+    public void performVehicleSetupSelection()
     {
-        _escCalibrationButton.doClick();
+        _vehicleConfigButton.doClick();
     }
 }

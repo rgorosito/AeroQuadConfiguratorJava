@@ -14,5 +14,5 @@ public interface ISetupPanel
 
     void setMagBalenEnable(boolean enable);
 
-    void performEscCalibrationSelection();
+    void performVehicleSetupSelection();
 }

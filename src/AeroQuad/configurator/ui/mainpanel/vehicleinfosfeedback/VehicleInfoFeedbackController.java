@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.vehicleinfosfeedback;
 
 
+import AeroQuad.configurator.messagesdispatcher.FlightConfigType;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
 import java.beans.PropertyChangeEvent;
@@ -80,7 +81,8 @@ public class VehicleInfoFeedbackController implements IVehicleInfoFeedbackContro
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 final String flightConfig = (String)evt.getNewValue();
-                _panel.setFlightConfig(flightConfig);
+                final FlightConfigType configType = FlightConfigType.fromOrdinal(Integer.parseInt(flightConfig));
+                _panel.setFlightConfig(configType.toString());
             }
         });
 
