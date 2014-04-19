@@ -291,7 +291,7 @@ public class ArtificialHorizonPanel extends JPanel
 
     public void setVehicleAttitude(final VehicleAttitude vehicleAttitude)
     {
-        _rollAngle = (int)Math.toDegrees(vehicleAttitude.getXAxisAngle());
+        _rollAngle = -(int)Math.toDegrees(vehicleAttitude.getXAxisAngle());
         _rollAngle = MathUtil.constrain(_rollAngle, -180, 180);
         _pitchAngle = (int)Math.toDegrees(vehicleAttitude.getYAxisAngle());
         _pitchAngle = MathUtil.constrain(_pitchAngle, -180, 180);

@@ -1,4 +1,4 @@
-package AeroQuad.configurator.ui.mainpanel.vehicleinfosfeedback;
+package AeroQuad.configurator.ui.vehicleinfosfeedback;
 
 public interface IVehicleInfoFeedbackPanel
 {

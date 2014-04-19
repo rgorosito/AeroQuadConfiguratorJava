@@ -18,6 +18,4 @@ public interface IMainPanelController
     JPanel getMonitoringPanel();
 
     JPanel getTuningPanel();
-
-    JPanel getVehicleInfosFeedback();
 }

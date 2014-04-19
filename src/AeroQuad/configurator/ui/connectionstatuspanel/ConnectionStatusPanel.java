@@ -1,4 +1,4 @@
-package AeroQuad.configurator.ui.connectionpanel;
+package AeroQuad.configurator.ui.connectionstatuspanel;
 
 
 import javax.swing.*;

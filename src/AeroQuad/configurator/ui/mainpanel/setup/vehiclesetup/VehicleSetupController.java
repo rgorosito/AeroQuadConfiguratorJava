@@ -14,6 +14,7 @@ public class VehicleSetupController implements IVehicleSetupController
     private final ISerialCommunicator _communicator;
     private final IMessageDispatcher _messageDispatcher;
     private IVehicleSetupPanel _panel;
+    private int _nbChannels = 0;
 
     public VehicleSetupController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
@@ -48,6 +49,16 @@ public class VehicleSetupController implements IVehicleSetupController
                 _panel.setYawIsReversed(reversed == -1);
             }
         });
+
+        messageDispatcher.addListener(IMessageDispatcher.NB_RECEIVER_CHANNEL_PROPERTY_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                _nbChannels = (int)evt.getNewValue();
+                updateOptionVisibilityFromChannelCount(_nbChannels);
+            }
+        });
     }
 
     @Override
@@ -60,6 +71,10 @@ public class VehicleSetupController implements IVehicleSetupController
     public void pwmReceiverSelected()
     {
         _communicator.sendCommand("J " + ReceiverType.PWM.ordinal() + ";");
+        if (_nbChannels == 5)
+        {
+            _panel.selectQuadX();
+        }
     }
 
     @Override
@@ -102,18 +117,30 @@ public class VehicleSetupController implements IVehicleSetupController
     public void hexY6ConfigSelected()
     {
         _communicator.sendCommand("Y " + FlightConfigType.HEX_Y6.ordinal() + ";");
+        if (_nbChannels == 5)
+        {
+            _panel.selectPpmReceiver();
+        }
     }
 
     @Override
     public void hexXConfigSelected()
     {
         _communicator.sendCommand("Y " + FlightConfigType.HEX_X.ordinal() + ";");
+        if (_nbChannels == 5)
+        {
+            _panel.selectPpmReceiver();
+        }
     }
 
     @Override
     public void hexPlusConfigSelected()
     {
         _communicator.sendCommand("Y " + FlightConfigType.HEX_PLUS.ordinal() + ";");
+        if (_nbChannels == 5)
+        {
+            _panel.selectPpmReceiver();
+        }
     }
 
     @Override
@@ -139,6 +166,15 @@ public class VehicleSetupController implements IVehicleSetupController
     {
         int reversedInt = reversed ? -1 : 1;
         _communicator.sendCommand("Z " + Integer.toString(reversedInt) + ";");
+    }
+
+
+    private void updateOptionVisibilityFromChannelCount(final int nbChannels)
+    {
+        _panel.setSbusVisible(nbChannels != 5);
+        _panel.setOctoX8Visible(nbChannels != 5);
+        _panel.setOctoXVisible(nbChannels != 5);
+        _panel.setOctoPlusVisible(nbChannels != 5);
     }
 
 }

@@ -1,4 +1,4 @@
-package AeroQuad.configurator.ui.connectionpanel;
+package AeroQuad.configurator.ui.connectionstatuspanel;
 
 
 public interface IConnectionStatusPanelController

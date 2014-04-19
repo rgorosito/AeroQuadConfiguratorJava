@@ -2,13 +2,15 @@ package AeroQuad.configurator.ui;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
-import AeroQuad.configurator.ui.connectionpanel.ConnectionStatusPanelController;
-import AeroQuad.configurator.ui.connectionpanel.ConnectionStatusPanel;
+import AeroQuad.configurator.ui.connectionstatuspanel.ConnectionStatusPanelController;
+import AeroQuad.configurator.ui.connectionstatuspanel.ConnectionStatusPanel;
 import AeroQuad.configurator.ui.mainmenue.MainMenuController;
 import AeroQuad.configurator.ui.mainmenue.MainMenuPanel;
 import AeroQuad.configurator.ui.mainpanel.MainPanel;
 import AeroQuad.configurator.ui.mainpanel.MainPanelController;
 import AeroQuad.configurator.ui.uiutils.UiUtils;
+import AeroQuad.configurator.ui.vehicleinfosfeedback.VehicleInfoFeedbackController;
+import AeroQuad.configurator.ui.vehicleinfosfeedback.VehicleInfoFeedbackPanel;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,6 +20,7 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.InsetsUIResource;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.LinkedList;
 
 public class AQConfiguratorMainFrame extends JFrame
@@ -108,8 +111,14 @@ public class AQConfiguratorMainFrame extends JFrame
         final MainMenuPanel mainMenue = new MainMenuPanel(new MainMenuController(messageDispatcher, mainPanelController));
         mainContainer.add(mainMenue, BorderLayout.WEST);
 
+
+        final JPanel southPanel = new JPanel(new GridLayout(2,1));
+        final JPanel vehicleInfoFeedbackPanel = new VehicleInfoFeedbackPanel(new VehicleInfoFeedbackController(messageDispatcher));
+        southPanel.add(vehicleInfoFeedbackPanel);
+
         final ConnectionStatusPanel connectionPanel = new ConnectionStatusPanel(new ConnectionStatusPanelController(communicator,messageDispatcher));
-        mainContainer.add(connectionPanel, BorderLayout.SOUTH);
+        southPanel.add(connectionPanel);
+        mainContainer.add(southPanel, BorderLayout.SOUTH);
 
         getContentPane().add(mainContainer);
         pack();

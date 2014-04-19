@@ -315,4 +315,40 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
     {
         _reverseYawCheckBox.setSelected(reversed);
     }
+
+    @Override
+    public void setSbusVisible(final boolean visible)
+    {
+        _receiverSbusRadioButton.setVisible(visible);
+    }
+
+    @Override
+    public void setOctoX8Visible(final boolean visible)
+    {
+        _octoX8RadioButton.setVisible(visible);
+    }
+
+    @Override
+    public void setOctoXVisible(final boolean visible)
+    {
+        _octoXRadioButton.setVisible(visible);
+    }
+
+    @Override
+    public void setOctoPlusVisible(final boolean visible)
+    {
+        _octoPlusRadioButton.setVisible(visible);
+    }
+
+    @Override
+    public void selectPpmReceiver()
+    {
+        _receiverPpmRadioButton.doClick();
+    }
+
+    @Override
+    public void selectQuadX()
+    {
+        _quadXRadioButton.doClick();
+    }
 }

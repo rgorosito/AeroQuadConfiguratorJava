@@ -1,4 +1,4 @@
-package AeroQuad.configurator.ui.connectionpanel;
+package AeroQuad.configurator.ui.connectionstatuspanel;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;

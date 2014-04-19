@@ -25,7 +25,6 @@ public class MainPanel extends JPanel implements IMainPanel
 
     private void init()
     {
-        add(_controller.getVehicleInfosFeedback(),BorderLayout.NORTH);
         add(_cardPanel, BorderLayout.CENTER);
         final JPanel slashPanel = new SplashPanel();
         _cardPanel.add(slashPanel,SPLASH_SCREEN_KEY);

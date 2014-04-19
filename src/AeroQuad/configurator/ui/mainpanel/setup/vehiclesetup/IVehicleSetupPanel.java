@@ -10,4 +10,16 @@ public interface IVehicleSetupPanel
     void setReceiverType(ReceiverType receiverType);
 
     void setYawIsReversed(boolean reversed);
+
+    void setSbusVisible(boolean visible);
+
+    void setOctoX8Visible(boolean visible);
+
+    void setOctoXVisible(boolean visible);
+
+    void setOctoPlusVisible(boolean visible);
+
+    void selectPpmReceiver();
+
+    void selectQuadX();
 }
