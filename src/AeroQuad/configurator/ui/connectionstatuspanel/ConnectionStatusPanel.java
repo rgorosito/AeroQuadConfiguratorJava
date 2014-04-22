@@ -6,12 +6,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
+import java.util.*;
+import java.util.List;
 
 
 public class ConnectionStatusPanel extends JPanel implements IConnectionStatusPanel
 {
     private final JLabel _connectionStateLabel = new JLabel(DISCONNECTED,SwingConstants.CENTER);
     private final JCheckBox _wirelessCheckBox = new JCheckBox("Wireless");
+//    private final JComboBox<String> _commPortComboBox = new JComboBox<String>();
 
     private IConnectionStatusPanelController _controller;
     private boolean _isConnected = false;
@@ -28,6 +31,10 @@ public class ConnectionStatusPanel extends JPanel implements IConnectionStatusPa
 
         _connectionStateLabel.setOpaque(true);
         add(_connectionStateLabel, BorderLayout.CENTER);
+
+//        final JPanel eastPanel = new JPanel(new GridLayout(1,2));
+//        eastPanel.add(_commPortComboBox);
+//        eastPanel.add(_wirelessCheckBox);
         add(_wirelessCheckBox, BorderLayout.EAST);
 
         _wirelessCheckBox.addActionListener(new ActionListener()
@@ -48,8 +55,6 @@ public class ConnectionStatusPanel extends JPanel implements IConnectionStatusPa
         updateStatusLabel();
     }
 
-
-
     @Override
     public void setUsage(final double usage)
     {
@@ -69,6 +74,16 @@ public class ConnectionStatusPanel extends JPanel implements IConnectionStatusPa
     public void setBaudRate(final String boadRate)
     {
         _baudRate = boadRate;
+    }
+
+    @Override
+    public void setCommPortList(final List<String> commPortList)
+    {
+//        _commPortComboBox.removeAllItems();
+//        for (final String commPort : commPortList)
+//        {
+//            _commPortComboBox.addItem(commPort);
+//        }
     }
 
 

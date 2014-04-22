@@ -82,7 +82,7 @@ public interface IMessageDispatcher
     final String RECEIVER_TYPE_KEY = "RECEIVER_TYPE_KEY";
     final String YAW_DIRECTION_KET = "YAW_DIRECTION_KET";
 
-
+    final String COM_PORT_LIST_UPDATE_KEY = "COM_PORT_LIST_UPDATE_KEY";
 
 
     void addListener(String propertyName, PropertyChangeListener propertyChangeListener);

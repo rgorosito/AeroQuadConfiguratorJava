@@ -18,8 +18,8 @@ public class SensorsValuesMessageAnalyser implements IMessageAnalyser
 
         try
         {
-
-            final String splittedData[] = rawData.split(",");
+            final String formattedRawData = rawData.replaceAll("nan","0");
+            final String splittedData[] = formattedRawData.split(",");
 
             if (splittedData.length != 11)
             {

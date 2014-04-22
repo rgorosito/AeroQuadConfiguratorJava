@@ -57,7 +57,7 @@ public class SerialCommunicator implements ISerialCommunicator
         {
             ret.add(portNames[i]);
         }
-
+        _messageDispatcher.dispatchMessage(IMessageDispatcher.COM_PORT_LIST_UPDATE_KEY, ret);
         return ret;
     }
 
@@ -153,10 +153,12 @@ public class SerialCommunicator implements ISerialCommunicator
             _rawLine = _rawLine.substring(1);
             if (_rawLine.length() >= 2 && _rawLine.charAt(0) == '\r' && _rawLine.charAt(1) == '\n')
             {
-//                System.out.println("Received " + line);
                 _rawLine = _rawLine.substring(2);
                 _messageDispatcher.dispatchMessage(IMessageDispatcher.RAW_DATA_MESSAGE_RECEIVED,  line);
-                _messageAnalyser.analyzeRawData(line);
+                if (_messageAnalyser != null)
+                {
+                    _messageAnalyser.analyzeRawData(line);
+                }
                 line = "";
             }
         }

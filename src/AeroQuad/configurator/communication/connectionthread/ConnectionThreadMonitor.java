@@ -3,6 +3,7 @@ package AeroQuad.configurator.communication.connectionthread;
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.communicationstatistics.ICommunicationStatisticsProcessor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ConnectionThreadMonitor implements IConnectionThreadMonitor
@@ -13,6 +14,9 @@ public class ConnectionThreadMonitor implements IConnectionThreadMonitor
     private final ICommunicationStatisticsProcessor _statisticProcessor;
     private int _nothingReceivedHit;
     private int _tryingToConnectNbHit;
+
+    private List<String> _commPortList = new ArrayList<String>(1);
+    private String _currentPort;
 
     public ConnectionThreadMonitor(final ISerialCommunicator communicator, ICommunicationStatisticsProcessor statisticProcessor)
     {
@@ -48,17 +52,36 @@ public class ConnectionThreadMonitor implements IConnectionThreadMonitor
 
     private void tryToConnect(final ISerialCommunicator communicator)
     {
-        final List<String> commPortList = communicator.getComPortAvailable();
-        if (commPortList.size() != 0)
+        _commPortList = communicator.getComPortAvailable();
+        if (_currentPort == null)
         {
-            for (final String commPort : commPortList)
+            if (_commPortList.size() > 0)
             {
-                communicator.connect(commPort);
-                if (communicator.isConnected())
+                _currentPort = _commPortList.get(0);
+            }
+        }
+        else
+        {
+            final int idx = _commPortList.indexOf(_currentPort);
+            if (idx < _commPortList.size() && idx != -1)
+            {
+                try
                 {
-                    break;
+                    _currentPort = _commPortList.get(idx+1);
+                }
+                catch (Exception e)
+                {
+                    // do nothing
                 }
             }
+            else
+            {
+                _currentPort = null;
+            }
+        }
+        if (_currentPort != null)
+        {
+            communicator.connect(_currentPort);
         }
     }
 
@@ -99,7 +122,8 @@ public class ConnectionThreadMonitor implements IConnectionThreadMonitor
                 try
                 {
                     Thread.sleep(1000);
-                } catch (InterruptedException e)
+                }
+                catch (InterruptedException e)
                 {
                     System.err.println("Communication thread error = " + e);
                 }

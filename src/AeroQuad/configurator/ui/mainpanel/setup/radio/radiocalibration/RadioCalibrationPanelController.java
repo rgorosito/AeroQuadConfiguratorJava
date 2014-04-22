@@ -243,9 +243,9 @@ public class RadioCalibrationPanelController implements IRadioCalibrationPanelCo
                             Thread.sleep(200);
                             _communicator.sendCommand(IMessageDefinition.RESET_RECEIVER_CALIBRATION);
                         }
-                        for (int i = 0; i < 5; i++)
+                        while (_currentCalibrationState == RadioCalibrationState.GATTERING_DATA)
                         {
-                            Thread.sleep(200);
+                            Thread.sleep(500);
                             _communicator.sendRequest(new ReceiverRawValueRequest(_messageDispatcher));
                         }
 

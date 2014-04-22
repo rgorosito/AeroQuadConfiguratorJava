@@ -5,11 +5,13 @@ import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 
 public class ConnectionStatusPanelController implements IConnectionStatusPanelController
 {
     private final ISerialCommunicator _communicator;
     private IConnectionStatusPanel _panel;
+    private List<String> _commPortList;
 
     public ConnectionStatusPanelController(final ISerialCommunicator communicator, final IMessageDispatcher messageDispatcher)
     {
@@ -55,6 +57,16 @@ public class ConnectionStatusPanelController implements IConnectionStatusPanelCo
             }
         });
 
+        messageDispatcher.addListener(IMessageDispatcher.COM_PORT_LIST_UPDATE_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final List<String> commPortList = (List<String>)evt.getNewValue();
+                updateCommPortList(commPortList);
+            }
+        });
+
     }
 
     private void updateConnectionState(final boolean connected)
@@ -72,5 +84,37 @@ public class ConnectionStatusPanelController implements IConnectionStatusPanelCo
     public void useWireless(boolean useWireless)
     {
         _communicator.setUseWireless(useWireless);
+    }
+
+    private void updateCommPortList(final List<String> commPortList)
+    {
+        if (_commPortList == null)
+        {
+            if (commPortList.size() != 0)
+            {
+                _commPortList = commPortList;
+                _panel.setCommPortList(commPortList);
+            }
+        }
+        else
+        {
+            if (_commPortList.size() != commPortList.size())
+            {
+                _commPortList = commPortList;
+                _panel.setCommPortList(commPortList);
+            }
+            else
+            {
+                for (final String commPort : commPortList)
+                {
+                    if (!_commPortList.contains(commPort))
+                    {
+                        _commPortList = commPortList;
+                        _panel.setCommPortList(commPortList);
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

@@ -1,5 +1,7 @@
 package AeroQuad.configurator.ui.connectionstatuspanel;
 
+import java.util.List;
+
 public interface IConnectionStatusPanel
 {
     final String CONNECTED = "CONNECTED";
@@ -12,4 +14,6 @@ public interface IConnectionStatusPanel
     void setCommPortOpen(String comPort);
 
     void setBaudRate(String boadRate);
+
+    void setCommPortList(List<String> commPortList);
 }
