@@ -155,13 +155,18 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
     public void setFlightMode(final FlightMode flightMode)
     {
         _flightModeLabel.setText(flightMode.toString());
-        if (flightMode.equals(FlightMode.Acrobatic))
+        switch (flightMode)
         {
-            _flightModeLabel.setBackground(Color.blue);
-        }
-        else
-        {
-            _flightModeLabel.setBackground(Color.GREEN);
+            case Acrobatic:
+                _flightModeLabel.setBackground(Color.blue);
+                break;
+            case Horizon:
+                _flightModeLabel.setBackground(Color.orange);
+                break;
+            default:
+            case Stable:
+                _flightModeLabel.setBackground(Color.green);
+                break;
         }
     }
 

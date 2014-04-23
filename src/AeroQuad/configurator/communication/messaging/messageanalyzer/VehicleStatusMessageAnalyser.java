@@ -58,7 +58,7 @@ public class VehicleStatusMessageAnalyser implements IMessageAnalyser
             final float currentVoltage = Float.parseFloat(splittedData[23]);
             _messageDispatcher.dispatchMessage(IMessageDispatcher.VEHICLE_VOLTAGE_STATE_CHANGE, currentVoltage);
 
-            final FlightMode flightMode = splittedData[24].equals("1") ? FlightMode.Stable : FlightMode.Acrobatic;
+            final FlightMode flightMode = FlightMode.fromOrdinal(Integer.parseInt(splittedData[24]));
             _messageDispatcher.dispatchMessage(IMessageDispatcher.VEHICLE_FLIGHT_MODE_STATE_CHANGE, flightMode);
 
             final GpsDatas gpsDatas = new GpsDatas(splittedData[25], splittedData[26], splittedData[27], splittedData[28], splittedData[29], splittedData[30], splittedData[31]);

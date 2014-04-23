@@ -259,6 +259,7 @@ public class RadioChannelDetectionController implements IRadioChannelDetectionCo
                 synchronized (_panel)
                 {
                     _panel.updateUserFeedback(_currentDetectingChannel,_cpt);
+                    _panel.setCurrentChannelDetected(_currentDetectingChannel);
                 }
             }
         }
