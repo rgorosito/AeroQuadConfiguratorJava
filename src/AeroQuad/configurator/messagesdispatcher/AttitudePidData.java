@@ -4,8 +4,6 @@ public class AttitudePidData
 {
     private PIDData _accelRollPid = new PIDData();
     private PIDData _accelPitchPid = new PIDData();
-    private PIDData _gyroRollPid = new PIDData();
-    private PIDData _gyroPitchPid = new PIDData();
 
     public AttitudePidData()
     {
@@ -13,14 +11,10 @@ public class AttitudePidData
     }
 
     public AttitudePidData(final PIDData accelRollPid,
-                           final PIDData accelPitchPid,
-                           final PIDData gyroRollPid,
-                           final PIDData gyroPitchPid)
+                           final PIDData accelPitchPid)
     {
         _accelRollPid = accelRollPid;
         _accelPitchPid = accelPitchPid;
-        _gyroRollPid = gyroRollPid;
-        _gyroPitchPid = gyroPitchPid;
     }
 
     @Override
@@ -39,14 +33,6 @@ public class AttitudePidData
         {
             return false;
         }
-        if (!_gyroRollPid.equals(other._gyroRollPid))
-        {
-            return false;
-        }
-        if (!_gyroPitchPid.equals(other._gyroPitchPid))
-        {
-            return false;
-        }
         return true;
     }
 
@@ -58,26 +44,6 @@ public class AttitudePidData
     public PIDData getAccelRollPid()
     {
         return _accelRollPid;
-    }
-
-    public PIDData getGyroRollPid()
-    {
-        return _gyroRollPid;
-    }
-
-    public PIDData getGyroPitchPid()
-    {
-        return _gyroPitchPid;
-    }
-
-    public void setGyroRollPid(final PIDData gyroRollPid)
-    {
-        _gyroRollPid = gyroRollPid;
-    }
-
-    public void setGyroPitchPid(final PIDData gyroPitchPid)
-    {
-        _gyroPitchPid = gyroPitchPid;
     }
 
     public void setAccelRollPid(final PIDData accelRollPid)
@@ -93,8 +59,6 @@ public class AttitudePidData
     public AttitudePidData getCopy()
     {
         return new AttitudePidData(_accelRollPid.getCopy(),
-                                   _accelPitchPid.getCopy(),
-                                   _gyroRollPid.getCopy(),
-                                   _gyroPitchPid.getCopy());
+                                   _accelPitchPid.getCopy());
     }
 }

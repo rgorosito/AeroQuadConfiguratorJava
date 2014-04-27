@@ -7,11 +7,7 @@ public interface IAttitudePidPanel
 {
     void setUserLevel(UserLevel userLevel);
 
-    void setGyroRollPid(PIDData pid);
-
     void setAccelRollPid(PIDData pid);
-
-    void setGyroPitchPid(PIDData pid);
 
     void setAccelPitchPid(PIDData pid);
 
