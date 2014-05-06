@@ -24,6 +24,16 @@ public class MainMenuController implements IMainMenuController
                 _panel.setConnected(isConnected);
             }
         });
+
+        messageDispatcher.addListener(IMessageDispatcher.SET_MENUE_ENABLED_MESSAGE_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final boolean enabled = (boolean)evt.getNewValue();
+                _panel.setButtonsEnabled(enabled);
+            }
+        });
     }
 
     @Override

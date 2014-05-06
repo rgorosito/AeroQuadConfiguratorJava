@@ -90,4 +90,12 @@ public class MainMenuPanel extends JPanel implements IMainMenuPanel
             _monitoringButton.doClick();
         }
     }
+
+    @Override
+    public void setButtonsEnabled(final boolean enabled)
+    {
+        _setupButton.setEnabled(enabled);
+        _monitoringButton.setEnabled(enabled);
+        _tuningButton.setEnabled(enabled);
+    }
 }

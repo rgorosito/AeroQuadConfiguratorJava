@@ -236,31 +236,6 @@ public class TuningPanelController implements ITuningPanelController
         return _gpsPanel;
     }
 
-    @Override
-    public void resetEeprom()
-    {
-        _communicator.sendCommand("I");
-        _panel.setResetEepromEnabled(false);
-        final Thread disabledResetEepromThread = new Thread(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                try
-                {
-                    Thread.sleep(3000);
-                }
-                catch (Exception e)
-                {
-                    // do nothing
-                }
-                _panel.setResetEepromEnabled(true);
-            }
-        });
-        disabledResetEepromThread.start();  // cause it can take some time for the board and we get disconected if we ask 2 time in a row!
-        resetPanelsControllersInitState();
-    }
-
     class SyncTask extends TimerTask
     {
         @Override

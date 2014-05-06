@@ -21,4 +21,5 @@ public interface IVehicleSetupController
 
     void reverseYawSelected(boolean reversed);
 
+    void batterieMonitorSelected(boolean selected);
 }

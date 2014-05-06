@@ -22,4 +22,8 @@ public interface IVehicleSetupPanel
     void selectPpmReceiver();
 
     void selectQuadX();
+
+    void setBatterieMonitorEnabled(boolean visible);
+
+    void setBatterieMonitorSelected(boolean selected);
 }

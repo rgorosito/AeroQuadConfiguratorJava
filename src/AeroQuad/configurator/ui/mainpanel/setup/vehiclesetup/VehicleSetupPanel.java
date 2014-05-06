@@ -32,6 +32,7 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
     private final JRadioButton _octoPlusRadioButton = new JRadioButton("Octo +");
 
     private final JCheckBox _reverseYawCheckBox = new JCheckBox("Reverse Yaw");
+    private final JCheckBox _batteriMonitorCheckBox = new JCheckBox("Batterie monitor");
 
 
     public VehicleSetupPanel(final IVehicleSetupController controller)
@@ -125,13 +126,14 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
         group.add(_octoPlusRadioButton);
         motorConfigPanel.add(motorConfigPanelDetail, BorderLayout.CENTER);
 
-        final JPanel reverseYawPanel = new JPanel(new GridLayout(1,1));
-        final TitledBorder yawReversedConfig = new TitledBorder("Reverse Yaw");
-        yawReversedConfig.setTitleColor(Color.WHITE);
-        reverseYawPanel.setBorder(yawReversedConfig);
-        reverseYawPanel.add(_reverseYawCheckBox);
+        final JPanel otherOptions = new JPanel(new GridLayout(1,2));
+        final TitledBorder otherOptionBorder = new TitledBorder("Others options");
+        otherOptionBorder.setTitleColor(Color.WHITE);
+        otherOptions.setBorder(otherOptionBorder);
+        otherOptions.add(_reverseYawCheckBox);
+        otherOptions.add(_batteriMonitorCheckBox);
 
-        motorConfigPanel.add(reverseYawPanel, BorderLayout.SOUTH);
+        motorConfigPanel.add(otherOptions, BorderLayout.SOUTH);
 
         return motorConfigPanel;
     }
@@ -252,6 +254,15 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
                 _controller.reverseYawSelected(_reverseYawCheckBox.isSelected());
             }
         });
+
+        _batteriMonitorCheckBox.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.batterieMonitorSelected(_batteriMonitorCheckBox.isSelected());
+            }
+        });
     }
 
     @Override
@@ -341,6 +352,19 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
     }
 
     @Override
+    public void setBatterieMonitorEnabled(final boolean visible)
+    {
+        _batteriMonitorCheckBox.setVisible(visible);
+    }
+
+    @Override
+    public void setBatterieMonitorSelected(final boolean selected)
+    {
+        _batteriMonitorCheckBox.setSelected(selected);
+    }
+
+
+    @Override
     public void selectPpmReceiver()
     {
         _receiverPpmRadioButton.doClick();
@@ -351,4 +375,5 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
     {
         _quadXRadioButton.doClick();
     }
+
 }

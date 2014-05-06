@@ -21,8 +21,6 @@ public class TuningPanel extends JPanel implements ITuningPanel
     private JPanel _altitudePanel;
     private JPanel _batteryMonitorPanel;
     private JPanel _centerPanel = new JPanel();
-    private final JButton _resetEepromButton = new JButton("Reset EEPROM");
-
 
     public TuningPanel(final ITuningPanelController tuningPanelController)
     {
@@ -40,16 +38,11 @@ public class TuningPanel extends JPanel implements ITuningPanel
     private void init()
     {
         final JPanel mainPanel = new JPanel(new BorderLayout());
-        final JPanel topPanel = new JPanel(new BorderLayout());
 
         final JPanel resetEepromPanel = new JPanel(new BorderLayout());
         resetEepromPanel.setBorder(new LineBorder(Color.black,1));
         final JLabel resetEepromLabel = new JLabel(" Reset EEPROM, All values will be reset to default and all calibration will need to be done");
         resetEepromPanel.add(resetEepromLabel,BorderLayout.WEST);
-
-        _resetEepromButton.setPreferredSize(new Dimension(200, 50));
-        resetEepromPanel.add(_resetEepromButton,BorderLayout.EAST);
-        topPanel.add(resetEepromPanel, BorderLayout.NORTH);
 
         final JPanel buttonLevelPanel = new JPanel(new GridLayout(1,3));
         buttonLevelPanel.setPreferredSize(new Dimension(0, UiUtils.HEATHER_PREFERED_HEIGHT));
@@ -57,8 +50,6 @@ public class TuningPanel extends JPanel implements ITuningPanel
         _beginnerButton.setSelected(true);
         buttonLevelPanel.add(_intermediateButton);
         buttonLevelPanel.add(_advancedButton);
-        topPanel.add(buttonLevelPanel,BorderLayout.SOUTH);
-        mainPanel.add(topPanel, BorderLayout.NORTH);
         _userLevelButtonGroup.add(_beginnerButton);
         _userLevelButtonGroup.add(_intermediateButton);
         _userLevelButtonGroup.add(_advancedButton);
@@ -74,16 +65,6 @@ public class TuningPanel extends JPanel implements ITuningPanel
 
         final JScrollPane scrollPane = new JScrollPane(mainPanel);
         add(scrollPane, BorderLayout.CENTER);
-
-
-        _resetEepromButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(final ActionEvent e)
-            {
-                _controller.resetEeprom();
-            }
-        });
     }
 
     private void bindUserLevelButtonAction()
@@ -151,11 +132,5 @@ public class TuningPanel extends JPanel implements ITuningPanel
         {
             _centerPanel.remove(_altitudePanel);
         }
-    }
-
-    @Override
-    public void setResetEepromEnabled(final boolean enabled)
-    {
-        _resetEepromButton.setEnabled(enabled);
     }
 }

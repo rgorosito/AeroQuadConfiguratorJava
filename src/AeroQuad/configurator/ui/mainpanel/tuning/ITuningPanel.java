@@ -14,6 +14,4 @@ public interface ITuningPanel
     void setBatteryMonitorVisible(boolean visible);
 
     void setAltitudeHoldVisible(boolean visible);
-
-    void setResetEepromEnabled(boolean enabled);
 }

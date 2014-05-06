@@ -12,6 +12,7 @@ public class SetupPanel extends JPanel implements ISetupPanel
     private final CardLayout _cardLayout = new CardLayout();
     private final JPanel _cardLayoutPanel = new JPanel(_cardLayout);
 
+    private final JToggleButton _eepromResetButton = new JToggleButton(EEPROM_RESET);
     private final JToggleButton _vehicleConfigButton = new JToggleButton(VEHICLE_CONFIG);
     private final JToggleButton _accelCalibrationButton = new JToggleButton(ACCEL_CALIBRATION);
     private final JToggleButton _radioCalibrationButton = new JToggleButton(RADIO_CALIBRATION);
@@ -36,13 +37,15 @@ public class SetupPanel extends JPanel implements ISetupPanel
 
     private void initButtonPanel()
     {
-        final JPanel monitoringButtonPanel = new JPanel(new GridLayout(5,1));
+        final JPanel monitoringButtonPanel = new JPanel(new GridLayout(6,1));
+        monitoringButtonPanel.add(_eepromResetButton);
         monitoringButtonPanel.add(_vehicleConfigButton);
         monitoringButtonPanel.add(_escCalibrationButton);
         monitoringButtonPanel.add(_radioCalibrationButton);
         monitoringButtonPanel.add(_accelCalibrationButton);
         monitoringButtonPanel.add(_magCalibrationButton);
-        add(monitoringButtonPanel,BorderLayout.WEST);
+        add(monitoringButtonPanel, BorderLayout.WEST);
+        _buttonGroup.add(_eepromResetButton);
         _buttonGroup.add(_vehicleConfigButton);
         _buttonGroup.add(_accelCalibrationButton);
         _buttonGroup.add(_radioCalibrationButton);
@@ -52,6 +55,14 @@ public class SetupPanel extends JPanel implements ISetupPanel
 
         _magCalibrationButton.setVisible(false);
 
+        _eepromResetButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.resetEepromButtonPressed();
+            }
+        });
         _vehicleConfigButton.addActionListener(new ActionListener()
         {
             @Override
@@ -96,6 +107,7 @@ public class SetupPanel extends JPanel implements ISetupPanel
 
     private void initSubPanels()
     {
+        _cardLayoutPanel.add(_controller.getEepromResetPanel(), EEPROM_RESET);
         _cardLayoutPanel.add(_controller.getVehicleSetupPanel(), VEHICLE_CONFIG);
         _cardLayoutPanel.add(_controller.getAccelCalibrationPanel(), ACCEL_CALIBRATION);
         _cardLayoutPanel.add(_controller.getRadioCalibrationPanel(), RADIO_CALIBRATION);
@@ -120,5 +132,17 @@ public class SetupPanel extends JPanel implements ISetupPanel
     public void performVehicleSetupSelection()
     {
         _vehicleConfigButton.doClick();
+    }
+
+    @Override
+    public void setButtonsEnabled(final boolean enabled)
+    {
+        _eepromResetButton.setEnabled(enabled);
+        _vehicleConfigButton.setEnabled(enabled);
+        _escCalibrationButton.setEnabled(enabled);
+        _radioCalibrationButton.setEnabled(enabled);
+        _accelCalibrationButton.setEnabled(enabled);
+        _magCalibrationButton.setEnabled(enabled);
+
     }
 }

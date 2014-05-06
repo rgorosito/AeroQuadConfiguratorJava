@@ -83,6 +83,7 @@ public interface IMessageDispatcher
     final String YAW_DIRECTION_KET = "YAW_DIRECTION_KET";
 
     final String COM_PORT_LIST_UPDATE_KEY = "COM_PORT_LIST_UPDATE_KEY";
+    final String SET_MENUE_ENABLED_MESSAGE_KEY = "SET_MENUE_ENABLED_MESSAGE_KEY";
 
 
     void addListener(String propertyName, PropertyChangeListener propertyChangeListener);

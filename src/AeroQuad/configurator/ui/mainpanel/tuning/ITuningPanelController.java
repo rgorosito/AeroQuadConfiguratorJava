@@ -14,6 +14,4 @@ public interface ITuningPanelController
     JPanel getAltitudePanel();
     JPanel getBatteryMonitorPanel();
     JPanel getGpsPanel();
-
-    void resetEeprom();
 }

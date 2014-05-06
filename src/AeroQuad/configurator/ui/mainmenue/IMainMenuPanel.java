@@ -7,4 +7,6 @@ public interface IMainMenuPanel
     final String TUNING = "TUNING";
 
     void setConnected(boolean connected);
+
+    void setButtonsEnabled(boolean enabled);
 }

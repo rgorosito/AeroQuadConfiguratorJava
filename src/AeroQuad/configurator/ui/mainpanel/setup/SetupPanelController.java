@@ -5,6 +5,9 @@ import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.setup.accelcalibration.AccelCalibrationPanel;
 import AeroQuad.configurator.ui.mainpanel.setup.accelcalibration.AccelCalibrationPanelController;
 import AeroQuad.configurator.ui.mainpanel.setup.accelcalibration.IAccelCalibrationPanelController;
+import AeroQuad.configurator.ui.mainpanel.setup.eepromreset.EepromResetController;
+import AeroQuad.configurator.ui.mainpanel.setup.eepromreset.EepromResetPanel;
+import AeroQuad.configurator.ui.mainpanel.setup.eepromreset.IEepromResetController;
 import AeroQuad.configurator.ui.mainpanel.setup.esccalibration.EscCalibrationPanel;
 import AeroQuad.configurator.ui.mainpanel.setup.esccalibration.EscCalibrationPanelController;
 import AeroQuad.configurator.ui.mainpanel.setup.esccalibration.IEscCalibrationPanelController;
@@ -26,6 +29,9 @@ public class SetupPanelController implements ISetupPanelController
 {
     private ISetupPanel _panel;
 
+
+    private IEepromResetController _eepromResetController;
+    private JPanel _eepromResetPanel;
     private IVehicleSetupController _vehicleSetupController;
     private JPanel _vehicleSetupPanel;
     private IAccelCalibrationPanelController _accelCalibrationController;
@@ -51,10 +57,22 @@ public class SetupPanelController implements ISetupPanelController
                 _panel.setMagBalenEnable(magEnabled);
             }
         });
+        messageDispatcher.addListener(IMessageDispatcher.SET_MENUE_ENABLED_MESSAGE_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final boolean enabled = (boolean)evt.getNewValue();
+                _panel.setButtonsEnabled(enabled);
+            }
+        });
     }
 
     private void initControllers(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
+        _eepromResetController = new EepromResetController(messageDispatcher, communicator);
+        _eepromResetPanel = new EepromResetPanel(_eepromResetController);
+
         _vehicleSetupController = new VehicleSetupController(messageDispatcher, communicator);
         _vehicleSetupPanel = new VehicleSetupPanel(_vehicleSetupController);
 
@@ -79,8 +97,21 @@ public class SetupPanelController implements ISetupPanelController
 
 
     @Override
+    public void resetEepromButtonPressed()
+    {
+        _eepromResetController.setActivated(true);
+        _accelCalibrationController.setActivated(false);
+        _escCalibrationController.setActivated(false);
+        _magCalibrationController.setActivated(false);
+        _radioSetupController.setActivated(false);
+        _panel.showPanel(ISetupPanel.EEPROM_RESET);
+    }
+
+
+    @Override
     public void vehicleConfigButtonPressed()
     {
+        _eepromResetController.setActivated(false);
         _accelCalibrationController.setActivated(true);
         _escCalibrationController.setActivated(false);
         _magCalibrationController.setActivated(false);
@@ -91,6 +122,7 @@ public class SetupPanelController implements ISetupPanelController
     @Override
     public void accelCalibrationButtonPressed()
     {
+        _eepromResetController.setActivated(false);
         _accelCalibrationController.setActivated(true);
         _escCalibrationController.setActivated(false);
         _magCalibrationController.setActivated(false);
@@ -101,6 +133,7 @@ public class SetupPanelController implements ISetupPanelController
     @Override
     public void radioCalibrationButtonPressed()
     {
+        _eepromResetController.setActivated(false);
         _accelCalibrationController.setActivated(false);
         _escCalibrationController.setActivated(false);
         _magCalibrationController.setActivated(false);
@@ -111,6 +144,7 @@ public class SetupPanelController implements ISetupPanelController
     @Override
     public void escCalibrationButtonPressed()
     {
+        _eepromResetController.setActivated(false);
         _accelCalibrationController.setActivated(false);
         _escCalibrationController.setActivated(true);
         _magCalibrationController.setActivated(false);
@@ -121,12 +155,20 @@ public class SetupPanelController implements ISetupPanelController
     @Override
     public void magCalibrationButtonPressed()
     {
+        _eepromResetController.setActivated(false);
         _accelCalibrationController.setActivated(false);
         _escCalibrationController.setActivated(false);
         _magCalibrationController.setActivated(true);
         _radioSetupController.setActivated(false);
         _panel.showPanel(ISetupPanel.MAG_CALIBRATION);
     }
+
+    @Override
+    public JPanel getEepromResetPanel()
+    {
+        return _eepromResetPanel;
+    }
+
 
     @Override
     public JPanel getAccelCalibrationPanel()
@@ -157,6 +199,8 @@ public class SetupPanelController implements ISetupPanelController
     {
         return _vehicleSetupPanel;
     }
+
+
 
 
     @Override

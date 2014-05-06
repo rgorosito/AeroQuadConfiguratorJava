@@ -59,6 +59,17 @@ public class VehicleSetupController implements IVehicleSetupController
                 updateOptionVisibilityFromChannelCount(_nbChannels);
             }
         });
+
+        messageDispatcher.addListener(IMessageDispatcher.BATTERY_MONITOR_PROPERTY_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final boolean batterieMonitorEnabled = (boolean)evt.getNewValue();
+                System.out.println(batterieMonitorEnabled);
+                _panel.setBatterieMonitorSelected(batterieMonitorEnabled);
+            }
+        });
     }
 
     @Override
@@ -168,6 +179,13 @@ public class VehicleSetupController implements IVehicleSetupController
         _communicator.sendCommand("Z " + Integer.toString(reversedInt) + ";");
     }
 
+    @Override
+    public void batterieMonitorSelected(final boolean selected)
+    {
+        int selectedInt = selected ? 1 : 0;
+        _communicator.sendCommand("E " + Integer.toString(selectedInt) + ";");
+        System.out.println("send " + "E " + Integer.toString(selectedInt) + ";");
+    }
 
     private void updateOptionVisibilityFromChannelCount(final int nbChannels)
     {
@@ -175,6 +193,6 @@ public class VehicleSetupController implements IVehicleSetupController
         _panel.setOctoX8Visible(nbChannels != 5);
         _panel.setOctoXVisible(nbChannels != 5);
         _panel.setOctoPlusVisible(nbChannels != 5);
+        _panel.setBatterieMonitorEnabled(nbChannels != 5);
     }
-
 }

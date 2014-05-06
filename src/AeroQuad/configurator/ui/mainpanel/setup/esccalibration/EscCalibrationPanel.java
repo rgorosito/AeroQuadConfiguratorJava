@@ -52,9 +52,6 @@ public class EscCalibrationPanel extends JPanel implements IEscCalibrationPanel
         initTopPanel();
 
         initCenterPanel();
-
-
-
     }
 
     private void initTopPanel()

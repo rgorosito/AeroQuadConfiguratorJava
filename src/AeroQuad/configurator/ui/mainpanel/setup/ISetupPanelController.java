@@ -29,4 +29,8 @@ public interface ISetupPanelController
     void vehicleConfigButtonPressed();
 
     JPanel getVehicleSetupPanel();
+
+    void resetEepromButtonPressed();
+
+    JPanel getEepromResetPanel();
 }
