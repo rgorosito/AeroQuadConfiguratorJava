@@ -53,6 +53,7 @@ public class TuningPanel extends JPanel implements ITuningPanel
         _userLevelButtonGroup.add(_beginnerButton);
         _userLevelButtonGroup.add(_intermediateButton);
         _userLevelButtonGroup.add(_advancedButton);
+        mainPanel.add(buttonLevelPanel, BorderLayout.NORTH);
 
         _centerPanel.setLayout(new BoxLayout(_centerPanel, BoxLayout.PAGE_AXIS));
         _centerPanel.add(_controller.getAccroPanel());
