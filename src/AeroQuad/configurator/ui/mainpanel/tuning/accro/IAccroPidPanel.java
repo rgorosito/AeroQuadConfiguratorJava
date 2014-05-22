@@ -14,4 +14,6 @@ public interface IAccroPidPanel
     void setStickScaling(String stickScalling);
 
     void setSinced(boolean synced);
+
+    void setThrottlePIDAdjustment(String throttlePIDAdjustment);
 }

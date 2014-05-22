@@ -28,6 +28,7 @@ public class AccroPidPanel extends JPanel implements IAccroPidPanel
     private final PidPanel _pitchPidPanel = new PidPanel("Pitch");
     private final JButton _resetDefaultButton = new JButton("<HTML><CENTER>Reset<BR>Default</CENTER></HTML>");
     private final SingleParamConfigPanel _stickScalingPanel = new SingleParamConfigPanel("<HTML><CENTER>Stick<BR>Scaling</CENTER></HTML>");
+    private final SingleParamConfigPanel _throttlePIDAdjustmentPanel = new SingleParamConfigPanel("<HTML><CENTER>TPA</CENTER></HTML>");
     private final SyncedStatePanel _syncStatePanel = new SyncedStatePanel();
     private JPanel _centerPanel;
     private UserLevel _userLevel = UserLevel.Beginner;
@@ -52,7 +53,7 @@ public class AccroPidPanel extends JPanel implements IAccroPidPanel
         mainPanel.add(headerLabel, BorderLayout.NORTH);
         headerLabel.setBorder(new LineBorder(Color.black, 1));
 
-        _centerPanel = new JPanel(new GridLayout(1,5));
+        _centerPanel = new JPanel(new GridLayout(1,6));
 
         mainPanel.add(_centerPanel, BorderLayout.CENTER);
         add(mainPanel, BorderLayout.WEST);
@@ -90,6 +91,14 @@ public class AccroPidPanel extends JPanel implements IAccroPidPanel
                 _controller.userDefaultButtonPressed();
             }
         });
+        _throttlePIDAdjustmentPanel.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.userThrottlePIDAdjustmentChanged(_throttlePIDAdjustmentPanel.getText());
+            }
+        });
     }
 
     @Override
@@ -123,6 +132,12 @@ public class AccroPidPanel extends JPanel implements IAccroPidPanel
         _syncStatePanel.setSynced(synced);
     }
 
+    @Override
+    public void setThrottlePIDAdjustment(final String throttlePIDAdjustment)
+    {
+        _throttlePIDAdjustmentPanel.setText(throttlePIDAdjustment);
+    }
+
     private void updateCenterPanelFromUserLevel()
     {
         _centerPanel.removeAll();
@@ -140,8 +155,8 @@ public class AccroPidPanel extends JPanel implements IAccroPidPanel
         {
             _centerPanel.add(_pitchPidPanel);
             _centerPanel.add(_stickScalingPanel);
+            _centerPanel.add(_throttlePIDAdjustmentPanel);
         }
-
         _centerPanel.add(_resetDefaultButton);
         _centerPanel.add(_syncStatePanel);
     }

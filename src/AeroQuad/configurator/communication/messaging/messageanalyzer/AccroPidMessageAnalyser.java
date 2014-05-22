@@ -22,7 +22,7 @@ public class AccroPidMessageAnalyser implements IMessageAnalyser
 
             final PIDData rollPidData = new PIDData(splittedData[0], splittedData[1], splittedData[2]);
             final PIDData pichPidData = new PIDData(splittedData[3], splittedData[4], splittedData[5]);
-            final AccroPidData accroPidData = new AccroPidData(rollPidData, pichPidData, splittedData[6]);
+            final AccroPidData accroPidData = new AccroPidData(rollPidData, pichPidData, splittedData[6], splittedData[7]);
             _messageDispatcher.dispatchMessage(IMessageDispatcher.ACCRO_PID_DATA_KEY, accroPidData);
         }
         catch (final Exception e)

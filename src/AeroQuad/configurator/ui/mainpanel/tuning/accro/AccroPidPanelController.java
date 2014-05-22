@@ -48,6 +48,7 @@ public class AccroPidPanelController implements IAccroPidPanelController
         _panel.setRollPid(pidData.getRollPid());
         _panel.setPitchPid(pidData.getPitchPid());
         _panel.setStickScaling(pidData.getStickScaling());
+        _panel.setThrottlePIDAdjustment(pidData.getThrottlePIDAdjustment());
     }
 
     @Override
@@ -90,6 +91,7 @@ public class AccroPidPanelController implements IAccroPidPanelController
             buffer.append(_userPidData.getPitchPid().getD() + ";");
         }
         buffer.append(_userPidData.getStickScaling()).append(";");
+        buffer.append(_userPidData.getThrottlePIDAdjustment()).append(";");
 
         return buffer.toString();
     }
@@ -103,7 +105,8 @@ public class AccroPidPanelController implements IAccroPidPanelController
         final PIDData rollPid = new PIDData(rollP,rollI,rollD);
 
         final String stickScaling = System.getProperty(DEFAULT_PID_STICK_SCALING);
-        _userPidData = new AccroPidData(rollPid, rollPid.getCopy(), stickScaling);
+        final String throttlePidAdjustment = System.getProperty(DEFAULT_THROTTLE_PID_ADJUSTMENT);
+        _userPidData = new AccroPidData(rollPid, rollPid.getCopy(), stickScaling, throttlePidAdjustment);
         updatePanelFromPidData(_userPidData);
     }
 
@@ -143,6 +146,12 @@ public class AccroPidPanelController implements IAccroPidPanelController
     public void userStickScalingChanged(final String text)
     {
         _userPidData.setStickScaling(text);
+    }
+
+    @Override
+    public void userThrottlePIDAdjustmentChanged(final String text)
+    {
+        _userPidData.setThrottlePIDAdjustment(text);
     }
 
     @Override

@@ -5,17 +5,19 @@ public class AccroPidData
     private PIDData _rollPidData = new PIDData();
     private PIDData _pichPidData = new PIDData();
     private String _stickScaling = "";
+    private String _throttlePIDAdjustment = "";
 
     public AccroPidData()
     {
 
     }
 
-    public AccroPidData(final PIDData rollPidData, final PIDData pichPidData, final String stickScaling)
+    public AccroPidData(final PIDData rollPidData, final PIDData pichPidData, final String stickScaling, final String throttlePIDAdjustment)
     {
         _rollPidData = rollPidData;
         _pichPidData = pichPidData;
         _stickScaling = stickScaling;
+        _throttlePIDAdjustment = throttlePIDAdjustment;
     }
 
 
@@ -42,7 +44,7 @@ public class AccroPidData
 
     public AccroPidData getCopy()
     {
-        return new AccroPidData(_rollPidData.getCopy(), _pichPidData.getCopy(), _stickScaling);
+        return new AccroPidData(_rollPidData.getCopy(), _pichPidData.getCopy(), _stickScaling, _throttlePIDAdjustment);
     }
 
     public void setPitchPid(final PIDData pitchPid)
@@ -75,6 +77,20 @@ public class AccroPidData
         {
             return false;
         }
+        if (!_throttlePIDAdjustment.equals(other._throttlePIDAdjustment))
+        {
+            return false;
+        }
         return true;
+    }
+
+    public void setThrottlePIDAdjustment(final String text)
+    {
+        _throttlePIDAdjustment = text;
+    }
+
+    public String getThrottlePIDAdjustment()
+    {
+        return _throttlePIDAdjustment;
     }
 }

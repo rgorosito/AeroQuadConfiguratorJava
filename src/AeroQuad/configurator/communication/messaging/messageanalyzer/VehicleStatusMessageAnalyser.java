@@ -23,7 +23,7 @@ public class VehicleStatusMessageAnalyser implements IMessageAnalyser
                 return false;
             }
 
-            splittedData[0].replaceAll("S","");
+            splittedData[0] = splittedData[0].replaceAll("S","");
             _messageDispatcher.dispatchMessage(IMessageDispatcher.MOTOR_ARMED_STATE_CHANGED, !splittedData[0].equals("0"));
 
             final float xAxisAngle = Float.parseFloat(splittedData[1]);
