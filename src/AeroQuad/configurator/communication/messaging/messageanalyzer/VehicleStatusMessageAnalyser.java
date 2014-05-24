@@ -35,8 +35,8 @@ public class VehicleStatusMessageAnalyser implements IMessageAnalyser
             _messageDispatcher.dispatchMessage(IMessageDispatcher.VEHICLE_ALTITUDE_STATE_CHANGE, altitude);
             final float zVelocity = Float.parseFloat(splittedData[5]);
             _messageDispatcher.dispatchMessage(IMessageDispatcher.VEHICLE_ZVELOCITY_STATE_CHANGE, zVelocity);
-            final boolean altitudeHoldState = splittedData[6].equals("0") ? false : true;
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.VEHICLE_ALTITUDE_HOLD_STATE_CHANGE, altitudeHoldState);
+            final AltitudeControlState altitudeControlState = splittedData[6].equals("2") ? AltitudeControlState.VELOCITY_HOLD : splittedData[6].equals("1") ? AltitudeControlState.ALTITUDE_HOLD : AltitudeControlState.OFF;
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.VEHICLE_ALTITUDE_HOLD_STATE_CHANGE, altitudeControlState);
 
             _messageDispatcher.dispatchMessage(IMessageDispatcher.RECEIVER_ROLL_STATE_CHANGE, splittedData[7]);
             _messageDispatcher.dispatchMessage(IMessageDispatcher.RECEIVER_PITCH_STATE_CHANGE, splittedData[8]);

@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensorsstatuspanel;
 
 
+import AeroQuad.configurator.messagesdispatcher.AltitudeControlState;
 import AeroQuad.configurator.messagesdispatcher.FlightMode;
 
 import javax.swing.*;
@@ -68,7 +69,7 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
         flightModePanel.add(_flightModeLabel);
         add(flightModePanel);
 
-        final JLabel altitudeHoldLabel = new JLabel(" Altitude Hold");
+        final JLabel altitudeHoldLabel = new JLabel(" Altitude Control");
         altitudeHoldLabel.setOpaque(true);
         altitudeHoldLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         _altitudeHoldPanel.add(altitudeHoldLabel);
@@ -136,19 +137,23 @@ public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStat
     }
 
     @Override
-    public void setAltitudeHoldState(final boolean enabled)
+    public void setAltitudeControlState(final AltitudeControlState altitudeControl)
     {
-        if (enabled)
+        switch (altitudeControl)
         {
-            _altitudeHoldStateLabel.setText("Enabled");
-            _altitudeHoldStateLabel.setBackground(Color.GREEN);
+            case VELOCITY_HOLD:
+                _altitudeHoldStateLabel.setText("Velocity Hold");
+                _altitudeHoldStateLabel.setBackground(Color.ORANGE);
+                break;
+            case ALTITUDE_HOLD:
+                _altitudeHoldStateLabel.setText("Altitude Hold");
+                _altitudeHoldStateLabel.setBackground(Color.GREEN);
+                break;
+            default:
+            case OFF:
+                _altitudeHoldStateLabel.setText("OFF");
+                _altitudeHoldStateLabel.setBackground(Color.GRAY);
         }
-        else
-        {
-            _altitudeHoldStateLabel.setText("Disabled");
-            _altitudeHoldStateLabel.setBackground(Color.GRAY);
-        }
-
     }
 
     @Override

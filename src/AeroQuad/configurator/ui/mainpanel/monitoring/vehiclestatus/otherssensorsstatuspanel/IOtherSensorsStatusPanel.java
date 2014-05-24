@@ -1,5 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensorsstatuspanel;
 
+import AeroQuad.configurator.messagesdispatcher.AltitudeControlState;
 import AeroQuad.configurator.messagesdispatcher.FlightMode;
 
 public interface IOtherSensorsStatusPanel
@@ -12,7 +13,7 @@ public interface IOtherSensorsStatusPanel
 
     void setVehicleAltitude(Float value);
 
-    void setAltitudeHoldState(boolean enabled);
+    void setAltitudeControlState(AltitudeControlState enabled);
 
     void setFlightMode(FlightMode flightMode);
 

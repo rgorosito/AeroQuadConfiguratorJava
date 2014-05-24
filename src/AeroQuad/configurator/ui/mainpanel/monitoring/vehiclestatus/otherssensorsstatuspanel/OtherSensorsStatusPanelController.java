@@ -1,6 +1,7 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.otherssensorsstatuspanel;
 
 
+import AeroQuad.configurator.messagesdispatcher.AltitudeControlState;
 import AeroQuad.configurator.messagesdispatcher.FlightMode;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
@@ -42,7 +43,8 @@ public class OtherSensorsStatusPanelController implements IOtherSensorsStatusPan
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                _panel.setAltitudeHoldState((Boolean) evt.getNewValue());
+
+                _panel.setAltitudeControlState((AltitudeControlState) evt.getNewValue());
             }
         });
         messageDispatcher.addListener(IMessageDispatcher.VEHICLE_ALTITUDE_STATE_CHANGE, new PropertyChangeListener()
