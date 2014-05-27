@@ -26,10 +26,8 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
     private final PidPanel _altitudePidPanel = new PidPanel("Altitude");
     private final SingleParamConfigPanel _throttleBumpPanel = new SingleParamConfigPanel("<HTML><CENTER>Throttle<BR>Bump</CENTER></HTML>");
     private final SingleParamConfigPanel _throttlePanicPanel = new SingleParamConfigPanel("<HTML><CENTER>Throttle<BR>Panic</CENTER></HTML>");
-    private final SingleParamConfigPanel _minThrottleAdjustPanel = new SingleParamConfigPanel("<HTML><CENTER>Min Throttle<BR>Adjust</CENTER></HTML>");
-    private final SingleParamConfigPanel _maxThrottleAdjustPanel = new SingleParamConfigPanel("<HTML><CENTER>Max Throttle<BR>Adjust</CENTER></HTML>");
     private final SingleParamConfigPanel _smoothFactorPanel = new SingleParamConfigPanel("<HTML><CENTER>Smooth<BR>Factor</CENTER></HTML>");
-    private final PidPanel _zDampening = new PidPanel("Z Dampening");
+    private final PidPanel _zDampeningPidPanel = new PidPanel("Z Dampening");
     private final JButton _resetDefaultButton = new JButton("<HTML><CENTER>Reset<BR>Default</CENTER></HTML>");
     private final SyncedStatePanel _syncStatePanel = new SyncedStatePanel();
     private UserLevel _userLevel;
@@ -56,15 +54,13 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
         mainPanel.add(headerLabel, BorderLayout.NORTH);
         headerLabel.setBorder(new LineBorder(Color.black, 1));
 
-        _centerPanel = new JPanel(new GridLayout(1,12));
+        _centerPanel = new JPanel(new GridLayout(1,10));
         _centerPanel.add(_altitudePidPanel);
         _centerPanel.add(_throttleBumpPanel);
         _centerPanel.add(_throttlePanicPanel);
-        _centerPanel.add(_minThrottleAdjustPanel);
-        _centerPanel.add(_maxThrottleAdjustPanel);
         _centerPanel.add(_smoothFactorPanel);
         _centerPanel.add(_smoothFactorPanel);
-        _centerPanel.add(_zDampening);
+        _centerPanel.add(_zDampeningPidPanel);
         _centerPanel.add(_resetDefaultButton);
         _centerPanel.add(_syncStatePanel);
 
@@ -98,24 +94,6 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
             }
         });
 
-        _minThrottleAdjustPanel.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(final ActionEvent e)
-            {
-                _controller.userMinThrottleAdjustValueChanged(_minThrottleAdjustPanel.getText());
-            }
-        });
-
-        _maxThrottleAdjustPanel.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(final ActionEvent e)
-            {
-                _controller.userMaxThrottleAdjustValueChanged(_maxThrottleAdjustPanel.getText());
-            }
-        });
-
         _smoothFactorPanel.addActionListener(new ActionListener()
         {
             @Override
@@ -125,12 +103,12 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
             }
         });
 
-        _zDampening.addActionListener(new ActionListener()
+        _zDampeningPidPanel.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                _controller.userZDampeningPidChanged(_zDampening.getPid());
+                _controller.userZDampeningPidChanged(_zDampeningPidPanel.getPid());
             }
         });
 
@@ -176,18 +154,6 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
     }
 
     @Override
-    public void setMinThrottleAdjust(final String minThrottleAdjust)
-    {
-        _minThrottleAdjustPanel.setText(minThrottleAdjust);
-    }
-
-    @Override
-    public void setMaxThrottleAdjust(final String maxThrottleAdjust)
-    {
-        _maxThrottleAdjustPanel.setText(maxThrottleAdjust);
-    }
-
-    @Override
     public void setSmoothFactor(final String smoothFactor)
     {
         _smoothFactorPanel.setText(smoothFactor);
@@ -196,7 +162,7 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
     @Override
     public void setZDampening(final PIDData zDampeningPid)
     {
-        _zDampening.setPid(zDampeningPid);
+        _zDampeningPidPanel.setPid(zDampeningPid);
     }
 
     private void updateCenterPanelFromUserLevel()
@@ -207,25 +173,31 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
         if (_userLevel == UserLevel.Beginner)
         {
             _altitudePidPanel.setDVisible(false);
-            _centerPanel.add(_minThrottleAdjustPanel);
-            _centerPanel.add(_maxThrottleAdjustPanel);
+            _altitudePidPanel.setIVisible(false);
+            _centerPanel.add(_zDampeningPidPanel);
+            _zDampeningPidPanel.setDVisible(false);
+            _zDampeningPidPanel.setIVisible(false);
+
         }
         else if (_userLevel == UserLevel.Intermediate)
         {
-            _altitudePidPanel.setDVisible(false);
             _centerPanel.add(_throttleBumpPanel);
-            _centerPanel.add(_minThrottleAdjustPanel);
-            _centerPanel.add(_maxThrottleAdjustPanel);
+            _altitudePidPanel.setDVisible(false);
+            _altitudePidPanel.setIVisible(false);
+            _centerPanel.add(_zDampeningPidPanel);
+            _zDampeningPidPanel.setDVisible(false);
+            _zDampeningPidPanel.setIVisible(false);
         }
         else if (_userLevel == UserLevel.Advanced)
         {
             _altitudePidPanel.setDVisible(true);
+            _altitudePidPanel.setIVisible(true);
             _centerPanel.add(_throttleBumpPanel);
             _centerPanel.add(_throttlePanicPanel);
-            _centerPanel.add(_minThrottleAdjustPanel);
-            _centerPanel.add(_maxThrottleAdjustPanel);
             _centerPanel.add(_smoothFactorPanel);
-            _centerPanel.add(_zDampening);
+            _centerPanel.add(_zDampeningPidPanel);
+            _zDampeningPidPanel.setDVisible(true);
+            _zDampeningPidPanel.setIVisible(true);
         }
 
         _centerPanel.add(_resetDefaultButton);

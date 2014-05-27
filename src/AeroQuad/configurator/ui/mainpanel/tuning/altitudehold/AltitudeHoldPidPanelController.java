@@ -48,8 +48,6 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
         _panel.setAltitudePid(altitudeHoldPidData.getAltitudePid());
         _panel.setThrottleBump(altitudeHoldPidData.getThrottleBump());
         _panel.setThrottlePanic(altitudeHoldPidData.getThrottlePanic());
-        _panel.setMinThrottleAdjust(altitudeHoldPidData.getMinThrottleAdjust());
-        _panel.setMaxThrottleAdjust(altitudeHoldPidData.getMaxThrottleAdjust());
         _panel.setSmoothFactor(altitudeHoldPidData.getSmoothFactor());
         _panel.setZDampening(altitudeHoldPidData.getZDampeningPid());
     }
@@ -84,8 +82,6 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
         buffer.append("0.00" + ";");
         buffer.append(_userAltitudeHoldPidData.getThrottleBump() + ";");
         buffer.append(_userAltitudeHoldPidData.getThrottlePanic() + ";");
-        buffer.append(_userAltitudeHoldPidData.getMinThrottleAdjust() + ";");
-        buffer.append(_userAltitudeHoldPidData.getMaxThrottleAdjust() + ";");
         buffer.append(_userAltitudeHoldPidData.getSmoothFactor() + ";");
         buffer.append(_userAltitudeHoldPidData.getZDampeningPid().getP() + ";");
         buffer.append(_userAltitudeHoldPidData.getZDampeningPid().getI() + ";");
@@ -104,8 +100,6 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
 
         final String altitudeBump = System.getProperty(DEFAULT_ALTITUDE_BUMP);
         final String altitudePanic = System.getProperty(DEFAULT_ALTITUDE_PANIC);
-        final String minAdjust = System.getProperty(DEFAULT_ALTITUDE_MIN_ADJUST);
-        final String maxAdjust = System.getProperty(DEFAULT_ALTITUDE_MAX_ADJUST);
         final String smoothFactor = System.getProperty(DEFAULT_ALTITUDE_SMOOTH_FACTOR);
 
         final String zDampeningP = System.getProperty(DEFAULT_ALTITUDE_ZDAMPENING_P);
@@ -116,8 +110,6 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
         _userAltitudeHoldPidData = new AltitudeHoldPidData(altitudePid,
                                                            altitudeBump,
                                                            altitudePanic,
-                                                           minAdjust,
-                                                           maxAdjust,
                                                            smoothFactor,
                                                            zDampeningPid);
         updatePanelFromPidData(_userAltitudeHoldPidData);
@@ -156,17 +148,6 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
         _userAltitudeHoldPidData.setThrottlePanic(text);
     }
 
-    @Override
-    public void userMinThrottleAdjustValueChanged(final String text)
-    {
-        _userAltitudeHoldPidData.setMinThrottleAdjust(text);
-    }
-
-    @Override
-    public void userMaxThrottleAdjustValueChanged(final String text)
-    {
-        _userAltitudeHoldPidData.setMaxThrottleAsjust(text);
-    }
 
     @Override
     public void userSmoothFactorValueChanged(final String text)

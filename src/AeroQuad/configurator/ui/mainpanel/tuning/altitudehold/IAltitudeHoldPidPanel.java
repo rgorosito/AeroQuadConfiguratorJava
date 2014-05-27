@@ -15,10 +15,6 @@ public interface IAltitudeHoldPidPanel
 
     void setThrottlePanic(String throttlePanic);
 
-    void setMinThrottleAdjust(String minThrottleAdjust);
-
-    void setMaxThrottleAdjust(String maxThrottleAdjust);
-
     void setSmoothFactor(String smoothFactor);
 
     void setZDampening(PIDData zDampeningPid);

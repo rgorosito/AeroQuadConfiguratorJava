@@ -8,8 +8,6 @@ public class AltitudeHoldPidData
     private PIDData _altitudeHoldPid = new PIDData();
     private String _throttleBump = "0";
     private String _throttlePanic = "0";
-    private String _minThrottleAdjust = "0";
-    private String _maxThrottleAdjust = "0";
     private String _smoothFactor = "0";
     private PIDData _zDampeningPid = new PIDData();
 
@@ -21,16 +19,12 @@ public class AltitudeHoldPidData
     public AltitudeHoldPidData(final PIDData altitudeHoldPid,
                                final String throttleBump,
                                final String throttlePanic,
-                               final String minThrottleAdjust,
-                               final String maxThrottleAdjust,
                                final String smoothFactor,
                                final PIDData zDampeningPid)
     {
         _altitudeHoldPid = altitudeHoldPid;
         _throttleBump = throttleBump;
         _throttlePanic = throttlePanic;
-        _minThrottleAdjust = minThrottleAdjust;
-        _maxThrottleAdjust = maxThrottleAdjust;
         _smoothFactor = smoothFactor;
         _zDampeningPid = zDampeningPid;
     }
@@ -48,16 +42,6 @@ public class AltitudeHoldPidData
     public String getThrottlePanic()
     {
         return _throttlePanic;
-    }
-
-    public String getMinThrottleAdjust()
-    {
-        return _minThrottleAdjust;
-    }
-
-    public String getMaxThrottleAdjust()
-    {
-        return _maxThrottleAdjust;
     }
 
     public String getSmoothFactor()
@@ -90,14 +74,6 @@ public class AltitudeHoldPidData
         {
             return false;
         }
-        if (!UiUtils.areFloatEquals(_minThrottleAdjust, other._minThrottleAdjust))
-        {
-            return false;
-        }
-        if (!UiUtils.areFloatEquals(_maxThrottleAdjust, other._maxThrottleAdjust))
-        {
-            return false;
-        }
         if (!UiUtils.areFloatEquals(_smoothFactor, other._smoothFactor))
         {
             return false;
@@ -125,16 +101,6 @@ public class AltitudeHoldPidData
         _throttlePanic = throttlePanic;
     }
 
-    public void setMinThrottleAdjust(final String minThrottleAdjust)
-    {
-        _minThrottleAdjust = minThrottleAdjust;
-    }
-
-    public void setMaxThrottleAsjust(final String maxThrottleAsjust)
-    {
-        _maxThrottleAdjust = maxThrottleAsjust;
-    }
-
     public void setSmoothFactor(final String smoothFactor)
     {
         _smoothFactor = smoothFactor;
@@ -150,8 +116,6 @@ public class AltitudeHoldPidData
         return new AltitudeHoldPidData(_altitudeHoldPid.getCopy(),
                                        _throttleBump,
                                        _throttlePanic,
-                                       _minThrottleAdjust,
-                                       _maxThrottleAdjust,
                                        _smoothFactor,
                                        _zDampeningPid.getCopy());
     }
