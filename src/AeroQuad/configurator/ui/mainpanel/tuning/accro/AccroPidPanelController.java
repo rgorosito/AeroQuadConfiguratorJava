@@ -41,6 +41,24 @@ public class AccroPidPanelController implements IAccroPidPanelController
                 }
             }
         });
+
+        messageDispatcher.addListener(IMessageDispatcher.NB_RECEIVER_CHANNEL_PROPERTY_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final int nbChannel = (Integer) evt.getNewValue();
+                if (nbChannel == 5)
+                {
+                    _panel.setThrottlePIDAdjustementPanelVisible(false);
+                }
+                else
+                {
+                    _panel.setThrottlePIDAdjustementPanelVisible(true);
+                }
+
+            }
+        });
     }
 
     private void updatePanelFromPidData(final AccroPidData pidData)

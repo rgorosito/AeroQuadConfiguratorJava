@@ -157,8 +157,9 @@ public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPane
     @Override
     public void setDisconnected()
     {
-        _middlePanel.remove(_aux2Panel);
-        _middlePanel.remove(_aux3Panel);
+        _aux1Panel.setVisible(false);
+        _aux2Panel.setVisible(false);
+        _aux3Panel.setVisible(false);
     }
 
     @Override

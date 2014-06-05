@@ -27,8 +27,8 @@ public class AccroPidPanel extends JPanel implements IAccroPidPanel
     private final PidPanel _rollPidPanel = new PidPanel("Roll");
     private final PidPanel _pitchPidPanel = new PidPanel("Pitch");
     private final JButton _resetDefaultButton = new JButton("<HTML><CENTER>Reset<BR>Default</CENTER></HTML>");
-    private final SingleParamConfigPanel _stickScalingPanel = new SingleParamConfigPanel("<HTML><CENTER>Stick<BR>Scaling</CENTER></HTML>");
-    private final SingleParamConfigPanel _throttlePIDAdjustmentPanel = new SingleParamConfigPanel("<HTML><CENTER>TPA</CENTER></HTML>");
+    private final SingleParamConfigPanel _stickScalingPanel = new SingleParamConfigPanel("<HTML><CENTER>Rotation<BR>Rate Speed</CENTER></HTML>");
+    private final SingleParamConfigPanel _throttlePIDAdjustmentPanel = new SingleParamConfigPanel("<HTML><CENTER>TPA (%)</CENTER></HTML>");
     private final SyncedStatePanel _syncStatePanel = new SyncedStatePanel();
     private JPanel _centerPanel;
     private UserLevel _userLevel = UserLevel.Beginner;
@@ -136,6 +136,12 @@ public class AccroPidPanel extends JPanel implements IAccroPidPanel
     public void setThrottlePIDAdjustment(final String throttlePIDAdjustment)
     {
         _throttlePIDAdjustmentPanel.setText(throttlePIDAdjustment);
+    }
+
+    @Override
+    public void setThrottlePIDAdjustementPanelVisible(final boolean visible)
+    {
+        _throttlePIDAdjustmentPanel.setVisible(visible);
     }
 
     private void updateCenterPanelFromUserLevel()
