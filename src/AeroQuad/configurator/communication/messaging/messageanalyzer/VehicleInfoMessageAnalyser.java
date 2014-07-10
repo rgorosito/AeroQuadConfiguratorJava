@@ -4,14 +4,21 @@ import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 
 public class VehicleInfoMessageAnalyser implements IMessageAnalyser
 {
+    final int GYRO_DETECTED        = 0x001;
+    final int ACCEL_DETECTED       = 0x002;
+    final int MAG_DETECTED         = 0x004;
+    final int BARO_DETECTED        = 0x008;
+//    final int HEADINGHOLD_ENABLED  = 0x010;
+//    final int ALTITUDEHOLD_ENABLED = 0x020;
+    final int BATTMONITOR_ENABLED  = 0x040;
+//    final int CAMERASTABLE_ENABLED = 0x080;
+//    final int RANGE_ENABLED        = 0x100;
+
+
     private final String GPS_KEY = "GPS";
     private final String RANGE_DETECTION_KEY = "Range Detection";
     private final String CAMERA_STABILITY_KEY = "Camera Stability";
     private final String BATTERY_MONITOR_KEY = "Battery Monitor";
-    private final String MAGNETOMETER_KEY = "Magnetometer";
-    private final String BAROMETER_KEY = "Barometer";
-    private final String ACCELEROMETER_KEY = "Accelerometer";
-    private final String GYROSCOPE_KEY = "Gyroscope";
     private final String MOTORS_KEY = "Motors";
     private final String NB_RECEIVER_CHANNEL_KEY = "ReceiverNbChannels";
     private final String FLIGHT_CONFIG_KEY = "FlightConfig";
@@ -38,6 +45,10 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
         try
         {
             final String[] vehicleConfigArray = rawData.split(";");
+            if (!analyseVehicleEnabledSensors(vehicleConfigArray[0]))
+            {
+                return false;
+            }
             for (final String config : vehicleConfigArray)
             {
                 final String[] datas = config.split(":");
@@ -53,11 +64,43 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
             return false;
         }
 
+        _messageDispatcher.dispatchMessage(IMessageDispatcher.GPS_PROPERTY_KEY, false);
+        return true;
+    }
+
+    private boolean analyseVehicleEnabledSensors(final String vehicleConfigString)
+    {
+        int vehicleConfig = 0;
+        try
+        {
+            vehicleConfig = Integer.parseInt(vehicleConfigString);
+        }
+        catch (NumberFormatException e)
+        {
+            return false;
+        }
+
+        final boolean isGyroscopeDetected = (vehicleConfig & GYRO_DETECTED) != 0;
+        _messageDispatcher.dispatchMessage(IMessageDispatcher.GYROSCOPE_PROPERTY_KEY, isGyroscopeDetected);
+
+        final boolean isAccelerometerDetected = (vehicleConfig & ACCEL_DETECTED) != 0;
+        _messageDispatcher.dispatchMessage(IMessageDispatcher.ACCELEROMETER_PROPERTY_KEY, isAccelerometerDetected);
+
+        final boolean isMagnetometerDetected = (vehicleConfig & MAG_DETECTED) != 0;
+        _messageDispatcher.dispatchMessage(IMessageDispatcher.MAGNETOMETER_PROPERTY_KEY, isMagnetometerDetected);
+
+        final boolean isBarometerDetected = (vehicleConfig & BARO_DETECTED) != 0;
+        _messageDispatcher.dispatchMessage(IMessageDispatcher.BAROMETER_PROPERTY_KEY, isBarometerDetected);
+
+        final boolean isBatteryMonitorEnabled = (vehicleConfig & BATTMONITOR_ENABLED) != 0;
+        _messageDispatcher.dispatchMessage(IMessageDispatcher.BATTERY_MONITOR_PROPERTY_KEY, isBatteryMonitorEnabled);
+
         return true;
     }
 
     private void analyzeData(final String[] datas)
     {
+
         if (datas[0].contains(GPS_KEY))
         {
             final boolean isGpsEnabled = !datas[1].contains(NOT_ENABLED);
@@ -77,26 +120,6 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
         {
             final boolean isBatteryMonitorEnabled = !datas[1].contains(NOT_ENABLED);
             _messageDispatcher.dispatchMessage(IMessageDispatcher.BATTERY_MONITOR_PROPERTY_KEY, isBatteryMonitorEnabled);
-        }
-        else if (datas[0].contains(MAGNETOMETER_KEY))
-        {
-            final boolean isMagnetometerDetected = !datas[1].contains(NOT_DETECTED);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.MAGNETOMETER_PROPERTY_KEY, isMagnetometerDetected);
-        }
-        else if (datas[0].contains(BAROMETER_KEY))
-        {
-            final boolean isBarometerDetected = !datas[1].contains(NOT_DETECTED);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.BAROMETER_PROPERTY_KEY, isBarometerDetected);
-        }
-        else if (datas[0].contains(ACCELEROMETER_KEY))
-        {
-            final boolean isAccelerometerDetected = !datas[1].contains(NOT_DETECTED);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.ACCELEROMETER_PROPERTY_KEY, isAccelerometerDetected);
-        }
-        else if (datas[0].contains(GYROSCOPE_KEY))
-        {
-            final boolean isGyroscopeDetected = !datas[1].contains(NOT_DETECTED);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.GYROSCOPE_PROPERTY_KEY, isGyroscopeDetected);
         }
         else if (datas[0].contains(MOTORS_KEY))
         {

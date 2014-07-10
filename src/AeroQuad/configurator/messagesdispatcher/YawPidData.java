@@ -3,19 +3,18 @@ package AeroQuad.configurator.messagesdispatcher;
 public class YawPidData
 {
     private PIDData _yawPid = new PIDData();
-    private PIDData _headingHoldPid = new PIDData();
+    private String _yawingSpeedFactor = "";
 
     public YawPidData()
     {
-
     }
 
 
     public YawPidData(final PIDData yawPid,
-                      final PIDData headingHoldPidData)
+                      final String yawingSpeedFactor)
     {
         _yawPid = yawPid;
-        _headingHoldPid = headingHoldPidData;
+        _yawingSpeedFactor = yawingSpeedFactor;
     }
 
 
@@ -31,7 +30,9 @@ public class YawPidData
         {
             return false;
         }
-        if (!_headingHoldPid.equals(other._headingHoldPid))
+        final double yawingSpeed1 = Double.parseDouble(_yawingSpeedFactor);
+        final double yawingSpeed2 = Double.parseDouble(other._yawingSpeedFactor);
+        if (yawingSpeed1 != yawingSpeed2)
         {
             return false;
         }
@@ -43,14 +44,14 @@ public class YawPidData
         return _yawPid;
     }
 
-    public PIDData getHeadingHoldPid()
+    public String getYawingSpeedFactor()
     {
-        return _headingHoldPid;
+        return _yawingSpeedFactor;
     }
 
     public YawPidData getCopy()
     {
-        return new YawPidData(_yawPid.getCopy(), _headingHoldPid.getCopy());
+        return new YawPidData(_yawPid.getCopy(), _yawingSpeedFactor);
     }
 
     public void setYawPid(final PIDData yawPid)
@@ -58,8 +59,8 @@ public class YawPidData
         _yawPid = yawPid;
     }
 
-    public void setHeadingHoldPid(final PIDData headingHoldPid)
+    public void setYawingSpeedFactor(final String yawingSpeedFactor)
     {
-        _headingHoldPid = headingHoldPid;
+        _yawingSpeedFactor = yawingSpeedFactor;
     }
 }

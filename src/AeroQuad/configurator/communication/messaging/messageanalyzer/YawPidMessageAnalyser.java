@@ -21,9 +21,9 @@ public class YawPidMessageAnalyser implements IMessageAnalyser
             final String splittedData[] = rawData.split(",");
 
             final PIDData yawPid = new PIDData(splittedData[0], splittedData[1], splittedData[2]);
-            final PIDData headingHoldPidData = new PIDData(splittedData[3], splittedData[4], splittedData[5]);
+            final String yawingSpeedFactor = splittedData[3];
 
-            final YawPidData yawPidData = new YawPidData(yawPid, headingHoldPidData);
+            final YawPidData yawPidData = new YawPidData(yawPid, yawingSpeedFactor);
             _messageDispatcher.dispatchMessage(IMessageDispatcher.YAW_PID_KEY, yawPidData);
         }
         catch (final Exception e)

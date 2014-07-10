@@ -3,6 +3,7 @@ package AeroQuad.configurator.ui.mainpanel.tuning.yaw;
 import AeroQuad.configurator.messagesdispatcher.PIDData;
 import AeroQuad.configurator.ui.mainpanel.tuning.UserLevel;
 import AeroQuad.configurator.ui.mainpanel.tuning.pidpanel.PidPanel;
+import AeroQuad.configurator.ui.mainpanel.tuning.singleparamconfigpanel.SingleParamConfigPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.syncedstate.SyncedStatePanel;
 import AeroQuad.configurator.ui.uiutils.UiUtils;
 
@@ -24,7 +25,7 @@ public class YawPidPanel extends JPanel implements IYawPidPanel
     private final IYawPidPanelController _controller;
 
     private final PidPanel _yawPidPanel = new PidPanel("Yaw");
-    private final PidPanel _headingHoldPidPanel = new PidPanel("Heading Hold");
+    private final SingleParamConfigPanel _yawingSpeedPanel = new SingleParamConfigPanel("<HTML><CENTER>Yawing<BR>Rate Speed</CENTER></HTML>");
     private final JButton _resetDefaultButton = new JButton("<HTML><CENTER>Reset<BR>Default</CENTER></HTML>");
     private final SyncedStatePanel _syncStatePanel = new SyncedStatePanel();
     private UserLevel _userLevel = UserLevel.Beginner;
@@ -65,12 +66,12 @@ public class YawPidPanel extends JPanel implements IYawPidPanel
                 _controller.userYawPidChanged(_yawPidPanel.getPid());
             }
         });
-        _headingHoldPidPanel.addActionListener(new ActionListener()
+        _yawingSpeedPanel.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                _controller.headingHoldPidChanged(_headingHoldPidPanel.getPid());
+                _controller.yawingSpeedChanged(_yawingSpeedPanel.getText());
             }
         });
         _resetDefaultButton.addActionListener(new ActionListener()
@@ -97,10 +98,11 @@ public class YawPidPanel extends JPanel implements IYawPidPanel
     }
 
     @Override
-    public void setHeadingHoldPid(final PIDData pid)
+    public void setYawingSpeedFactor(final String yawingSpeedFactor)
     {
-        _headingHoldPidPanel.setPid(pid);
+        _yawingSpeedPanel.setText(yawingSpeedFactor);
     }
+
 
     @Override
     public void setSinced(final boolean sinced)
@@ -115,14 +117,13 @@ public class YawPidPanel extends JPanel implements IYawPidPanel
         _yawPidPanel.setDVisible(false);
         if (_userLevel == UserLevel.Intermediate)
         {
-            _centerPanel.add(_headingHoldPidPanel);
-            _headingHoldPidPanel.setDVisible(false);
+            _centerPanel.add(_yawingSpeedPanel);
+
         }
         else if (_userLevel == UserLevel.Advanced)
         {
-            _centerPanel.add(_headingHoldPidPanel);
+            _centerPanel.add(_yawingSpeedPanel);
             _yawPidPanel.setDVisible(true);
-            _headingHoldPidPanel.setDVisible(true);
         }
 
         _centerPanel.add(_resetDefaultButton);

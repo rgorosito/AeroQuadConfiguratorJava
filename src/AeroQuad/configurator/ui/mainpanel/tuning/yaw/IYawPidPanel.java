@@ -9,7 +9,7 @@ public interface IYawPidPanel
 
     void setYawPid(PIDData pid);
 
-    void setHeadingHoldPid(PIDData pid);
+    void setYawingSpeedFactor(String yawingSpeedFactor);
 
     void setSinced(boolean sinced);
 }

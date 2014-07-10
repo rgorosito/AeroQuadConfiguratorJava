@@ -138,12 +138,6 @@ public class AccroPidPanel extends JPanel implements IAccroPidPanel
         _throttlePIDAdjustmentPanel.setText(throttlePIDAdjustment);
     }
 
-    @Override
-    public void setThrottlePIDAdjustementPanelVisible(final boolean visible)
-    {
-        _throttlePIDAdjustmentPanel.setVisible(visible);
-    }
-
     private void updateCenterPanelFromUserLevel()
     {
         _centerPanel.removeAll();

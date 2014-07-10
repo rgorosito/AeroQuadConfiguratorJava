@@ -33,7 +33,7 @@ import java.util.TimerTask;
 public class TuningPanelController implements ITuningPanelController
 {
 
-    private final int SYNC_TASK_SLEEP_DELAY = 700;
+    private final int SYNC_TASK_SLEEP_DELAY = 800;
     private final ISerialCommunicator _communicator;
     private ITuningPanel _panel;
 

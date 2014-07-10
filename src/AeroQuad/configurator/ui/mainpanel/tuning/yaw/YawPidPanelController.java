@@ -47,7 +47,7 @@ public class YawPidPanelController implements IYawPidPanelController
     private void updatePanelFromPidData(final YawPidData yawPid)
     {
         _panel.setYawPid(yawPid.getYawPid());
-        _panel.setHeadingHoldPid(yawPid.getHeadingHoldPid());
+        _panel.setYawingSpeedFactor(yawPid.getYawingSpeedFactor());
     }
 
     @Override
@@ -77,9 +77,7 @@ public class YawPidPanelController implements IYawPidPanelController
         buffer.append(_userYawPid.getYawPid().getP() + ";");
         buffer.append(_userYawPid.getYawPid().getI() + ";");
         buffer.append(_userYawPid.getYawPid().getD() + ";");
-        buffer.append(_userYawPid.getHeadingHoldPid().getP() + ";");
-        buffer.append(_userYawPid.getHeadingHoldPid().getI() + ";");
-        buffer.append(_userYawPid.getHeadingHoldPid().getD() + ";");
+        buffer.append(_userYawPid.getYawingSpeedFactor() + ";");
 
         return buffer.toString();
     }
@@ -91,13 +89,9 @@ public class YawPidPanelController implements IYawPidPanelController
         final String yawI = System.getProperty(DEFAULT_YAW_I);
         final String yawD = System.getProperty(DEFAULT_YAW_D);
         final PIDData yawPid = new PIDData(yawP,yawI,yawD);
+        final String yawingSpeedFactor = System.getProperty(YAWING_SPEED_FACTOR);
 
-        final String headingHoldP = System.getProperty(DEFAULT_HEADING_HOLD_P);
-        final String headingHoldI = System.getProperty(DEFAULT_HEADING_HOLD_I);
-        final String headingHoldD = System.getProperty(DEFAULT_HEADING_HOLD_D);
-        final PIDData headingHoldPid = new PIDData(headingHoldP,headingHoldI,headingHoldD);
-
-        _userYawPid = new YawPidData(yawPid, headingHoldPid);
+        _userYawPid = new YawPidData(yawPid, yawingSpeedFactor);
         updatePanelFromPidData(_userYawPid);
     }
 
@@ -123,9 +117,9 @@ public class YawPidPanelController implements IYawPidPanelController
     }
 
     @Override
-    public void headingHoldPidChanged(final PIDData pid)
+    public void yawingSpeedChanged(final String yawingSpeedFactor)
     {
-        _userYawPid.setHeadingHoldPid(pid);
+        _userYawPid.setYawingSpeedFactor(yawingSpeedFactor);
     }
 
     @Override
