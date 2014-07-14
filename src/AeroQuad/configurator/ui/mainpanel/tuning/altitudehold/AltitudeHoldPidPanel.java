@@ -25,7 +25,7 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
 
     private final PidPanel _altitudePidPanel = new PidPanel("Altitude");
     private final SingleParamConfigPanel _throttleBumpPanel = new SingleParamConfigPanel("<HTML><CENTER>Throttle<BR>Bump</CENTER></HTML>");
-    private final SingleParamConfigPanel _throttlePanicPanel = new SingleParamConfigPanel("<HTML><CENTER>Throttle<BR>Panic</CENTER></HTML>");
+    private final SingleParamConfigPanel _maxVelocitySpeedPanel = new SingleParamConfigPanel("<HTML><CENTER>Max<BR>Velocity Speed</CENTER></HTML>");
     private final SingleParamConfigPanel _smoothFactorPanel = new SingleParamConfigPanel("<HTML><CENTER>Smooth<BR>Factor</CENTER></HTML>");
     private final PidPanel _zDampeningPidPanel = new PidPanel("Z Dampening");
     private final JButton _resetDefaultButton = new JButton("<HTML><CENTER>Reset<BR>Default</CENTER></HTML>");
@@ -57,7 +57,7 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
         _centerPanel = new JPanel(new GridLayout(1,10));
         _centerPanel.add(_altitudePidPanel);
         _centerPanel.add(_throttleBumpPanel);
-        _centerPanel.add(_throttlePanicPanel);
+        _centerPanel.add(_maxVelocitySpeedPanel);
         _centerPanel.add(_smoothFactorPanel);
         _centerPanel.add(_smoothFactorPanel);
         _centerPanel.add(_zDampeningPidPanel);
@@ -85,12 +85,12 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
             }
         });
 
-        _throttlePanicPanel.addActionListener(new ActionListener()
+        _maxVelocitySpeedPanel.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(final ActionEvent e)
             {
-                _controller.userThrottlePanicValueChanged(_throttlePanicPanel.getText());
+                _controller.userMaxVelocitySpeedChanged(_maxVelocitySpeedPanel.getText());
             }
         });
 
@@ -148,9 +148,9 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
     }
 
     @Override
-    public void setThrottlePanic(final String throttlePanic)
+    public void setMaxVelocitySpeed(final String throttlePanic)
     {
-        _throttlePanicPanel.setText(throttlePanic);
+        _maxVelocitySpeedPanel.setText(throttlePanic);
     }
 
     @Override
@@ -193,7 +193,7 @@ public class AltitudeHoldPidPanel extends JPanel implements IAltitudeHoldPidPane
             _altitudePidPanel.setDVisible(true);
             _altitudePidPanel.setIVisible(true);
             _centerPanel.add(_throttleBumpPanel);
-            _centerPanel.add(_throttlePanicPanel);
+            _centerPanel.add(_maxVelocitySpeedPanel);
             _centerPanel.add(_smoothFactorPanel);
             _centerPanel.add(_zDampeningPidPanel);
             _zDampeningPidPanel.setDVisible(true);

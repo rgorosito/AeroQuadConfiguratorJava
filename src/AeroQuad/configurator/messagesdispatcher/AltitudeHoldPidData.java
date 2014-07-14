@@ -7,7 +7,7 @@ public class AltitudeHoldPidData
 {
     private PIDData _altitudeHoldPid = new PIDData();
     private String _throttleBump = "0";
-    private String _throttlePanic = "0";
+    private String _maxVelocitySpeed = "0";
     private String _smoothFactor = "0";
     private PIDData _zDampeningPid = new PIDData();
 
@@ -18,13 +18,13 @@ public class AltitudeHoldPidData
 
     public AltitudeHoldPidData(final PIDData altitudeHoldPid,
                                final String throttleBump,
-                               final String throttlePanic,
+                               final String maxVelocitySpeed,
                                final String smoothFactor,
                                final PIDData zDampeningPid)
     {
         _altitudeHoldPid = altitudeHoldPid;
         _throttleBump = throttleBump;
-        _throttlePanic = throttlePanic;
+        _maxVelocitySpeed = maxVelocitySpeed;
         _smoothFactor = smoothFactor;
         _zDampeningPid = zDampeningPid;
     }
@@ -39,9 +39,9 @@ public class AltitudeHoldPidData
         return _throttleBump;
     }
 
-    public String getThrottlePanic()
+    public String getMaxVelocitySpeed()
     {
-        return _throttlePanic;
+        return _maxVelocitySpeed;
     }
 
     public String getSmoothFactor()
@@ -70,7 +70,7 @@ public class AltitudeHoldPidData
         {
             return false;
         }
-        if (!UiUtils.areFloatEquals(_throttlePanic, other._throttlePanic))
+        if (!UiUtils.areFloatEquals(_maxVelocitySpeed, other._maxVelocitySpeed))
         {
             return false;
         }
@@ -96,9 +96,9 @@ public class AltitudeHoldPidData
         _throttleBump = throttleBump;
     }
 
-    public void setThrottlePanic(final String throttlePanic)
+    public void setMaxVelocitySpeed(final String maxVelocitySpeed)
     {
-        _throttlePanic = throttlePanic;
+        _maxVelocitySpeed = maxVelocitySpeed;
     }
 
     public void setSmoothFactor(final String smoothFactor)
@@ -115,7 +115,7 @@ public class AltitudeHoldPidData
     {
         return new AltitudeHoldPidData(_altitudeHoldPid.getCopy(),
                                        _throttleBump,
-                                       _throttlePanic,
+                                       _maxVelocitySpeed,
                                        _smoothFactor,
                                        _zDampeningPid.getCopy());
     }

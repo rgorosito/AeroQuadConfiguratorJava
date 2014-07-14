@@ -9,7 +9,7 @@ public interface IAltitudeHoldPidPanelController extends IPidPanelController
     final static String DEFAULT_ALTITUDE_HOLD_I = "pid.altitudehold.pid.i";
     final static String DEFAULT_ALTITUDE_HOLD_D = "pid.altitudehold.pid.d";
     final static String DEFAULT_ALTITUDE_BUMP = "pid.altitudehold.bump";
-    final static String DEFAULT_ALTITUDE_PANIC = "pid.altitudehold.panic";
+    final static String DEFAULT_MAX_VELOCITY_SPEED = "pid.altitudehold.maxVelcoitySpeed";
     final static String DEFAULT_ALTITUDE_SMOOTH_FACTOR = "pid.altitudehold.smoothfactor";
     final static String DEFAULT_ALTITUDE_ZDAMPENING_P = "pid.zdampening.pid.p";
     final static String DEFAULT_ALTITUDE_ZDAMPENING_I = "pid.zdampening.pid.i";
@@ -19,11 +19,11 @@ public interface IAltitudeHoldPidPanelController extends IPidPanelController
 
     void userAltitudeHoldPidChanged(PIDData pid);
 
-    void userThrottleBumpValueChanged(String text);
+    void userThrottleBumpValueChanged(String throttleBump);
 
-    void userThrottlePanicValueChanged(String text);
-
-    void userSmoothFactorValueChanged(String text);
+    void userSmoothFactorValueChanged(String smoothFactor);
 
     void userZDampeningPidChanged(PIDData pid);
+
+    public void userMaxVelocitySpeedChanged(String maxVelocitySpeed);
 }

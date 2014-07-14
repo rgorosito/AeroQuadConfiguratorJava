@@ -47,7 +47,8 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
     {
         _panel.setAltitudePid(altitudeHoldPidData.getAltitudePid());
         _panel.setThrottleBump(altitudeHoldPidData.getThrottleBump());
-        _panel.setThrottlePanic(altitudeHoldPidData.getThrottlePanic());
+        final double maxVelocitySpeed = Double.parseDouble(altitudeHoldPidData.getMaxVelocitySpeed());
+        _panel.setMaxVelocitySpeed(Double.toString(maxVelocitySpeed / 100.0));
         _panel.setSmoothFactor(altitudeHoldPidData.getSmoothFactor());
         _panel.setZDampening(altitudeHoldPidData.getZDampeningPid());
     }
@@ -79,9 +80,8 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
         buffer.append(_userAltitudeHoldPidData.getAltitudePid().getP() + ";");
         buffer.append(_userAltitudeHoldPidData.getAltitudePid().getI() + ";");
         buffer.append(_userAltitudeHoldPidData.getAltitudePid().getD() + ";");
-        buffer.append("0.00" + ";");
         buffer.append(_userAltitudeHoldPidData.getThrottleBump() + ";");
-        buffer.append(_userAltitudeHoldPidData.getThrottlePanic() + ";");
+        buffer.append(_userAltitudeHoldPidData.getMaxVelocitySpeed() + ";");
         buffer.append(_userAltitudeHoldPidData.getSmoothFactor() + ";");
         buffer.append(_userAltitudeHoldPidData.getZDampeningPid().getP() + ";");
         buffer.append(_userAltitudeHoldPidData.getZDampeningPid().getI() + ";");
@@ -99,7 +99,7 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
         final PIDData altitudePid = new PIDData(altitudeP,altitudeI,altitudeD);
 
         final String altitudeBump = System.getProperty(DEFAULT_ALTITUDE_BUMP);
-        final String altitudePanic = System.getProperty(DEFAULT_ALTITUDE_PANIC);
+        final String altitudePanic = System.getProperty(DEFAULT_MAX_VELOCITY_SPEED);
         final String smoothFactor = System.getProperty(DEFAULT_ALTITUDE_SMOOTH_FACTOR);
 
         final String zDampeningP = System.getProperty(DEFAULT_ALTITUDE_ZDAMPENING_P);
@@ -137,17 +137,17 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
     }
 
     @Override
-    public void userThrottleBumpValueChanged(final String text)
+    public void userThrottleBumpValueChanged(final String throttleBump)
     {
-        _userAltitudeHoldPidData.setThrottleBump(text);
+        _userAltitudeHoldPidData.setThrottleBump(throttleBump);
     }
 
     @Override
-    public void userThrottlePanicValueChanged(final String text)
+    public void userMaxVelocitySpeedChanged(final String maxVelocitySpeed)
     {
-        _userAltitudeHoldPidData.setThrottlePanic(text);
+        final double maxSpeed = Double.parseDouble(maxVelocitySpeed) * 100.0;
+        _userAltitudeHoldPidData.setMaxVelocitySpeed(Double.toString(maxSpeed));
     }
-
 
     @Override
     public void userSmoothFactorValueChanged(final String text)
@@ -165,6 +165,7 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
     public boolean isUserDataInSinced()
     {
         boolean ret = true;
+        System.out.println(_altitudeHoldPidData.getMaxVelocitySpeed() + " == " + _userAltitudeHoldPidData.getMaxVelocitySpeed());
         if (!_altitudeHoldPidData.equals(_userAltitudeHoldPidData))
         {
             ret = false;

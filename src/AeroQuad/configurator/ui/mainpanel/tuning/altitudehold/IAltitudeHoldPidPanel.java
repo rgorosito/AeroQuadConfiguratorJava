@@ -13,7 +13,7 @@ public interface IAltitudeHoldPidPanel
 
     void setThrottleBump(String altitudeBump);
 
-    void setThrottlePanic(String throttlePanic);
+    void setMaxVelocitySpeed(String throttlePanic);
 
     void setSmoothFactor(String smoothFactor);
 
