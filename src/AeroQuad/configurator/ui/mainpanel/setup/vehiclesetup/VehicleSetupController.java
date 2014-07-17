@@ -184,7 +184,6 @@ public class VehicleSetupController implements IVehicleSetupController
     {
         int selectedInt = selected ? 1 : 0;
         _communicator.sendCommand("E " + Integer.toString(selectedInt) + ";");
-        System.out.println("send " + "E " + Integer.toString(selectedInt) + ";");
     }
 
     private void updateOptionVisibilityFromChannelCount(final int nbChannels)

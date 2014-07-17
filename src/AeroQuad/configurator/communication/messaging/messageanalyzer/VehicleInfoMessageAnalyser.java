@@ -8,11 +8,13 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
     final int ACCEL_DETECTED       = 0x002;
     final int MAG_DETECTED         = 0x004;
     final int BARO_DETECTED        = 0x008;
-//    final int HEADINGHOLD_ENABLED  = 0x010;
-//    final int ALTITUDEHOLD_ENABLED = 0x020;
+    final int HEADINGHOLD_ENABLED  = 0x010;
+    final int ALTITUDEHOLD_ENABLED = 0x020;
     final int BATTMONITOR_ENABLED  = 0x040;
-//    final int CAMERASTABLE_ENABLED = 0x080;
-//    final int RANGE_ENABLED        = 0x100;
+    final int CAMERASTABLE_ENABLED = 0x080;
+    final int RANGE_ENABLED        = 0x100;
+    final int GPS_ENABLED          = 0x200;
+    final int RSSI_ENABLED         = 0x400;
 
 
     private final String GPS_KEY = "GPS";
@@ -29,8 +31,8 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
     private final String YAW_DIRECTION_KEY = "YawDirection";
 
 
-    private final String NOT_ENABLED = "Not Enabled";
-    private final String NOT_DETECTED = "Not Detected";
+//    private final String NOT_ENABLED = "Not Enabled";
+//    private final String NOT_DETECTED = "Not Detected";
 
     private final IMessageDispatcher _messageDispatcher;
 
@@ -64,7 +66,6 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
             return false;
         }
 
-        _messageDispatcher.dispatchMessage(IMessageDispatcher.GPS_PROPERTY_KEY, false);
         return true;
     }
 
@@ -95,33 +96,15 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
         final boolean isBatteryMonitorEnabled = (vehicleConfig & BATTMONITOR_ENABLED) != 0;
         _messageDispatcher.dispatchMessage(IMessageDispatcher.BATTERY_MONITOR_PROPERTY_KEY, isBatteryMonitorEnabled);
 
+        final boolean isGpsEnabled = (vehicleConfig & GPS_ENABLED) != 0;
+        _messageDispatcher.dispatchMessage(IMessageDispatcher.GPS_PROPERTY_KEY, isGpsEnabled);
+
         return true;
     }
 
     private void analyzeData(final String[] datas)
     {
-
-        if (datas[0].contains(GPS_KEY))
-        {
-            final boolean isGpsEnabled = !datas[1].contains(NOT_ENABLED);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.GPS_PROPERTY_KEY, isGpsEnabled);
-        }
-        else if (datas[0].contains(RANGE_DETECTION_KEY))
-        {
-            final boolean isRangerEnabled = !datas[1].contains(NOT_ENABLED);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.RANGE_DETECTION_PROPERTY_KEY, isRangerEnabled);
-        }
-        else if (datas[0].contains(CAMERA_STABILITY_KEY))
-        {
-            final boolean isCameraStabilityEnabled = !datas[1].contains(NOT_ENABLED);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.CAMERA_STABILITY_PROPERTY_KEY, isCameraStabilityEnabled);
-        }
-        else if (datas[0].contains(BATTERY_MONITOR_KEY))
-        {
-            final boolean isBatteryMonitorEnabled = !datas[1].contains(NOT_ENABLED);
-            _messageDispatcher.dispatchMessage(IMessageDispatcher.BATTERY_MONITOR_PROPERTY_KEY, isBatteryMonitorEnabled);
-        }
-        else if (datas[0].contains(MOTORS_KEY))
+        if (datas[0].contains(MOTORS_KEY))
         {
             final int nbMotors = Integer.parseInt(datas[1]);
             _messageDispatcher.dispatchMessage(IMessageDispatcher.NB_MOTORS_PROPERTY_KEY, nbMotors);

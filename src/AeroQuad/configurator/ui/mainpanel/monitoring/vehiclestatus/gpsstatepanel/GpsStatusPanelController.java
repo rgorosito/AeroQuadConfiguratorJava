@@ -39,23 +39,14 @@ public class GpsStatusPanelController implements IGpsStatusPanelController
             return;
         }
 
-        final String nbSats = gpsDatas.getNbSats();
-        _panel.setNbSats(nbSats);
-
-        final String speed = gpsDatas.getSpeed();
-        _panel.setSpeed(speed);
-
-        final String altitude = gpsDatas.getAltitude();
-        _panel.setAltitude(altitude);
-
-        final String heading = gpsDatas.getHeading();
-        _panel.setHeading(heading);
-
-        final String latitude = gpsDatas.getLatitude();
-        _panel.setLatitude(latitude);
-
-        final String longitude = gpsDatas.getLongitude();
-        _panel.setLongitude(longitude);
+        _panel.setNbSats(gpsDatas.getNbSats());
+        _panel.setSpeed(gpsDatas.getSpeed());
+        _panel.setAltitude(gpsDatas.getAltitude());
+        _panel.setHeading(gpsDatas.getHeading());
+        _panel.setLatitude(gpsDatas.getLatitude());
+        _panel.setLongitude(gpsDatas.getLongitude());
+        _panel.setDistanceToWayPoint(gpsDatas.getDistanceToWayPoint());
+        _panel.setAngleToWaypoint(gpsDatas.getAngleToWayPoint());
     }
 
     private void setOthersFieldToZeros()
@@ -66,5 +57,7 @@ public class GpsStatusPanelController implements IGpsStatusPanelController
         _panel.setHeading("0");
         _panel.setLatitude("0");
         _panel.setLongitude("0");
+        _panel.setDistanceToWayPoint("0");
+        _panel.setAngleToWaypoint("0");
     }
 }

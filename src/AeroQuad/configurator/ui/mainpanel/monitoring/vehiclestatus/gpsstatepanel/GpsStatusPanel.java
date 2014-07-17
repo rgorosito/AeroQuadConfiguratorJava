@@ -15,6 +15,9 @@ public class GpsStatusPanel extends JPanel implements IGpsStatusPanel
     private JLabel _headingLabel = new JLabel("");
     private JLabel _latitudeLabel = new JLabel("");
     private JLabel _longitudeLabel = new JLabel("");
+    private JLabel _distanceToWaypointLabel = new JLabel("");
+    private JLabel _angleToWaypointLabel = new JLabel("");
+
 
 
     public GpsStatusPanel(final IGpsStatusPanelController controller)
@@ -41,6 +44,10 @@ public class GpsStatusPanel extends JPanel implements IGpsStatusPanel
         _latitudeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         _longitudeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         _longitudeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        _distanceToWaypointLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        _distanceToWaypointLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        _angleToWaypointLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        _angleToWaypointLabel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         setBorder(new LineBorder(Color.black, 3));
         setPreferredSize(new Dimension(250, 0));
@@ -108,6 +115,24 @@ public class GpsStatusPanel extends JPanel implements IGpsStatusPanel
         gpsLongitudePanel.add(_longitudeLabel);
         _longitudeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(gpsLongitudePanel);
+
+        final JPanel distanceToWaypointPanel = new JPanel(new GridLayout(1, 2));
+        final JLabel distanceToWaypointLabel = new JLabel(" Dst To WP");
+        distanceToWaypointLabel.setOpaque(true);
+        distanceToWaypointLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        distanceToWaypointPanel.add(distanceToWaypointLabel);
+        distanceToWaypointPanel.add(_distanceToWaypointLabel);
+        _distanceToWaypointLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(distanceToWaypointPanel);
+
+        final JPanel angleToWaypointPanel = new JPanel(new GridLayout(1, 2));
+        final JLabel angleToWaypointLabel = new JLabel(" Angle to WP");
+        angleToWaypointLabel.setOpaque(true);
+        angleToWaypointLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        angleToWaypointPanel.add(angleToWaypointLabel);
+        angleToWaypointPanel.add(_angleToWaypointLabel);
+        _angleToWaypointLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(angleToWaypointPanel);
     }
 
     @Override
@@ -150,5 +175,17 @@ public class GpsStatusPanel extends JPanel implements IGpsStatusPanel
     public void setLongitude(final String longitude)
     {
         _longitudeLabel.setText(longitude);
+    }
+
+    @Override
+    public void setDistanceToWayPoint(final String distanceToWayPoint)
+    {
+        _distanceToWaypointLabel.setText(distanceToWayPoint);
+    }
+
+    @Override
+    public void setAngleToWaypoint(final String angleToWayPoint)
+    {
+        _angleToWaypointLabel.setText(angleToWayPoint);
     }
 }

@@ -33,7 +33,7 @@ public class SerialCommunicator implements ISerialCommunicator
     {
         _messageDispatcher = messageDispatcher;
 
-        _messageDispatcher.addListener(IMessageDispatcher.GPS_PROPERTY_KEY, new PropertyChangeListener()
+        _messageDispatcher.addListener(IMessageDispatcher.YAW_DIRECTION_KET, new PropertyChangeListener()
         {
             @Override
             public void propertyChange(final PropertyChangeEvent evt)

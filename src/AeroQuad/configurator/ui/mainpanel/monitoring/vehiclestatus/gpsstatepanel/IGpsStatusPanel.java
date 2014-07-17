@@ -15,4 +15,8 @@ public interface IGpsStatusPanel
     void setLatitude(String latitude);
 
     void setLongitude(String longitude);
+
+    void setDistanceToWayPoint(String distanceToWayPoint);
+
+    void setAngleToWaypoint(String angleToWayPoint);
 }

@@ -18,7 +18,7 @@ public class VehicleStatusMessageAnalyser implements IMessageAnalyser
         {
             final String formattedRawData = rawData.replaceAll("nan","0");
             final String splittedData[] = formattedRawData.split(",");
-            if (splittedData.length != 32)
+            if (splittedData.length != 34)
             {
                 return false;
             }
@@ -62,7 +62,7 @@ public class VehicleStatusMessageAnalyser implements IMessageAnalyser
             final FlightMode flightMode = FlightMode.fromOrdinal(Integer.parseInt(splittedData[24]));
             _messageDispatcher.dispatchMessage(IMessageDispatcher.VEHICLE_FLIGHT_MODE_STATE_CHANGE, flightMode);
 
-            final GpsDatas gpsDatas = new GpsDatas(splittedData[25], splittedData[26], splittedData[27], splittedData[28], splittedData[29], splittedData[30], splittedData[31]);
+            final GpsDatas gpsDatas = new GpsDatas(splittedData[25], splittedData[26], splittedData[27], splittedData[28], splittedData[29], splittedData[30], splittedData[31], splittedData[32], splittedData[33]);
             _messageDispatcher.dispatchMessage(IMessageDispatcher.GPS_INFOS_UPDATED, gpsDatas);
         }
         catch (Exception e)
