@@ -74,19 +74,19 @@ public class AttitudePidPanelController implements IAttitudePidPanelController
         final StringBuffer buffer = new StringBuffer();
         buffer.append(IMessageDefinition.ATTITUDE_PID_SET_COMMAND);
         buffer.append(_userAttitudePidData.getAccelRollPid().getP() + ";");
-        buffer.append(_userAttitudePidData.getAccelRollPid().getI() + ";");
-        buffer.append(_userAttitudePidData.getAccelRollPid().getD() + ";");
+        buffer.append("0.00;");
+        buffer.append("0.00;");
         if (_userLevel == UserLevel.Beginner)
         {
             buffer.append(_userAttitudePidData.getAccelRollPid().getP() + ";");
-            buffer.append(_userAttitudePidData.getAccelRollPid().getI() + ";");
-            buffer.append(_userAttitudePidData.getAccelRollPid().getD() + ";");
+            buffer.append("0.00;");
+            buffer.append("0.00;");
         }
         else
         {
             buffer.append(_userAttitudePidData.getAccelPitchPid().getP() + ";");
-            buffer.append(_userAttitudePidData.getAccelPitchPid().getI() + ";");
-            buffer.append(_userAttitudePidData.getAccelPitchPid().getD() + ";");
+            buffer.append("0.00;");
+            buffer.append("0.00;");
         }
 
         return buffer.toString();

@@ -135,11 +135,11 @@ public class AttitudePidPanel extends JPanel implements IAttitudePidPanel
             _centerPanel.add(_accelPitchPidPanel);
 
             _accelRollPidPanel.setHeader("Accel Roll");
-            _accelRollPidPanel.setIVisible(true);
-            _accelRollPidPanel.setDVisible(true);
+            _accelRollPidPanel.setIVisible(false);
+            _accelRollPidPanel.setDVisible(false);
 
-            _accelPitchPidPanel.setIVisible(true);
-            _accelPitchPidPanel.setDVisible(true);
+            _accelPitchPidPanel.setIVisible(false);
+            _accelPitchPidPanel.setDVisible(false);
         }
 
         _centerPanel.add(_resetDefaultButton);

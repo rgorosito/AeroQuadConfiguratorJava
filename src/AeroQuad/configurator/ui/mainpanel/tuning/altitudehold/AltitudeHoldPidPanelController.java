@@ -165,7 +165,6 @@ public class AltitudeHoldPidPanelController implements IAltitudeHoldPidPanelCont
     public boolean isUserDataInSinced()
     {
         boolean ret = true;
-        System.out.println(_altitudeHoldPidData.getMaxVelocitySpeed() + " == " + _userAltitudeHoldPidData.getMaxVelocitySpeed());
         if (!_altitudeHoldPidData.equals(_userAltitudeHoldPidData))
         {
             ret = false;

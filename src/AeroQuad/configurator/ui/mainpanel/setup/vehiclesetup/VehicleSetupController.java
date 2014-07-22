@@ -66,7 +66,6 @@ public class VehicleSetupController implements IVehicleSetupController
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 final boolean batterieMonitorEnabled = (boolean)evt.getNewValue();
-                System.out.println(batterieMonitorEnabled);
                 _panel.setBatterieMonitorSelected(batterieMonitorEnabled);
             }
         });
