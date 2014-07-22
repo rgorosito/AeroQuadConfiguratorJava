@@ -33,6 +33,7 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
 
     private final JCheckBox _reverseYawCheckBox = new JCheckBox("Reverse Yaw");
     private final JCheckBox _batteriMonitorCheckBox = new JCheckBox("Batterie monitor");
+    private final JCheckBox _gpsCheckBox = new JCheckBox("Use GPS");
 
 
     public VehicleSetupPanel(final IVehicleSetupController controller)
@@ -126,12 +127,17 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
         group.add(_octoPlusRadioButton);
         motorConfigPanel.add(motorConfigPanelDetail, BorderLayout.CENTER);
 
-        final JPanel otherOptions = new JPanel(new GridLayout(1,2));
+        final JPanel otherOptions = new JPanel(new GridLayout(2,2));
         final TitledBorder otherOptionBorder = new TitledBorder("Others options");
         otherOptionBorder.setTitleColor(Color.WHITE);
         otherOptions.setBorder(otherOptionBorder);
         otherOptions.add(_reverseYawCheckBox);
         otherOptions.add(_batteriMonitorCheckBox);
+        otherOptions.add(_gpsCheckBox);
+        final JLabel tempLabel = new JLabel();
+        tempLabel.setOpaque(true);
+        tempLabel.setBackground(_reverseYawCheckBox.getBackground());
+        otherOptions.add(tempLabel);
 
         motorConfigPanel.add(otherOptions, BorderLayout.SOUTH);
 
@@ -263,6 +269,15 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
                 _controller.batterieMonitorSelected(_batteriMonitorCheckBox.isSelected());
             }
         });
+
+        _gpsCheckBox.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.useGpsSelected(_gpsCheckBox.isSelected());
+            }
+        });
     }
 
     @Override
@@ -361,6 +376,12 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
     public void setBatterieMonitorSelected(final boolean selected)
     {
         _batteriMonitorCheckBox.setSelected(selected);
+    }
+
+    @Override
+    public void setUseGps(final boolean useGps)
+    {
+        _gpsCheckBox.setSelected(useGps);
     }
 
 

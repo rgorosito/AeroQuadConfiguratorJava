@@ -69,6 +69,16 @@ public class VehicleSetupController implements IVehicleSetupController
                 _panel.setBatterieMonitorSelected(batterieMonitorEnabled);
             }
         });
+
+        messageDispatcher.addListener(IMessageDispatcher.GPS_PROPERTY_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final boolean useGps = (boolean)evt.getNewValue();
+                _panel.setUseGps(useGps);
+            }
+        });
     }
 
     @Override
@@ -183,6 +193,13 @@ public class VehicleSetupController implements IVehicleSetupController
     {
         int selectedInt = selected ? 1 : 0;
         _communicator.sendCommand("E " + Integer.toString(selectedInt) + ";");
+    }
+
+    @Override
+    public void useGpsSelected(final boolean selected)
+    {
+        int selectedInt = selected ? 1 : 0;
+        _communicator.sendCommand("U " + Integer.toString(selectedInt) + ";");
     }
 
     private void updateOptionVisibilityFromChannelCount(final int nbChannels)

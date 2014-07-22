@@ -88,16 +88,16 @@ public class TuningPanelController implements ITuningPanelController
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                final boolean isBatteryMonitorEnabled = (boolean)evt.getNewValue();
-                _panel.setBatteryMonitorVisible(isBatteryMonitorEnabled);
-                if (isBatteryMonitorEnabled)
-                {
-                    _pidPanelControllerList.add(_batteryMonitorPidPanelController);
-                }
-                else
-                {
-                    _pidPanelControllerList.remove(_batteryMonitorPidPanelController);
-                }
+//                final boolean isBatteryMonitorEnabled = (boolean)evt.getNewValue();
+//                _panel.setBatteryMonitorVisible(isBatteryMonitorEnabled);
+//                if (isBatteryMonitorEnabled)
+//                {
+//                    _pidPanelControllerList.add(_batteryMonitorPidPanelController);
+//                }
+//                else
+//                {
+//                    _pidPanelControllerList.remove(_batteryMonitorPidPanelController);
+//                }
             }
         });
 

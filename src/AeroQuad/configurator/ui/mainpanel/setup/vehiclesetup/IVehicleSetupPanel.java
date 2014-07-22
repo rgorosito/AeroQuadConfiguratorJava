@@ -26,4 +26,6 @@ public interface IVehicleSetupPanel
     void setBatterieMonitorEnabled(boolean visible);
 
     void setBatterieMonitorSelected(boolean selected);
+
+    void setUseGps(boolean useGps);
 }
