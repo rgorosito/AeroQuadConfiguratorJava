@@ -31,6 +31,10 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
     private final JRadioButton _octoXRadioButton = new JRadioButton("Octo X");
     private final JRadioButton _octoPlusRadioButton = new JRadioButton("Octo +");
 
+    private final JRadioButton _oldEscUpdateSpeedRadioButton = new JRadioButton("Old Way");
+    private final JRadioButton _normalEscUpdateSpeedRadionButton = new JRadioButton("Normal");
+    private final JRadioButton _fastEscUpdateSpeedRadioButton = new JRadioButton("Fast (SimonK, BlHeli)");
+
     private final JCheckBox _reverseYawCheckBox = new JCheckBox("Reverse Yaw");
     private final JCheckBox _batteriMonitorCheckBox = new JCheckBox("Batterie monitor");
     private final JCheckBox _gpsCheckBox = new JCheckBox("Use GPS");
@@ -74,8 +78,16 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
         final JPanel motorConfigPanel = createMotorConfigPanel();
         middlePanel.add(motorConfigPanel);
 
+        final JPanel escUpdateSpeedPanel = createEscUpdateSpeedPanel();
+        middlePanel.add(escUpdateSpeedPanel);
+
+        final JPanel otherOptionPanel = createOtherOptionPanel();
+        middlePanel.add(otherOptionPanel);
+
         bindActions();
     }
+
+
 
     private JPanel createReceiverPanel()
     {
@@ -127,6 +139,11 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
         group.add(_octoPlusRadioButton);
         motorConfigPanel.add(motorConfigPanelDetail, BorderLayout.CENTER);
 
+        return motorConfigPanel;
+    }
+
+    private JPanel createOtherOptionPanel()
+    {
         final JPanel otherOptions = new JPanel(new GridLayout(2,2));
         final TitledBorder otherOptionBorder = new TitledBorder("Others options");
         otherOptionBorder.setTitleColor(Color.WHITE);
@@ -139,9 +156,28 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
         tempLabel.setBackground(_reverseYawCheckBox.getBackground());
         otherOptions.add(tempLabel);
 
-        motorConfigPanel.add(otherOptions, BorderLayout.SOUTH);
+        return otherOptions;
+    }
 
-        return motorConfigPanel;
+    private JPanel createEscUpdateSpeedPanel()
+    {
+        final JPanel escUpdateSpeedPanel = new JPanel(new GridLayout(2,2));
+        final TitledBorder escUpdateSpeedBorder = new TitledBorder("ESC update Speed");
+        escUpdateSpeedBorder.setTitleColor(Color.WHITE);
+        escUpdateSpeedPanel.setBorder(escUpdateSpeedBorder);
+        final ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(_oldEscUpdateSpeedRadioButton);
+        buttonGroup.add(_normalEscUpdateSpeedRadionButton);
+        buttonGroup.add(_fastEscUpdateSpeedRadioButton);
+        escUpdateSpeedPanel.add(_oldEscUpdateSpeedRadioButton);
+        escUpdateSpeedPanel.add(_normalEscUpdateSpeedRadionButton);
+        escUpdateSpeedPanel.add(_fastEscUpdateSpeedRadioButton);
+        final JLabel tempLabel = new JLabel();
+        tempLabel.setOpaque(true);
+        tempLabel.setBackground(_oldEscUpdateSpeedRadioButton.getBackground());
+        escUpdateSpeedPanel.add(tempLabel);
+
+        return escUpdateSpeedPanel;
     }
 
     private void bindActions()
@@ -249,6 +285,31 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
             public void actionPerformed(final ActionEvent e)
             {
                 _controller.octoPlusConfigSelected();
+            }
+        });
+
+        _oldEscUpdateSpeedRadioButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.setEscUpdateSpeed(EscUpdateSpeed.OLD_WAY);
+            }
+        });
+        _normalEscUpdateSpeedRadionButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.setEscUpdateSpeed(EscUpdateSpeed.NORMAL);
+            }
+        });
+        _fastEscUpdateSpeedRadioButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent e)
+            {
+                _controller.setEscUpdateSpeed(EscUpdateSpeed.FAST);
             }
         });
 
@@ -382,6 +443,23 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
     public void setUseGps(final boolean useGps)
     {
         _gpsCheckBox.setSelected(useGps);
+    }
+
+    @Override
+    public void setEscSpeed(final EscUpdateSpeed escSpeed)
+    {
+        switch (escSpeed)
+        {
+            case FAST:
+                _fastEscUpdateSpeedRadioButton.setSelected(true);
+                break;
+            case OLD_WAY:
+                _oldEscUpdateSpeedRadioButton.setSelected(true);
+                break;
+            case NORMAL:
+                _normalEscUpdateSpeedRadionButton.setSelected(true);
+                break;
+        }
     }
 
 

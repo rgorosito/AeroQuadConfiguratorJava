@@ -1,7 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.setup.vehiclesetup;
 
 import AeroQuad.configurator.communication.ISerialCommunicator;
-import AeroQuad.configurator.communication.messaging.request.VehicleInfoRequest;
 import AeroQuad.configurator.messagesdispatcher.FlightConfigType;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.messagesdispatcher.ReceiverType;
@@ -15,6 +14,14 @@ public class VehicleSetupController implements IVehicleSetupController
     private final IMessageDispatcher _messageDispatcher;
     private IVehicleSetupPanel _panel;
     private int _nbChannels = 0;
+
+    private ReceiverType _receiverType = ReceiverType.PWM;
+    private FlightConfigType _flightConfigType = FlightConfigType.QUAD_X;
+    private int _reversedYawDirection = 1;
+    private int _useBatteryMonitor = 0;
+    private int _useGps = 0;
+    private int _escUpdateSpeed = 10000;
+
 
     public VehicleSetupController(final IMessageDispatcher messageDispatcher, final ISerialCommunicator communicator)
     {
@@ -46,6 +53,7 @@ public class VehicleSetupController implements IVehicleSetupController
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 final int reversed = Integer.parseInt((String)evt.getNewValue());
+                _reversedYawDirection = reversed;
                 _panel.setYawIsReversed(reversed == -1);
             }
         });
@@ -66,6 +74,7 @@ public class VehicleSetupController implements IVehicleSetupController
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 final boolean batterieMonitorEnabled = (boolean)evt.getNewValue();
+                _useBatteryMonitor = batterieMonitorEnabled ? 1 : 0;
                 _panel.setBatterieMonitorSelected(batterieMonitorEnabled);
             }
         });
@@ -76,9 +85,33 @@ public class VehicleSetupController implements IVehicleSetupController
             public void propertyChange(final PropertyChangeEvent evt)
             {
                 final boolean useGps = (boolean)evt.getNewValue();
+                _useGps = useGps ? 1 : 0;
                 _panel.setUseGps(useGps);
             }
         });
+
+        messageDispatcher.addListener(IMessageDispatcher.ESC_UPDATE_SPEED_KEY, new PropertyChangeListener()
+        {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt)
+            {
+                final String speedString = (String)evt.getNewValue();
+                final int escSpeed = Integer.valueOf(speedString);
+                switch (escSpeed)
+                {
+                    case 2000:
+                        _panel.setEscSpeed(EscUpdateSpeed.FAST);
+                        break;
+                    case 10000:
+                        _panel.setEscSpeed(EscUpdateSpeed.OLD_WAY);
+                        break;
+                    default:
+                        _panel.setEscSpeed(EscUpdateSpeed.NORMAL);
+                }
+
+            }
+        });
+
     }
 
     @Override
@@ -90,116 +123,147 @@ public class VehicleSetupController implements IVehicleSetupController
     @Override
     public void pwmReceiverSelected()
     {
-        _communicator.sendCommand("J " + ReceiverType.PWM.ordinal() + ";");
+        _receiverType = ReceiverType.PWM;
         if (_nbChannels == 5)
         {
             _panel.selectQuadX();
         }
+        sendUpdateToFlightController();
     }
 
     @Override
     public void ppmReceiverSelected()
     {
-        _communicator.sendCommand("J " + ReceiverType.PPM.ordinal() + ";");
+        _receiverType = ReceiverType.PPM;
+        sendUpdateToFlightController();
     }
+
 
     @Override
     public void sbusReceiverSelected()
     {
-        _communicator.sendCommand("J " + ReceiverType.SBUS.ordinal() + ";");
+        _receiverType = ReceiverType.SBUS;
+        sendUpdateToFlightController();
     }
 
     @Override
     public void triConfigSelected()
     {
-        _communicator.sendCommand("Y " + FlightConfigType.TRI.ordinal() + ";");
+        _flightConfigType = FlightConfigType.TRI;
+        sendUpdateToFlightController();
     }
 
     @Override
     public void quadXConfigSelected()
     {
-        _communicator.sendCommand("Y " + FlightConfigType.QUAD_X.ordinal() + ";");
+        _flightConfigType = FlightConfigType.QUAD_X;
+        sendUpdateToFlightController();
     }
 
     @Override
     public void quadPlusConfigSelected()
     {
-        _communicator.sendCommand("Y " + FlightConfigType.QUAD_PLUS.ordinal() + ";");
+        _flightConfigType = FlightConfigType.QUAD_PLUS;
+        sendUpdateToFlightController();
     }
 
     @Override
     public void quadY4ConfigSelected()
     {
-        _communicator.sendCommand("Y " + FlightConfigType.QUAD_Y4.ordinal() + ";");
+        _flightConfigType = FlightConfigType.QUAD_Y4;
+        sendUpdateToFlightController();
     }
 
     @Override
     public void hexY6ConfigSelected()
     {
-        _communicator.sendCommand("Y " + FlightConfigType.HEX_Y6.ordinal() + ";");
+        _flightConfigType = FlightConfigType.HEX_Y6;
         if (_nbChannels == 5)
         {
             _panel.selectPpmReceiver();
         }
+        sendUpdateToFlightController();
     }
 
     @Override
     public void hexXConfigSelected()
     {
-        _communicator.sendCommand("Y " + FlightConfigType.HEX_X.ordinal() + ";");
+        _flightConfigType = FlightConfigType.HEX_X;
         if (_nbChannels == 5)
         {
             _panel.selectPpmReceiver();
         }
+        sendUpdateToFlightController();
     }
 
     @Override
     public void hexPlusConfigSelected()
     {
-        _communicator.sendCommand("Y " + FlightConfigType.HEX_PLUS.ordinal() + ";");
+        _flightConfigType = FlightConfigType.HEX_PLUS;
         if (_nbChannels == 5)
         {
             _panel.selectPpmReceiver();
         }
+        sendUpdateToFlightController();
     }
 
     @Override
     public void octoX8ConfigSelected()
     {
-        _communicator.sendCommand("Y " + FlightConfigType.OCTO_X8.ordinal() + ";");
+        _flightConfigType = FlightConfigType.OCTO_X8;
+        sendUpdateToFlightController();
     }
 
     @Override
     public void octoXConfigSelected()
     {
-        _communicator.sendCommand("Y " + FlightConfigType.OCTO_X.ordinal() + ";");
+        _flightConfigType = FlightConfigType.OCTO_X;
+        sendUpdateToFlightController();
     }
 
     @Override
     public void octoPlusConfigSelected()
     {
-        _communicator.sendCommand("Y " + FlightConfigType.OCTO_PLUS.ordinal() + ";");
+        _flightConfigType = FlightConfigType.OCTO_PLUS;
+        sendUpdateToFlightController();
     }
 
     @Override
     public void reverseYawSelected(final boolean reversed)
     {
-        int reversedInt = reversed ? -1 : 1;
-        _communicator.sendCommand("Z " + Integer.toString(reversedInt) + ";");
+        _reversedYawDirection = reversed ? -1 : 1;
+        sendUpdateToFlightController();
     }
 
     @Override
     public void batterieMonitorSelected(final boolean selected)
     {
-        int selectedInt = selected ? 1 : 0;
-        _communicator.sendCommand("E " + Integer.toString(selectedInt) + ";");
+        _useBatteryMonitor = selected ? 1 : 0;
+        sendUpdateToFlightController();
     }
 
     @Override
     public void useGpsSelected(final boolean selected)
     {
-        int selectedInt = selected ? 1 : 0;
-        _communicator.sendCommand("U " + Integer.toString(selectedInt) + ";");
+        _useGps = selected ? 1 : 0;
+        sendUpdateToFlightController();
+    }
+
+    @Override
+    public void setEscUpdateSpeed(final EscUpdateSpeed escUpdateSpeed)
+    {
+        switch (escUpdateSpeed)
+        {
+            case OLD_WAY:
+                _escUpdateSpeed = 10000;
+                break;
+            case NORMAL:
+                _escUpdateSpeed = 2500;
+                break;
+            default:
+                _escUpdateSpeed = 2000;
+        }
+        sendUpdateToFlightController();
     }
 
     private void updateOptionVisibilityFromChannelCount(final int nbChannels)
@@ -210,4 +274,19 @@ public class VehicleSetupController implements IVehicleSetupController
         _panel.setOctoPlusVisible(nbChannels != 5);
         _panel.setBatterieMonitorEnabled(nbChannels != 5);
     }
+
+
+    private void sendUpdateToFlightController()
+    {
+        final StringBuffer buffer = new StringBuffer();
+        buffer.append("J " + _receiverType.ordinal() + ";");
+        buffer.append(_flightConfigType.ordinal() + ";");
+        buffer.append(Integer.toString(_reversedYawDirection) + ";");
+        buffer.append(Integer.toString(_useBatteryMonitor) + ";");
+        buffer.append(Integer.toString(_useGps) + ";");
+        buffer.append(Integer.toString(_escUpdateSpeed) + ";");
+
+        _communicator.sendCommand(buffer.toString());
+    }
+
 }

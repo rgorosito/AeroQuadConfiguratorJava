@@ -24,4 +24,6 @@ public interface IVehicleSetupController
     void batterieMonitorSelected(boolean selected);
 
     void useGpsSelected(boolean selected);
+
+    void setEscUpdateSpeed(EscUpdateSpeed escUpdateSpeed);
 }

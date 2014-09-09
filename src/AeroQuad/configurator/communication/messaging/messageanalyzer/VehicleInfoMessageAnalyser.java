@@ -29,6 +29,7 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
 
     private final String RECEIVER_TYPE_KEY = "ReceiverType";
     private final String YAW_DIRECTION_KEY = "YawDirection";
+    private final String ESC_UPDATE_SPEED_KEY = "EscUpdateSpeed";
 
 
 //    private final String NOT_ENABLED = "Not Enabled";
@@ -133,6 +134,10 @@ public class VehicleInfoMessageAnalyser implements IMessageAnalyser
         else if (datas[0].contains(YAW_DIRECTION_KEY))
         {
             _messageDispatcher.dispatchMessage(IMessageDispatcher.YAW_DIRECTION_KET, datas[1]);
+        }
+        else if (datas[0].contains(ESC_UPDATE_SPEED_KEY))
+        {
+            _messageDispatcher.dispatchMessage(IMessageDispatcher.ESC_UPDATE_SPEED_KEY, datas[1]);
         }
     }
 }

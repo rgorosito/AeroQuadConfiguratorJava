@@ -28,4 +28,6 @@ public interface IVehicleSetupPanel
     void setBatterieMonitorSelected(boolean selected);
 
     void setUseGps(boolean useGps);
+
+    void setEscSpeed(EscUpdateSpeed escSpeed);
 }
