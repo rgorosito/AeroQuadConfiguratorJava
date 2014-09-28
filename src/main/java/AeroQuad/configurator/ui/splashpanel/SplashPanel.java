@@ -14,7 +14,7 @@ public class SplashPanel extends JPanel
     {
         setLayout(new BorderLayout());
 
-        URL imgUrl = this.getClass().getClassLoader().getResource("ressources/AeroQuad_1024x500.png");
+        URL imgUrl = this.getClass().getClassLoader().getResource("images/AeroQuad_1024x500.png");
     	ImageIcon imgIcon = new ImageIcon(imgUrl);
     	JLabel jLabel = new JLabel(imgIcon);
     	add(jLabel, BorderLayout.CENTER);

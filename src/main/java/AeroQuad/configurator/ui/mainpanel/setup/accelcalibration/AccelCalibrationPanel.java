@@ -54,7 +54,7 @@ public class AccelCalibrationPanel extends JPanel implements IAccelCalibrationPa
         setBorder(new LineBorder(Color.black,3));
 
         final JPanel calibrationPanel = new JPanel(new BorderLayout());
-        _imageLabel.setIcon(new ImageIcon(FLAT_UP_IMAGE_NAME));
+        _imageLabel.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(FLAT_UP_IMAGE_NAME)));
         _imageLabel.setBorder(new LineBorder(Color.black, 1));
         _imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         calibrationPanel.add(_imageLabel, BorderLayout.CENTER);
@@ -135,37 +135,37 @@ public class AccelCalibrationPanel extends JPanel implements IAccelCalibrationPa
         switch(currentCalibrationStep)
         {
             case FLAT_UP:
-                _imageLabel.setIcon(new ImageIcon(FLAT_UP_IMAGE_NAME));
+                _imageLabel.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(FLAT_UP_IMAGE_NAME)));
                 _nextButton.setText("Start");
                 _textLabel.setText(FLAT_UP_TEXT);
                 return;
             case FLAT_DOWN:
-                _imageLabel.setIcon(new ImageIcon(FLAT_DOWN_IMAGE_NAME));
+                _imageLabel.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(FLAT_DOWN_IMAGE_NAME)));
                 _nextButton.setText("Next");
                 _textLabel.setText(FLAT_DOWN_TEXT);
                 return;
             case LEFT_SIDE_DOWN:
-                _imageLabel.setIcon(new ImageIcon(LEFT_SIDE_DOWN_IMAGE_NAME));
+                _imageLabel.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(LEFT_SIDE_DOWN_IMAGE_NAME)));
                 _nextButton.setText("Next");
                 _textLabel.setText(LEFT_SIDE_DOWN_TEXT);
                 return;
             case RIGHT_SIDE_DOWN:
-                _imageLabel.setIcon(new ImageIcon(RIGHT_SIDE_IMAGE_NAME));
+                _imageLabel.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(RIGHT_SIDE_IMAGE_NAME)));
                 _nextButton.setText("Next");
                 _textLabel.setText(RIGHT_SIDE_DOWN_TEXT);
                 return;
             case NOSE_UP:
-                _imageLabel.setIcon(new ImageIcon(NOSE_UP_IMAGE_NAME));
+                _imageLabel.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(NOSE_UP_IMAGE_NAME)));
                 _nextButton.setText("Next");
                 _textLabel.setText(NOSE_UP_TEXT);
                 return;
             case NOSE_DOWN:
-                _imageLabel.setIcon(new ImageIcon(NOSE_DOWN_IMAGE_NAME));
+                _imageLabel.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(NOSE_DOWN_IMAGE_NAME)));
                 _nextButton.setText("Next");
                 _textLabel.setText(NOSE_DOWN_TEXT);
                 return;
             case FINISHED:
-                _imageLabel.setIcon(new ImageIcon(FLAT_UP_IMAGE_NAME));
+                _imageLabel.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(FLAT_UP_IMAGE_NAME)));
                 _nextButton.setText("Finish");
                 _textLabel.setText(FINISH_TEXT);
         }

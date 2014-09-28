@@ -1,20 +1,19 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.receiverdisplay;
 
-import AeroQuad.configurator.MathUtil;
+import java.awt.Color;
+import java.awt.Graphics;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.io.File;
+import AeroQuad.configurator.MathUtil;
 
 @SuppressWarnings("serial")
 public class StickPanel extends JLabel
 {
 
-    private final String imageFileName = "ressources" + File.separator + "TxDial.png";
+    private final String imageFileName = "images/TxDial.png";
 
     private int _x;
     private int _y;
@@ -23,7 +22,7 @@ public class StickPanel extends JLabel
 
     public StickPanel()
     {
-        setIcon(new ImageIcon(imageFileName));
+        setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(imageFileName)));
         setBorder(BorderFactory.createLineBorder(Color.black));
     }
 

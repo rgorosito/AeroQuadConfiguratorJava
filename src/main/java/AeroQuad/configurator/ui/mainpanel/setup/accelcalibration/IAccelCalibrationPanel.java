@@ -1,7 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.setup.accelcalibration;
 
 
-import java.io.File;
 
 public interface IAccelCalibrationPanel
 {
@@ -16,12 +15,12 @@ public interface IAccelCalibrationPanel
     final static String FINISH_TEXT = "<HTML><CENTER>Place back the AeroQuad motionless on a flat surface<br>and press finish</CENTER></HTML>";
 
 
-    final static String FLAT_UP_IMAGE_NAME = "ressources" + File.separator + "AccelCalflatUp.png";
-    final static String FLAT_DOWN_IMAGE_NAME = "ressources" + File.separator + "AccelCalflatDown.png";
-    final static String LEFT_SIDE_DOWN_IMAGE_NAME = "ressources" + File.separator + "AccelCalLeftSideDown.png";
-    final static String RIGHT_SIDE_IMAGE_NAME = "ressources" + File.separator + "AccelCalRightSideDown.png";
-    final static String NOSE_UP_IMAGE_NAME = "ressources" + File.separator + "AccelCalNoseUp.png";
-    final static String NOSE_DOWN_IMAGE_NAME = "ressources" + File.separator + "AccelCalNoseDown.png";
+    final static String FLAT_UP_IMAGE_NAME = "images/AccelCalflatUp.png";
+    final static String FLAT_DOWN_IMAGE_NAME = "images/AccelCalflatDown.png";
+    final static String LEFT_SIDE_DOWN_IMAGE_NAME = "images/AccelCalLeftSideDown.png";
+    final static String RIGHT_SIDE_IMAGE_NAME = "images/AccelCalRightSideDown.png";
+    final static String NOSE_UP_IMAGE_NAME = "images/AccelCalNoseUp.png";
+    final static String NOSE_DOWN_IMAGE_NAME = "images/AccelCalNoseDown.png";
 
     void setCancelButtonEnabled(boolean enabled);
 
