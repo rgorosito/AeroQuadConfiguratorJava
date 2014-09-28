@@ -23,7 +23,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>AeroQuad.configurator.Starte</mainClass>
+							<mainClass>AeroQuad.configurator.Starter</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
