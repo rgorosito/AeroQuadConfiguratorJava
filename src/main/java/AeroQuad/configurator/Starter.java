@@ -1,6 +1,13 @@
 package AeroQuad.configurator;
 
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.communication.SerialCommunicator;
 import AeroQuad.configurator.communication.communicationstatistics.CommunicationStatisticsProcessor;
@@ -10,22 +17,10 @@ import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.messagesdispatcher.MessageDispatcher;
 import AeroQuad.configurator.ui.AQConfiguratorMainFrame;
 
-import javax.swing.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
 public class Starter
 {
-
-    //private static final Logger LOGGER = LogManager.getLogger(Starter.class);
-
-    private static final String DEFAULT_CONFIGURATIONS_PATH = "configurations";
-    private static final String DEFAULT_LOGGING_PROPERTIES = DEFAULT_CONFIGURATIONS_PATH + File.separator + "log4j.xml";
-    private static final String DEFAULT_AQ_PROPERTIES = DEFAULT_CONFIGURATIONS_PATH + File.separator + "configurator.properties";
-
+	
+	private static final String AQ_PROPERTIES = "/configurations/configurator.properties";
 
     public Starter()
     {
@@ -61,7 +56,7 @@ public class Starter
         {
             final Properties prop = new Properties();
 
-            final InputStream in = new FileInputStream(DEFAULT_AQ_PROPERTIES);
+            final InputStream in = this.getClass().getResourceAsStream(AQ_PROPERTIES);
             prop.load(in);
             System.getProperties().putAll(prop);
         }

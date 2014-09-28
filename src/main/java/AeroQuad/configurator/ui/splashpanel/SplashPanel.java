@@ -1,17 +1,23 @@
 package AeroQuad.configurator.ui.splashpanel;
 
-import javax.swing.*;
-import java.awt.*;
-import java.io.File;
+import java.awt.BorderLayout;
+import java.net.URL;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
 public class SplashPanel extends JPanel
 {
-    private final String imageFileName = "ressources" + File.separator + "AeroQuad_1024x500.png";
-
     public SplashPanel()
     {
         setLayout(new BorderLayout());
 
-        add(new JLabel(new ImageIcon(imageFileName)), BorderLayout.CENTER);
+        URL imgUrl = this.getClass().getClassLoader().getResource("ressources/AeroQuad_1024x500.png");
+    	ImageIcon imgIcon = new ImageIcon(imgUrl);
+    	JLabel jLabel = new JLabel(imgIcon);
+    	add(jLabel, BorderLayout.CENTER);
+
     }
 }
