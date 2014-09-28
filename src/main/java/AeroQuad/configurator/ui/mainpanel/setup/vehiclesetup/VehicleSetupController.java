@@ -11,7 +11,8 @@ import java.beans.PropertyChangeListener;
 public class VehicleSetupController implements IVehicleSetupController
 {
     private final ISerialCommunicator _communicator;
-    private final IMessageDispatcher _messageDispatcher;
+    @SuppressWarnings("unused")
+	private final IMessageDispatcher _messageDispatcher;
     private IVehicleSetupPanel _panel;
     private int _nbChannels = 0;
 

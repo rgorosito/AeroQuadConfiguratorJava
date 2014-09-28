@@ -1,5 +1,10 @@
 package AeroQuad.configurator.ui.mainpanel;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.JPanel;
+
 import AeroQuad.configurator.communication.ISerialCommunicator;
 import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.monitoring.IMonitoringPanelController;
@@ -11,13 +16,6 @@ import AeroQuad.configurator.ui.mainpanel.setup.SetupPanelController;
 import AeroQuad.configurator.ui.mainpanel.tuning.ITuningPanelController;
 import AeroQuad.configurator.ui.mainpanel.tuning.TuningPanel;
 import AeroQuad.configurator.ui.mainpanel.tuning.TuningPanelController;
-import AeroQuad.configurator.ui.vehicleinfosfeedback.IVehicleInfoFeedbackController;
-import AeroQuad.configurator.ui.vehicleinfosfeedback.VehicleInfoFeedbackController;
-import AeroQuad.configurator.ui.vehicleinfosfeedback.VehicleInfoFeedbackPanel;
-
-import javax.swing.JPanel;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 public class MainPanelController implements IMainPanelController
 {

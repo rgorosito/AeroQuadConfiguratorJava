@@ -12,11 +12,13 @@ import org.jfree.data.time.TimeSeriesCollection;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
+@SuppressWarnings("serial")
 public class XYZPlotDrawerPanel extends JPanel
 {
     private TimeSeries _xSeries = new TimeSeries("X");

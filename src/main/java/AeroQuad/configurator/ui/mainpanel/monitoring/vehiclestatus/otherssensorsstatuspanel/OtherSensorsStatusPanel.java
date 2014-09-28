@@ -6,8 +6,10 @@ import AeroQuad.configurator.messagesdispatcher.FlightMode;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class OtherSensorsStatusPanel extends JPanel implements IOtherSensorsStatusPanel
 {
     private final JLabel _motorStatusLabel = new JLabel();

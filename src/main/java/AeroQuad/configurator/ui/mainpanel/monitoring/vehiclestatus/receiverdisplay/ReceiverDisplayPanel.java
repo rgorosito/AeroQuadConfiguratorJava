@@ -2,11 +2,13 @@ package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.receiverdisp
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
+@SuppressWarnings("serial")
 public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPanel
 {
     private final StickPanel _throttleYawPanel = new StickPanel();

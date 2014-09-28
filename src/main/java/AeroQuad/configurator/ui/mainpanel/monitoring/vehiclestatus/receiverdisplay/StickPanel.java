@@ -5,10 +5,12 @@ import AeroQuad.configurator.MathUtil;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.File;
 
+@SuppressWarnings("serial")
 public class StickPanel extends JLabel
 {
 

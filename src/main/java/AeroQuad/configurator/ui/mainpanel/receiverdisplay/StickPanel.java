@@ -3,8 +3,10 @@ package AeroQuad.configurator.ui.mainpanel.receiverdisplay;
 import AeroQuad.configurator.MathUtil;
 
 import javax.swing.*;
+
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class StickPanel extends JLabel
 {
     private int _x = 1500;

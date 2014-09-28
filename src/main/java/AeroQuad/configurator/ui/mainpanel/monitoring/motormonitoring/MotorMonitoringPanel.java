@@ -5,12 +5,14 @@ import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.IUserMoto
 import AeroQuad.configurator.ui.mainpanel.monitoring.motordisplaypanel.MotorDisplayPanel;
 
 import javax.swing.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class MotorMonitoringPanel extends JPanel implements IMotorMonitoringPanel
 {
     private final IMotorMonitoringPanelController _controller;

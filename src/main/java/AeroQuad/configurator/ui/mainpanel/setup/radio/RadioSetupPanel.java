@@ -1,12 +1,14 @@
 package AeroQuad.configurator.ui.mainpanel.setup.radio;
 
 import javax.swing.*;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class RadioSetupPanel extends JPanel implements IRadioSetupPanel
 {
     private final JToggleButton _channelDetectionButton = new JToggleButton(CHANNEL_DETECTION);

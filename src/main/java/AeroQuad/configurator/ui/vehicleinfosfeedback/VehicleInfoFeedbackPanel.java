@@ -1,9 +1,11 @@
 package AeroQuad.configurator.ui.vehicleinfosfeedback;
 
 import javax.swing.*;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 
+@SuppressWarnings("serial")
 public class VehicleInfoFeedbackPanel extends JPanel implements IVehicleInfoFeedbackPanel
 {
     private final JLabel _boardType = new JLabel("CONNECTING");

@@ -3,6 +3,7 @@ package AeroQuad.configurator.ui.mainpanel.setup.radio.radiochanneldetection;
 import AeroQuad.configurator.ui.uiutils.UiUtils;
 
 import javax.swing.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,6 +11,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class RadioChannelDetectionPanel extends JPanel implements IRadioChannelDetectionPanel
 {
     private final JProgressBar _throttleProgressBar = new JProgressBar(0,5);
@@ -279,6 +281,8 @@ public class RadioChannelDetectionPanel extends JPanel implements IRadioChannelD
             case AUX3:
                 updateUserFeedbackWidget(_aux3ProgressBar, _aux3DetectionStateLabel, cpt);
                 break;
+            case UNDEFINED:
+            	break;
         }
     }
 
@@ -324,6 +328,8 @@ public class RadioChannelDetectionPanel extends JPanel implements IRadioChannelD
             case AUX3:
                 setSpecificChannelDetected(_aux3ProgressBar, _aux3DetectionStateLabel);
                 break;
+            case UNDEFINED:
+            	break;
         }
     }
 

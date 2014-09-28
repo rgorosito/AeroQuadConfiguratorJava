@@ -8,8 +8,10 @@ import AeroQuad.configurator.ui.mainpanel.monitoring.sensorsmonitoring.sensorsse
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class SensorsMonitoringPanel extends JPanel implements ISensorsMonitoringPanel
 {
     private final ISensorsMonitoringController _controller;

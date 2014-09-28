@@ -2,8 +2,10 @@ package AeroQuad.configurator.ui.mainpanel.receiverdisplay;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class ReceiverDisplayPanel extends JPanel implements IReceiverDisplayPanel
 {
     private final StickPanel _throttleYawPanel = new StickPanel();

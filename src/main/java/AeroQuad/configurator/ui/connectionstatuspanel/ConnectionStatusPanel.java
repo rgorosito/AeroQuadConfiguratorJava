@@ -1,15 +1,20 @@
 package AeroQuad.configurator.ui.connectionstatuspanel;
 
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
-import java.util.*;
 import java.util.List;
 
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
+
+@SuppressWarnings("serial")
 public class ConnectionStatusPanel extends JPanel implements IConnectionStatusPanel
 {
     private final JLabel _connectionStateLabel = new JLabel(DISCONNECTED,SwingConstants.CENTER);

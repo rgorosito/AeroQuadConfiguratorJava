@@ -2,10 +2,12 @@ package AeroQuad.configurator.ui.mainpanel.setup.magcalibration;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class MagCalibrationPanel extends JPanel implements IMagCalibrationPanel
 {
     private final IMagCalibrationPanelController _controller;

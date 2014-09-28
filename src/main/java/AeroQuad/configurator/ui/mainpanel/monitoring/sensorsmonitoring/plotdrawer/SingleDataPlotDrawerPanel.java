@@ -12,10 +12,12 @@ import org.jfree.data.time.TimeSeriesCollection;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
+@SuppressWarnings("serial")
 public class SingleDataPlotDrawerPanel extends JPanel
 {
     private TimeSeries _series = new TimeSeries("");

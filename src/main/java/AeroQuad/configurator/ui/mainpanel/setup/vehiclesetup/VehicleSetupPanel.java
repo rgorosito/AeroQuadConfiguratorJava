@@ -6,12 +6,14 @@ import AeroQuad.configurator.messagesdispatcher.ReceiverType;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
 {
     private final IVehicleSetupController _controller;

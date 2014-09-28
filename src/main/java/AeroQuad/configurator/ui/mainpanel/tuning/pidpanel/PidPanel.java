@@ -6,6 +6,7 @@ import AeroQuad.configurator.ui.uiutils.UiUtils;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,6 +17,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class PidPanel extends JPanel
 {
     private final GridLayout _gridLayout = new GridLayout(1, 3);

@@ -13,6 +13,7 @@ import AeroQuad.configurator.messagesdispatcher.VehicleAttitude;
 
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,6 +30,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.io.InputStream;
 
+@SuppressWarnings("serial")
 public class ArtificialHorizonPanel extends JPanel
 {
     private int PREFERRED_PANEL_SIZE = 350;

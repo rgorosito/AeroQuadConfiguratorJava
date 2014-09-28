@@ -8,8 +8,6 @@ public class MessageDispatcher implements IMessageDispatcher
 {
     private final PropertyChangeSupport _propertyChangeSupport = new PropertyChangeSupport(this);
 
-    private VehicleAttitude _vehicleAttitude = new VehicleAttitude(0, 0, 0);
-
     @Override
     public void addListener(final String propertyName, final PropertyChangeListener listener)
     {

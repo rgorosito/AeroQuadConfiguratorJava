@@ -1,19 +1,18 @@
 package AeroQuad.configurator.ui.mainpanel.setup.radio;
 
+import javax.swing.JPanel;
+
+import AeroQuad.configurator.communication.ISerialCommunicator;
+import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.receiverdisplay.IReceiverDisplayPanelController;
 import AeroQuad.configurator.ui.mainpanel.receiverdisplay.ReceiverDisplayPanel;
 import AeroQuad.configurator.ui.mainpanel.receiverdisplay.ReceiverPanelController;
 import AeroQuad.configurator.ui.mainpanel.setup.radio.radiocalibration.IRadioCalibrationPanelController;
 import AeroQuad.configurator.ui.mainpanel.setup.radio.radiocalibration.RadioCalibrationPanel;
 import AeroQuad.configurator.ui.mainpanel.setup.radio.radiocalibration.RadioCalibrationPanelController;
-import AeroQuad.configurator.communication.ISerialCommunicator;
-import AeroQuad.configurator.messagesdispatcher.IMessageDispatcher;
 import AeroQuad.configurator.ui.mainpanel.setup.radio.radiochanneldetection.IRadioChannelDetectionController;
 import AeroQuad.configurator.ui.mainpanel.setup.radio.radiochanneldetection.RadioChannelDetectionController;
 import AeroQuad.configurator.ui.mainpanel.setup.radio.radiochanneldetection.RadioChannelDetectionPanel;
-import AeroQuad.configurator.ui.mainpanel.tuning.IPidPanelController;
-
-import javax.swing.JPanel;
 
 
 public class RadioSetupController implements IRadioSetupController

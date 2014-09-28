@@ -3,8 +3,10 @@ package AeroQuad.configurator.ui.mainpanel;
 import AeroQuad.configurator.ui.splashpanel.SplashPanel;
 
 import javax.swing.*;
+
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class MainPanel extends JPanel implements IMainPanel
 {
     private final CardLayout _cardLayout = new CardLayout();

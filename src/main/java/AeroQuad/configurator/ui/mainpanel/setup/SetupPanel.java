@@ -1,12 +1,14 @@
 package AeroQuad.configurator.ui.mainpanel.setup;
 
 import javax.swing.*;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class SetupPanel extends JPanel implements ISetupPanel
 {
     private final CardLayout _cardLayout = new CardLayout();

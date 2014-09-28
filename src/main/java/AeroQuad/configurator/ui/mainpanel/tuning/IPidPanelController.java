@@ -1,7 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.tuning;
 
 import AeroQuad.configurator.communication.messaging.request.IRequest;
-import AeroQuad.configurator.messagesdispatcher.PIDData;
 
 public interface IPidPanelController
 {

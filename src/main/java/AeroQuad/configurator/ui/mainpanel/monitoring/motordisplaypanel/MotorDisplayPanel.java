@@ -7,10 +7,12 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class MotorDisplayPanel extends JPanel implements IMotorDisplayPanel
 {
     private final IMotorDisplayController _controller;

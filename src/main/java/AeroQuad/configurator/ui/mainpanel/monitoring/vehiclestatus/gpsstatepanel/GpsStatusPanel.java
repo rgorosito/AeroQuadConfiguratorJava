@@ -3,8 +3,10 @@ package AeroQuad.configurator.ui.mainpanel.monitoring.vehiclestatus.gpsstatepane
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class GpsStatusPanel extends JPanel implements IGpsStatusPanel
 {
     private final IGpsStatusPanelController _controller;

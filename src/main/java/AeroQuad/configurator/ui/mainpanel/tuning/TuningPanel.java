@@ -4,10 +4,12 @@ import AeroQuad.configurator.ui.uiutils.UiUtils;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class TuningPanel extends JPanel implements ITuningPanel
 {
     private final ButtonGroup _userLevelButtonGroup = new ButtonGroup();

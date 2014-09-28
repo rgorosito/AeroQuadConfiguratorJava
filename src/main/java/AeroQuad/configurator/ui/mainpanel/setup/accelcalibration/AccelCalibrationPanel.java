@@ -2,6 +2,7 @@ package AeroQuad.configurator.ui.mainpanel.setup.accelcalibration;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class AccelCalibrationPanel extends JPanel implements IAccelCalibrationPanel
 {
 

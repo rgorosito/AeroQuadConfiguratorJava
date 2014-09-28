@@ -62,7 +62,8 @@ public class ConnectionStatusPanelController implements IConnectionStatusPanelCo
             @Override
             public void propertyChange(final PropertyChangeEvent evt)
             {
-                final List<String> commPortList = (List<String>)evt.getNewValue();
+				@SuppressWarnings("unchecked")
+				final List<String> commPortList = (List<String>)evt.getNewValue();
                 updateCommPortList(commPortList);
             }
         });

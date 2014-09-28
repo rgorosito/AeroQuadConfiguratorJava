@@ -1,7 +1,6 @@
 package AeroQuad.configurator.ui.mainpanel.setup;
 
 import javax.swing.JPanel;
-import java.awt.Component;
 
 public interface ISetupPanelController
 {

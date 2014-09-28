@@ -1,10 +1,12 @@
 package AeroQuad.configurator.ui.mainpanel.monitoring;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class MonitoringPanel extends JPanel implements IMonitoringPanel
 {
     private final CardLayout _cardLayout = new CardLayout();

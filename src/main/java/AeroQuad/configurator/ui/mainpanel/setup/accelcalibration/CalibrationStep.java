@@ -26,7 +26,9 @@ public enum CalibrationStep
                 return NOSE_DOWN;
             case NOSE_DOWN:
                 return FINISHED;
+            default:
+            	return FINISHED;
         }
-        return FINISHED;
+        
     }
 }

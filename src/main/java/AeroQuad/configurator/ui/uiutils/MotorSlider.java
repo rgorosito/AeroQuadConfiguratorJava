@@ -2,8 +2,10 @@ package AeroQuad.configurator.ui.uiutils;
 
 import javax.swing.BorderFactory;
 import javax.swing.JSlider;
+
 import java.awt.Color;
 
+@SuppressWarnings("serial")
 public class MotorSlider extends JSlider
 {
     public MotorSlider()

@@ -4,8 +4,10 @@ import AeroQuad.configurator.messagesdispatcher.VehicleAttitude;
 import AeroQuad.configurator.ui.artificialhorizon.ArtificialHorizonPanel;
 
 import javax.swing.*;
+
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class VehicleStatusPanel extends JPanel implements IVehicleStatusPanel
 {
     private final IVehicleStatusController _controller;

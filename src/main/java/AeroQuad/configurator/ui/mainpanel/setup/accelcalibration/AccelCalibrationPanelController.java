@@ -119,6 +119,9 @@ public class AccelCalibrationPanelController implements IAccelCalibrationPanelCo
             case NOSE_DOWN:
                 _rawAccelSumValue[_currentCalibrationStep.ordinal()] += Integer.valueOf(accelRawData.getX());
                 break;
+		default:
+			System.err.println("Wrong calibration step");
+			break;
 
         }
 

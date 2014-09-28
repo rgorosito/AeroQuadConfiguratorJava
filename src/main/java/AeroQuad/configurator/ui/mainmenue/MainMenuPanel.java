@@ -5,10 +5,12 @@ import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class MainMenuPanel extends JPanel implements IMainMenuPanel
 {
     private final JToggleButton _setupButton = new JToggleButton(SETUP);

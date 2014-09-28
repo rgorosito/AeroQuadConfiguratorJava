@@ -2,10 +2,12 @@ package AeroQuad.configurator.ui.mainpanel.setup.radio.radiocalibration;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class RadioCalibrationPanel extends JPanel implements IRadioCalibrationPanel
 {
     private final IRadioCalibrationPanelController _controller;

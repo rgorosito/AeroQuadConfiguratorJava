@@ -18,11 +18,13 @@ import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.InsetsUIResource;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.LinkedList;
 
+@SuppressWarnings("serial")
 public class AQConfiguratorMainFrame extends JFrame
 {
     public AQConfiguratorMainFrame(final ISerialCommunicator communicator,

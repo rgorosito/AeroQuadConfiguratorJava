@@ -11,9 +11,11 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+@SuppressWarnings("serial")
 public class AllSensorsPlotDrawerPanel extends JPanel
 {
     private final TimeSeries _gyroXSeries = new TimeSeries("Gyro X");
