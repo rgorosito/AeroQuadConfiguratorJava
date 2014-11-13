@@ -93,4 +93,18 @@ public class AccroPidData
     {
         return _throttlePIDAdjustment;
     }
+
+    @Override
+    public String toString()
+    {
+        final StringBuffer buffer = new StringBuffer();
+        buffer.append(_rollPidData.toString());
+        buffer.append(",");
+        buffer.append(_pichPidData);
+        buffer.append(",");
+        buffer.append(_stickScaling);
+        buffer.append(",");
+        buffer.append(_throttlePIDAdjustment);
+        return buffer.toString();
+    }
 }

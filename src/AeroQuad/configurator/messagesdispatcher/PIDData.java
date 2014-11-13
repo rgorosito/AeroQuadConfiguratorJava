@@ -100,4 +100,10 @@ public class PIDData
     {
         return new PIDData(_p, _i, _d);
     }
+
+    @Override
+    public String toString()
+    {
+        return _p + "," + _i + "," + _d;
+    }
 }
