@@ -17,7 +17,7 @@ $ mvn clean package
 How to run
 ----------
 ```
-$ java -jar target/AeroQuadConfiguratorJava-0.0.1-SNAPSHOT-jar-with-dependencies.j
+$ java -jar target/AeroQuadConfiguratorJava-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
 
 
