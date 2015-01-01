@@ -100,9 +100,9 @@ public class VehicleSetupController implements IVehicleSetupController
                 final int escSpeed = Integer.valueOf(speedString);
                 switch (escSpeed)
                 {
-                    case 2000:
-                        _panel.setEscSpeed(EscUpdateSpeed.FAST);
-                        break;
+//                    case 2000:
+//                        _panel.setEscSpeed(EscUpdateSpeed.FAST);
+//                        break;
                     case 10000:
                         _panel.setEscSpeed(EscUpdateSpeed.OLD_WAY);
                         break;

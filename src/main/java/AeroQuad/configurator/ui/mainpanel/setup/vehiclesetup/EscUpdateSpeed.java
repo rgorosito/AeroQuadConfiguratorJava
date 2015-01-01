@@ -4,5 +4,5 @@ public enum EscUpdateSpeed
 {
     OLD_WAY,
     NORMAL,
-    FAST
+//    FAST
 }

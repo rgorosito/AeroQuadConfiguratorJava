@@ -35,7 +35,7 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
 
     private final JRadioButton _oldEscUpdateSpeedRadioButton = new JRadioButton("Old Way");
     private final JRadioButton _normalEscUpdateSpeedRadionButton = new JRadioButton("Normal");
-    private final JRadioButton _fastEscUpdateSpeedRadioButton = new JRadioButton("Fast (SimonK, BlHeli)");
+//    private final JRadioButton _fastEscUpdateSpeedRadioButton = new JRadioButton("Fast (SimonK, BlHeli)");
 
     private final JCheckBox _reverseYawCheckBox = new JCheckBox("Reverse Yaw");
     private final JCheckBox _batteriMonitorCheckBox = new JCheckBox("Batterie monitor");
@@ -163,17 +163,17 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
 
     private JPanel createEscUpdateSpeedPanel()
     {
-        final JPanel escUpdateSpeedPanel = new JPanel(new GridLayout(2,2));
+        final JPanel escUpdateSpeedPanel = new JPanel(new GridLayout(1,2));
         final TitledBorder escUpdateSpeedBorder = new TitledBorder("ESC update Speed");
         escUpdateSpeedBorder.setTitleColor(Color.WHITE);
         escUpdateSpeedPanel.setBorder(escUpdateSpeedBorder);
         final ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(_oldEscUpdateSpeedRadioButton);
         buttonGroup.add(_normalEscUpdateSpeedRadionButton);
-        buttonGroup.add(_fastEscUpdateSpeedRadioButton);
+//        buttonGroup.add(_fastEscUpdateSpeedRadioButton);
         escUpdateSpeedPanel.add(_oldEscUpdateSpeedRadioButton);
         escUpdateSpeedPanel.add(_normalEscUpdateSpeedRadionButton);
-        escUpdateSpeedPanel.add(_fastEscUpdateSpeedRadioButton);
+//        escUpdateSpeedPanel.add(_fastEscUpdateSpeedRadioButton);
         final JLabel tempLabel = new JLabel();
         tempLabel.setOpaque(true);
         tempLabel.setBackground(_oldEscUpdateSpeedRadioButton.getBackground());
@@ -306,14 +306,14 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
                 _controller.setEscUpdateSpeed(EscUpdateSpeed.NORMAL);
             }
         });
-        _fastEscUpdateSpeedRadioButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(final ActionEvent e)
-            {
-                _controller.setEscUpdateSpeed(EscUpdateSpeed.FAST);
-            }
-        });
+//        _fastEscUpdateSpeedRadioButton.addActionListener(new ActionListener()
+//        {
+//            @Override
+//            public void actionPerformed(final ActionEvent e)
+//            {
+//                _controller.setEscUpdateSpeed(EscUpdateSpeed.FAST);
+//            }
+//        });
 
         _reverseYawCheckBox.addActionListener(new ActionListener()
         {
@@ -452,9 +452,9 @@ public class VehicleSetupPanel extends JPanel implements IVehicleSetupPanel
     {
         switch (escSpeed)
         {
-            case FAST:
-                _fastEscUpdateSpeedRadioButton.setSelected(true);
-                break;
+//            case FAST:
+//                _fastEscUpdateSpeedRadioButton.setSelected(true);
+//                break;
             case OLD_WAY:
                 _oldEscUpdateSpeedRadioButton.setSelected(true);
                 break;
